@@ -34,15 +34,15 @@ public class HPSresponseGenerator extends BaseResponseGenerator {
 
 	@Override
 	public void authorizationPendingBitfieldsUpdate() {
-		responseBitfieldswithValue.put(BaseVariables.nameOfbitfield2, generateBitfield2(requestBitfieldsWithValues));
+		responseBitfieldswithValue.put(BaseConstants.nameOfbitfield2, generateBitfield2(requestBitfieldsWithValues));
 		// Partial approval is not applicable for balance inquiry.
 		isBalanceInquiry = false;
-		if (BaseVariables.balanceInquiryCodes.contains(requestBitfieldsWithValues.get(BaseVariables.nameOfbitfield3))) {
+		if (BaseConstants.balanceInquiryCodes.contains(requestBitfieldsWithValues.get(BaseConstants.nameOfbitfield3))) {
 			isBalanceInquiry = true;
 			if (transactionResult.equals("Decline")) {
 				bitfield4 = "000000000000";
 			} else {
-				bitfield4 = BaseVariables.valueOfBitfield4;
+				bitfield4 = BaseConstants.valueOfBitfield4;
 			}
 			if (transactionResult.equals("PartiallyApprove")) {
 				transactionResult = "Approve";
@@ -50,41 +50,41 @@ public class HPSresponseGenerator extends BaseResponseGenerator {
 		}
 		switch (transactionResult) {
 		case "Approve":
-			responseBitfieldswithValue.put(BaseVariables.nameOfbitfield39,
-					setBitfieldValue(BaseVariables.nameOfbitfield39, BaseVariables.ValueOfBitfield39Approval));
+			responseBitfieldswithValue.put(BaseConstants.nameOfbitfield39,
+					setBitfieldValue(BaseConstants.nameOfbitfield39, BaseConstants.ValueOfBitfield39Approval));
 			break;
 		case "Decline":
-			responseBitfieldswithValue.put(BaseVariables.nameOfbitfield39,
-					setBitfieldValue(BaseVariables.nameOfbitfield39, BaseVariables.ValueOfBitfield39Decline));
+			responseBitfieldswithValue.put(BaseConstants.nameOfbitfield39,
+					setBitfieldValue(BaseConstants.nameOfbitfield39, BaseConstants.ValueOfBitfield39Decline));
 			break;
 		case "PartiallyApprove":
-			bitfield4 = generateHalfAmountForPartialApproval(requestBitfieldsWithValues.get(BaseVariables.nameOfbitfield4));
-			responseBitfieldswithValue.put(BaseVariables.nameOfbitfield39,
-					setBitfieldValue(BaseVariables.nameOfbitfield39, BaseVariables.ValueOfBitfield39Partial));
+			bitfield4 = generateHalfAmountForPartialApproval(requestBitfieldsWithValues.get(BaseConstants.nameOfbitfield4));
+			responseBitfieldswithValue.put(BaseConstants.nameOfbitfield39,
+					setBitfieldValue(BaseConstants.nameOfbitfield39, BaseConstants.ValueOfBitfield39Partial));
 			break;
 		}
 
 		if (transactionResult.equals("PartiallyApprove") || isBalanceInquiry) {
-			responseBitfieldswithValue.put(BaseVariables.nameOfbitfield4,
-					setBitfieldValue(BaseVariables.nameOfbitfield4, bitfield4));
+			responseBitfieldswithValue.put(BaseConstants.nameOfbitfield4,
+					setBitfieldValue(BaseConstants.nameOfbitfield4, bitfield4));
 		}
 
 		if (transactionResult.equals("Approve") || transactionResult.equals("PartiallyApprove")) {
-			responseBitfieldswithValue.put(BaseVariables.nameOfbitfield38,
-					setBitfieldValue(BaseVariables.nameOfbitfield38, BaseVariables.valueOfBitfield38));
+			responseBitfieldswithValue.put(BaseConstants.nameOfbitfield38,
+					setBitfieldValue(BaseConstants.nameOfbitfield38, BaseConstants.valueOfBitfield38));
 			elementsInTransaction.add(38);
 		}
 		if (transactionResult.equals("Decline")) {
-			responseBitfieldswithValue.put(BaseVariables.nameOfbitfield44,
-					setBitfieldValue(BaseVariables.nameOfbitfield44, BaseVariables.valueOfBitfield44));
+			responseBitfieldswithValue.put(BaseConstants.nameOfbitfield44,
+					setBitfieldValue(BaseConstants.nameOfbitfield44, BaseConstants.valueOfBitfield44));
 			elementsInTransaction.add(44);
 		}
 
 		addDE54IfNecessary();
 
-		if (requestBitfieldsWithValues.containsKey(BaseVariables.nameOfbitfield55)) {
-			responseBitfieldswithValue.put(BaseVariables.nameOfbitfield55,
-					requestBitfieldsWithValues.get(BaseVariables.nameOfbitfield55));
+		if (requestBitfieldsWithValues.containsKey(BaseConstants.nameOfbitfield55)) {
+			responseBitfieldswithValue.put(BaseConstants.nameOfbitfield55,
+					requestBitfieldsWithValues.get(BaseConstants.nameOfbitfield55));
 			elementsInTransaction.add(55);
 		}
 
@@ -92,38 +92,38 @@ public class HPSresponseGenerator extends BaseResponseGenerator {
 
 	@Override
 	public void financialSalesPendingBitfieldsUpdate() {
-		responseBitfieldswithValue.put(BaseVariables.nameOfbitfield2, generateBitfield2(requestBitfieldsWithValues));
+		responseBitfieldswithValue.put(BaseConstants.nameOfbitfield2, generateBitfield2(requestBitfieldsWithValues));
 		// Activation and Recharges transaction should not have partial approval
-		if (BaseVariables.activationRechargeCodes.contains(requestBitfieldsWithValues.get(BaseVariables.nameOfbitfield3))
+		if (BaseConstants.activationRechargeCodes.contains(requestBitfieldsWithValues.get(BaseConstants.nameOfbitfield3))
 				&& transactionResult.equals("PartiallyApprove")) {
 			transactionResult = "Approve";
 		}
 		switch (transactionResult) {
 		case "Approve":
-			responseBitfieldswithValue.put(BaseVariables.nameOfbitfield39,
-					setBitfieldValue(BaseVariables.nameOfbitfield39, BaseVariables.ValueOfBitfield39Approval));
+			responseBitfieldswithValue.put(BaseConstants.nameOfbitfield39,
+					setBitfieldValue(BaseConstants.nameOfbitfield39, BaseConstants.ValueOfBitfield39Approval));
 			break;
 		case "Decline":
-			responseBitfieldswithValue.put(BaseVariables.nameOfbitfield39,
-					setBitfieldValue(BaseVariables.nameOfbitfield39, BaseVariables.ValueOfBitfield39Decline));
+			responseBitfieldswithValue.put(BaseConstants.nameOfbitfield39,
+					setBitfieldValue(BaseConstants.nameOfbitfield39, BaseConstants.ValueOfBitfield39Decline));
 			break;
 		case "PartiallyApprove":
-			bitfield4 = generateHalfAmountForPartialApproval(requestBitfieldsWithValues.get(BaseVariables.nameOfbitfield4));
-			responseBitfieldswithValue.put(BaseVariables.nameOfbitfield4,
-					setBitfieldValue(BaseVariables.nameOfbitfield4, bitfield4));
-			responseBitfieldswithValue.put(BaseVariables.nameOfbitfield39,
-					setBitfieldValue(BaseVariables.nameOfbitfield39, BaseVariables.ValueOfBitfield39Partial));
+			bitfield4 = generateHalfAmountForPartialApproval(requestBitfieldsWithValues.get(BaseConstants.nameOfbitfield4));
+			responseBitfieldswithValue.put(BaseConstants.nameOfbitfield4,
+					setBitfieldValue(BaseConstants.nameOfbitfield4, bitfield4));
+			responseBitfieldswithValue.put(BaseConstants.nameOfbitfield39,
+					setBitfieldValue(BaseConstants.nameOfbitfield39, BaseConstants.ValueOfBitfield39Partial));
 			break;
 		}
 
 		if (transactionResult.equals("Approve") || transactionResult.equals("PartiallyApprove")) {
-			responseBitfieldswithValue.put(BaseVariables.nameOfbitfield38,
-					setBitfieldValue(BaseVariables.nameOfbitfield38, BaseVariables.valueOfBitfield38));
+			responseBitfieldswithValue.put(BaseConstants.nameOfbitfield38,
+					setBitfieldValue(BaseConstants.nameOfbitfield38, BaseConstants.valueOfBitfield38));
 			elementsInTransaction.add(38);
 		}
 		if (transactionResult.equals("Decline")) {
-			responseBitfieldswithValue.put(BaseVariables.nameOfbitfield44,
-					setBitfieldValue(BaseVariables.nameOfbitfield44, BaseVariables.valueOfBitfield44));
+			responseBitfieldswithValue.put(BaseConstants.nameOfbitfield44,
+					setBitfieldValue(BaseConstants.nameOfbitfield44, BaseConstants.valueOfBitfield44));
 			elementsInTransaction.add(44);
 		}
 
@@ -133,36 +133,36 @@ public class HPSresponseGenerator extends BaseResponseGenerator {
 
 	@Override
 	public void financialForceDraftPendingBitfieldsUpdate() {
-		responseBitfieldswithValue.put(BaseVariables.nameOfbitfield2, generateBitfield2(requestBitfieldsWithValues));
+		responseBitfieldswithValue.put(BaseConstants.nameOfbitfield2, generateBitfield2(requestBitfieldsWithValues));
 		if (transactionResult.equals("PartiallyApprove")) {
 			transactionResult = "Approve";
 		}
 		switch (transactionResult) {
 		case "Approve":
-			responseBitfieldswithValue.put(BaseVariables.nameOfbitfield39,
-					setBitfieldValue(BaseVariables.nameOfbitfield39, BaseVariables.ValueOfBitfield39Approval));
+			responseBitfieldswithValue.put(BaseConstants.nameOfbitfield39,
+					setBitfieldValue(BaseConstants.nameOfbitfield39, BaseConstants.ValueOfBitfield39Approval));
 			break;
 		case "Decline":
-			responseBitfieldswithValue.put(BaseVariables.nameOfbitfield39,
-					setBitfieldValue(BaseVariables.nameOfbitfield39, BaseVariables.ValueOfBitfield39Decline));
+			responseBitfieldswithValue.put(BaseConstants.nameOfbitfield39,
+					setBitfieldValue(BaseConstants.nameOfbitfield39, BaseConstants.ValueOfBitfield39Decline));
 			break;
 		case "PartiallyApprove":
-			bitfield4 = generateHalfAmountForPartialApproval(requestBitfieldsWithValues.get(BaseVariables.nameOfbitfield4));
-			responseBitfieldswithValue.put(BaseVariables.nameOfbitfield4,
-					requestBitfieldsWithValues.get(BaseVariables.nameOfbitfield4));
-			responseBitfieldswithValue.put(BaseVariables.nameOfbitfield39,
-					setBitfieldValue(BaseVariables.nameOfbitfield39, BaseVariables.ValueOfBitfield39Partial));
+			bitfield4 = generateHalfAmountForPartialApproval(requestBitfieldsWithValues.get(BaseConstants.nameOfbitfield4));
+			responseBitfieldswithValue.put(BaseConstants.nameOfbitfield4,
+					requestBitfieldsWithValues.get(BaseConstants.nameOfbitfield4));
+			responseBitfieldswithValue.put(BaseConstants.nameOfbitfield39,
+					setBitfieldValue(BaseConstants.nameOfbitfield39, BaseConstants.ValueOfBitfield39Partial));
 			break;
 		}
 
 		if (transactionResult.equals("Approve") || transactionResult.equals("PartiallyApprove")) {
-			responseBitfieldswithValue.put(BaseVariables.nameOfbitfield38,
-					setBitfieldValue(BaseVariables.nameOfbitfield38, BaseVariables.valueOfBitfield38));
+			responseBitfieldswithValue.put(BaseConstants.nameOfbitfield38,
+					setBitfieldValue(BaseConstants.nameOfbitfield38, BaseConstants.valueOfBitfield38));
 			elementsInTransaction.add(38);
 		}
 		if (transactionResult.equals("Decline")) {
-			responseBitfieldswithValue.put(BaseVariables.nameOfbitfield44,
-					setBitfieldValue(BaseVariables.nameOfbitfield44, BaseVariables.valueOfBitfield44));
+			responseBitfieldswithValue.put(BaseConstants.nameOfbitfield44,
+					setBitfieldValue(BaseConstants.nameOfbitfield44, BaseConstants.valueOfBitfield44));
 			elementsInTransaction.add(44);
 		}
 
@@ -174,18 +174,18 @@ public class HPSresponseGenerator extends BaseResponseGenerator {
 		if (transactionResult.equals("PartiallyApprove")) {
 			transactionResult = "Approve";
 		}
-		responseBitfieldswithValue.put(BaseVariables.nameOfbitfield2, generateBitfield2(requestBitfieldsWithValues));
+		responseBitfieldswithValue.put(BaseConstants.nameOfbitfield2, generateBitfield2(requestBitfieldsWithValues));
 		if (transactionResult.equals("Approve")) {
-			responseBitfieldswithValue.put(BaseVariables.nameOfbitfield39,
-					setBitfieldValue(BaseVariables.nameOfbitfield39, BaseVariables.ValueOfBitfield39Reversal));
-			responseBitfieldswithValue.put(BaseVariables.nameOfbitfield38,
-					setBitfieldValue(BaseVariables.nameOfbitfield38, BaseVariables.valueOfBitfield38));
+			responseBitfieldswithValue.put(BaseConstants.nameOfbitfield39,
+					setBitfieldValue(BaseConstants.nameOfbitfield39, BaseConstants.ValueOfBitfield39Reversal));
+			responseBitfieldswithValue.put(BaseConstants.nameOfbitfield38,
+					setBitfieldValue(BaseConstants.nameOfbitfield38, BaseConstants.valueOfBitfield38));
 			elementsInTransaction.add(38);
 		} else {
-			responseBitfieldswithValue.put(BaseVariables.nameOfbitfield39,
-					setBitfieldValue(BaseVariables.nameOfbitfield39, BaseVariables.ValueOfBitfield39Decline));
-			responseBitfieldswithValue.put(BaseVariables.nameOfbitfield44,
-					setBitfieldValue(BaseVariables.nameOfbitfield44, BaseVariables.valueOfBitfield44));
+			responseBitfieldswithValue.put(BaseConstants.nameOfbitfield39,
+					setBitfieldValue(BaseConstants.nameOfbitfield39, BaseConstants.ValueOfBitfield39Decline));
+			responseBitfieldswithValue.put(BaseConstants.nameOfbitfield44,
+					setBitfieldValue(BaseConstants.nameOfbitfield44, BaseConstants.valueOfBitfield44));
 			elementsInTransaction.add(44);
 		}
 		addDE54IfNecessary();
@@ -197,24 +197,24 @@ public class HPSresponseGenerator extends BaseResponseGenerator {
 			transactionResult = "Approve";
 		}
 		if (transactionResult.equals("Approve")) {
-			responseBitfieldswithValue.put(BaseVariables.nameOfbitfield39,
-					setBitfieldValue(BaseVariables.nameOfbitfield39, BaseVariables.ValueOfBitfield39Reconsillation));
-			responseBitfieldswithValue.put(BaseVariables.nameOfbitfield123,
-					setBitfieldValue(BaseVariables.nameOfbitfield123, BaseVariables.valueOfBitfield123));
+			responseBitfieldswithValue.put(BaseConstants.nameOfbitfield39,
+					setBitfieldValue(BaseConstants.nameOfbitfield39, BaseConstants.ValueOfBitfield39Reconsillation));
+			responseBitfieldswithValue.put(BaseConstants.nameOfbitfield123,
+					setBitfieldValue(BaseConstants.nameOfbitfield123, BaseConstants.valueOfBitfield123));
 		} else {
-			responseBitfieldswithValue.put(BaseVariables.nameOfbitfield39,
-					setBitfieldValue(BaseVariables.nameOfbitfield39, BaseVariables.ValueOfBitfield39Decline));
+			responseBitfieldswithValue.put(BaseConstants.nameOfbitfield39,
+					setBitfieldValue(BaseConstants.nameOfbitfield39, BaseConstants.ValueOfBitfield39Decline));
 		}
-		responseBitfieldswithValue.put(BaseVariables.nameOfbitfield48,
-				setBitfieldValue(BaseVariables.nameOfbitfield48, BaseVariables.valueOfBitfield48));
+		responseBitfieldswithValue.put(BaseConstants.nameOfbitfield48,
+				setBitfieldValue(BaseConstants.nameOfbitfield48, BaseConstants.valueOfBitfield48));
 	}
 
 	private void addDE54IfNecessary() {
-		if (BaseVariables.balanceInquiryCodes.contains(requestBitfieldsWithValues.get(BaseVariables.nameOfbitfield3))
-				|| BaseVariables.activationRechargeCodes
-						.contains(requestBitfieldsWithValues.get(BaseVariables.nameOfbitfield3))) {
-			responseBitfieldswithValue.put(BaseVariables.nameOfbitfield54,
-					setBitfieldValue(BaseVariables.nameOfbitfield54, BaseVariables.valueOfBitfield54));
+		if (BaseConstants.balanceInquiryCodes.contains(requestBitfieldsWithValues.get(BaseConstants.nameOfbitfield3))
+				|| BaseConstants.activationRechargeCodes
+						.contains(requestBitfieldsWithValues.get(BaseConstants.nameOfbitfield3))) {
+			responseBitfieldswithValue.put(BaseConstants.nameOfbitfield54,
+					setBitfieldValue(BaseConstants.nameOfbitfield54, BaseConstants.valueOfBitfield54));
 			elementsInTransaction.add(54);
 		}
 	}

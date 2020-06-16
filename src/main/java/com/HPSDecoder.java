@@ -23,7 +23,7 @@ public class HPSDecoder extends BaseDecoder {
 	public void generateHeader() {
 		try {
 			header = Initializer.getConverter()
-					.hexToASCII(requestPacket.substring(BaseVariables.HeaderStartPoint, BaseVariables.HeaderEndPoint));
+					.hexToASCII(requestPacket.substring(BaseConstants.HeaderStartPoint, BaseConstants.HeaderEndPoint));
 			logger.debug("Header is set as " + header);
 		} catch (NumberFormatException e) {
 			header = "";
@@ -41,7 +41,7 @@ public class HPSDecoder extends BaseDecoder {
 	@Override
 	public void generateMTI() {
 		MTI = Initializer.getConverter()
-				.hexToASCII(requestPacket.substring(BaseVariables.mtiStartPoint, BaseVariables.mtiEndPoint));
+				.hexToASCII(requestPacket.substring(BaseConstants.mtiStartPoint, BaseConstants.mtiEndPoint));
 		logger.debug("MTI is set as " + MTI);
 	}
 

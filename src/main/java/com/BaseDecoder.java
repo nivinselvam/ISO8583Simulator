@@ -48,7 +48,7 @@ public class BaseDecoder {
 	 */
 	public void generateHeader() {
 		try {
-			header = requestPacket.substring(BaseVariables.HeaderStartPoint, BaseVariables.HeaderEndPoint);
+			header = requestPacket.substring(BaseConstants.HeaderStartPoint, BaseConstants.HeaderEndPoint);
 			logger.debug("Header is set as " + header);
 		} catch (NumberFormatException e) {
 			header = "";
@@ -70,7 +70,7 @@ public class BaseDecoder {
 	 * -----------------------------------------------------------------------------
 	 */
 	public void generateMTI() {
-		MTI = requestPacket.substring(BaseVariables.mtiStartPoint, BaseVariables.mtiEndPoint);
+		MTI = requestPacket.substring(BaseConstants.mtiStartPoint, BaseConstants.mtiEndPoint);
 		logger.debug("MTI is set as " + MTI);
 	}
 
@@ -88,11 +88,11 @@ public class BaseDecoder {
 	 * -----------------------------------------------------------------------------
 	 */
 	public void generatePrimaryBitmap() {
-		primaryBitmapValue = requestPacket.substring(BaseVariables.primaryBitmapStartPoint,
-				BaseVariables.primaryBitmapEndPoint);
+		primaryBitmapValue = requestPacket.substring(BaseConstants.primaryBitmapStartPoint,
+				BaseConstants.primaryBitmapEndPoint);
 		primaryBitMap = Initializer.getConverter().hexToBinary(primaryBitmapValue);
 		logger.debug("Primary bitmap has been set as " + primaryBitmapValue);
-		currentPosition = BaseVariables.primaryBitmapPosition;
+		currentPosition = BaseConstants.primaryBitmapPosition;
 		if (primaryBitMap.charAt(0) == '1') {
 			isSecondaryBitmapAvailable = true;
 			logger.debug("Secondary bitmap is available");
@@ -111,10 +111,10 @@ public class BaseDecoder {
 	public void generateSecondaryBitmap() {
 		secondaryBitmap = "";
 		if (isSecondaryBitmapAvailable) {
-			secondaryBitmapValue = requestPacket.substring(BaseVariables.secondaryBitmapStartPoint,
-					BaseVariables.secondaryBitmapEndPoint);
+			secondaryBitmapValue = requestPacket.substring(BaseConstants.secondaryBitmapStartPoint,
+					BaseConstants.secondaryBitmapEndPoint);
 			secondaryBitmap = Initializer.getConverter().hexToBinary(secondaryBitmapValue);
-			currentPosition = BaseVariables.secondaryBitmapEndPosition;
+			currentPosition = BaseConstants.secondaryBitmapEndPosition;
 			logger.debug("Secondary Bitmap is set as " + secondaryBitmapValue);
 		}
 	}
@@ -162,7 +162,7 @@ public class BaseDecoder {
 	// -----------------------------------------------------------------------------------------------------------
 	public void decodeRequestPacket() {
 		logger.debug("Starting the decoding of packet");
-		if (requestPacket.length() > Integer.parseInt(BaseVariables.echoMessageLength)) {
+		if (requestPacket.length() > Integer.parseInt(BaseConstants.echoMessageLength)) {
 			generateHeader();
 			generateMTI();
 			generatePrimaryBitmap();
