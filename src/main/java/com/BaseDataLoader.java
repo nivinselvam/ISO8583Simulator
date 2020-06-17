@@ -67,7 +67,7 @@ public class BaseDataLoader {
 					.getProperty("financialForceDraftTransactionResponse");
 			Initializer.getBaseVariables().reversalTransactionResponse = property
 					.getProperty("reversalTransactionResponse");
-			Initializer.getBaseVariables().authorizationTransactionResponse = property
+			Initializer.getBaseVariables().reconciliationTransactionResponse = property
 					.getProperty("reconciliationTransactionResponse");
 
 			Initializer.getBaseVariables().valueOfBitfield4 = property.getProperty("valueOfBitfield4");

@@ -24,7 +24,6 @@ public class Initializer {
 				server.start();
 			}
 		}
-
 	}
 
 	public static String getFEPname() {
