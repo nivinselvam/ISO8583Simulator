@@ -1,3 +1,9 @@
+/*
+ * This file loads the data that is required for the simulator to function.
+ * It creates the app folder first when the application is launched and copies all the properties files into it.
+ * It also loads the default values into the base variables from the properties files available inside the source code.
+ */
+
 package com;
 
 import java.io.File;
@@ -20,7 +26,13 @@ public class BaseDataLoader {
 	private Path destinationPath;
 	private List<String> propertyFileNames = new ArrayList<String>();
 	private static Logger logger = Logger.getLogger(BaseDataLoader.class);
-
+	
+	//-------------------------------------------------------------------------------------------------------------
+	/*
+	 * This method creates the app folder and places the properties files of all the FEPS in the app folder.
+	 * These are files that are stored internally and will be copied during the sim start into the user folder.
+	 */
+	//-------------------------------------------------------------------------------------------------------------
 	public boolean createAppFolder() {
 		try {
 			file = new File(BaseConstants.appFolder);
@@ -45,6 +57,12 @@ public class BaseDataLoader {
 
 	}
 
+	//-------------------------------------------------------------------------------------------------------------
+	/*
+	 * This method loads the defaults values for the simulator to start functioning.
+	 * This is read from the properties files that are stored internally.
+	 */
+	//-------------------------------------------------------------------------------------------------------------
 	public void loadDefaultValues() {
 		try {
 			switch (Initializer.getFEPname()) {

@@ -1,3 +1,9 @@
+/*
+ * This class is used to load the constant values. 
+ * This picks the fep name and loads the property file specific to the FEP.
+ * 
+ */
+
 package com;
 
 import java.io.File;
@@ -44,10 +50,9 @@ public final class BaseConstants {
 			e.printStackTrace();
 		}
 	}
-	
-	//App folder path
-	public static final String appFolder = System.getProperty("user.home")+"\\ISO8583Simulator";
-
+	//-------------------------------------------------------------------------------------------------------------
+	// App folder path
+	public static final String appFolder = System.getProperty("user.home") + "\\ISO8583Simulator";
 
 	// This helps to decide if the fep supports echo message or not
 	public static final String echoMessageLength = p.getProperty("echoMessageLength");
@@ -241,7 +246,14 @@ public final class BaseConstants {
 	public static final Integer secondaryBitmapEndPoint = Integer.parseInt(p.getProperty("secondaryBitmapEndPoint"));
 	public static final Integer secondaryBitmapEndPosition = Integer
 			.parseInt(p.getProperty("secondaryBitmapEndPosition"));
-
+	//-------------------------------------------------------------------------------------------------------------
+	/*
+	 * This method is used to take the string from properties file which denotes
+	 * elements involved in the transaction and create an array. This takes String
+	 * values as input and returns and integer array. Make sure the property file
+	 * has the values separated by ",".
+	 */
+	//-------------------------------------------------------------------------------------------------------------
 	public static Integer[] generateIntegerArrayFromString(String elementsInTransaction) {
 		elementsInTransaction = elementsInTransaction.replaceAll(" ", "");
 		Integer[] elementsInTransactionArrayIntegers = new Integer[elementsInTransaction.split(",").length];
@@ -252,7 +264,14 @@ public final class BaseConstants {
 		}
 		return elementsInTransactionArrayIntegers;
 	}
-
+	//-------------------------------------------------------------------------------------------------------------
+	/*
+	 * This method is used to take the string from properties file which denotes
+	 * elements involved in the transaction and create an array list. This takes
+	 * String value as input and returns and String array list. Make sure the
+	 * property file has the values separated by ",".
+	 */
+	//-------------------------------------------------------------------------------------------------------------
 	public static ArrayList<String> generateArrayListFromString(String elementsInTransaction) {
 		elementsInTransaction = elementsInTransaction.replace(" ", "");
 		ArrayList<String> elementsInTransactionList = new ArrayList<String>();

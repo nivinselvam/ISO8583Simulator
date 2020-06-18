@@ -1,3 +1,9 @@
+/*
+ * This class is used to monitor the app folder.
+ * This triggers the data reloading whenever there is a change in values.
+ * This is run as a separate thread since the folder should be monitored parallely when the execution happens in the simulator
+ */
+
 package com;
 
 import java.io.File;
@@ -17,7 +23,13 @@ public class BaseFileWatcher extends Thread{
 	public void run() {
 		watchFolder();
 	}	
-
+	
+	//-------------------------------------------------------------------------------------------------------------
+	/*
+	 * This method creates the app folder and places the properties files of all the FEPS in the app folder.
+	 * These are files that are stored internally and will be copied during the sim start into the user folder.
+	 */
+	//-------------------------------------------------------------------------------------------------------------
 	public void watchFolder() {
 		WatchService watchService;
 		try {
@@ -43,7 +55,12 @@ public class BaseFileWatcher extends Thread{
 		}
 
 	}
-
+	//-------------------------------------------------------------------------------------------------------------
+	/*
+	 * This method creates the app folder and places the properties files of all the FEPS in the app folder.
+	 * These are files that are stored internally and will be copied during the sim start into the user folder.
+	 */
+	//-------------------------------------------------------------------------------------------------------------
 	private void readUpdatedFile(String fileName) throws IOException {
 		property.load(new FileInputStream(new File(BaseConstants.appFolder)+"\\"+fileName));
 		Initializer.getBaseVariables().authorizationTransactionResponse = property.getProperty("authorizationTransactionResponse");
