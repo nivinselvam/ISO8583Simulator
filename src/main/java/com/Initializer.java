@@ -1,5 +1,7 @@
 package com;
 
+import java.awt.EventQueue;
+
 import org.apache.log4j.PropertyConfigurator;
 
 public class Initializer {
@@ -12,11 +14,21 @@ public class Initializer {
 	private static BaseDataLoader dataLoader = new BaseDataLoader();
 	private static BaseVariables variables = new BaseVariables();
 	public static BaseFileWatcher fileWatcher = new BaseFileWatcher();
+	private static AppGUI appGui;
 
 	public static void main(String[] args) {
 		PropertyConfigurator.configure("log4j.properties");
 		if (guiEnabled) {
-
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						AppGUI window = new AppGUI();
+						window.getFrmISO8583Simulator().setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
 		} else {
 			if (dataLoader.createAppFolder()) {
 				fileWatcher.start();
@@ -25,7 +37,7 @@ public class Initializer {
 			}
 		}
 	}
-
+	
 	public static String getFEPname() {
 		return fepName;
 	}

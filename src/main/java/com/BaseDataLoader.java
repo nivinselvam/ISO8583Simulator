@@ -39,7 +39,7 @@ public class BaseDataLoader {
 			if (!file.exists()) {
 				file.mkdir();
 			}
-
+			propertyFileNames.add("CommonVariables.properties");
 			propertyFileNames.add("HPSConstants.properties");
 			propertyFileNames.add("FCBConstants.properties");
 			propertyFileNames.add("IncommConstants.properties");
@@ -63,8 +63,12 @@ public class BaseDataLoader {
 	 * This is read from the properties files that are stored internally.
 	 */
 	//-------------------------------------------------------------------------------------------------------------
-	public void loadDefaultValues() {
-		try {
+	public void loadDefaultValues() {		
+		try {			
+			property.load(new FileInputStream(new File("CommonVariables.properties")));
+			Initializer.setFEPname(property.getProperty("fepName"));
+			//Initializer.getServer().setPortNumber(Integer.parseInt(property.getProperty("PortNumber")));
+			
 			switch (Initializer.getFEPname()) {
 			case "HPS":
 				property.load(new FileInputStream(new File("HPSConstants.properties")));

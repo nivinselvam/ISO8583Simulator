@@ -57,13 +57,6 @@ public final class BaseConstants {
 	// This helps to decide if the fep supports echo message or not
 	public static final String echoMessageLength = p.getProperty("echoMessageLength");
 
-	// Transaction Status
-	public static final String authorizationTransactionResponse = p.getProperty("authorizationTransactionResponse");
-	public static final String financialSalesTransactionResponse = p.getProperty("financialSalesTransactionResponse");
-	public static final String financialForceDraftTransactionResponse = p
-			.getProperty("financialForceDraftTransactionResponse");
-	public static final String reversalTransactionResponse = p.getProperty("reversalTransactionResponse");
-	public static final String reconciliationTransactionResponse = p.getProperty("reconciliationTransactionResponse");
 	// Transaction MTI:
 	public static final String authorizationRequestMTI = p.getProperty("authorizationRequestMTI");
 	public static final String authorizationResponseMTI = p.getProperty("authorizationResponseMTI");
@@ -220,19 +213,7 @@ public final class BaseConstants {
 	public static final String nameOfbitfield122 = "BITFIELD122";
 	public static final String nameOfbitfield123 = "BITFIELD123";
 	public static final String nameOfbitfield124 = "BITFIELD124";
-	// BitField Values:
-	public static final String valueOfBitfield4 = p.getProperty("valueOfBitfield4");
-	public static final String valueOfBitfield37 = p.getProperty("valueOfBitfield37");
-	public static final String valueOfBitfield38 = p.getProperty("valueOfBitfield38");
-	public static final String ValueOfBitfield39Approval = p.getProperty("ValueOfBitfield39Approval");
-	public static final String ValueOfBitfield39Decline = p.getProperty("ValueOfBitfield39Decline");
-	public static final String ValueOfBitfield39Partial = p.getProperty("ValueOfBitfield39Partial");
-	public static final String ValueOfBitfield39Reversal = p.getProperty("ValueOfBitfield39Reversal");
-	public static final String ValueOfBitfield39Reconsillation = p.getProperty("ValueOfBitfield39Reconsillation");
-	public static final String valueOfBitfield44 = p.getProperty("valueOfBitfield44");
-	public static final String valueOfBitfield48 = p.getProperty("valueOfBitfield48");
-	public static final String valueOfBitfield54 = p.getProperty("valueOfBitfield54");
-	public static final String valueOfBitfield123 = p.getProperty("valueOfBitfield123");
+
 	// Decoding details:
 	public static final Integer HeaderStartPoint = Integer.parseInt(p.getProperty("HeaderStartPoint"));
 	public static final Integer HeaderEndPoint = Integer.parseInt(p.getProperty("HeaderEndPoint"));

@@ -42,7 +42,7 @@ public class HPSresponseGenerator extends BaseResponseGenerator {
 			if (transactionResult.equals("Decline")) {
 				bitfield4 = "000000000000";
 			} else {
-				bitfield4 = BaseConstants.valueOfBitfield4;
+				bitfield4 = Initializer.getBaseVariables().valueOfBitfield4;
 			}
 			if (transactionResult.equals("PartiallyApprove")) {
 				transactionResult = "Approve";
