@@ -35,7 +35,7 @@ public class BaseDataLoader {
 	//-------------------------------------------------------------------------------------------------------------
 	public boolean createAppFolder() {
 		try {
-			file = new File(BaseConstants.appFolder);
+			file = new File(Initializer.getBaseConstants().appFolder);
 			if (!file.exists()) {
 				file.mkdir();
 			}
@@ -46,7 +46,7 @@ public class BaseDataLoader {
 
 			for (String currentPropertyFile : propertyFileNames) {
 				fileToCopy = new File(currentPropertyFile);
-				destinationPath = Paths.get(BaseConstants.appFolder + "\\" + currentPropertyFile);
+				destinationPath = Paths.get(Initializer.getBaseConstants().appFolder + "\\" + currentPropertyFile);
 				Files.copy(fileToCopy.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
 			}
 			loadDefaultValues();

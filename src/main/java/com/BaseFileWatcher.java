@@ -34,7 +34,7 @@ public class BaseFileWatcher extends Thread{
 		WatchService watchService;
 		try {
 			watchService = FileSystems.getDefault().newWatchService();
-			Paths.get(BaseConstants.appFolder).register(watchService, StandardWatchEventKinds.ENTRY_MODIFY);			
+			Paths.get(Initializer.getBaseConstants().appFolder).register(watchService, StandardWatchEventKinds.ENTRY_MODIFY);			
 			do {
 				WatchKey watchKey = watchService.take();
 				Thread.sleep(50);
@@ -62,7 +62,7 @@ public class BaseFileWatcher extends Thread{
 	 */
 	//-------------------------------------------------------------------------------------------------------------
 	private void readUpdatedFile(String fileName) throws IOException {
-		property.load(new FileInputStream(new File(BaseConstants.appFolder)+"\\"+fileName));
+		property.load(new FileInputStream(new File(Initializer.getBaseConstants().appFolder)+"\\"+fileName));
 		Initializer.getBaseVariables().authorizationTransactionResponse = property.getProperty("authorizationTransactionResponse");
 		Initializer.getBaseVariables().financialSalesTransactionResponse = property.getProperty("financialSalesTransactionResponse");
 		Initializer.getBaseVariables().financialForceDraftTransactionResponse = property.getProperty("financialForceDraftTransactionResponse");

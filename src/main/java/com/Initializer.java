@@ -8,6 +8,7 @@ public class Initializer {
 
 	private static String fepName = "HPS";
 	private static boolean guiEnabled = false;
+	private static BaseConstants constants = new BaseConstants();
 	private static ServerInitializer server = null;
 	private static Converter converter = new Converter();
 	private static BitFieldData bitfieldData = new BitFieldData();
@@ -40,6 +41,10 @@ public class Initializer {
 	
 	public static String getFEPname() {
 		return fepName;
+	}
+	
+	public static BaseConstants getBaseConstants() {
+		return constants;
 	}
 
 	public static void setFEPname(String fepName) {

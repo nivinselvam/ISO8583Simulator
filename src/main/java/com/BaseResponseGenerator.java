@@ -50,35 +50,35 @@ public abstract class BaseResponseGenerator {
 			decoder.printEncodedData();
 			responseBitfieldswithValue = new TreeMap<String, String>(new BitfieldComparator());
 
-			if (requestMTI.equals(BaseConstants.authorizationRequestMTI)) {
+			if (requestMTI.equals(Initializer.getBaseConstants().authorizationRequestMTI)) {
 				transactionResult = Initializer.getBaseVariables().authorizationTransactionResponse;
-				responseMTI = BaseConstants.authorizationResponseMTI;
-				elementsInTransaction = new TreeSet<>(Arrays.asList(BaseConstants.elementsInAuthorisationTransaction));
+				responseMTI = Initializer.getBaseConstants().authorizationResponseMTI;
+				elementsInTransaction = new TreeSet<>(Arrays.asList(Initializer.getBaseConstants().elementsInAuthorisationTransaction));
 				generateResponseBitfieldswithValue(elementsInTransaction);
 				authorizationPendingBitfieldsUpdate();
-			} else if (requestMTI.equals(BaseConstants.financialSalesRequestMTI)) {
+			} else if (requestMTI.equals(Initializer.getBaseConstants().financialSalesRequestMTI)) {
 				transactionResult = Initializer.getBaseVariables().financialSalesTransactionResponse;
-				responseMTI = BaseConstants.financialSalesResponseMTI;
-				elementsInTransaction = new TreeSet<>(Arrays.asList(BaseConstants.elementsInFinancialSalesTransaction));
+				responseMTI = Initializer.getBaseConstants().financialSalesResponseMTI;
+				elementsInTransaction = new TreeSet<>(Arrays.asList(Initializer.getBaseConstants().elementsInFinancialSalesTransaction));
 				generateResponseBitfieldswithValue(elementsInTransaction);
 				financialSalesPendingBitfieldsUpdate();
-			} else if (requestMTI.equals(BaseConstants.financialForceDraftRequestMTI)) {
+			} else if (requestMTI.equals(Initializer.getBaseConstants().financialForceDraftRequestMTI)) {
 				transactionResult = Initializer.getBaseVariables().financialForceDraftTransactionResponse;
-				responseMTI = BaseConstants.financialForceDraftResponseMTI;
+				responseMTI = Initializer.getBaseConstants().financialForceDraftResponseMTI;
 				elementsInTransaction = new TreeSet<>(
-						Arrays.asList(BaseConstants.elementsInFinancialForceDraftTransaction));
+						Arrays.asList(Initializer.getBaseConstants().elementsInFinancialForceDraftTransaction));
 				generateResponseBitfieldswithValue(elementsInTransaction);
 				financialForceDraftPendingBitfieldsUpdate();
-			} else if (requestMTI.equals(BaseConstants.reversalRequestMTI)) {
+			} else if (requestMTI.equals(Initializer.getBaseConstants().reversalRequestMTI)) {
 				transactionResult = Initializer.getBaseVariables().reversalTransactionResponse;
-				responseMTI = BaseConstants.reversalResponseMTI;
-				elementsInTransaction = new TreeSet<>(Arrays.asList(BaseConstants.elementsInReversalTransaction));
+				responseMTI = Initializer.getBaseConstants().reversalResponseMTI;
+				elementsInTransaction = new TreeSet<>(Arrays.asList(Initializer.getBaseConstants().elementsInReversalTransaction));
 				generateResponseBitfieldswithValue(elementsInTransaction);
 				reversalPendingBitfieldsUpdate();
-			} else if (requestMTI.equals(BaseConstants.reconciliationRequestMTI)) {
+			} else if (requestMTI.equals(Initializer.getBaseConstants().reconciliationRequestMTI)) {
 				transactionResult = Initializer.getBaseVariables().reconciliationTransactionResponse;
-				responseMTI = BaseConstants.reconciliationResponseMTI;
-				elementsInTransaction = new TreeSet<>(Arrays.asList(BaseConstants.elementsInReconsillationTransaction));
+				responseMTI = Initializer.getBaseConstants().reconciliationResponseMTI;
+				elementsInTransaction = new TreeSet<>(Arrays.asList(Initializer.getBaseConstants().elementsInReconsillationTransaction));
 				generateResponseBitfieldswithValue(elementsInTransaction);
 				reconciliationPendingBitfieldsUpdate();
 			} else {
@@ -122,11 +122,11 @@ public abstract class BaseResponseGenerator {
 	public String generateBitfield2(Map<String, String> requestBitfieldsWithValues) {
 		int endPoint = 0;
 		String bitfield2Value = "", bitfield2Length = "";
-		if (requestBitfieldsWithValues.containsKey(BaseConstants.nameOfbitfield2)) {
-			return requestBitfieldsWithValues.get(BaseConstants.nameOfbitfield2);
-		} else if (requestBitfieldsWithValues.containsKey(BaseConstants.nameOfbitfield35)) {
-			endPoint = requestBitfieldsWithValues.get(BaseConstants.nameOfbitfield35).indexOf('=');
-			bitfield2Value = requestBitfieldsWithValues.get(BaseConstants.nameOfbitfield35).substring(2, endPoint);
+		if (requestBitfieldsWithValues.containsKey(Initializer.getBaseConstants().nameOfbitfield2)) {
+			return requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield2);
+		} else if (requestBitfieldsWithValues.containsKey(Initializer.getBaseConstants().nameOfbitfield35)) {
+			endPoint = requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield35).indexOf('=');
+			bitfield2Value = requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield35).substring(2, endPoint);
 			bitfield2Length = Integer.toString(bitfield2Value.length());
 			if (bitfield2Length.length() < 2) {
 				return "0" + bitfield2Value.length() + bitfield2Value;
@@ -134,9 +134,9 @@ public abstract class BaseResponseGenerator {
 				return bitfield2Value.length() + bitfield2Value;
 			}
 
-		} else if (requestBitfieldsWithValues.containsKey(BaseConstants.nameOfbitfield45)) {
-			endPoint = requestBitfieldsWithValues.get(BaseConstants.nameOfbitfield45).indexOf('^');
-			bitfield2Value = requestBitfieldsWithValues.get(BaseConstants.nameOfbitfield45).substring(3, endPoint);
+		} else if (requestBitfieldsWithValues.containsKey(Initializer.getBaseConstants().nameOfbitfield45)) {
+			endPoint = requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield45).indexOf('^');
+			bitfield2Value = requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield45).substring(3, endPoint);
 			bitfield2Length = Integer.toString(bitfield2Value.length());
 			if (bitfield2Length.length() < 2) {
 				return "0" + bitfield2Value.length() + bitfield2Value;

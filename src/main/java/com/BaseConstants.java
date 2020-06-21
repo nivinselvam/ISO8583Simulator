@@ -16,12 +16,173 @@ import java.util.List;
 import java.util.Properties;
 import org.apache.log4j.Logger;
 
-public final class BaseConstants {
-	final static Logger logger = Logger.getLogger(BaseConstants.class);
-	public static Properties p = new Properties();
+public class BaseConstants {
+	private Logger logger = Logger.getLogger(BaseConstants.class);
+	private Properties p = new Properties();
+	private String fepFile;
+	private FileInputStream fis;
+	private File file;
+	public String appFolder;
+	public String echoMessageLength;
+	public String authorizationRequestMTI;
+	public String authorizationResponseMTI;
+	public String financialSalesRequestMTI;
+	public String financialSalesResponseMTI;
+	public String financialForceDraftRequestMTI;
+	public String financialForceDraftResponseMTI;
+	public String reversalRequestMTI;
+	public String reversalResponseMTI;
+	public String reconciliationRequestMTI;
+	public String reconciliationResponseMTI;
+	public Integer[] elementsInAuthorisationTransaction;
+	public Integer[] elementsInFinancialSalesTransaction;
+	public Integer[] elementsInFinancialForceDraftTransaction;
+	public Integer[] elementsInReversalTransaction;
+	public Integer[] elementsInReconsillationTransaction;
+	public List<String> balanceInquiryCodes;
+	public List<String> activationRechargeCodes;
+	public List<Integer> elementsInHexFormatforFCBTransaction;
+	public String nameOfbitfield2;
+	public String nameOfbitfield3;
+	public String nameOfbitfield4;
+	public String nameOfbitfield5;
+	public String nameOfbitfield6;
+	public String nameOfbitfield7;
+	public String nameOfbitfield8;
+	public String nameOfbitfield9;
+	public String nameOfbitfield10;
+	public String nameOfbitfield11;
+	public String nameOfbitfield12;
+	public String nameOfbitfield13;
+	public String nameOfbitfield14;
+	public String nameOfbitfield15;
+	public String nameOfbitfield16;
+	public String nameOfbitfield17;
+	public String nameOfbitfield18;
+	public String nameOfbitfield19;
+	public String nameOfbitfield20;
+	public String nameOfbitfield21;
+	public String nameOfbitfield22;
+	public String nameOfbitfield23;
+	public String nameOfbitfield24;
+	public String nameOfbitfield25;
+	public String nameOfbitfield26;
+	public String nameOfbitfield27;
+	public String nameOfbitfield28;
+	public String nameOfbitfield29;
+	public String nameOfbitfield30;
+	public String nameOfbitfield31;
+	public String nameOfbitfield32;
+	public String nameOfbitfield33;
+	public String nameOfbitfield34;
+	public String nameOfbitfield35;
+	public String nameOfbitfield36;
+	public String nameOfbitfield37;
+	public String nameOfbitfield38;
+	public String nameOfbitfield39;
+	public String nameOfbitfield40;
+	public String nameOfbitfield41;
+	public String nameOfbitfield42;
+	public String nameOfbitfield43;
+	public String nameOfbitfield44;
+	public String nameOfbitfield45;
+	public String nameOfbitfield46;
+	public String nameOfbitfield47;
+	public String nameOfbitfield48;
+	public String nameOfbitfield49;
+	public String nameOfbitfield50;
+	public String nameOfbitfield51;
+	public String nameOfbitfield52;
+	public String nameOfbitfield53;
+	public String nameOfbitfield54;
+	public String nameOfbitfield55;
+	public String nameOfbitfield56;
+	public String nameOfbitfield57;
+	public String nameOfbitfield58;
+	public String nameOfbitfield59;
+	public String nameOfbitfield60;
+	public String nameOfbitfield61;
+	public String nameOfbitfield62;
+	public String nameOfbitfield63;
+	public String nameOfbitfield64;
+	public String nameOfbitfield65;
+	public String nameOfbitfield66;
+	public String nameOfbitfield67;
+	public String nameOfbitfield68;
+	public String nameOfbitfield69;
+	public String nameOfbitfield70;
+	public String nameOfbitfield71;
+	public String nameOfbitfield72;
+	public String nameOfbitfield73;
+	public String nameOfbitfield74;
+	public String nameOfbitfield75;
+	public String nameOfbitfield76;
+	public String nameOfbitfield77;
+	public String nameOfbitfield78;
+	public String nameOfbitfield79;
+	public String nameOfbitfield80;
+	public String nameOfbitfield81;
+	public String nameOfbitfield82;
+	public String nameOfbitfield83;
+	public String nameOfbitfield84;
+	public String nameOfbitfield85;
+	public String nameOfbitfield86;
+	public String nameOfbitfield87;
+	public String nameOfbitfield88;
+	public String nameOfbitfield89;
+	public String nameOfbitfield90;
+	public String nameOfbitfield91;
+	public String nameOfbitfield92;
+	public String nameOfbitfield93;
+	public String nameOfbitfield94;
+	public String nameOfbitfield95;
+	public String nameOfbitfield96;
+	public String nameOfbitfield97;
+	public String nameOfbitfield98;
+	public String nameOfbitfield99;
+	public String nameOfbitfield100;
+	public String nameOfbitfield101;
+	public String nameOfbitfield102;
+	public String nameOfbitfield103;
+	public String nameOfbitfield104;
+	public String nameOfbitfield105;
+	public String nameOfbitfield106;
+	public String nameOfbitfield107;
+	public String nameOfbitfield108;
+	public String nameOfbitfield109;
+	public String nameOfbitfield110;
+	public String nameOfbitfield111;
+	public String nameOfbitfield112;
+	public String nameOfbitfield113;
+	public String nameOfbitfield114;
+	public String nameOfbitfield115;
+	public String nameOfbitfield116;
+	public String nameOfbitfield117;
+	public String nameOfbitfield118;
+	public String nameOfbitfield119;
+	public String nameOfbitfield120;
+	public String nameOfbitfield121;
+	public String nameOfbitfield122;
+	public String nameOfbitfield123;
+	public String nameOfbitfield124;
+	public Integer HeaderStartPoint;
+	public Integer HeaderEndPoint;
+	public Integer mtiStartPoint;
+	public Integer mtiEndPoint;
+	public Integer primaryBitmapStartPoint;
+	public Integer primaryBitmapEndPoint;
+	public Integer primaryBitmapPosition;
+	public Integer secondaryBitmapStartPoint;
+	public Integer secondaryBitmapEndPoint;
+	public Integer secondaryBitmapEndPosition;
 
-	static {
-		String fepFile = null;
+	public BaseConstants() {
+		loadFepPropertyFile();
+		loadConstantValues();
+
+	}
+
+	private boolean loadFepPropertyFile() {
 		switch (Initializer.getFEPname()) {
 		case "HPS":
 			fepFile = "HPSConstants.properties";
@@ -36,205 +197,207 @@ public final class BaseConstants {
 			logger.fatal("This simulator doesnt support the entered FEP name");
 		}
 
-		File file = new File(fepFile);
-
-		FileInputStream fis = null;
 		try {
+			file = new File(fepFile);
 			fis = new FileInputStream(file);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("Unable to load the ");
 		}
 		try {
 			p.load(fis);
+			return true;
 		} catch (IOException e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
-	//-------------------------------------------------------------------------------------------------------------
-	// App folder path
-	public static final String appFolder = System.getProperty("user.home") + "\\ISO8583Simulator";
 
-	// This helps to decide if the fep supports echo message or not
-	public static final String echoMessageLength = p.getProperty("echoMessageLength");
+	private void loadConstantValues() {
+		// -------------------------------------------------------------------------------------------------------------
+		// App folder path
+		appFolder = System.getProperty("user.home") + "\\ISO8583Simulator";
 
-	// Transaction MTI:
-	public static final String authorizationRequestMTI = p.getProperty("authorizationRequestMTI");
-	public static final String authorizationResponseMTI = p.getProperty("authorizationResponseMTI");
-	public static final String financialSalesRequestMTI = p.getProperty("financialSalesRequestMTI");
-	public static final String financialSalesResponseMTI = p.getProperty("financialSalesResponseMTI");
-	public static final String financialForceDraftRequestMTI = p.getProperty("financialForceDraftRequestMTI");
-	public static final String financialForceDraftResponseMTI = p.getProperty("financialForceDraftResponseMTI");
-	public static final String reversalRequestMTI = p.getProperty("reversalRequestMTI");
-	public static final String reversalResponseMTI = p.getProperty("reversalResponseMTI");
-	public static final String reconciliationRequestMTI = p.getProperty("reconsillationRequestMTI");
-	public static final String reconciliationResponseMTI = p.getProperty("reconsillationResponseMTI");
-	// BitFields involved in Transaction
-	public static final Integer[] elementsInAuthorisationTransaction = generateIntegerArrayFromString(
-			p.getProperty("elementsInAuthorisationTransaction"));
-	public static final Integer[] elementsInFinancialSalesTransaction = generateIntegerArrayFromString(
-			p.getProperty("elementsInFinancialSalesTransaction"));
-	public static final Integer[] elementsInFinancialForceDraftTransaction = generateIntegerArrayFromString(
-			p.getProperty("elementsInFinancialForceDraftTransaction"));
-	public static final Integer[] elementsInReversalTransaction = generateIntegerArrayFromString(
-			p.getProperty("elementsInReversalTransaction"));
-	public static final Integer[] elementsInReconsillationTransaction = generateIntegerArrayFromString(
-			p.getProperty("elementsInReconsillationTransaction"));
+		// This helps to decide if the fep supports echo message or not
+		echoMessageLength = p.getProperty("echoMessageLength");
 
-	// Codes to be validated during transaction
-	public static final List<String> balanceInquiryCodes = generateArrayListFromString(
-			p.getProperty("balanceInquiryCodes"));
-	public static final List<String> activationRechargeCodes = generateArrayListFromString(
-			p.getProperty("activationRechargeCodes"));
-	// Below constant is FCB fep specific
-	public static final List<Integer> elementsInHexFormatforFCBTransaction = new ArrayList<Integer>(
-			Arrays.asList(37, 38, 39, 41, 42, 60, 63));
+		// Transaction MTI:
+		authorizationRequestMTI = p.getProperty("authorizationRequestMTI");
+		authorizationResponseMTI = p.getProperty("authorizationResponseMTI");
+		financialSalesRequestMTI = p.getProperty("financialSalesRequestMTI");
+		financialSalesResponseMTI = p.getProperty("financialSalesResponseMTI");
+		financialForceDraftRequestMTI = p.getProperty("financialForceDraftRequestMTI");
+		financialForceDraftResponseMTI = p.getProperty("financialForceDraftResponseMTI");
+		reversalRequestMTI = p.getProperty("reversalRequestMTI");
+		reversalResponseMTI = p.getProperty("reversalResponseMTI");
+		reconciliationRequestMTI = p.getProperty("reconsillationRequestMTI");
+		reconciliationResponseMTI = p.getProperty("reconsillationResponseMTI");
+		// BitFields involved in Transaction
+		elementsInAuthorisationTransaction = generateIntegerArrayFromString(
+				p.getProperty("elementsInAuthorisationTransaction"));
+		elementsInFinancialSalesTransaction = generateIntegerArrayFromString(
+				p.getProperty("elementsInFinancialSalesTransaction"));
+		elementsInFinancialForceDraftTransaction = generateIntegerArrayFromString(
+				p.getProperty("elementsInFinancialForceDraftTransaction"));
+		elementsInReversalTransaction = generateIntegerArrayFromString(
+				p.getProperty("elementsInReversalTransaction"));
+		elementsInReconsillationTransaction = generateIntegerArrayFromString(
+				p.getProperty("elementsInReconsillationTransaction"));
 
-	// BitField Names:
-	public static final String nameOfbitfield2 = "BITFIELD2";
-	public static final String nameOfbitfield3 = "BITFIELD3";
-	public static final String nameOfbitfield4 = "BITFIELD4";
-	public static final String nameOfbitfield5 = "BITFIELD5";
-	public static final String nameOfbitfield6 = "BITFIELD6";
-	public static final String nameOfbitfield7 = "BITFIELD7";
-	public static final String nameOfbitfield8 = "BITFIELD8";
-	public static final String nameOfbitfield9 = "BITFIELD9";
-	public static final String nameOfbitfield10 = "BITFIELD10";
-	public static final String nameOfbitfield11 = "BITFIELD11";
-	public static final String nameOfbitfield12 = "BITFIELD12";
-	public static final String nameOfbitfield13 = "BITFIELD13";
-	public static final String nameOfbitfield14 = "BITFIELD14";
-	public static final String nameOfbitfield15 = "BITFIELD15";
-	public static final String nameOfbitfield16 = "BITFIELD16";
-	public static final String nameOfbitfield17 = "BITFIELD17";
-	public static final String nameOfbitfield18 = "BITFIELD18";
-	public static final String nameOfbitfield19 = "BITFIELD19";
-	public static final String nameOfbitfield20 = "BITFIELD20";
-	public static final String nameOfbitfield21 = "BITFIELD21";
-	public static final String nameOfbitfield22 = "BITFIELD22";
-	public static final String nameOfbitfield23 = "BITFIELD23";
-	public static final String nameOfbitfield24 = "BITFIELD24";
-	public static final String nameOfbitfield25 = "BITFIELD25";
-	public static final String nameOfbitfield26 = "BITFIELD26";
-	public static final String nameOfbitfield27 = "BITFIELD27";
-	public static final String nameOfbitfield28 = "BITFIELD28";
-	public static final String nameOfbitfield29 = "BITFIELD29";
-	public static final String nameOfbitfield30 = "BITFIELD30";
-	public static final String nameOfbitfield31 = "BITFIELD31";
-	public static final String nameOfbitfield32 = "BITFIELD32";
-	public static final String nameOfbitfield33 = "BITFIELD33";
-	public static final String nameOfbitfield34 = "BITFIELD34";
-	public static final String nameOfbitfield35 = "BITFIELD35";
-	public static final String nameOfbitfield36 = "BITFIELD36";
-	public static final String nameOfbitfield37 = "BITFIELD37";
-	public static final String nameOfbitfield38 = "BITFIELD38";
-	public static final String nameOfbitfield39 = "BITFIELD39";
-	public static final String nameOfbitfield40 = "BITFIELD40";
-	public static final String nameOfbitfield41 = "BITFIELD41";
-	public static final String nameOfbitfield42 = "BITFIELD42";
-	public static final String nameOfbitfield43 = "BITFIELD43";
-	public static final String nameOfbitfield44 = "BITFIELD44";
-	public static final String nameOfbitfield45 = "BITFIELD45";
-	public static final String nameOfbitfield46 = "BITFIELD46";
-	public static final String nameOfbitfield47 = "BITFIELD47";
-	public static final String nameOfbitfield48 = "BITFIELD48";
-	public static final String nameOfbitfield49 = "BITFIELD49";
-	public static final String nameOfbitfield50 = "BITFIELD50";
-	public static final String nameOfbitfield51 = "BITFIELD51";
-	public static final String nameOfbitfield52 = "BITFIELD52";
-	public static final String nameOfbitfield53 = "BITFIELD53";
-	public static final String nameOfbitfield54 = "BITFIELD54";
-	public static final String nameOfbitfield55 = "BITFIELD55";
-	public static final String nameOfbitfield56 = "BITFIELD56";
-	public static final String nameOfbitfield57 = "BITFIELD57";
-	public static final String nameOfbitfield58 = "BITFIELD58";
-	public static final String nameOfbitfield59 = "BITFIELD59";
-	public static final String nameOfbitfield60 = "BITFIELD60";
-	public static final String nameOfbitfield61 = "BITFIELD61";
-	public static final String nameOfbitfield62 = "BITFIELD62";
-	public static final String nameOfbitfield63 = "BITFIELD63";
-	public static final String nameOfbitfield64 = "BITFIELD64";
-	public static final String nameOfbitfield65 = "BITFIELD65";
-	public static final String nameOfbitfield66 = "BITFIELD66";
-	public static final String nameOfbitfield67 = "BITFIELD67";
-	public static final String nameOfbitfield68 = "BITFIELD68";
-	public static final String nameOfbitfield69 = "BITFIELD69";
-	public static final String nameOfbitfield70 = "BITFIELD70";
-	public static final String nameOfbitfield71 = "BITFIELD71";
-	public static final String nameOfbitfield72 = "BITFIELD72";
-	public static final String nameOfbitfield73 = "BITFIELD73";
-	public static final String nameOfbitfield74 = "BITFIELD74";
-	public static final String nameOfbitfield75 = "BITFIELD75";
-	public static final String nameOfbitfield76 = "BITFIELD76";
-	public static final String nameOfbitfield77 = "BITFIELD77";
-	public static final String nameOfbitfield78 = "BITFIELD78";
-	public static final String nameOfbitfield79 = "BITFIELD79";
-	public static final String nameOfbitfield80 = "BITFIELD80";
-	public static final String nameOfbitfield81 = "BITFIELD81";
-	public static final String nameOfbitfield82 = "BITFIELD82";
-	public static final String nameOfbitfield83 = "BITFIELD83";
-	public static final String nameOfbitfield84 = "BITFIELD84";
-	public static final String nameOfbitfield85 = "BITFIELD85";
-	public static final String nameOfbitfield86 = "BITFIELD86";
-	public static final String nameOfbitfield87 = "BITFIELD87";
-	public static final String nameOfbitfield88 = "BITFIELD88";
-	public static final String nameOfbitfield89 = "BITFIELD89";
-	public static final String nameOfbitfield90 = "BITFIELD90";
-	public static final String nameOfbitfield91 = "BITFIELD91";
-	public static final String nameOfbitfield92 = "BITFIELD92";
-	public static final String nameOfbitfield93 = "BITFIELD93";
-	public static final String nameOfbitfield94 = "BITFIELD94";
-	public static final String nameOfbitfield95 = "BITFIELD95";
-	public static final String nameOfbitfield96 = "BITFIELD96";
-	public static final String nameOfbitfield97 = "BITFIELD97";
-	public static final String nameOfbitfield98 = "BITFIELD98";
-	public static final String nameOfbitfield99 = "BITFIELD99";
-	public static final String nameOfbitfield100 = "BITFIELD100";
-	public static final String nameOfbitfield101 = "BITFIELD101";
-	public static final String nameOfbitfield102 = "BITFIELD102";
-	public static final String nameOfbitfield103 = "BITFIELD103";
-	public static final String nameOfbitfield104 = "BITFIELD104";
-	public static final String nameOfbitfield105 = "BITFIELD105";
-	public static final String nameOfbitfield106 = "BITFIELD106";
-	public static final String nameOfbitfield107 = "BITFIELD107";
-	public static final String nameOfbitfield108 = "BITFIELD108";
-	public static final String nameOfbitfield109 = "BITFIELD109";
-	public static final String nameOfbitfield110 = "BITFIELD110";
-	public static final String nameOfbitfield111 = "BITFIELD111";
-	public static final String nameOfbitfield112 = "BITFIELD112";
-	public static final String nameOfbitfield113 = "BITFIELD113";
-	public static final String nameOfbitfield114 = "BITFIELD114";
-	public static final String nameOfbitfield115 = "BITFIELD115";
-	public static final String nameOfbitfield116 = "BITFIELD116";
-	public static final String nameOfbitfield117 = "BITFIELD117";
-	public static final String nameOfbitfield118 = "BITFIELD118";
-	public static final String nameOfbitfield119 = "BITFIELD119";
-	public static final String nameOfbitfield120 = "BITFIELD120";
-	public static final String nameOfbitfield121 = "BITFIELD121";
-	public static final String nameOfbitfield122 = "BITFIELD122";
-	public static final String nameOfbitfield123 = "BITFIELD123";
-	public static final String nameOfbitfield124 = "BITFIELD124";
+		// Codes to be validated during transaction
+		balanceInquiryCodes = generateArrayListFromString(p.getProperty("balanceInquiryCodes"));
+		activationRechargeCodes = generateArrayListFromString(
+				p.getProperty("activationRechargeCodes"));
+		// Below constant is FCB fep specific
+		elementsInHexFormatforFCBTransaction = new ArrayList<Integer>(
+				Arrays.asList(37, 38, 39, 41, 42, 60, 63));
 
-	// Decoding details:
-	public static final Integer HeaderStartPoint = Integer.parseInt(p.getProperty("HeaderStartPoint"));
-	public static final Integer HeaderEndPoint = Integer.parseInt(p.getProperty("HeaderEndPoint"));
-	public static final Integer mtiStartPoint = Integer.parseInt(p.getProperty("mtiStartPoint"));
-	public static final Integer mtiEndPoint = Integer.parseInt(p.getProperty("mtiEndPoint"));
-	public static final Integer primaryBitmapStartPoint = Integer.parseInt(p.getProperty("primaryBitmapStartPoint"));
-	public static final Integer primaryBitmapEndPoint = Integer.parseInt(p.getProperty("primaryBitmapEndPoint"));
-	public static final Integer primaryBitmapPosition = Integer.parseInt(p.getProperty("primaryBitmapPosition"));
-	public static final Integer secondaryBitmapStartPoint = Integer
-			.parseInt(p.getProperty("secondaryBitmapStartPoint"));
-	public static final Integer secondaryBitmapEndPoint = Integer.parseInt(p.getProperty("secondaryBitmapEndPoint"));
-	public static final Integer secondaryBitmapEndPosition = Integer
-			.parseInt(p.getProperty("secondaryBitmapEndPosition"));
-	//-------------------------------------------------------------------------------------------------------------
+		// BitField Names:
+		nameOfbitfield2 = "BITFIELD2";
+		nameOfbitfield3 = "BITFIELD3";
+		nameOfbitfield4 = "BITFIELD4";
+		nameOfbitfield5 = "BITFIELD5";
+		nameOfbitfield6 = "BITFIELD6";
+		nameOfbitfield7 = "BITFIELD7";
+		nameOfbitfield8 = "BITFIELD8";
+		nameOfbitfield9 = "BITFIELD9";
+		nameOfbitfield10 = "BITFIELD10";
+		nameOfbitfield11 = "BITFIELD11";
+		nameOfbitfield12 = "BITFIELD12";
+		nameOfbitfield13 = "BITFIELD13";
+		nameOfbitfield14 = "BITFIELD14";
+		nameOfbitfield15 = "BITFIELD15";
+		nameOfbitfield16 = "BITFIELD16";
+		nameOfbitfield17 = "BITFIELD17";
+		nameOfbitfield18 = "BITFIELD18";
+		nameOfbitfield19 = "BITFIELD19";
+		nameOfbitfield20 = "BITFIELD20";
+		nameOfbitfield21 = "BITFIELD21";
+		nameOfbitfield22 = "BITFIELD22";
+		nameOfbitfield23 = "BITFIELD23";
+		nameOfbitfield24 = "BITFIELD24";
+		nameOfbitfield25 = "BITFIELD25";
+		nameOfbitfield26 = "BITFIELD26";
+		nameOfbitfield27 = "BITFIELD27";
+		nameOfbitfield28 = "BITFIELD28";
+		nameOfbitfield29 = "BITFIELD29";
+		nameOfbitfield30 = "BITFIELD30";
+		nameOfbitfield31 = "BITFIELD31";
+		nameOfbitfield32 = "BITFIELD32";
+		nameOfbitfield33 = "BITFIELD33";
+		nameOfbitfield34 = "BITFIELD34";
+		nameOfbitfield35 = "BITFIELD35";
+		nameOfbitfield36 = "BITFIELD36";
+		nameOfbitfield37 = "BITFIELD37";
+		nameOfbitfield38 = "BITFIELD38";
+		nameOfbitfield39 = "BITFIELD39";
+		nameOfbitfield40 = "BITFIELD40";
+		nameOfbitfield41 = "BITFIELD41";
+		nameOfbitfield42 = "BITFIELD42";
+		nameOfbitfield43 = "BITFIELD43";
+		nameOfbitfield44 = "BITFIELD44";
+		nameOfbitfield45 = "BITFIELD45";
+		nameOfbitfield46 = "BITFIELD46";
+		nameOfbitfield47 = "BITFIELD47";
+		nameOfbitfield48 = "BITFIELD48";
+		nameOfbitfield49 = "BITFIELD49";
+		nameOfbitfield50 = "BITFIELD50";
+		nameOfbitfield51 = "BITFIELD51";
+		nameOfbitfield52 = "BITFIELD52";
+		nameOfbitfield53 = "BITFIELD53";
+		nameOfbitfield54 = "BITFIELD54";
+		nameOfbitfield55 = "BITFIELD55";
+		nameOfbitfield56 = "BITFIELD56";
+		nameOfbitfield57 = "BITFIELD57";
+		nameOfbitfield58 = "BITFIELD58";
+		nameOfbitfield59 = "BITFIELD59";
+		nameOfbitfield60 = "BITFIELD60";
+		nameOfbitfield61 = "BITFIELD61";
+		nameOfbitfield62 = "BITFIELD62";
+		nameOfbitfield63 = "BITFIELD63";
+		nameOfbitfield64 = "BITFIELD64";
+		nameOfbitfield65 = "BITFIELD65";
+		nameOfbitfield66 = "BITFIELD66";
+		nameOfbitfield67 = "BITFIELD67";
+		nameOfbitfield68 = "BITFIELD68";
+		nameOfbitfield69 = "BITFIELD69";
+		nameOfbitfield70 = "BITFIELD70";
+		nameOfbitfield71 = "BITFIELD71";
+		nameOfbitfield72 = "BITFIELD72";
+		nameOfbitfield73 = "BITFIELD73";
+		nameOfbitfield74 = "BITFIELD74";
+		nameOfbitfield75 = "BITFIELD75";
+		nameOfbitfield76 = "BITFIELD76";
+		nameOfbitfield77 = "BITFIELD77";
+		nameOfbitfield78 = "BITFIELD78";
+		nameOfbitfield79 = "BITFIELD79";
+		nameOfbitfield80 = "BITFIELD80";
+		nameOfbitfield81 = "BITFIELD81";
+		nameOfbitfield82 = "BITFIELD82";
+		nameOfbitfield83 = "BITFIELD83";
+		nameOfbitfield84 = "BITFIELD84";
+		nameOfbitfield85 = "BITFIELD85";
+		nameOfbitfield86 = "BITFIELD86";
+		nameOfbitfield87 = "BITFIELD87";
+		nameOfbitfield88 = "BITFIELD88";
+		nameOfbitfield89 = "BITFIELD89";
+		nameOfbitfield90 = "BITFIELD90";
+		nameOfbitfield91 = "BITFIELD91";
+		nameOfbitfield92 = "BITFIELD92";
+		nameOfbitfield93 = "BITFIELD93";
+		nameOfbitfield94 = "BITFIELD94";
+		nameOfbitfield95 = "BITFIELD95";
+		nameOfbitfield96 = "BITFIELD96";
+		nameOfbitfield97 = "BITFIELD97";
+		nameOfbitfield98 = "BITFIELD98";
+		nameOfbitfield99 = "BITFIELD99";
+		nameOfbitfield100 = "BITFIELD100";
+		nameOfbitfield101 = "BITFIELD101";
+		nameOfbitfield102 = "BITFIELD102";
+		nameOfbitfield103 = "BITFIELD103";
+		nameOfbitfield104 = "BITFIELD104";
+		nameOfbitfield105 = "BITFIELD105";
+		nameOfbitfield106 = "BITFIELD106";
+		nameOfbitfield107 = "BITFIELD107";
+		nameOfbitfield108 = "BITFIELD108";
+		nameOfbitfield109 = "BITFIELD109";
+		nameOfbitfield110 = "BITFIELD110";
+		nameOfbitfield111 = "BITFIELD111";
+		nameOfbitfield112 = "BITFIELD112";
+		nameOfbitfield113 = "BITFIELD113";
+		nameOfbitfield114 = "BITFIELD114";
+		nameOfbitfield115 = "BITFIELD115";
+		nameOfbitfield116 = "BITFIELD116";
+		nameOfbitfield117 = "BITFIELD117";
+		nameOfbitfield118 = "BITFIELD118";
+		nameOfbitfield119 = "BITFIELD119";
+		nameOfbitfield120 = "BITFIELD120";
+		nameOfbitfield121 = "BITFIELD121";
+		nameOfbitfield122 = "BITFIELD122";
+		nameOfbitfield123 = "BITFIELD123";
+		nameOfbitfield124 = "BITFIELD124";
+
+		// Decoding details:
+		HeaderStartPoint = Integer.parseInt(p.getProperty("HeaderStartPoint"));
+		HeaderEndPoint = Integer.parseInt(p.getProperty("HeaderEndPoint"));
+		mtiStartPoint = Integer.parseInt(p.getProperty("mtiStartPoint"));
+		mtiEndPoint = Integer.parseInt(p.getProperty("mtiEndPoint"));
+		primaryBitmapStartPoint = Integer.parseInt(p.getProperty("primaryBitmapStartPoint"));
+		primaryBitmapEndPoint = Integer.parseInt(p.getProperty("primaryBitmapEndPoint"));
+		primaryBitmapPosition = Integer.parseInt(p.getProperty("primaryBitmapPosition"));
+		secondaryBitmapStartPoint = Integer.parseInt(p.getProperty("secondaryBitmapStartPoint"));
+		secondaryBitmapEndPoint = Integer.parseInt(p.getProperty("secondaryBitmapEndPoint"));
+		secondaryBitmapEndPosition = Integer.parseInt(p.getProperty("secondaryBitmapEndPosition"));
+
+	}
+
+	// -------------------------------------------------------------------------------------------------------------
 	/*
 	 * This method is used to take the string from properties file which denotes
 	 * elements involved in the transaction and create an array. This takes String
 	 * values as input and returns and integer array. Make sure the property file
 	 * has the values separated by ",".
 	 */
-	//-------------------------------------------------------------------------------------------------------------
+	// -------------------------------------------------------------------------------------------------------------
 	public static Integer[] generateIntegerArrayFromString(String elementsInTransaction) {
 		elementsInTransaction = elementsInTransaction.replaceAll(" ", "");
 		Integer[] elementsInTransactionArrayIntegers = new Integer[elementsInTransaction.split(",").length];
@@ -245,14 +408,15 @@ public final class BaseConstants {
 		}
 		return elementsInTransactionArrayIntegers;
 	}
-	//-------------------------------------------------------------------------------------------------------------
+
+	// -------------------------------------------------------------------------------------------------------------
 	/*
 	 * This method is used to take the string from properties file which denotes
 	 * elements involved in the transaction and create an array list. This takes
 	 * String value as input and returns and String array list. Make sure the
 	 * property file has the values separated by ",".
 	 */
-	//-------------------------------------------------------------------------------------------------------------
+	// -------------------------------------------------------------------------------------------------------------
 	public static ArrayList<String> generateArrayListFromString(String elementsInTransaction) {
 		elementsInTransaction = elementsInTransaction.replace(" ", "");
 		ArrayList<String> elementsInTransactionList = new ArrayList<String>();
