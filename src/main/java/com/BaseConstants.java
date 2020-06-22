@@ -38,7 +38,7 @@ public class BaseConstants {
 	public Integer[] elementsInFinancialSalesTransaction;
 	public Integer[] elementsInFinancialForceDraftTransaction;
 	public Integer[] elementsInReversalTransaction;
-	public Integer[] elementsInReconsillationTransaction;
+	public Integer[] elementsInReconciliationTransaction;
 	public List<String> balanceInquiryCodes;
 	public List<String> activationRechargeCodes;
 	public List<Integer> elementsInHexFormatforFCBTransaction;
@@ -194,20 +194,23 @@ public class BaseConstants {
 			fepFile = "IncommConstants.properties";
 			break;
 		default:
-			logger.fatal("This simulator doesnt support the entered FEP name");
+			logger.fatal("Simulator doesnt support the configured FEP");
+			System.out.println("Simulator doesnt support the configured FEP");
 		}
 
 		try {
 			file = new File(fepFile);
 			fis = new FileInputStream(file);
 		} catch (FileNotFoundException e) {
-			System.out.println("Unable to load the ");
+			System.out.println("Unable to find the fep property file");
+			logger.fatal("Unable to find the fep property file");
 		}
 		try {
 			p.load(fis);
 			return true;
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("Unable to load the fep property file");
+			logger.fatal("Unable to load the fep property file");
 			return false;
 		}
 	}
@@ -229,8 +232,8 @@ public class BaseConstants {
 		financialForceDraftResponseMTI = p.getProperty("financialForceDraftResponseMTI");
 		reversalRequestMTI = p.getProperty("reversalRequestMTI");
 		reversalResponseMTI = p.getProperty("reversalResponseMTI");
-		reconciliationRequestMTI = p.getProperty("reconsillationRequestMTI");
-		reconciliationResponseMTI = p.getProperty("reconsillationResponseMTI");
+		reconciliationRequestMTI = p.getProperty("reconciliationRequestMTI");
+		reconciliationResponseMTI = p.getProperty("reconciliationResponseMTI");
 		// BitFields involved in Transaction
 		elementsInAuthorisationTransaction = generateIntegerArrayFromString(
 				p.getProperty("elementsInAuthorisationTransaction"));
@@ -240,8 +243,8 @@ public class BaseConstants {
 				p.getProperty("elementsInFinancialForceDraftTransaction"));
 		elementsInReversalTransaction = generateIntegerArrayFromString(
 				p.getProperty("elementsInReversalTransaction"));
-		elementsInReconsillationTransaction = generateIntegerArrayFromString(
-				p.getProperty("elementsInReconsillationTransaction"));
+		elementsInReconciliationTransaction = generateIntegerArrayFromString(
+				p.getProperty("elementsInReconciliationTransaction"));
 
 		// Codes to be validated during transaction
 		balanceInquiryCodes = generateArrayListFromString(p.getProperty("balanceInquiryCodes"));

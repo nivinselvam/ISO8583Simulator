@@ -198,7 +198,7 @@ public class HPSresponseGenerator extends BaseResponseGenerator {
 		}
 		if (transactionResult.equals("Approve")) {
 			responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield39,
-					setBitfieldValue(Initializer.getBaseConstants().nameOfbitfield39, Initializer.getBaseVariables().ValueOfBitfield39Reconsillation));
+					setBitfieldValue(Initializer.getBaseConstants().nameOfbitfield39, Initializer.getBaseVariables().ValueOfBitfield39Reconciliation));
 			responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield123,
 					setBitfieldValue(Initializer.getBaseConstants().nameOfbitfield123, Initializer.getBaseVariables().valueOfBitfield123));
 		} else {

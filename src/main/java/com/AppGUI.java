@@ -28,10 +28,14 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JCheckBox;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.NumberFormat;
+import java.util.Properties;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -61,7 +65,7 @@ public class AppGUI {
 	private JFormattedTextField txtApprovalAmount;
 	private JButton btnStartServer;
 	private JButton btnStopServer;
-	private JButton btnSaveConfiguration;
+	private JButton btnSaveTransactionConfiguration;
 	private JButton btnSaveLogs;
 	private JComboBox cbxFEP;
 	private JTextArea txtareaLogs;
@@ -86,7 +90,8 @@ public class AppGUI {
 	private JRadioButton rdbtnReconciliationDecline;
 	private JLabel lblOffline;
 	private JLabel lblStatus;
-	private JButton btnChangePortNumber;
+	private JButton btnChangeServerConfiguration;
+	private Properties property = new Properties();
 
 	public JFrame getFrmISO8583Simulator() {
 		return frmISO8583Simulator;
@@ -237,57 +242,34 @@ public class AppGUI {
 
 		lblStatus = new JLabel("Status : ");
 
-		btnChangePortNumber = new JButton("Change Port Number");
-
-		JButton btnChangeFEP = new JButton("Change FEP");
+		btnChangeServerConfiguration = new JButton("Save Server Configuration");
+		btnChangeServerConfiguration.setBackground(SystemColor.controlHighlight);
 		GroupLayout gl_pnMain = new GroupLayout(pnMain);
 		gl_pnMain.setHorizontalGroup(gl_pnMain.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnMain.createSequentialGroup()
-						.addGroup(gl_pnMain.createParallelGroup(Alignment.TRAILING, false)
-								.addGroup(Alignment.LEADING,
-										gl_pnMain.createSequentialGroup().addGap(412).addComponent(lblStatus)
-												.addPreferredGap(ComponentPlacement.RELATED).addComponent(lblOffline))
-								.addGroup(Alignment.LEADING,
-										gl_pnMain.createSequentialGroup().addContainerGap().addComponent(pnFEP,
-												GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)))
+						.addGroup(gl_pnMain.createParallelGroup(Alignment.LEADING, false)
+								.addGroup(gl_pnMain.createSequentialGroup().addGap(412).addComponent(lblStatus)
+										.addPreferredGap(ComponentPlacement.RELATED).addComponent(lblOffline))
+								.addGroup(gl_pnMain.createSequentialGroup().addContainerGap().addComponent(pnFEP,
+										GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)))
 						.addContainerGap(17, Short.MAX_VALUE))
-				.addGroup(
-						gl_pnMain.createSequentialGroup().addContainerGap()
-								.addComponent(btnChangeFEP, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE)
-								.addGap(17))
 				.addGroup(gl_pnMain.createSequentialGroup().addContainerGap()
-						.addGroup(gl_pnMain.createParallelGroup(Alignment.LEADING)
-								.addComponent(pnServerConfiguration, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE,
-										491, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnChangePortNumber, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addComponent(pnServerConfiguration, GroupLayout.PREFERRED_SIZE, 491,
+								GroupLayout.PREFERRED_SIZE)
+						.addGap(17))
+				.addGroup(gl_pnMain.createSequentialGroup().addContainerGap()
+						.addComponent(btnChangeServerConfiguration, GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
 						.addGap(17)));
 		gl_pnMain.setVerticalGroup(gl_pnMain.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnMain.createSequentialGroup().addGap(7)
 						.addGroup(gl_pnMain.createParallelGroup(Alignment.BASELINE).addComponent(lblOffline)
 								.addComponent(lblStatus))
 						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(pnFEP, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED).addComponent(btnChangeFEP).addGap(33)
+						.addComponent(pnFEP, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE).addGap(32)
 						.addComponent(pnServerConfiguration, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 								GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED).addComponent(btnChangePortNumber).addGap(330)));
+						.addGap(39).addComponent(btnChangeServerConfiguration).addGap(332)));
 		pnMain.setLayout(gl_pnMain);
-		// -----------------------------------------------------------------------------------------------------------------------------
-		btnStartServer.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				btnStopServer.setEnabled(true);
-				btnStartServer.setEnabled(false);
-			}
-		});
-		// -----------------------------------------------------------------------------------------------------------------------------
-		btnStopServer.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				btnStartServer.setEnabled(true);
-				btnStopServer.setEnabled(false);
-			}
-		});
 
 		JPanel pnTransactionConfiguration = new JPanel();
 		tbpnTABS.addTab("Transaction Configuration", null, pnTransactionConfiguration, null);
@@ -373,23 +355,10 @@ public class AppGUI {
 						.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(chckbxApproveForHalf)
 						.addContainerGap(46, Short.MAX_VALUE)));
 		pnConfiguration.setLayout(gl_pnConfiguration);
-		// -----------------------------------------------------------------------------------------------------------------------------
-		chckbxApproveForHalf.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (chckbxApproveForHalf.isSelected()) {
-					txtApprovalAmount.setEnabled(false);
-				} else {
-					txtApprovalAmount.setEnabled(true);
-				}
-			}
-		});
 
-		btnSaveConfiguration = new JButton("Save Transaction Configuration");
-		btnSaveConfiguration.setBackground(SystemColor.controlHighlight);
-		btnSaveConfiguration.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnSaveTransactionConfiguration = new JButton("Save Transaction Configuration");
+		btnSaveTransactionConfiguration.setBackground(SystemColor.controlHighlight);
+
 		GroupLayout gl_pnTransactionConfiguration = new GroupLayout(pnTransactionConfiguration);
 		gl_pnTransactionConfiguration.setHorizontalGroup(gl_pnTransactionConfiguration
 				.createParallelGroup(Alignment.LEADING)
@@ -403,7 +372,7 @@ public class AppGUI {
 								.addComponent(pnFinancialSales, 0, 0, Short.MAX_VALUE)
 								.addComponent(pnAuthorization, 0, 0, Short.MAX_VALUE)
 								.addComponent(pnResponse, GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
-								.addComponent(btnSaveConfiguration, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+								.addComponent(btnSaveTransactionConfiguration, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
 										Short.MAX_VALUE))
 						.addContainerGap(12, Short.MAX_VALUE)));
 		gl_pnTransactionConfiguration.setVerticalGroup(gl_pnTransactionConfiguration
@@ -423,7 +392,7 @@ public class AppGUI {
 						.addComponent(pnReconciliation, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(pnConfiguration, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(btnSaveConfiguration)
+						.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(btnSaveTransactionConfiguration)
 						.addContainerGap(30, Short.MAX_VALUE)));
 
 		rdbtnReconciliationApprove = new JRadioButton("Approve");
@@ -582,6 +551,15 @@ public class AppGUI {
 		 * server is started successfully, Start server button is disabled & Stop server
 		 * button is enabled
 		 */
+		// -----------------------------------------------------------------------------------------------------------------------------
+		btnStartServer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Initializer.setServer(new ServerInitializer());
+				Initializer.getServer().start();
+				btnStopServer.setEnabled(true);
+				btnStartServer.setEnabled(false);
+			}
+		});
 
 		// -----------------------------------------------------------------------------------------------------------------------------
 		/*
@@ -590,11 +568,37 @@ public class AppGUI {
 		 * button is enabled
 		 */
 		// -----------------------------------------------------------------------------------------------------------------------------
+		btnStopServer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Initializer.getServer().getServerSocket().close();
+					logger.info("Server stopped");
+					System.out.println("Server stopped");
+				} catch (IOException e1) {
+					logger.error("Unable to stop the server");
+					System.out.println("Unable to stop the server");
+					JOptionPane.showMessageDialog(null, "Unable to stop the server");
+				}
+				btnStartServer.setEnabled(true);
+				btnStopServer.setEnabled(false);
+			}
+		});
+		// -----------------------------------------------------------------------------------------------------------------------------
 		/*
 		 * When the Approve for half of transaction amount checkbox is checked, approval
 		 * amount text field will be enabled and simulator will start approving for the
 		 * specified amount
 		 */
+		// -----------------------------------------------------------------------------------------------------------------------------
+		chckbxApproveForHalf.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (chckbxApproveForHalf.isSelected()) {
+					txtApprovalAmount.setEnabled(false);
+				} else {
+					txtApprovalAmount.setEnabled(true);
+				}
+			}
+		});
 		// -----------------------------------------------------------------------------------------------------------------------------
 		/*
 		 * When the save logs button is clicked, user gets the explorer window to save
@@ -629,7 +633,7 @@ public class AppGUI {
 		 * stopped, port number is changed and server is restarted.
 		 */
 		// -----------------------------------------------------------------------------------------------------------------------------
-		btnChangePortNumber.addActionListener(new ActionListener() {
+		btnChangeServerConfiguration.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					if (Integer.parseInt(txtPort.getText()) < 1026 || Integer.parseInt(txtPort.getText()) > 65535) {
@@ -637,16 +641,25 @@ public class AppGUI {
 								"Entered port number is invalid. Valid port number range is between 1026 and 65535");
 						logger.info(
 								"Entered port number is invalid. Valid port number range is between 1026 and 65535");
-						JOptionPane.showMessageDialog(null, "Entered port number is invalid. Valid port number range is between 1026 and 65535");
+						JOptionPane.showMessageDialog(null,
+								"Entered port number is invalid. Valid port number range is between 1026 and 65535");
 					} else {
-
+						property.load(new FileInputStream(new File(Initializer.getBaseConstants().appFolder) + "\\"
+								+ "CommonVariables.properties"));
+						if (!Initializer.getFEPname().equals(property.getProperty("fepName"))) {
+							property.setProperty("fepName", cbxFEP.getSelectedItem().toString());
+						}
+						if (!String.valueOf(Initializer.getPortNumber()).equals(property.getProperty("portNumber"))) {
+							property.setProperty("portNumber", txtPort.getText());
+						}
 					}
 
 				} catch (Exception e1) {
 					System.out.println(
 							"Entered port number is invalid. Valid port number range is between 1026 and 65535");
 					logger.info("Entered port number is invalid. Valid port number range is between 1026 and 65535");
-					JOptionPane.showMessageDialog(null, "Entered port number is invalid. Valid port number range is between 1026 and 65535");
+					JOptionPane.showMessageDialog(null,
+							"Entered port number is invalid. Valid port number range is between 1026 and 65535");
 				}
 			}
 		});

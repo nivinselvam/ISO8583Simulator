@@ -12,8 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
@@ -24,7 +23,6 @@ public class BaseDataLoader {
 	private File file;
 	private File fileToCopy;
 	private Path destinationPath;
-	private List<String> propertyFileNames = new ArrayList<String>();
 	private static Logger logger = Logger.getLogger(BaseDataLoader.class);
 	
 	//-------------------------------------------------------------------------------------------------------------
@@ -38,16 +36,11 @@ public class BaseDataLoader {
 			file = new File(Initializer.getBaseConstants().appFolder);
 			if (!file.exists()) {
 				file.mkdir();
-			}
-			propertyFileNames.add("CommonVariables.properties");
-			propertyFileNames.add("HPSConstants.properties");
-			propertyFileNames.add("FCBConstants.properties");
-			propertyFileNames.add("IncommConstants.properties");
-
-			for (String currentPropertyFile : propertyFileNames) {
-				fileToCopy = new File(currentPropertyFile);
-				destinationPath = Paths.get(Initializer.getBaseConstants().appFolder + "\\" + currentPropertyFile);
-				Files.copy(fileToCopy.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
+			}			
+			for(Map.Entry<String, String> currentEntry : Initializer.getFepPropertyFiles().entrySet()) {
+				fileToCopy = new File(currentEntry.getValue());
+				destinationPath = Paths.get(Initializer.getBaseConstants().appFolder + "\\" + currentEntry.getValue());
+				Files.copy(fileToCopy.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);			
 			}
 			loadDefaultValues();
 			return true;
@@ -65,21 +58,11 @@ public class BaseDataLoader {
 	//-------------------------------------------------------------------------------------------------------------
 	public void loadDefaultValues() {		
 		try {			
-			property.load(new FileInputStream(new File("CommonVariables.properties")));
+			property.load(new FileInputStream(new File(Initializer.getFepPropertyFiles().get("Common"))));
 			Initializer.setFEPname(property.getProperty("fepName"));
-			//Initializer.getServer().setPortNumber(Integer.parseInt(property.getProperty("PortNumber")));
+			Initializer.setPortNumber(Integer.parseInt(property.getProperty("PortNumber")));
 			
-			switch (Initializer.getFEPname()) {
-			case "HPS":
-				property.load(new FileInputStream(new File("HPSConstants.properties")));
-				break;
-			case "FCB":
-				property.load(new FileInputStream(new File("FCBConstants.properties")));
-				break;
-			case "INCOMM":
-				property.load(new FileInputStream(new File("IncommConstants.properties")));
-				break;
-			}
+			property.load(new FileInputStream(new File(Initializer.getFepPropertyFiles().get(Initializer.getFEPname()))));
 
 			Initializer.getBaseVariables().authorizationTransactionResponse = property
 					.getProperty("authorizationTransactionResponse");
@@ -101,8 +84,8 @@ public class BaseDataLoader {
 			Initializer.getBaseVariables().ValueOfBitfield39Partial = property.getProperty("ValueOfBitfield39Partial");
 			Initializer.getBaseVariables().ValueOfBitfield39Reversal = property
 					.getProperty("ValueOfBitfield39Reversal");
-			Initializer.getBaseVariables().ValueOfBitfield39Reconsillation = property
-					.getProperty("ValueOfBitfield39Reconsillation");
+			Initializer.getBaseVariables().ValueOfBitfield39Reconciliation = property
+					.getProperty("ValueOfBitfield39Reconciliation");
 			Initializer.getBaseVariables().valueOfBitfield44 = property.getProperty("valueOfBitfield44");
 			Initializer.getBaseVariables().valueOfBitfield48 = property.getProperty("valueOfBitfield48");
 			Initializer.getBaseVariables().valueOfBitfield54 = property.getProperty("valueOfBitfield54");

@@ -42,12 +42,7 @@ public class ServerInitializer extends Thread {
 	public void run() {
 		try {
 			PropertyConfigurator.configure("log4j.properties");
-			if (Initializer.isGUIenabled()) {
-				// portNumber = Integer.parseInt(Main.window.getPortNumber());
-			} else {
-				portNumber = 9000;
-			}
-			serverSocket = new ServerSocket(portNumber);
+			serverSocket = new ServerSocket(Initializer.getPortNumber());
 			serverStarted = true;
 			System.out.println("Server started");
 			serverStatus = "Server Started";

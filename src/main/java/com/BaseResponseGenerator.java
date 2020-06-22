@@ -78,7 +78,7 @@ public abstract class BaseResponseGenerator {
 			} else if (requestMTI.equals(Initializer.getBaseConstants().reconciliationRequestMTI)) {
 				transactionResult = Initializer.getBaseVariables().reconciliationTransactionResponse;
 				responseMTI = Initializer.getBaseConstants().reconciliationResponseMTI;
-				elementsInTransaction = new TreeSet<>(Arrays.asList(Initializer.getBaseConstants().elementsInReconsillationTransaction));
+				elementsInTransaction = new TreeSet<>(Arrays.asList(Initializer.getBaseConstants().elementsInReconciliationTransaction));
 				generateResponseBitfieldswithValue(elementsInTransaction);
 				reconciliationPendingBitfieldsUpdate();
 			} else {
