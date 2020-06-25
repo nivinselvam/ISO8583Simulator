@@ -16,14 +16,9 @@ public class ServerInitializer extends Thread {
 	private boolean shouldRun = true;
 	private boolean serverStarted = false;
 	private ArrayList<BaseSocketDataProcessor> connections = new ArrayList<BaseSocketDataProcessor>();
-	private String serverStatus = "";
+	//private String serverStatus = "";
 	private BaseSocketDataProcessor socketDataProcessor;
-	private int portNumber;
 	private Logger logger = Logger.getLogger(ServerInitializer.class);
-
-	public void setPortNumber(int portNumber) {
-		this.portNumber = portNumber;
-	}
 
 	public ServerSocket getServerSocket() {
 		return serverSocket;
@@ -44,8 +39,7 @@ public class ServerInitializer extends Thread {
 			PropertyConfigurator.configure("log4j.properties");
 			serverSocket = new ServerSocket(Initializer.getPortNumber());
 			serverStarted = true;
-			System.out.println("Server started");
-			serverStatus = "Server Started";
+			System.out.println(Initializer.getFEPname() + " Server started successfully");
 			logger.info(Initializer.getFEPname() + " Server started successfully");
 			while (shouldRun) {
 				socket = serverSocket.accept();
@@ -58,7 +52,7 @@ public class ServerInitializer extends Thread {
 				logger.info("Server stopped");
 			}else {
 				logger.fatal("Unable to start the server");
-				serverStatus = ("Unable to start the server");
+				System.out.println("Unable to start the server");
 				serverStarted = false;
 				e.printStackTrace();
 			}			

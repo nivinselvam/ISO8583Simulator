@@ -51,7 +51,7 @@ public abstract class BaseSocketDataProcessor extends Thread {
 		logger.info("                                  Start of Transaction");
 		logger.info(
 				"*************************************************************************************************");
-
+		
 		try {
 			socketDataReadFormat();
 			requestPacket = readDataFromSocket();
@@ -59,12 +59,11 @@ public abstract class BaseSocketDataProcessor extends Thread {
 			logger.fatal(e.toString());
 			System.out.println(e.toString());
 		}
-
-		generateResponse(requestPacket);
-
-		socketDataWriteFormat(responsePacket);
-		writeDataToSocket(responsePacket);
-
+		if(Initializer.getBaseVariables().sendResponse.equalsIgnoreCase("Yes")) {
+			generateResponse(requestPacket);
+			socketDataWriteFormat(responsePacket);
+			writeDataToSocket(responsePacket);
+		}
 		logger.info(
 				"*************************************************************************************************");
 		logger.info("                                   End of Transaction");

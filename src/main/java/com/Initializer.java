@@ -12,31 +12,31 @@ public class Initializer {
 
 	private static String fepName = "HPS";
 	private static boolean guiEnabled = true;
-	private static BaseConstants constants = new BaseConstants();
 	private static ServerInitializer server = null;
 	private static Converter converter = new Converter();
 	private static BitFieldData bitfieldData = new BitFieldData();
-	private static BaseDataLoader dataLoader = new BaseDataLoader();
 	private static BaseVariables variables = new BaseVariables();
-	public static BaseFileWatcher fileWatcher = new BaseFileWatcher();
+	private static BaseConstants constants;
+	private static BaseDataLoader dataLoader;
+	public static BaseFileWatcher fileWatcher;
 	private static AppGUI appGui;
 	private static int portNumber;
-	private static Map<String,String> fepPropertyFiles = new HashMap<String, String>();
+	private static Map<String, String> fepPropertyFiles = new HashMap<String, String>();
 
 	public static void main(String[] args) {
 		PropertyConfigurator.configure("log4j.properties");
-		fepPropertyFiles.put("Common", "CommonVariables.properties");
-		fepPropertyFiles.put("HPS", "HPSConstants.properties");
-		fepPropertyFiles.put("FCB", "FCBConstants.properties");
-		fepPropertyFiles.put("INCOMM", "IncommConstants.properties");
+		mapFEPtoPropertyFile();
+		constants = new BaseConstants();
+		dataLoader = new BaseDataLoader();
+		fileWatcher = new BaseFileWatcher();
 		if (dataLoader.createAppFolder()) {
 			fileWatcher.start();
 			if (guiEnabled) {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							AppGUI window = new AppGUI();
-							window.getFrmISO8583Simulator().setVisible(true);
+							appGui = new AppGUI();
+							appGui.getFrmISO8583Simulator().setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -46,14 +46,25 @@ public class Initializer {
 				server = new ServerInitializer();
 				server.start();
 			}
-		}else {
+		} else {
 			JOptionPane.showMessageDialog(null, "Unable to create the app folder");
 		}
 
 	}
 
+	private static void mapFEPtoPropertyFile() {
+		fepPropertyFiles.put("Common", "CommonVariables.properties");
+		fepPropertyFiles.put("HPS", "HPSConstants.properties");
+		fepPropertyFiles.put("FCB", "FCBConstants.properties");
+		fepPropertyFiles.put("INCOMM", "IncommConstants.properties");
+	}
+
 	public static Map<String, String> getFepPropertyFiles() {
 		return fepPropertyFiles;
+	}
+	
+	public static AppGUI getAppGui() {
+		return appGui;
 	}
 
 	public static String getFEPname() {

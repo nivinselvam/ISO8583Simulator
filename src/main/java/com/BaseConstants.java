@@ -18,7 +18,7 @@ import org.apache.log4j.Logger;
 
 public class BaseConstants {
 	private Logger logger = Logger.getLogger(BaseConstants.class);
-	private Properties p = new Properties();
+	private Properties property = new Properties();
 	private String fepFile;
 	private FileInputStream fis;
 	private File file;
@@ -175,6 +175,15 @@ public class BaseConstants {
 	public Integer secondaryBitmapStartPoint;
 	public Integer secondaryBitmapEndPoint;
 	public Integer secondaryBitmapEndPosition;
+	public String guisendResponsePanelName;
+	public String guiAuthorizationResultPanelName;
+	public String guiFinancialSalesResultPanelName;
+	public String guiFinancialForceDraftResultPanelName;
+	public String guiReversalResultPanelName;
+	public String guiReconciliationResultPanelName;
+	public String guiDeclineCodefieldName;
+	public String guiApprovalAmountFieldName;
+	public String guiIsHalfApprovalRequired;
 
 	public BaseConstants() {
 		loadFepPropertyFile();
@@ -206,7 +215,7 @@ public class BaseConstants {
 			logger.fatal("Unable to find the fep property file");
 		}
 		try {
-			p.load(fis);
+			property.load(fis);
 			return true;
 		} catch (IOException e) {
 			System.out.println("Unable to load the fep property file");
@@ -221,35 +230,35 @@ public class BaseConstants {
 		appFolder = System.getProperty("user.home") + "\\ISO8583Simulator";
 
 		// This helps to decide if the fep supports echo message or not
-		echoMessageLength = p.getProperty("echoMessageLength");
+		echoMessageLength = property.getProperty("echoMessageLength");
 
 		// Transaction MTI:
-		authorizationRequestMTI = p.getProperty("authorizationRequestMTI");
-		authorizationResponseMTI = p.getProperty("authorizationResponseMTI");
-		financialSalesRequestMTI = p.getProperty("financialSalesRequestMTI");
-		financialSalesResponseMTI = p.getProperty("financialSalesResponseMTI");
-		financialForceDraftRequestMTI = p.getProperty("financialForceDraftRequestMTI");
-		financialForceDraftResponseMTI = p.getProperty("financialForceDraftResponseMTI");
-		reversalRequestMTI = p.getProperty("reversalRequestMTI");
-		reversalResponseMTI = p.getProperty("reversalResponseMTI");
-		reconciliationRequestMTI = p.getProperty("reconciliationRequestMTI");
-		reconciliationResponseMTI = p.getProperty("reconciliationResponseMTI");
+		authorizationRequestMTI = property.getProperty("authorizationRequestMTI");
+		authorizationResponseMTI = property.getProperty("authorizationResponseMTI");
+		financialSalesRequestMTI = property.getProperty("financialSalesRequestMTI");
+		financialSalesResponseMTI = property.getProperty("financialSalesResponseMTI");
+		financialForceDraftRequestMTI = property.getProperty("financialForceDraftRequestMTI");
+		financialForceDraftResponseMTI = property.getProperty("financialForceDraftResponseMTI");
+		reversalRequestMTI = property.getProperty("reversalRequestMTI");
+		reversalResponseMTI = property.getProperty("reversalResponseMTI");
+		reconciliationRequestMTI = property.getProperty("reconciliationRequestMTI");
+		reconciliationResponseMTI = property.getProperty("reconciliationResponseMTI");
 		// BitFields involved in Transaction
 		elementsInAuthorisationTransaction = generateIntegerArrayFromString(
-				p.getProperty("elementsInAuthorisationTransaction"));
+				property.getProperty("elementsInAuthorisationTransaction"));
 		elementsInFinancialSalesTransaction = generateIntegerArrayFromString(
-				p.getProperty("elementsInFinancialSalesTransaction"));
+				property.getProperty("elementsInFinancialSalesTransaction"));
 		elementsInFinancialForceDraftTransaction = generateIntegerArrayFromString(
-				p.getProperty("elementsInFinancialForceDraftTransaction"));
+				property.getProperty("elementsInFinancialForceDraftTransaction"));
 		elementsInReversalTransaction = generateIntegerArrayFromString(
-				p.getProperty("elementsInReversalTransaction"));
+				property.getProperty("elementsInReversalTransaction"));
 		elementsInReconciliationTransaction = generateIntegerArrayFromString(
-				p.getProperty("elementsInReconciliationTransaction"));
+				property.getProperty("elementsInReconciliationTransaction"));
 
 		// Codes to be validated during transaction
-		balanceInquiryCodes = generateArrayListFromString(p.getProperty("balanceInquiryCodes"));
+		balanceInquiryCodes = generateArrayListFromString(property.getProperty("balanceInquiryCodes"));
 		activationRechargeCodes = generateArrayListFromString(
-				p.getProperty("activationRechargeCodes"));
+				property.getProperty("activationRechargeCodes"));
 		// Below constant is FCB fep specific
 		elementsInHexFormatforFCBTransaction = new ArrayList<Integer>(
 				Arrays.asList(37, 38, 39, 41, 42, 60, 63));
@@ -380,16 +389,26 @@ public class BaseConstants {
 		nameOfbitfield124 = "BITFIELD124";
 
 		// Decoding details:
-		HeaderStartPoint = Integer.parseInt(p.getProperty("HeaderStartPoint"));
-		HeaderEndPoint = Integer.parseInt(p.getProperty("HeaderEndPoint"));
-		mtiStartPoint = Integer.parseInt(p.getProperty("mtiStartPoint"));
-		mtiEndPoint = Integer.parseInt(p.getProperty("mtiEndPoint"));
-		primaryBitmapStartPoint = Integer.parseInt(p.getProperty("primaryBitmapStartPoint"));
-		primaryBitmapEndPoint = Integer.parseInt(p.getProperty("primaryBitmapEndPoint"));
-		primaryBitmapPosition = Integer.parseInt(p.getProperty("primaryBitmapPosition"));
-		secondaryBitmapStartPoint = Integer.parseInt(p.getProperty("secondaryBitmapStartPoint"));
-		secondaryBitmapEndPoint = Integer.parseInt(p.getProperty("secondaryBitmapEndPoint"));
-		secondaryBitmapEndPosition = Integer.parseInt(p.getProperty("secondaryBitmapEndPosition"));
+		HeaderStartPoint = Integer.parseInt(property.getProperty("HeaderStartPoint"));
+		HeaderEndPoint = Integer.parseInt(property.getProperty("HeaderEndPoint"));
+		mtiStartPoint = Integer.parseInt(property.getProperty("mtiStartPoint"));
+		mtiEndPoint = Integer.parseInt(property.getProperty("mtiEndPoint"));
+		primaryBitmapStartPoint = Integer.parseInt(property.getProperty("primaryBitmapStartPoint"));
+		primaryBitmapEndPoint = Integer.parseInt(property.getProperty("primaryBitmapEndPoint"));
+		primaryBitmapPosition = Integer.parseInt(property.getProperty("primaryBitmapPosition"));
+		secondaryBitmapStartPoint = Integer.parseInt(property.getProperty("secondaryBitmapStartPoint"));
+		secondaryBitmapEndPoint = Integer.parseInt(property.getProperty("secondaryBitmapEndPoint"));
+		secondaryBitmapEndPosition = Integer.parseInt(property.getProperty("secondaryBitmapEndPosition"));
+		
+		guisendResponsePanelName = "sendResponse";
+		guiAuthorizationResultPanelName = "authorizationTransactionResponse";
+		guiFinancialSalesResultPanelName = "financialSalesTransactionResponse";
+		guiFinancialForceDraftResultPanelName = "financialForceDraftTransactionResponse";
+		guiReversalResultPanelName = "reversalTransactionResponse";
+		guiReconciliationResultPanelName = "reconciliationTransactionResponse";
+		guiDeclineCodefieldName = "ValueOfBitfield39Decline";
+		guiApprovalAmountFieldName = "valueOfBitfield4";
+		guiIsHalfApprovalRequired = "isHalfApprovalRequired";
 
 	}
 

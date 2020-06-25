@@ -3,6 +3,7 @@ package com;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -30,11 +31,16 @@ import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.NumberFormat;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
@@ -53,44 +59,51 @@ public class AppGUI {
 	private JPanel pnFEP;
 	private JPanel pnLogs;
 	private JPanel pnServerConfiguration;
-	private JPanel pnResponse;
+	private JPanel pnSendResponse;
 	private JPanel pnConfiguration;
+	private JPanel pnAuthorization;
+	private JPanel pnFinancialSales;
+	private JPanel pnFinancialForceDraft;
+	private JPanel pnReversal;
+	private JPanel pnReconciliation;
 	private JLabel lblName;
 	private JLabel lblIp;
 	private JLabel lblDeclineCode;
 	private JLabel lblApprovalAmount;
+	private JLabel lblStatusValue;
+	private JLabel lblStatus;
 	private JTextField txtIP;
 	private JTextField txtPort;
-	private JFormattedTextField txtResponseCode;
+	private JTextArea txtareaLogs;
+	private JFormattedTextField txtDeclineCode;
 	private JFormattedTextField txtApprovalAmount;
 	private JButton btnStartServer;
 	private JButton btnStopServer;
 	private JButton btnSaveTransactionConfiguration;
 	private JButton btnSaveLogs;
+	private JButton btnSaveServerConfiguration;
 	private JComboBox cbxFEP;
-	private JTextArea txtareaLogs;
 	private JCheckBox chckbxApproveForHalf;
 	private JRadioButton rdbtnSendResponse;
 	private JRadioButton rdbtnDontSendResponse;
-	private NumberFormat format = NumberFormat.getInstance();
-	private static Logger logger = Logger.getLogger(AppGUI.class);
-	private JPanel pnAuthorization;
-	private JPanel pnFinancialSales;
 	private JRadioButton rdbtnFinancialSalesApprove;
 	private JRadioButton rdbtnFinancialSalesDecline;
 	private JRadioButton rdbtnFinancialSalesPartiallyapprove;
-	private JPanel pnFinancialForceDraft;
 	private JRadioButton rdbtnFinancialForceDraftApprove;
 	private JRadioButton rdbtnFinancialForceDraftDecline;
-	private JPanel pnReversal;
 	private JRadioButton rdbtnReversalApprove;
 	private JRadioButton rdbtnReversalDecline;
-	private JPanel pnReconciliation;
 	private JRadioButton rdbtnReconciliationApprove;
 	private JRadioButton rdbtnReconciliationDecline;
-	private JLabel lblOffline;
-	private JLabel lblStatus;
-	private JButton btnChangeServerConfiguration;
+	private ButtonGroup btngrpSendResponseOrNot;
+	private ButtonGroup btngrpauthorizationResult;
+	private ButtonGroup btngrpFinancialSalesResult;
+	private ButtonGroup btngrpFinancialForceDraftResult;
+	private ButtonGroup btngrpReversalResult;
+	private ButtonGroup btngrpReconciliationResult;
+	private NumberFormat format = NumberFormat.getInstance();
+	private static Logger logger = Logger.getLogger(AppGUI.class);
+	private Map<String, String> transactionConfigurationMap = new HashMap<String, String>();
 	private Properties property = new Properties();
 
 	public JFrame getFrmISO8583Simulator() {
@@ -135,7 +148,7 @@ public class AppGUI {
 				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
 						.addComponent(tbpnTABS, GroupLayout.PREFERRED_SIZE, 721, Short.MAX_VALUE).addContainerGap()));
 
-		String[] fepNames = { "HPS", "Incomm", "FCB", "X9", "Payware", "Chase" };
+		String[] fepNames = { "HPS", "FCB", "X9" };
 		String[] result = { "Approve", "Decline", "PartiallyApprove" };
 
 		NumberFormatter responseFormatter = new NumberFormatter(format);
@@ -146,7 +159,7 @@ public class AppGUI {
 		// If you want the value to be committed on each keystroke instead of focus lost
 		responseFormatter.setCommitsOnValidEdit(true);
 
-		ButtonGroup btngrpSendResponseOrNot = new ButtonGroup();
+		btngrpSendResponseOrNot = new ButtonGroup();
 
 		/*
 		 * IP is taken from the system in which the simulator is running and is
@@ -159,7 +172,7 @@ public class AppGUI {
 			System.out.println("Unable to fetch the system details");
 			logger.error("Unable to fetch the system details");
 		}
-		ButtonGroup btngrpauthorizationResult = new ButtonGroup();
+		btngrpauthorizationResult = new ButtonGroup();
 
 		pnMain = new JPanel();
 		tbpnTABS.addTab("Server Configuration", null, pnMain, null);
@@ -238,18 +251,18 @@ public class AppGUI {
 										.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		pnServerConfiguration.setLayout(gl_pnServerConfiguration);
 
-		lblOffline = new JLabel("Offline");
+		lblStatusValue = new JLabel("Offline");
 
 		lblStatus = new JLabel("Status : ");
 
-		btnChangeServerConfiguration = new JButton("Save Server Configuration");
-		btnChangeServerConfiguration.setBackground(SystemColor.controlHighlight);
+		btnSaveServerConfiguration = new JButton("Save Server Configuration");
+		btnSaveServerConfiguration.setBackground(SystemColor.controlHighlight);
 		GroupLayout gl_pnMain = new GroupLayout(pnMain);
 		gl_pnMain.setHorizontalGroup(gl_pnMain.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnMain.createSequentialGroup()
 						.addGroup(gl_pnMain.createParallelGroup(Alignment.LEADING, false)
 								.addGroup(gl_pnMain.createSequentialGroup().addGap(412).addComponent(lblStatus)
-										.addPreferredGap(ComponentPlacement.RELATED).addComponent(lblOffline))
+										.addPreferredGap(ComponentPlacement.RELATED).addComponent(lblStatusValue))
 								.addGroup(gl_pnMain.createSequentialGroup().addContainerGap().addComponent(pnFEP,
 										GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)))
 						.addContainerGap(17, Short.MAX_VALUE))
@@ -258,17 +271,17 @@ public class AppGUI {
 								GroupLayout.PREFERRED_SIZE)
 						.addGap(17))
 				.addGroup(gl_pnMain.createSequentialGroup().addContainerGap()
-						.addComponent(btnChangeServerConfiguration, GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
+						.addComponent(btnSaveServerConfiguration, GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
 						.addGap(17)));
 		gl_pnMain.setVerticalGroup(gl_pnMain.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnMain.createSequentialGroup().addGap(7)
-						.addGroup(gl_pnMain.createParallelGroup(Alignment.BASELINE).addComponent(lblOffline)
+						.addGroup(gl_pnMain.createParallelGroup(Alignment.BASELINE).addComponent(lblStatusValue)
 								.addComponent(lblStatus))
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(pnFEP, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE).addGap(32)
 						.addComponent(pnServerConfiguration, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 								GroupLayout.PREFERRED_SIZE)
-						.addGap(39).addComponent(btnChangeServerConfiguration).addGap(332)));
+						.addGap(39).addComponent(btnSaveServerConfiguration).addGap(332)));
 		pnMain.setLayout(gl_pnMain);
 
 		JPanel pnTransactionConfiguration = new JPanel();
@@ -294,34 +307,33 @@ public class AppGUI {
 		pnReconciliation.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),
 				"Reconciliation(x520)", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
 
-		pnResponse = new JPanel();
-		pnResponse.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Response",
+		pnSendResponse = new JPanel();
+		pnSendResponse.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Send Response",
 				TitledBorder.LEFT, TitledBorder.ABOVE_TOP, null, new Color(0, 0, 0)));
 
-		rdbtnSendResponse = new JRadioButton("Send Response");
+		rdbtnSendResponse = new JRadioButton("Yes");
 		rdbtnSendResponse.setSelected(true);
-		rdbtnDontSendResponse = new JRadioButton("Do not Send Response");
+		rdbtnDontSendResponse = new JRadioButton("No");
 		btngrpSendResponseOrNot.add(rdbtnSendResponse);
 		btngrpSendResponseOrNot.add(rdbtnDontSendResponse);
-		GroupLayout gl_pnResponse = new GroupLayout(pnResponse);
-		gl_pnResponse.setHorizontalGroup(gl_pnResponse.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pnResponse.createSequentialGroup().addContainerGap().addComponent(rdbtnSendResponse)
-						.addGap(58).addComponent(rdbtnDontSendResponse).addContainerGap(184, Short.MAX_VALUE)));
-		gl_pnResponse
-				.setVerticalGroup(gl_pnResponse.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_pnResponse.createSequentialGroup().addContainerGap()
-								.addGroup(gl_pnResponse.createParallelGroup(Alignment.BASELINE)
-										.addComponent(rdbtnSendResponse).addComponent(rdbtnDontSendResponse))
-								.addContainerGap(17, Short.MAX_VALUE)));
-		pnResponse.setLayout(gl_pnResponse);
+		GroupLayout gl_pnSendResponse = new GroupLayout(pnSendResponse);
+		gl_pnSendResponse.setHorizontalGroup(gl_pnSendResponse.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnSendResponse.createSequentialGroup().addContainerGap().addComponent(rdbtnSendResponse)
+						.addGap(124).addComponent(rdbtnDontSendResponse).addContainerGap(273, Short.MAX_VALUE)));
+		gl_pnSendResponse.setVerticalGroup(gl_pnSendResponse.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnSendResponse.createSequentialGroup().addContainerGap()
+						.addGroup(gl_pnSendResponse.createParallelGroup(Alignment.BASELINE)
+								.addComponent(rdbtnSendResponse).addComponent(rdbtnDontSendResponse))
+						.addContainerGap(17, Short.MAX_VALUE)));
+		pnSendResponse.setLayout(gl_pnSendResponse);
 
 		pnConfiguration = new JPanel();
 		pnConfiguration.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),
 				"Response Code & Amount", TitledBorder.LEFT, TitledBorder.ABOVE_TOP, null, new Color(0, 0, 0)));
 
 		lblDeclineCode = new JLabel("Decline Code : ");
-		txtResponseCode = new JFormattedTextField(responseFormatter);
-		txtResponseCode.setText("000");
+		txtDeclineCode = new JFormattedTextField(responseFormatter);
+		txtDeclineCode.setText("000");
 
 		lblApprovalAmount = new JLabel("Approval Amount : ");
 
@@ -338,14 +350,14 @@ public class AppGUI {
 								.addComponent(lblApprovalAmount).addComponent(lblDeclineCode))
 						.addGap(16)
 						.addGroup(gl_pnConfiguration.createParallelGroup(Alignment.LEADING)
-								.addComponent(txtResponseCode, GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+								.addComponent(txtDeclineCode, GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
 								.addComponent(chckbxApproveForHalf)
 								.addComponent(txtApprovalAmount, GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE))
 						.addContainerGap()));
 		gl_pnConfiguration.setVerticalGroup(gl_pnConfiguration.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnConfiguration.createSequentialGroup().addContainerGap()
 						.addGroup(gl_pnConfiguration.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblDeclineCode).addComponent(txtResponseCode, GroupLayout.PREFERRED_SIZE,
+								.addComponent(lblDeclineCode).addComponent(txtDeclineCode, GroupLayout.PREFERRED_SIZE,
 										GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGap(18)
 						.addGroup(gl_pnConfiguration.createParallelGroup(Alignment.BASELINE)
@@ -371,14 +383,14 @@ public class AppGUI {
 								.addComponent(pnFinancialForceDraft, 0, 0, Short.MAX_VALUE)
 								.addComponent(pnFinancialSales, 0, 0, Short.MAX_VALUE)
 								.addComponent(pnAuthorization, 0, 0, Short.MAX_VALUE)
-								.addComponent(pnResponse, GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
-								.addComponent(btnSaveTransactionConfiguration, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE))
+								.addComponent(pnSendResponse, GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
+								.addComponent(btnSaveTransactionConfiguration, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 						.addContainerGap(12, Short.MAX_VALUE)));
 		gl_pnTransactionConfiguration.setVerticalGroup(gl_pnTransactionConfiguration
 				.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnTransactionConfiguration.createSequentialGroup().addContainerGap()
-						.addComponent(pnResponse, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+						.addComponent(pnSendResponse, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 								GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(pnAuthorization, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
@@ -398,7 +410,7 @@ public class AppGUI {
 		rdbtnReconciliationApprove = new JRadioButton("Approve");
 		rdbtnReconciliationApprove.setSelected(true);
 		rdbtnReconciliationDecline = new JRadioButton("Decline");
-		ButtonGroup btngrpReconciliationResult = new ButtonGroup();
+		btngrpReconciliationResult = new ButtonGroup();
 		btngrpReconciliationResult.add(rdbtnReconciliationApprove);
 		btngrpReconciliationResult.add(rdbtnReconciliationDecline);
 		GroupLayout gl_pnReconciliation = new GroupLayout(pnReconciliation);
@@ -416,7 +428,7 @@ public class AppGUI {
 		rdbtnReversalApprove = new JRadioButton("Approve");
 		rdbtnReversalApprove.setSelected(true);
 		rdbtnReversalDecline = new JRadioButton("Decline");
-		ButtonGroup btngrpReversalResult = new ButtonGroup();
+		btngrpReversalResult = new ButtonGroup();
 		btngrpReversalResult.add(rdbtnReversalApprove);
 		btngrpReversalResult.add(rdbtnReversalDecline);
 		GroupLayout gl_pnReversal = new GroupLayout(pnReversal);
@@ -433,7 +445,7 @@ public class AppGUI {
 		rdbtnFinancialForceDraftApprove = new JRadioButton("Approve");
 		rdbtnFinancialForceDraftApprove.setSelected(true);
 		rdbtnFinancialForceDraftDecline = new JRadioButton("Decline");
-		ButtonGroup btngrpFinancialForceDraftResult = new ButtonGroup();
+		btngrpFinancialForceDraftResult = new ButtonGroup();
 		btngrpFinancialForceDraftResult.add(rdbtnFinancialForceDraftApprove);
 		btngrpFinancialForceDraftResult.add(rdbtnFinancialForceDraftDecline);
 		GroupLayout gl_pnFinancialForceDraft = new GroupLayout(pnFinancialForceDraft);
@@ -453,10 +465,10 @@ public class AppGUI {
 		rdbtnFinancialSalesApprove.setSelected(true);
 		rdbtnFinancialSalesDecline = new JRadioButton("Decline");
 		rdbtnFinancialSalesPartiallyapprove = new JRadioButton("PartiallyApprove");
-		ButtonGroup btngrpFinancialSalesResult = new ButtonGroup();
-		btngrpFinancialSalesResult.add(rdbtnFinancialSalesApprove);
+		btngrpFinancialSalesResult = new ButtonGroup();
 		btngrpFinancialSalesResult.add(rdbtnFinancialSalesApprove);
 		btngrpFinancialSalesResult.add(rdbtnFinancialSalesDecline);
+		btngrpFinancialSalesResult.add(rdbtnFinancialSalesPartiallyapprove);
 		GroupLayout gl_pnFinancialSales = new GroupLayout(pnFinancialSales);
 		gl_pnFinancialSales.setHorizontalGroup(gl_pnFinancialSales.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnFinancialSales.createSequentialGroup().addContainerGap()
@@ -558,6 +570,7 @@ public class AppGUI {
 				Initializer.getServer().start();
 				btnStopServer.setEnabled(true);
 				btnStartServer.setEnabled(false);
+				lblStatusValue.setText("Online");
 			}
 		});
 
@@ -574,6 +587,7 @@ public class AppGUI {
 					Initializer.getServer().getServerSocket().close();
 					logger.info("Server stopped");
 					System.out.println("Server stopped");
+					lblStatusValue.setText("Offline");
 				} catch (IOException e1) {
 					logger.error("Unable to stop the server");
 					System.out.println("Unable to stop the server");
@@ -633,10 +647,11 @@ public class AppGUI {
 		 * stopped, port number is changed and server is restarted.
 		 */
 		// -----------------------------------------------------------------------------------------------------------------------------
-		btnChangeServerConfiguration.addActionListener(new ActionListener() {
+		btnSaveServerConfiguration.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				boolean update = false;
 				try {
-					if (Integer.parseInt(txtPort.getText()) < 1026 || Integer.parseInt(txtPort.getText()) > 65535) {
+					if (Integer.parseInt(txtPort.getText()) < 1026 || Integer.parseInt(txtPort.getText()) > 65536) {
 						System.out.println(
 								"Entered port number is invalid. Valid port number range is between 1026 and 65535");
 						logger.info(
@@ -645,12 +660,18 @@ public class AppGUI {
 								"Entered port number is invalid. Valid port number range is between 1026 and 65535");
 					} else {
 						property.load(new FileInputStream(new File(Initializer.getBaseConstants().appFolder) + "\\"
-								+ "CommonVariables.properties"));
-						if (!Initializer.getFEPname().equals(property.getProperty("fepName"))) {
+								+ Initializer.getFepPropertyFiles().get("Common")));
+						if (!cbxFEP.getSelectedItem().toString().equals(property.getProperty("fepName"))) {
 							property.setProperty("fepName", cbxFEP.getSelectedItem().toString());
+							update = true;
 						}
-						if (!String.valueOf(Initializer.getPortNumber()).equals(property.getProperty("portNumber"))) {
+						if (!txtPort.getText().equals(property.getProperty("portNumber"))) {
 							property.setProperty("portNumber", txtPort.getText());
+							update = true;
+						}
+						if (update) {
+							property.store(new FileOutputStream(new File(Initializer.getBaseConstants().appFolder)
+									+ "\\" + Initializer.getFepPropertyFiles().get("Common")), null);
 						}
 					}
 
@@ -663,5 +684,103 @@ public class AppGUI {
 				}
 			}
 		});
+		// -----------------------------------------------------------------------------------------------------------------------------
+		/*
+		 * When the Save transaction configuration button is clicked, i) Current
+		 * configuration is retrieved ii) FEP property file is updated with the
+		 * retrieved values.
+		 */
+		// -----------------------------------------------------------------------------------------------------------------------------
+		btnSaveTransactionConfiguration.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				getTransactionConfigurationFromGUI();
+				writeTransactionConfigurationToPropertyFile();
+			}
+		});
 	}
+
+	// -----------------------------------------------------------------------------------------------------------------------------
+	/*
+	 * This method is used to find out the selected radio button in the button
+	 * group. It takes the button group as input and return the name of the selected
+	 * radio button
+	 */
+	// -----------------------------------------------------------------------------------------------------------------------------
+	public String getSelectedButtonText(ButtonGroup buttonGroup) {
+		for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
+			AbstractButton button = buttons.nextElement();
+
+			if (button.isSelected()) {
+				return button.getText();
+			}
+		}
+		return null;
+	}
+
+	// -----------------------------------------------------------------------------------------------------------------------------
+	/*
+	 * This method is used to get the transaction configuration from the GUI.
+	 */
+	// -----------------------------------------------------------------------------------------------------------------------------
+	public Map<String, String> getTransactionConfigurationFromGUI() {
+		transactionConfigurationMap.put(Initializer.getBaseConstants().guisendResponsePanelName,
+				getSelectedButtonText(btngrpSendResponseOrNot));
+		transactionConfigurationMap.put(Initializer.getBaseConstants().guiAuthorizationResultPanelName,
+				getSelectedButtonText(btngrpauthorizationResult));
+		transactionConfigurationMap.put(Initializer.getBaseConstants().guiFinancialSalesResultPanelName,
+				getSelectedButtonText(btngrpFinancialSalesResult));
+		transactionConfigurationMap.put(Initializer.getBaseConstants().guiFinancialForceDraftResultPanelName,
+				getSelectedButtonText(btngrpFinancialForceDraftResult));
+		transactionConfigurationMap.put(Initializer.getBaseConstants().guiReversalResultPanelName,
+				getSelectedButtonText(btngrpReversalResult));
+		transactionConfigurationMap.put(Initializer.getBaseConstants().guiReconciliationResultPanelName,
+				getSelectedButtonText(btngrpReconciliationResult));
+		transactionConfigurationMap.put(Initializer.getBaseConstants().guiDeclineCodefieldName,
+				Initializer.getConverter().zeroPadding(txtDeclineCode.getText(), 3));
+		transactionConfigurationMap.put(Initializer.getBaseConstants().guiApprovalAmountFieldName,
+				txtApprovalAmount.getText());
+		transactionConfigurationMap.put(Initializer.getBaseConstants().guiIsHalfApprovalRequired,
+				String.valueOf(chckbxApproveForHalf.isSelected()));
+		return transactionConfigurationMap;
+	}
+
+	// -----------------------------------------------------------------------------------------------------------------------------
+	/*
+	 * This method is used to write the transaction configuration into the fep
+	 * property file
+	 */
+	// -----------------------------------------------------------------------------------------------------------------------------
+	public void writeTransactionConfigurationToPropertyFile() {
+		try {
+			property.load(
+					new FileInputStream(new File(Initializer.getFepPropertyFiles().get(Initializer.getFEPname()))));
+			property.setProperty(Initializer.getBaseConstants().guisendResponsePanelName,
+					transactionConfigurationMap.get(Initializer.getBaseConstants().guisendResponsePanelName));
+			property.setProperty(Initializer.getBaseConstants().guiAuthorizationResultPanelName,
+					transactionConfigurationMap.get(Initializer.getBaseConstants().guiAuthorizationResultPanelName));
+			property.setProperty(Initializer.getBaseConstants().guiFinancialSalesResultPanelName,
+					transactionConfigurationMap.get(Initializer.getBaseConstants().guiFinancialSalesResultPanelName));
+			property.setProperty(Initializer.getBaseConstants().guiFinancialForceDraftResultPanelName,
+					transactionConfigurationMap
+							.get(Initializer.getBaseConstants().guiFinancialForceDraftResultPanelName));
+			property.setProperty(Initializer.getBaseConstants().guiReversalResultPanelName,
+					transactionConfigurationMap.get(Initializer.getBaseConstants().guiReversalResultPanelName));
+			property.setProperty(Initializer.getBaseConstants().guiReconciliationResultPanelName,
+					transactionConfigurationMap.get(Initializer.getBaseConstants().guiReconciliationResultPanelName));
+			property.setProperty(Initializer.getBaseConstants().guiDeclineCodefieldName,
+					transactionConfigurationMap.get(Initializer.getBaseConstants().guiDeclineCodefieldName));
+			property.setProperty(Initializer.getBaseConstants().guiApprovalAmountFieldName,
+					transactionConfigurationMap.get(Initializer.getBaseConstants().guiApprovalAmountFieldName));
+			property.setProperty(Initializer.getBaseConstants().guiIsHalfApprovalRequired,
+					transactionConfigurationMap.get(Initializer.getBaseConstants().guiIsHalfApprovalRequired));
+
+			property.store(new FileOutputStream(new File(Initializer.getBaseConstants().appFolder) + "\\"
+					+ Initializer.getFepPropertyFiles().get(Initializer.getFEPname())), null);
+		} catch (IOException e) {
+			logger.error("Unable to update the fep property file");
+			System.out.println("Unable to update the fep property file");
+			JOptionPane.showMessageDialog(null, "Unable to update the fep property file");
+		}
+	}
+
 }

@@ -1,12 +1,13 @@
 package com;
 
-public class BaseVariables {	
+public class BaseVariables {
+	public String sendResponse;
 	public String authorizationTransactionResponse;
 	public String financialSalesTransactionResponse;
 	public String financialForceDraftTransactionResponse;
 	public String reversalTransactionResponse;
 	public String reconciliationTransactionResponse;
-	
+	public String isHalfApprovalRequired;
 	public String valueOfBitfield4;
 	public String valueOfBitfield37;
 	public String valueOfBitfield38;

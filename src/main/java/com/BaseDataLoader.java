@@ -60,10 +60,12 @@ public class BaseDataLoader {
 		try {			
 			property.load(new FileInputStream(new File(Initializer.getFepPropertyFiles().get("Common"))));
 			Initializer.setFEPname(property.getProperty("fepName"));
-			Initializer.setPortNumber(Integer.parseInt(property.getProperty("PortNumber")));
+			Initializer.setPortNumber(Integer.parseInt(property.getProperty("portNumber")));
 			
 			property.load(new FileInputStream(new File(Initializer.getFepPropertyFiles().get(Initializer.getFEPname()))));
-
+			
+			Initializer.getBaseVariables().sendResponse = property.getProperty("sendResponse");
+			
 			Initializer.getBaseVariables().authorizationTransactionResponse = property
 					.getProperty("authorizationTransactionResponse");
 			Initializer.getBaseVariables().financialSalesTransactionResponse = property
@@ -74,7 +76,8 @@ public class BaseDataLoader {
 					.getProperty("reversalTransactionResponse");
 			Initializer.getBaseVariables().reconciliationTransactionResponse = property
 					.getProperty("reconciliationTransactionResponse");
-
+			
+			Initializer.getBaseVariables().isHalfApprovalRequired = property.getProperty("isHalfApprovalRequired");
 			Initializer.getBaseVariables().valueOfBitfield4 = property.getProperty("valueOfBitfield4");
 			Initializer.getBaseVariables().valueOfBitfield37 = property.getProperty("valueOfBitfield37");
 			Initializer.getBaseVariables().valueOfBitfield38 = property.getProperty("valueOfBitfield38");

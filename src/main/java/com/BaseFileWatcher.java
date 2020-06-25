@@ -8,6 +8,7 @@ package com;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Paths;
@@ -17,8 +18,12 @@ import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
+
 public class BaseFileWatcher extends Thread {
 	Properties property = new Properties();
+	private static Logger logger = Logger.getLogger(BaseFileWatcher.class);
+	private boolean isServerRunning;
 
 	public void run() {
 		watchFolder();
@@ -67,17 +72,59 @@ public class BaseFileWatcher extends Thread {
 	// -------------------------------------------------------------------------------------------------------------
 	private void readUpdatedFile(String fileName) throws IOException {
 		property.load(new FileInputStream(new File(Initializer.getBaseConstants().appFolder) + "\\" + fileName));
-		if (fileName.equals("CommonVariables.properties")) {
-			if (!Initializer.getFEPname().equals(property.getProperty("fepName"))) {
-				Initializer.setFEPname(property.getProperty("fepName"));
-				Initializer.setBaseConstants(new BaseConstants());
-				reloadBaseVariables();
-			}
-			if(!String.valueOf(Initializer.getPortNumber()).equals(property.getProperty("portNumber"))) {
-				Initializer.getServer().getSocket().close();
-				Initializer.setPortNumber(Integer.parseInt(property.getProperty("portNumber")));
-				Initializer.setServer(new ServerInitializer());
-				Initializer.getServer().start();
+		if (fileName.equals(Initializer.getFepPropertyFiles().get("Common"))) {
+//			if (!Initializer.getFEPname().equals(property.getProperty("fepName"))) {
+//				Initializer.setFEPname(property.getProperty("fepName"));
+//				Initializer.setBaseConstants(new BaseConstants());
+//				reloadBaseVariables();
+//			}
+//			if(!String.valueOf(Initializer.getPortNumber()).equals(property.getProperty("portNumber"))) {
+//				Initializer.getServer().getServerSocket().close();
+//				Initializer.setPortNumber(Integer.parseInt(property.getProperty("portNumber")));
+//				if(Initializer.isGUIenabled()) {
+//					if(Initializer.getAppGui().lblStatusValue.getText().equals("Online")) {
+//						Initializer.setServer(new ServerInitializer());
+//						Initializer.getServer().start();
+//					}
+//				}else {
+//					Initializer.setServer(new ServerInitializer());
+//					Initializer.getServer().start();
+//				}				
+//			}
+			isServerRunning = false;
+			if (!Initializer.getFEPname().equals(property.getProperty("fepName"))
+					|| !String.valueOf(Initializer.getPortNumber()).equals(property.getProperty("portNumber"))) {
+
+				try {
+					Initializer.getServer().getServerSocket();
+					isServerRunning = true;
+					Initializer.getServer().getServerSocket().close();
+				} catch (NullPointerException e) {
+					// This is executed when the server is not running currently
+					if (!Initializer.getFEPname().equals(property.getProperty("fepName"))) {
+						Initializer.setFEPname(property.getProperty("fepName"));
+						Initializer.setBaseConstants(new BaseConstants());
+						reloadBaseVariables();
+					}
+					if (!String.valueOf(Initializer.getPortNumber()).equals(property.getProperty("portNumber"))) {
+						Initializer.setPortNumber(Integer.parseInt(property.getProperty("portNumber")));
+					}
+				}
+				// This is executed when the server was running, and was stopped for updating
+				// the values
+				if (!Initializer.getFEPname().equals(property.getProperty("fepName"))) {
+					Initializer.setFEPname(property.getProperty("fepName"));
+					Initializer.setBaseConstants(new BaseConstants());
+					reloadBaseVariables();
+				}
+				if (!String.valueOf(Initializer.getPortNumber()).equals(property.getProperty("portNumber"))) {
+					Initializer.setPortNumber(Integer.parseInt(property.getProperty("portNumber")));
+				}
+
+				if (isServerRunning) {
+					Initializer.setServer(new ServerInitializer());
+					Initializer.getServer().start();
+				}
 			}
 
 		} else {
@@ -86,6 +133,15 @@ public class BaseFileWatcher extends Thread {
 	}
 
 	private void reloadBaseVariables() {
+		try {
+			property.load(new FileInputStream(new File(Initializer.getBaseConstants().appFolder) + "\\"
+					+ Initializer.getFepPropertyFiles().get(Initializer.getFEPname())));
+		} catch (IOException e) {
+			logger.warn("Unable to load default values into base variables");
+			System.out.println("Unable to load default values into base variables");
+		}
+		Initializer.getBaseVariables().sendResponse = property.getProperty("sendResponse");
+		
 		Initializer.getBaseVariables().authorizationTransactionResponse = property
 				.getProperty("authorizationTransactionResponse");
 		Initializer.getBaseVariables().financialSalesTransactionResponse = property
@@ -96,16 +152,15 @@ public class BaseFileWatcher extends Thread {
 				.getProperty("reversalTransactionResponse");
 		Initializer.getBaseVariables().reconciliationTransactionResponse = property
 				.getProperty("reconciliationTransactionResponse");
-
+		
+		Initializer.getBaseVariables().isHalfApprovalRequired = property.getProperty("isHalfApprovalRequired");
 		Initializer.getBaseVariables().valueOfBitfield4 = property.getProperty("valueOfBitfield4");
 		Initializer.getBaseVariables().valueOfBitfield37 = property.getProperty("valueOfBitfield37");
 		Initializer.getBaseVariables().valueOfBitfield38 = property.getProperty("valueOfBitfield38");
-		Initializer.getBaseVariables().ValueOfBitfield39Approval = property
-				.getProperty("ValueOfBitfield39Approval");
+		Initializer.getBaseVariables().ValueOfBitfield39Approval = property.getProperty("ValueOfBitfield39Approval");
 		Initializer.getBaseVariables().ValueOfBitfield39Decline = property.getProperty("ValueOfBitfield39Decline");
 		Initializer.getBaseVariables().ValueOfBitfield39Partial = property.getProperty("ValueOfBitfield39Partial");
-		Initializer.getBaseVariables().ValueOfBitfield39Reversal = property
-				.getProperty("ValueOfBitfield39Reversal");
+		Initializer.getBaseVariables().ValueOfBitfield39Reversal = property.getProperty("ValueOfBitfield39Reversal");
 		Initializer.getBaseVariables().ValueOfBitfield39Reconciliation = property
 				.getProperty("ValueOfBitfield39Reconciliation");
 		Initializer.getBaseVariables().valueOfBitfield44 = property.getProperty("valueOfBitfield44");
