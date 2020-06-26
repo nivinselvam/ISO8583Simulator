@@ -160,7 +160,7 @@ public class BaseDecoder {
 	 * Takes the hex array as input, splits the data and convets into ascii values
 	 */
 	// -----------------------------------------------------------------------------------------------------------
-	public void decodeRequestPacket() {
+	public void decodeTransactionPacket() {
 		logger.debug("Starting the decoding of packet");
 		if (requestPacket.length() > Integer.parseInt(Initializer.getBaseConstants().echoMessageLength)) {
 			generateHeader();
@@ -302,7 +302,7 @@ public class BaseDecoder {
 	 * transaction
 	 */
 	// -----------------------------------------------------------------------------------------------------------------------------------------
-	public void printEncodedData() {
+	public void printDecodedData() {
 		logger.info(
 				"--------------------------------------------------------------------------------------------------------------");
 		try {

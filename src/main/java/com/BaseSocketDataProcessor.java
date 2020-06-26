@@ -46,12 +46,17 @@ public abstract class BaseSocketDataProcessor extends Thread {
 		System.out.println(Initializer.getServer().getSocket().getRemoteSocketAddress().toString() + " is connected");
 		logger.info(
 				"Client " + Initializer.getServer().getSocket().getRemoteSocketAddress().toString() + " is connected");
+		System.out.println(
+				"*************************************************************************************************");
+		System.out.println("                                  Start of Transaction");
+		System.out.println(
+				"*************************************************************************************************");
 		logger.info(
 				"*************************************************************************************************");
 		logger.info("                                  Start of Transaction");
 		logger.info(
 				"*************************************************************************************************");
-		
+
 		try {
 			socketDataReadFormat();
 			requestPacket = readDataFromSocket();
@@ -59,11 +64,16 @@ public abstract class BaseSocketDataProcessor extends Thread {
 			logger.fatal(e.toString());
 			System.out.println(e.toString());
 		}
-		if(Initializer.getBaseVariables().sendResponse.equalsIgnoreCase("Yes")) {
+		if (Initializer.getBaseVariables().sendResponse.equalsIgnoreCase("Yes")) {
 			generateResponse(requestPacket);
 			socketDataWriteFormat(responsePacket);
 			writeDataToSocket(responsePacket);
 		}
+		System.out.println(
+				"*************************************************************************************************");
+		System.out.println("                                   End of Transaction");
+		System.out.println(
+				"*************************************************************************************************");
 		logger.info(
 				"*************************************************************************************************");
 		logger.info("                                   End of Transaction");
@@ -143,17 +153,18 @@ public abstract class BaseSocketDataProcessor extends Thread {
 	 * -----------------------------------------------------------------------------
 	 */
 	public void generateResponse(String requestPacket) {
-		responses = new HPSresponseGenerator(requestPacket);
-		if (socketDataLength < 33) {
-			responsePacket = responses.connectivityCheckResponse();
-		} else {
-			responsePacket = responses.getResponsePacket();
-		}
+		if(Initializer.getFEPname().equals("HPS")) {
+			responses = new HPSresponseGenerator(requestPacket);
+		}		
+		responsePacket = responses.getResponsePacket();
+
 	}
+
 	/*
-	 * -------------------------------------------------------------------------------
-	 * This method is used to closing all the open resources
-	 * -------------------------------------------------------------------------------
+	 * -----------------------------------------------------------------------------
+	 * -- This method is used to closing all the open resources
+	 * -----------------------------------------------------------------------------
+	 * --
 	 */
 	public void closeServer() throws IOException {
 		try {

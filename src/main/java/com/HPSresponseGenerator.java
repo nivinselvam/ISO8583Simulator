@@ -15,7 +15,7 @@ public class HPSresponseGenerator extends BaseResponseGenerator {
 	// ------------------------------------------------------------------------------------------------------------------
 	@Override
 	public boolean validateifConnectivityCheck() {
-		if (requestPacket.length() < 33) {
+		if (requestPacket.length() <= Integer.parseInt(Initializer.getBaseConstants().echoMessageLength)) {
 			return true;
 		} else {
 			return false;
