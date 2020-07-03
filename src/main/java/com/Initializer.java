@@ -3,32 +3,36 @@ package com;
 import java.awt.EventQueue;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.JOptionPane;
 
-import org.apache.log4j.PropertyConfigurator;
 
 public class Initializer {
 
-	private static String fepName = "HPS";
-	private static boolean guiEnabled = true;
-	private static ServerInitializer server = null;
-	private static Converter converter = new Converter();
-	private static BitFieldData bitfieldData = new BitFieldData();
-	private static BaseVariables variables = new BaseVariables();
+	private static String fepName;
+	private static boolean guiEnabled;
+	private static ServerInitializer server;
+	private static Converter converter;
+	private static BitFieldData bitfieldData;
+	private static BaseVariables variables;
 	private static BaseConstants constants;
 	private static BaseDataLoader dataLoader;
 	public static BaseFileWatcher fileWatcher;
 	private static AppGUI appGui;
 	private static int portNumber;
-	private static Map<String, String> fepPropertyFiles = new HashMap<String, String>();
+	private static Map<String, String> fepPropertyFiles;
 
 	public static void main(String[] args) {
-		PropertyConfigurator.configure("log4j.properties");
+		fepName = "HPS";
+		guiEnabled = true;
+		fepPropertyFiles = new HashMap<String, String>();
+		server = null;
 		mapFEPtoPropertyFile();
+		converter = new Converter();
+		bitfieldData = new BitFieldData();
+		variables = new BaseVariables();
 		constants = new BaseConstants();
 		dataLoader = new BaseDataLoader();
-		fileWatcher = new BaseFileWatcher();
+		fileWatcher = new BaseFileWatcher();		
 		if (dataLoader.createAppFolder()) {
 			fileWatcher.start();
 			if (guiEnabled) {
@@ -62,7 +66,7 @@ public class Initializer {
 	public static Map<String, String> getFepPropertyFiles() {
 		return fepPropertyFiles;
 	}
-	
+
 	public static AppGUI getAppGui() {
 		return appGui;
 	}

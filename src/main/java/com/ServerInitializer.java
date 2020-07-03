@@ -36,7 +36,6 @@ public class ServerInitializer extends Thread {
 	 */
 	public void run() {
 		try {
-			PropertyConfigurator.configure("log4j.properties");
 			serverSocket = new ServerSocket(Initializer.getPortNumber());
 			serverStarted = true;
 			System.out.println(Initializer.getFEPname() + " Server started successfully");

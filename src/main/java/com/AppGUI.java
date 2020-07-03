@@ -109,6 +109,10 @@ public class AppGUI {
 	public JFrame getFrmISO8583Simulator() {
 		return frmISO8583Simulator;
 	}
+	
+	public JTextArea getTxtareaLogs() {
+		return txtareaLogs;
+	}
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

@@ -9,9 +9,6 @@ public class Converter {
 	final static Logger logger = Logger.getLogger(Converter.class);
 	public static String[] tempArray;
 
-	Converter() {
-		PropertyConfigurator.configure("log4j.properties");
-	}
 
 	// ---------------------------------------------------------------------------------------------------
 	/*
