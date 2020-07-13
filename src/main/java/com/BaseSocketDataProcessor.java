@@ -30,7 +30,6 @@ public abstract class BaseSocketDataProcessor extends Thread {
 			dataOutputSteam = new DataOutputStream(Initializer.getServer().getSocket().getOutputStream());
 		} catch (IOException e) {
 			logger.fatal(e.toString());
-			System.out.println(e.toString());
 		}
 
 	}
@@ -43,14 +42,8 @@ public abstract class BaseSocketDataProcessor extends Thread {
 	 * -----------------------------------------------------------------------------
 	 */
 	public void run() {
-		System.out.println(Initializer.getServer().getSocket().getRemoteSocketAddress().toString() + " is connected");
 		logger.info(
 				"Client " + Initializer.getServer().getSocket().getRemoteSocketAddress().toString() + " is connected");
-		System.out.println(
-				"*************************************************************************************************");
-		System.out.println("                                  Start of Transaction");
-		System.out.println(
-				"*************************************************************************************************");
 		logger.info(
 				"*************************************************************************************************");
 		logger.info("                                  Start of Transaction");
@@ -62,18 +55,12 @@ public abstract class BaseSocketDataProcessor extends Thread {
 			requestPacket = readDataFromSocket();
 		} catch (IOException e) {
 			logger.fatal(e.toString());
-			System.out.println(e.toString());
 		}
 		if (Initializer.getBaseVariables().sendResponse.equalsIgnoreCase("Yes")) {
 			generateResponse(requestPacket);
 			socketDataWriteFormat(responsePacket);
 			writeDataToSocket(responsePacket);
 		}
-		System.out.println(
-				"*************************************************************************************************");
-		System.out.println("                                   End of Transaction");
-		System.out.println(
-				"*************************************************************************************************");
 		logger.info(
 				"*************************************************************************************************");
 		logger.info("                                   End of Transaction");
@@ -153,9 +140,9 @@ public abstract class BaseSocketDataProcessor extends Thread {
 	 * -----------------------------------------------------------------------------
 	 */
 	public void generateResponse(String requestPacket) {
-		if(Initializer.getFEPname().equals("HPS")) {
+		if (Initializer.getFEPname().equals("HPS")) {
 			responses = new HPSresponseGenerator(requestPacket);
-		}		
+		}
 		responsePacket = responses.getResponsePacket();
 
 	}
@@ -177,7 +164,7 @@ public abstract class BaseSocketDataProcessor extends Thread {
 		}
 		if (!Initializer.getServer().getSocket().isClosed())
 			Initializer.getServer().getSocket().close();
-		System.out.println("Server connection closed");
+		logger.info("Server connection closed");
 
 	}
 

@@ -39,10 +39,8 @@ public abstract class BaseResponseGenerator {
 	// -------------------------------------------------------------------------------------------------------------------
 	public String getResponsePacket() {
 		if (validateifConnectivityCheck()) {
-			System.out.println("Connectivity Check request received\nRequest packet:\n"+requestPacket);
 			logger.info("Connectivity Check request received\nRequest packet:\n"+requestPacket);
 			responsePacket = connectivityCheckResponse();
-			System.out.println("Response packet:\n"+responsePacket);
 			logger.info("Response packet:\n"+responsePacket);
 		} else {
 			loadDecoder(requestPacket);
@@ -51,7 +49,6 @@ public abstract class BaseResponseGenerator {
 			requestMTI = decoder.getMTI();
 			requestBitfieldsWithValues = decoder.getBitfieldsWithValue();
 			logger.info("Request Packet");
-			System.out.println("Request Packet");
 			decoder.printDecodedData();
 			responseBitfieldswithValue = new TreeMap<String, String>(new BitfieldComparator());
 
@@ -94,8 +91,7 @@ public abstract class BaseResponseGenerator {
 			responsePacket = encoder.generateEncodedData();
 			loadDecoder(responsePacket);
 			decoder.decodeTransactionPacket();
-			logger.info("\nResponse Packet");
-			System.out.println("\nResponse Packet");
+			logger.info("Response Packet");
 			decoder.printDecodedData();
 			
 		}

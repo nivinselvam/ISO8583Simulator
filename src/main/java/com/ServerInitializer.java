@@ -8,7 +8,6 @@ package com;
 import java.net.*;
 import java.util.ArrayList;
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 
 public class ServerInitializer extends Thread {
 	private ServerSocket serverSocket;
@@ -16,7 +15,6 @@ public class ServerInitializer extends Thread {
 	private boolean shouldRun = true;
 	private boolean serverStarted = false;
 	private ArrayList<BaseSocketDataProcessor> connections = new ArrayList<BaseSocketDataProcessor>();
-	//private String serverStatus = "";
 	private BaseSocketDataProcessor socketDataProcessor;
 	private Logger logger = Logger.getLogger(ServerInitializer.class);
 
@@ -38,7 +36,6 @@ public class ServerInitializer extends Thread {
 		try {
 			serverSocket = new ServerSocket(Initializer.getPortNumber());
 			serverStarted = true;
-			System.out.println(Initializer.getFEPname() + " Server started successfully");
 			logger.info(Initializer.getFEPname() + " Server started successfully");
 			while (shouldRun) {
 				socket = serverSocket.accept();
@@ -51,7 +48,6 @@ public class ServerInitializer extends Thread {
 				logger.info("Server stopped");
 			}else {
 				logger.fatal("Unable to start the server");
-				System.out.println("Unable to start the server");
 				serverStarted = false;
 				e.printStackTrace();
 			}			

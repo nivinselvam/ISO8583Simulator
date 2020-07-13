@@ -196,14 +196,12 @@ public class BaseConstants {
 			file = new File(fepFile);
 			fis = new FileInputStream(file);
 		} catch (FileNotFoundException e) {
-			System.out.println("Unable to find the fep property file");
 			logger.fatal("Unable to find the fep property file");
 		}
 		try {
 			property.load(fis);
 			return true;
 		} catch (IOException e) {
-			System.out.println("Unable to load the fep property file");
 			logger.fatal("Unable to load the fep property file");
 			return false;
 		}

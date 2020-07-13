@@ -307,18 +307,14 @@ public class BaseDecoder {
 				"--------------------------------------------------------------------------------------------------------------");
 		try {
 			logger.info("Header: " + header);
-			System.out.println("Header: " + header);
 			logger.info("MTI: " + MTI);
-			System.out.println("MTI: " + MTI);
 			for (Map.Entry<String, String> currentEntry : bitFieldswithValue.entrySet()) {
 				logger.info(currentEntry.getKey() + ": " + currentEntry.getValue());
-				System.out.println(currentEntry.getKey() + ": " + currentEntry.getValue());
 			}
 			logger.info(
 					"--------------------------------------------------------------------------------------------------------------");
 		} catch (NullPointerException e) {
 			logger.error("Unable to decode the request packet.");
-			System.out.println("Unable to decode the request packet.");
 		}
 
 	}
