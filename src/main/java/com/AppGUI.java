@@ -31,7 +31,6 @@ import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -109,7 +108,7 @@ public class AppGUI {
 	public JFrame getFrmISO8583Simulator() {
 		return frmISO8583Simulator;
 	}
-	
+
 	public JTextArea getTxtareaLogs() {
 		return txtareaLogs;
 	}
@@ -262,30 +261,43 @@ public class AppGUI {
 		btnSaveServerConfiguration = new JButton("Save Server Configuration");
 		btnSaveServerConfiguration.setBackground(SystemColor.controlHighlight);
 		GroupLayout gl_pnMain = new GroupLayout(pnMain);
-		gl_pnMain.setHorizontalGroup(gl_pnMain.createParallelGroup(Alignment.LEADING)
+		gl_pnMain.setHorizontalGroup(
+			gl_pnMain.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnMain.createSequentialGroup()
-						.addGroup(gl_pnMain.createParallelGroup(Alignment.LEADING, false)
-								.addGroup(gl_pnMain.createSequentialGroup().addGap(412).addComponent(lblStatus)
-										.addPreferredGap(ComponentPlacement.RELATED).addComponent(lblStatusValue))
-								.addGroup(gl_pnMain.createSequentialGroup().addContainerGap().addComponent(pnFEP,
-										GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)))
-						.addContainerGap(17, Short.MAX_VALUE))
-				.addGroup(gl_pnMain.createSequentialGroup().addContainerGap()
-						.addComponent(pnServerConfiguration, GroupLayout.PREFERRED_SIZE, 491,
-								GroupLayout.PREFERRED_SIZE)
-						.addGap(17))
-				.addGroup(gl_pnMain.createSequentialGroup().addContainerGap()
-						.addComponent(btnSaveServerConfiguration, GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
-						.addGap(17)));
-		gl_pnMain.setVerticalGroup(gl_pnMain.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pnMain.createSequentialGroup().addGap(7)
-						.addGroup(gl_pnMain.createParallelGroup(Alignment.BASELINE).addComponent(lblStatusValue)
-								.addComponent(lblStatus))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(pnFEP, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE).addGap(32)
-						.addComponent(pnServerConfiguration, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addGap(39).addComponent(btnSaveServerConfiguration).addGap(332)));
+					.addGroup(gl_pnMain.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(gl_pnMain.createSequentialGroup()
+							.addGap(412)
+							.addComponent(lblStatus)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblStatusValue))
+						.addGroup(gl_pnMain.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(pnFEP, GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)))
+					.addContainerGap(17, Short.MAX_VALUE))
+				.addGroup(gl_pnMain.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(pnServerConfiguration, GroupLayout.PREFERRED_SIZE, 491, GroupLayout.PREFERRED_SIZE)
+					.addGap(17))
+				.addGroup(gl_pnMain.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(btnSaveServerConfiguration, GroupLayout.PREFERRED_SIZE, 491, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(17, Short.MAX_VALUE))
+		);
+		gl_pnMain.setVerticalGroup(
+			gl_pnMain.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnMain.createSequentialGroup()
+					.addGap(7)
+					.addGroup(gl_pnMain.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblStatusValue)
+						.addComponent(lblStatus))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(pnFEP, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
+					.addGap(32)
+					.addComponent(pnServerConfiguration, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(39)
+					.addComponent(btnSaveServerConfiguration)
+					.addGap(332))
+		);
 		pnMain.setLayout(gl_pnMain);
 
 		JPanel pnTransactionConfiguration = new JPanel();
@@ -663,8 +675,7 @@ public class AppGUI {
 						JOptionPane.showMessageDialog(null,
 								"Entered port number is invalid. Valid port number range is between 1026 and 65535");
 					} else {
-						property.load(new FileInputStream(new File(Initializer.getBaseConstants().appFolder) + "\\"
-								+ Initializer.getFepPropertyFiles().get("Common")));
+						property.load(new FileInputStream(new File(Initializer.getFEPpropertiesFilesPath()+"\\"+ Initializer.getFepPropertyFiles().get("Common"))));
 						if (!cbxFEP.getSelectedItem().toString().equals(property.getProperty("fepName"))) {
 							property.setProperty("fepName", cbxFEP.getSelectedItem().toString());
 							update = true;
@@ -674,8 +685,7 @@ public class AppGUI {
 							update = true;
 						}
 						if (update) {
-							property.store(new FileOutputStream(new File(Initializer.getBaseConstants().appFolder)
-									+ "\\" + Initializer.getFepPropertyFiles().get("Common")), null);
+							property.store(new FileOutputStream(new File(Initializer.getFEPpropertiesFilesPath()+"\\"+Initializer.getFepPropertyFiles().get("Common"))), null);
 						}
 					}
 
@@ -757,7 +767,7 @@ public class AppGUI {
 	public void writeTransactionConfigurationToPropertyFile() {
 		try {
 			property.load(
-					new FileInputStream(new File(Initializer.getFepPropertyFiles().get(Initializer.getFEPname()))));
+					new FileInputStream(new File(Initializer.getFEPpropertiesFilesPath()+"\\"+Initializer.getFepPropertyFiles().get(Initializer.getFEPname()))));
 			property.setProperty(Initializer.getBaseConstants().guisendResponsePanelName,
 					transactionConfigurationMap.get(Initializer.getBaseConstants().guisendResponsePanelName));
 			property.setProperty(Initializer.getBaseConstants().guiAuthorizationResultPanelName,
@@ -778,8 +788,7 @@ public class AppGUI {
 			property.setProperty(Initializer.getBaseConstants().guiIsHalfApprovalRequired,
 					transactionConfigurationMap.get(Initializer.getBaseConstants().guiIsHalfApprovalRequired));
 
-			property.store(new FileOutputStream(new File(Initializer.getBaseConstants().appFolder) + "\\"
-					+ Initializer.getFepPropertyFiles().get(Initializer.getFEPname())), null);
+			property.store(new FileOutputStream(new File(Initializer.getApplicationFolder()+"\\FEPproperties\\"+Initializer.getFepPropertyFiles().get(Initializer.getFEPname()))), null);
 		} catch (IOException e) {
 			logger.error("Unable to update the fep property file");
 			System.out.println("Unable to update the fep property file");

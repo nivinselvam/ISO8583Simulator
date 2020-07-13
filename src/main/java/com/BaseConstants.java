@@ -22,7 +22,6 @@ public class BaseConstants {
 	private String fepFile;
 	private FileInputStream fis;
 	private File file;
-	public String appFolder;
 	public String echoMessageLength;
 	public String authorizationRequestMTI;
 	public String authorizationResponseMTI;
@@ -191,22 +190,8 @@ public class BaseConstants {
 
 	}
 
-	private boolean loadFepPropertyFile() {
-		switch (Initializer.getFEPname()) {
-		case "HPS":
-			fepFile = "HPSConstants.properties";
-			break;
-		case "FCB":
-			fepFile = "FCBConstants.properties";
-			break;
-		case "INCOMM":
-			fepFile = "IncommConstants.properties";
-			break;
-		default:
-			logger.fatal("Simulator doesnt support the configured FEP");
-			System.out.println("Simulator doesnt support the configured FEP");
-		}
-
+	private boolean loadFepPropertyFile() {		
+		fepFile = Initializer.getFEPpropertiesFilesPath()+"\\"+ Initializer.getFepPropertyFiles().get(Initializer.getFEPname());
 		try {
 			file = new File(fepFile);
 			fis = new FileInputStream(file);
@@ -225,10 +210,6 @@ public class BaseConstants {
 	}
 
 	private void loadConstantValues() {
-		// -------------------------------------------------------------------------------------------------------------
-		// App folder path
-		appFolder = System.getProperty("user.home") + "\\ISO8583Simulator";
-
 		// This helps to decide if the fep supports echo message or not
 		echoMessageLength = property.getProperty("echoMessageLength");
 

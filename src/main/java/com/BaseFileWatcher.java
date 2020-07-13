@@ -40,7 +40,7 @@ public class BaseFileWatcher extends Thread {
 		WatchService watchService;
 		try {
 			watchService = FileSystems.getDefault().newWatchService();
-			Paths.get(Initializer.getBaseConstants().appFolder).register(watchService,
+			Paths.get(Initializer.getFEPpropertiesFilesPath()).register(watchService,
 					StandardWatchEventKinds.ENTRY_MODIFY);
 			do {
 				WatchKey watchKey = watchService.take();
@@ -71,7 +71,7 @@ public class BaseFileWatcher extends Thread {
 	 */
 	// -------------------------------------------------------------------------------------------------------------
 	private void readUpdatedFile(String fileName) throws IOException {
-		property.load(new FileInputStream(new File(Initializer.getBaseConstants().appFolder) + "\\" + fileName));
+		property.load(new FileInputStream(new File(Initializer.getFEPpropertiesFilesPath()+"\\"+ fileName)));
 		if (fileName.equals(Initializer.getFepPropertyFiles().get("Common"))) {
 //			if (!Initializer.getFEPname().equals(property.getProperty("fepName"))) {
 //				Initializer.setFEPname(property.getProperty("fepName"));
@@ -134,8 +134,7 @@ public class BaseFileWatcher extends Thread {
 
 	private void reloadBaseVariables() {
 		try {
-			property.load(new FileInputStream(new File(Initializer.getBaseConstants().appFolder) + "\\"
-					+ Initializer.getFepPropertyFiles().get(Initializer.getFEPname())));
+			property.load(new FileInputStream(new File(Initializer.getFEPpropertiesFilesPath()+"\\"+ Initializer.getFepPropertyFiles().get(Initializer.getFEPname()))));
 		} catch (IOException e) {
 			logger.warn("Unable to load default values into base variables");
 			System.out.println("Unable to load default values into base variables");
