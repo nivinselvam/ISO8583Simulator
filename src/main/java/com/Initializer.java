@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
 
+import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 public class Initializer {
@@ -24,16 +25,17 @@ public class Initializer {
 	private static AppGUI appGui;
 	private static int portNumber;
 	private static Map<String, String> fepPropertyFiles;
+	private static Logger logger = Logger.getLogger(Initializer.class);
 
-	public static void main(String[] args) {		
+	public static void main(String[] args) {
 		fepName = "HPS";
 		guiEnabled = true;
-		if(guiEnabled) {
+		if (guiEnabled) {
 			appGui = new AppGUI();
 		}
 		applicationDefaultFilesPath = getApplicationFolder() + "ApplicationDefaultFiles";
 		FEPpropertiesFilesPath = getApplicationFolder() + "FEPproperties";
-		PropertyConfigurator.configure(applicationDefaultFilesPath+"\\log4j.properties");		
+		PropertyConfigurator.configure(applicationDefaultFilesPath + "\\log4j.properties");
 		fepPropertyFiles = new HashMap<String, String>();
 		server = null;
 		mapFEPtoPropertyFile();
@@ -48,7 +50,7 @@ public class Initializer {
 			if (guiEnabled) {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
-						try {							
+						try {
 							appGui.getFrmISO8583Simulator().setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -152,7 +154,7 @@ public class Initializer {
 		String applicationFolder = "";
 		boolean failed = false;
 
-		// Let's give a first try
+		// Trying to get the path where the file is saved
 		try {
 			file = new File(Initializer.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
 
@@ -163,7 +165,7 @@ public class Initializer {
 			}
 		} catch (URISyntaxException ex) {
 			failed = true;
-			System.out.println("Cannot figure out base path for class with way (1): " + ex);
+			logger.fatal("Cannot figure out base path for class with way (1): " + ex);
 		}
 
 		// The above failed?
@@ -177,7 +179,7 @@ public class Initializer {
 				// String l = local.replaceFirst("[" + File.separator +
 				// "/\\\\]", "")
 			} catch (URISyntaxException ex) {
-				System.out.println("Cannot firgue out base path for class with way (2): " + ex);
+				logger.fatal("Cannot figure out base path for class with way (2): " + ex);
 			}
 		}
 

@@ -3,7 +3,6 @@ package com;
 import java.nio.charset.Charset;
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 
 public class Converter {
 	final static Logger logger = Logger.getLogger(Converter.class);
@@ -18,10 +17,12 @@ public class Converter {
 	 */
 	// ---------------------------------------------------------------------------------------------------
 	public String addSpacesToString(String stringToAddSpace) {
+		logger.debug("Trying to add spaces to the string "+ stringToAddSpace);
 		StringBuilder sb = new StringBuilder(stringToAddSpace);
 		for (int i = 2; i < sb.length(); i += 3) {
 			sb.insert(i, " ");
 		}
+		logger.debug("After adding spaces : "+sb.toString());
 		return sb.toString();
 	}
 
@@ -32,10 +33,12 @@ public class Converter {
 	 */
 	// ----------------------------------------------------------------------------------------------------------
 	public String byteToHex(byte[] byteString) {
+		logger.debug("Trying to convert byte to hex ");
 		StringBuilder hexData = new StringBuilder();
 		for (byte currByte : byteString) {
 			hexData.append(String.format("%02x ", currByte));
 		}
+		logger.debug(hexData.toString());
 		return hexData.toString();
 	}
 
@@ -46,6 +49,7 @@ public class Converter {
 	 */
 	// ------------------------------------------------------------------------------------------------------------
 	public String hexToDecimal(String hex) {
+		logger.debug("Trying to convert the hex to decimal: "+hex);
 		String decimalValue = "";
 		hex = hex.replaceAll("\\s", "");
 		String digits = "0123456789ABCDEF";
@@ -57,7 +61,7 @@ public class Converter {
 			val = 16 * val + d;
 		}
 		decimalValue = decimalValue + Integer.toString(val) + " ";
-
+		logger.debug("Converted debug: "+decimalValue);
 		return decimalValue;
 	}
 
@@ -68,6 +72,7 @@ public class Converter {
 	 */
 	// ---------------------------------------------------------------------------------------------------------------
 	public String hexToASCII(String hex) {
+		logger.debug("Trying to convert hex to ASCII: "+hex);
 		hex = addSpacesToString(hex);
 		tempArray = hex.split(" ");
 		StringBuilder asciiValue = new StringBuilder();
@@ -76,6 +81,7 @@ public class Converter {
 			asciiValue.append((char) n);
 		}
 		tempArray = null;
+		logger.debug("Converted value: "+asciiValue.toString());
 		return asciiValue.toString();
 	}
 
@@ -86,6 +92,7 @@ public class Converter {
 	 */
 	// ---------------------------------------------------------------------------------------------------------------
 	public String hexToBinary(String hex) {
+		logger.debug("Trying to convert hex to binary: "+hex);
 		hex = addSpacesToString(hex);
 		String[] hexArray = hex.split(" ");
 		String finalBinaryValue = "";
@@ -104,6 +111,7 @@ public class Converter {
 			}
 			finalBinaryValue = finalBinaryValue + temp + bin;
 		}
+		logger.debug("Converted Value: "+finalBinaryValue);
 		return finalBinaryValue;
 	}
 
@@ -114,6 +122,7 @@ public class Converter {
 	 */
 	// ---------------------------------------------------------------------------------------------------------------
 	public String asciitoHex(String asciiValue) {
+		logger.debug("Trying to convert ascii to hex: "+asciiValue);
 		StringBuffer hex = new StringBuffer();
 		try {
 			char[] chars = asciiValue.toCharArray();
@@ -142,6 +151,7 @@ public class Converter {
 	 */
 	// ---------------------------------------------------------------------------------------------------------------
 	public String binaryToHex(String binaryValue) {
+		logger.debug("Trying to convert the binary value to hex: "+binaryValue);
 		String hexData = "", currentElementHexValue = "";
 		try {
 			if (binaryValue.contains(" ") == false) {
@@ -168,6 +178,7 @@ public class Converter {
 	}
 
 	public static String toHexString(String hex) {
+		logger.debug("Trying to convert string to hexString: "+hex);
 		if (hex == null || hex.trim().length() == 0) {
 			System.out.println("Cannot convert null HexString to ByteString! ");
 			return ("");
@@ -192,8 +203,8 @@ public class Converter {
 			}
 			return integerValue;
 		}else {
-			System.out.println("Zero padding is not applicable for the given combination");
-			return null;
+			logger.debug("Zero padding is not applicable for the given combination");
+			return integerValue;
 		}
 	}
 

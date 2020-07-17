@@ -354,6 +354,7 @@ public class AppGUI {
 		lblApprovalAmount = new JLabel("Approval Amount : ");
 
 		txtApprovalAmount = new JFormattedTextField();
+		txtApprovalAmount.setText("0");
 		txtApprovalAmount.setEnabled(false);
 
 		chckbxApproveForHalf = new JCheckBox("Approve for half of transaction amount");

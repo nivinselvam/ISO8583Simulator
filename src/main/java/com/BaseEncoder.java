@@ -97,12 +97,11 @@ public abstract class BaseEncoder {
 	// ---------------------------------------------------------------------------------------------------------------------
 	public String generateConsolidateBitfieldString(Map<String, String> responseBitFieldsWithValue) {
 		String finalBitfieldValues = "", currentBitfield, currentBitfieldLength, emptySpaces;
-		int currentBit, numberOfSpacesRequired;
+		int numberOfSpacesRequired;
 		logger.debug("Trying to generate the bitfield values");
 		for (Map.Entry<String, String> currentEntry : responseBitFieldsWithValue.entrySet()) {
 			currentBitfield = currentEntry.getKey();
 			logger.debug("Generating the value of " + currentBitfield);
-			currentBit = Integer.parseInt(currentBitfield.substring(8));
 			if (Initializer.getBitfieldData().bitfieldLength.get(currentBitfield) > 0) {
 				numberOfSpacesRequired = Initializer.getBitfieldData().bitfieldLength.get(currentBitfield)
 						- currentEntry.getValue().length();

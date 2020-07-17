@@ -173,17 +173,23 @@ public abstract class BaseResponseGenerator {
 	 * takes transaction amount as input and returns half of it.
 	 */
 	// ------------------------------------------------------------------------------------------------------------------
-	public String generateHalfAmountForPartialApproval(String transactionAmount) {
-		String bitfield4 = Integer.toString(Integer.parseInt(transactionAmount) / 2);
-		// Bitfield4 has a fixed length of 12 digits and has to have 0's for
-		// the digits missing.
-		int length = bitfield4.length();
-		String tempString = "";
-		for (int i = 0; i < 12 - length; i++) {
-			tempString = tempString + "0";
-		}
-		return tempString + bitfield4;
-	}
+	public String generateBitfield4() {
+		String bitfield4, tempString = "";
+		if(Initializer.getBaseVariables().isHalfApprovalRequired.equalsIgnoreCase("true")||Integer.parseInt(requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield4))<Integer.parseInt(Initializer.getBaseVariables().valueOfBitfield4)) {
+			bitfield4 = Integer.toString(Integer.parseInt(requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield4)) / 2);
+			// Bitfield4 has a fixed length of 12 digits and has to have 0's for
+			// the digits missing.
+			int currentLength = bitfield4.length(), expectedLength = Initializer.getBitfieldData().bitfieldLength.get(Initializer.getBaseConstants().nameOfbitfield4);
+			for (int i = 0; i < expectedLength - currentLength; i++) {
+				tempString = tempString + "0";
+			}
+			bitfield4 = tempString+bitfield4;
+		}else {
+			bitfield4 = Initializer.getConverter().zeroPadding(Initializer.getBaseVariables().valueOfBitfield4, Initializer.getBitfieldData().bitfieldLength.get(Initializer.getBaseConstants().nameOfbitfield4));
+		}		
+		return bitfield4;
+	}	
+
 
 	// ------------------------------------------------------------------------------------------------------------------
 	/*
