@@ -177,7 +177,7 @@ public class Converter {
 		return hexData.trim();
 	}
 
-	public static String toHexString(String hex) {
+	public String toHexString(String hex) {
 		logger.debug("Trying to convert string to hexString: "+hex);
 		if (hex == null || hex.trim().length() == 0) {
 			System.out.println("Cannot convert null HexString to ByteString! ");

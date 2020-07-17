@@ -81,7 +81,7 @@ public class AppGUI {
 	private JButton btnSaveTransactionConfiguration;
 	private JButton btnSaveLogs;
 	private JButton btnSaveServerConfiguration;
-	private JComboBox cbxFEP;
+	private JComboBox<String> cbxFEP;
 	private JCheckBox chckbxApproveForHalf;
 	private JRadioButton rdbtnSendResponse;
 	private JRadioButton rdbtnDontSendResponse;
@@ -152,7 +152,6 @@ public class AppGUI {
 						.addComponent(tbpnTABS, GroupLayout.PREFERRED_SIZE, 721, Short.MAX_VALUE).addContainerGap()));
 
 		String[] fepNames = { "HPS", "FCB", "X9" };
-		String[] result = { "Approve", "Decline", "PartiallyApprove" };
 
 		NumberFormatter responseFormatter = new NumberFormatter(format);
 		responseFormatter.setValueClass(Integer.class);
@@ -185,7 +184,7 @@ public class AppGUI {
 				TitledBorder.ABOVE_TOP, null, new Color(0, 0, 0)));
 
 		lblName = new JLabel("Name : ");
-		cbxFEP = new JComboBox(fepNames);
+		cbxFEP = new JComboBox<String>(fepNames);
 		GroupLayout gl_pnFEP = new GroupLayout(pnFEP);
 		gl_pnFEP.setHorizontalGroup(gl_pnFEP.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnFEP.createSequentialGroup().addContainerGap().addComponent(lblName).addGap(18)
