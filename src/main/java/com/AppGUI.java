@@ -151,7 +151,7 @@ public class AppGUI {
 				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
 						.addComponent(tbpnTABS, GroupLayout.PREFERRED_SIZE, 721, Short.MAX_VALUE).addContainerGap()));
 
-		String[] fepNames = { "HPS", "FCB", "X9" };
+		String[] fepNames = { "HPS", "X9" };
 
 		NumberFormatter responseFormatter = new NumberFormatter(format);
 		responseFormatter.setValueClass(Integer.class);

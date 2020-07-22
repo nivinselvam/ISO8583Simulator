@@ -64,6 +64,8 @@ public class ServerInitializer extends Thread {
 	public void loadSocketDataProcessor() {
 		if (Initializer.getFEPname().equals("HPS")) {
 			socketDataProcessor = new HPSsocketDataProcessor();
+		}else if(Initializer.getFEPname().equals("X9")) {
+			socketDataProcessor = new X9socketDataProcessor();
 		}
 	}
 

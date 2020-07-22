@@ -10,6 +10,7 @@ public abstract class BaseSocketDataProcessor extends Thread {
 	protected DataInputStream dataInputStream;
 	private DataOutputStream dataOutputSteam;
 	private boolean listenToSocket = true;
+	protected boolean writeDataLengthToSocket = true;
 	protected int socketDataLength;
 	protected byte[] formattedPacketBytes;
 	private StringBuffer requestPacketBuffer = new StringBuffer();
@@ -126,7 +127,9 @@ public abstract class BaseSocketDataProcessor extends Thread {
 	public void writeDataToSocket(String text) {
 		try {
 			logger.debug(text);
-			dataOutputSteam.writeShort(socketDataLength);
+			if(writeDataLengthToSocket) {
+				dataOutputSteam.writeShort(socketDataLength);
+			}			
 			dataOutputSteam.write(formattedPacketBytes);
 			dataOutputSteam.flush();
 		} catch (IOException e) {
@@ -149,9 +152,8 @@ public abstract class BaseSocketDataProcessor extends Thread {
 
 	/*
 	 * -----------------------------------------------------------------------------
-	 * -- This method is used to closing all the open resources
+	 *  This method is used to closing all the open resources
 	 * -----------------------------------------------------------------------------
-	 * --
 	 */
 	public void closeServer() throws IOException {
 		try {
@@ -167,14 +169,4 @@ public abstract class BaseSocketDataProcessor extends Thread {
 		logger.info("Server connection closed");
 
 	}
-
-	//
-	// public void sendStringToAllClients(String text) {
-	// for (int index = 0; index < server.connections.size(); index++) {
-	// ServerConnection sc = server.connections.get(index);
-	// sc.sendStringtoClient(text);
-	// }
-	//
-	// }
-
 }

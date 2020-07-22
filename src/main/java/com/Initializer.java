@@ -78,6 +78,7 @@ public class Initializer {
 		fepPropertyFiles.put("HPS", "HPSConstants.properties");
 		fepPropertyFiles.put("FCB", "FCBConstants.properties");
 		fepPropertyFiles.put("INCOMM", "IncommConstants.properties");
+		fepPropertyFiles.put("X9", "X9Constants.properties");
 	}
 
 	public static String getApplicationDefaultFilesPath() {
