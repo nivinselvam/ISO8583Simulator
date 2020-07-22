@@ -151,7 +151,7 @@ public class AppGUI {
 				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
 						.addComponent(tbpnTABS, GroupLayout.PREFERRED_SIZE, 721, Short.MAX_VALUE).addContainerGap()));
 
-		String[] fepNames = { "HPS", "X9" };
+		String[] fepNames = { "HPS", "X9"};
 
 		NumberFormatter responseFormatter = new NumberFormatter(format);
 		responseFormatter.setValueClass(Integer.class);
@@ -184,7 +184,7 @@ public class AppGUI {
 				TitledBorder.ABOVE_TOP, null, new Color(0, 0, 0)));
 
 		lblName = new JLabel("Name : ");
-		cbxFEP = new JComboBox<String>(fepNames);
+		cbxFEP = new JComboBox(fepNames);
 		GroupLayout gl_pnFEP = new GroupLayout(pnFEP);
 		gl_pnFEP.setHorizontalGroup(gl_pnFEP.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnFEP.createSequentialGroup().addContainerGap().addComponent(lblName).addGap(18)
