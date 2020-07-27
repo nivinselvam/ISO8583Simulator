@@ -72,36 +72,20 @@ public class BaseFileWatcher extends Thread {
 	private void readUpdatedFile(String fileName) throws IOException {
 		property.load(new FileInputStream(new File(Initializer.getFEPpropertiesFilesPath()+"\\"+ fileName)));
 		if (fileName.equals(Initializer.getFepPropertyFiles().get("Common"))) {
-//			if (!Initializer.getFEPname().equals(property.getProperty("fepName"))) {
-//				Initializer.setFEPname(property.getProperty("fepName"));
-//				Initializer.setBaseConstants(new BaseConstants());
-//				reloadBaseVariables();
-//			}
-//			if(!String.valueOf(Initializer.getPortNumber()).equals(property.getProperty("portNumber"))) {
-//				Initializer.getServer().getServerSocket().close();
-//				Initializer.setPortNumber(Integer.parseInt(property.getProperty("portNumber")));
-//				if(Initializer.isGUIenabled()) {
-//					if(Initializer.getAppGui().lblStatusValue.getText().equals("Online")) {
-//						Initializer.setServer(new ServerInitializer());
-//						Initializer.getServer().start();
-//					}
-//				}else {
-//					Initializer.setServer(new ServerInitializer());
-//					Initializer.getServer().start();
-//				}				
-//			}
-			isServerRunning = false;
+			isServerRunning = true;
 			if (!Initializer.getFEPname().equals(property.getProperty("fepName"))
 					|| !String.valueOf(Initializer.getPortNumber()).equals(property.getProperty("portNumber"))) {
 
 				try {
+					//Trying to close the server socket if the server is already running.
 					Initializer.getServer().getServerSocket();
-					isServerRunning = true;
 					Initializer.getServer().getServerSocket().close();
+					isServerRunning = false;
 				} catch (NullPointerException e) {
 					// This is executed when the server is not running currently
 					if (!Initializer.getFEPname().equals(property.getProperty("fepName"))) {
 						Initializer.setFEPname(property.getProperty("fepName"));
+						Initializer.setBitfieldData(new BitFieldData());
 						Initializer.setBaseConstants(new BaseConstants());
 						reloadBaseVariables();
 					}
@@ -113,6 +97,7 @@ public class BaseFileWatcher extends Thread {
 				// the values
 				if (!Initializer.getFEPname().equals(property.getProperty("fepName"))) {
 					Initializer.setFEPname(property.getProperty("fepName"));
+					Initializer.setBitfieldData(new BitFieldData());
 					Initializer.setBaseConstants(new BaseConstants());
 					reloadBaseVariables();
 				}
@@ -120,7 +105,7 @@ public class BaseFileWatcher extends Thread {
 					Initializer.setPortNumber(Integer.parseInt(property.getProperty("portNumber")));
 				}
 
-				if (isServerRunning) {
+				if (!isServerRunning) {
 					Initializer.setServer(new ServerInitializer());
 					Initializer.getServer().start();
 				}

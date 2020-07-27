@@ -184,7 +184,7 @@ public class AppGUI {
 				TitledBorder.ABOVE_TOP, null, new Color(0, 0, 0)));
 
 		lblName = new JLabel("Name : ");
-		cbxFEP = new JComboBox(fepNames);
+		cbxFEP = new JComboBox<String>(fepNames);
 		GroupLayout gl_pnFEP = new GroupLayout(pnFEP);
 		gl_pnFEP.setHorizontalGroup(gl_pnFEP.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnFEP.createSequentialGroup().addContainerGap().addComponent(lblName).addGap(18)

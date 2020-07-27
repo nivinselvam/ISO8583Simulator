@@ -297,6 +297,8 @@ public abstract class BaseResponseGenerator {
 	public void loadDecoder(String dataToDecode) {
 		if (Initializer.getFEPname().equals("HPS")) {
 			decoder = new HPSDecoder(dataToDecode);
+		}else if(Initializer.getFEPname().equals("X9")) {
+			decoder = new X9Decoder(dataToDecode);
 		}
 	}
 

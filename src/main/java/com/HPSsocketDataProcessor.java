@@ -25,7 +25,7 @@ public class HPSsocketDataProcessor extends BaseSocketDataProcessor {
 	}
 
 	public void socketDataWriteFormat(String responsePacket) {
-		responsePacket = converter.toHexString(responsePacket);
+		responsePacket = Initializer.getConverter().toHexString(responsePacket);
 		try {
 			formattedPacketBytes = responsePacket.getBytes("ISO-8859-1");
 		} catch (UnsupportedEncodingException e) {

@@ -26,7 +26,7 @@ public class X9socketDataProcessor extends BaseSocketDataProcessor{
 
 	@Override
 	public void socketDataWriteFormat(String responsePacket) {
-		responsePacket = converter.hexToASCII(responsePacket);
+		responsePacket = Initializer.getConverter().hexToASCII(responsePacket);
 		try {
 			formattedPacketBytes = responsePacket.getBytes("ISO-8859-1");
 		} catch (UnsupportedEncodingException e) {

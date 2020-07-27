@@ -132,6 +132,10 @@ public class Initializer {
 	public static BitFieldData getBitfieldData() {
 		return bitfieldData;
 	}
+	
+	public static void setBitfieldData(BitFieldData bitfieldData) {
+		Initializer.bitfieldData = bitfieldData;
+	}
 
 	public static BaseVariables getBaseVariables() {
 		return variables;

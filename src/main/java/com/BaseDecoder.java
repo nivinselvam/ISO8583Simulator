@@ -20,12 +20,12 @@ public class BaseDecoder {
 	private String primaryBitmapValue;
 	private String secondaryBitmap;
 	private String secondaryBitmapValue;
-	private String consolidatedBitmap;
-	private String currentBitField;
-	private String currentBitFieldValue;
-	private int currentPosition, currentBitfieldLength;
+	protected String consolidatedBitmap;
+	protected String currentBitField;
+	protected String currentBitFieldValue;
+	protected int currentPosition, currentBitfieldLength;
 	private boolean isSecondaryBitmapAvailable = false;
-	private Map<String, String> bitFieldswithValue = new LinkedHashMap<String, String>();
+	protected Map<String, String> bitFieldswithValue = new LinkedHashMap<String, String>();
 	private static Logger logger = Logger.getLogger(BaseDecoder.class);
 	private List<String> elementsInTransaction;
 	// The readDataFormat variable is used to decide if request packet contains
@@ -39,6 +39,21 @@ public class BaseDecoder {
 		} catch (NumberFormatException e) {
 			logger.fatal("Request packet Format error. Please make sure the Hex data is correct");
 		}
+	}
+	
+	// -----------------------------------------------------------------------------------------------------------
+	/*
+	 * Takes the hex array as input, splits the data and convets into ascii values
+	 */
+	// -----------------------------------------------------------------------------------------------------------
+	public void decodeTransactionPacket() {
+		logger.debug("Starting the decoding of packet");
+			generateHeader();
+			generateMTI();
+			generatePrimaryBitmap();
+			generateSecondaryBitmap();
+			generateConsolidatedBitmap();
+			generateBitFieldwithValues();
 	}
 
 	/*
@@ -155,22 +170,7 @@ public class BaseDecoder {
 		return bitFieldswithValue;
 	}
 
-	// -----------------------------------------------------------------------------------------------------------
-	/*
-	 * Takes the hex array as input, splits the data and convets into ascii values
-	 */
-	// -----------------------------------------------------------------------------------------------------------
-	public void decodeTransactionPacket() {
-		logger.debug("Starting the decoding of packet");
-		if (requestPacket.length() > Integer.parseInt(Initializer.getBaseConstants().echoMessageLength)) {
-			generateHeader();
-			generateMTI();
-			generatePrimaryBitmap();
-			generateSecondaryBitmap();
-			generateConsolidatedBitmap();
-			generateBitFieldwithValues();
-		}
-	}
+
 
 	// --------------------------------------------------------------------------------------------------
 	/*
@@ -179,7 +179,7 @@ public class BaseDecoder {
 	 * representing bitfields
 	 */
 	// ---------------------------------------------------------------------------------------------------
-	private List<String> getElementsInTransaction(String bitmap) {
+	protected List<String> getElementsInTransaction(String bitmap) {
 		elementsInTransaction = new ArrayList<String>();
 		for (int i = 0; i < bitmap.length(); i++) {
 			if (bitmap.charAt(i) == '1') {
