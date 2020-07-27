@@ -22,6 +22,7 @@ public abstract class BaseResponseGenerator {
 	protected boolean isBalanceInquiry;
 	private BaseDecoder decoder;
 	private BaseEncoder encoder;
+	protected String bitfield4;
 
 	public BaseResponseGenerator(String requestPacket) {
 		this.requestPacket = requestPacket;
@@ -174,7 +175,7 @@ public abstract class BaseResponseGenerator {
 	 */
 	// ------------------------------------------------------------------------------------------------------------------
 	public String generateBitfield4() {
-		String bitfield4, tempString = "";
+		String tempString = "";
 		if(Initializer.getBaseVariables().isHalfApprovalRequired.equalsIgnoreCase("true")||Integer.parseInt(requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield4))<Integer.parseInt(Initializer.getBaseVariables().valueOfBitfield4)) {
 			bitfield4 = Integer.toString(Integer.parseInt(requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield4)) / 2);
 			// Bitfield4 has a fixed length of 12 digits and has to have 0's for
@@ -214,7 +215,7 @@ public abstract class BaseResponseGenerator {
 	 */
 	// ------------------------------------------------------------------------------------------------------------------
 
-	public static String setBitfieldValue(String bitfieldName, String bitfieldValue) {
+	public static String setBitfieldLengthIfRequired(String bitfieldName, String bitfieldValue) {
 		int variableLengthValue;
 		String bitfieldLength;
 		BitFieldData bitfieldData = new BitFieldData();
@@ -310,6 +311,8 @@ public abstract class BaseResponseGenerator {
 	public void loadEncoder() {
 		if (Initializer.getFEPname().equals("HPS")) {
 			encoder = new HPSEncoder(header, responseMTI, elementsInTransaction, responseBitfieldswithValue);
+		}else if(Initializer.getFEPname().equals("X9")) {
+			encoder = new X9Encoder(header, responseMTI, elementsInTransaction, responseBitfieldswithValue);
 		}
 	}
 

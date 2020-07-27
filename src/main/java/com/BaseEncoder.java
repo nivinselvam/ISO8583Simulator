@@ -21,6 +21,10 @@ public abstract class BaseEncoder {
 	protected TreeSet<Integer> elementsInTransaction;
 	protected Map<String, String> responseBitFieldsWithValue;
 	protected String responsePacket;
+	protected String bitmapToHex;
+	protected String consolidatedbitfieldStringToHex;
+	protected String MTItoHex;
+	protected String headerToHex;
 
 	public BaseEncoder(String header, String MTI, TreeSet<Integer> elementsInTransaction,
 			Map<String, String> responseBitFieldsWithValue) {

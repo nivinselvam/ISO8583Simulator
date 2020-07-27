@@ -5,18 +5,21 @@ import java.util.TreeSet;
 
 import org.apache.log4j.Logger;
 
-public class HPSEncoder extends BaseEncoder {
-	private static Logger logger = Logger.getLogger(BaseEncoder.class);
-	
-	public HPSEncoder(String header, String MTI, TreeSet<Integer> elementsInTransaction,
+public class X9Encoder extends BaseEncoder {
+	private static Logger logger = Logger.getLogger(X9Encoder.class);
+
+	public X9Encoder(String header, String MTI, TreeSet<Integer> elementsInTransaction,
 			Map<String, String> responseBitFieldsWithValue) {
 		super(header, MTI, elementsInTransaction, responseBitFieldsWithValue);
 	}
 
+	// --------------------------------------------------------------------------------------------------------------------
 	/*
-	 * In HPS all the fields should be sent in Hex format. Hence all the values will
-	 * be converted to hex format and response packet is created by concatinating them.
+	 * In X9 all the fields should be sent in Hex format. Hence all the values will
+	 * be converted to hex format and response packet is created by concatenating
+	 * them.
 	 */
+	// --------------------------------------------------------------------------------------------------------------------
 	@Override
 	public String generateEncodedData() {
 		logger.debug("Starting the encoding of response packet");
@@ -29,7 +32,7 @@ public class HPSEncoder extends BaseEncoder {
 		responsePacket = (headerToHex + MTItoHex + bitmapToHex + consolidatedbitfieldStringToHex).replace(" ", "");
 		return responsePacket;
 	}
-
+	
 	// --------------------------------------------------------------------------------------------------------------------
 	/*
 	 * This function finds the overall length of the hexData and generates the first
@@ -40,7 +43,7 @@ public class HPSEncoder extends BaseEncoder {
 		String finalHexData = "", lengthConvertedToHex;
 		String[] tempArray = hexData.split(" ");
 		int arrayLength, numberOfDigits;
-		arrayLength = (tempArray.length) + 2;
+		arrayLength = (tempArray.length);
 		lengthConvertedToHex = Integer.toHexString(arrayLength);
 		numberOfDigits = lengthConvertedToHex.length();
 		switch (numberOfDigits) {
