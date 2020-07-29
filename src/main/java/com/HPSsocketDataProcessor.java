@@ -15,6 +15,7 @@ import org.apache.log4j.Logger;
 public class HPSsocketDataProcessor extends BaseSocketDataProcessor {
 	private Logger logger = Logger.getLogger(HPSsocketDataProcessor.class);
 
+	@Override
 	public void socketDataReadFormat() {
 		try {
 			socketDataLength = dataInputStream.readShort() - 2;
