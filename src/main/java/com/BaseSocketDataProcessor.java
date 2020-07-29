@@ -153,7 +153,7 @@ public abstract class BaseSocketDataProcessor extends Thread {
 
 	/*
 	 * -----------------------------------------------------------------------------
-	 *  This method is used to closing all the open resources
+	 *  This method is used for closing all the open resources
 	 * -----------------------------------------------------------------------------
 	 */
 	public void closeServer() throws IOException {

@@ -169,12 +169,12 @@ public class BitFieldData {
 			bitfieldLength.put("BITFIELD19", 3);
 			bitfieldLength.put("BITFIELD20", 3);
 			bitfieldLength.put("BITFIELD21", 22);
-			bitfieldLength.put("BITFIELD22", 16);
+			bitfieldLength.put("BITFIELD22", 32);
 			bitfieldLength.put("BITFIELD23", 3);
 			bitfieldLength.put("BITFIELD24", 3);
 			bitfieldLength.put("BITFIELD25", 4);
 			bitfieldLength.put("BITFIELD26", 4);
-			bitfieldLength.put("BITFIELD27", 27);
+			bitfieldLength.put("BITFIELD27", 54);
 			bitfieldLength.put("BITFIELD28", 8);
 			bitfieldLength.put("BITFIELD29", 3);
 			bitfieldLength.put("BITFIELD30", 32);
