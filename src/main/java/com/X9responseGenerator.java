@@ -116,23 +116,29 @@ public class X9responseGenerator extends BaseResponseGenerator {
 	// ------------------------------------------------------------------------------------------------------------------
 	@Override
 	public String generateBitfield4() {
-		String tempString = "";
-		int requestedAmount = Integer.parseInt(
+		String prefix;
+		int requestedAmount, expectedLength, currentLength;
+		requestedAmount = Integer.parseInt(
 				(requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield4).substring(4)));
+		// Subtracting 4 from the expect length since first 4 digits in bitfield4 will
+		// be a prefix.
+		expectedLength = Initializer.getBitfieldData().bitfieldLength
+				.get(Initializer.getBaseConstants().nameOfbitfield4) - 4;
+		prefix = requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield4).substring(0, 4);
+
 		if (Initializer.getBaseVariables().isHalfApprovalRequired.equalsIgnoreCase("true")
 				|| requestedAmount < Integer.parseInt(Initializer.getBaseVariables().valueOfBitfield4)) {
 			bitfield4 = Integer.toString(requestedAmount / 2);
+			currentLength = bitfield4.length();
 			// Bitfield4 has a fixed length of 12 digits and has to have 0's for
 			// the digits missing.
-			int currentLength = bitfield4.length(), expectedLength = Initializer.getBitfieldData().bitfieldLength
-					.get(Initializer.getBaseConstants().nameOfbitfield4);
 			for (int i = 0; i < expectedLength - currentLength; i++) {
-				tempString = tempString + "0";
+				bitfield4 = "0" + bitfield4;
 			}
-			bitfield4 = tempString + bitfield4;
+			bitfield4 = prefix + bitfield4;
 		} else {
-			bitfield4 = Initializer.getConverter().zeroPadding(Initializer.getBaseVariables().valueOfBitfield4,
-					Initializer.getBitfieldData().bitfieldLength.get(Initializer.getBaseConstants().nameOfbitfield4));
+			bitfield4 = prefix + Initializer.getConverter().zeroPadding(Initializer.getBaseVariables().valueOfBitfield4,
+					expectedLength);
 		}
 		return bitfield4;
 	}
