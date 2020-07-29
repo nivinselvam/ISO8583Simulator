@@ -15,8 +15,7 @@ public abstract class BaseSocketDataProcessor extends Thread {
 	protected byte[] formattedPacketBytes;
 	private StringBuffer requestPacketBuffer = new StringBuffer();
 	private String requestPacket, responsePacket;
-	Converter converter = new Converter();
-	BaseResponseGenerator responses;
+	private BaseResponseGenerator responses;
 	private Logger logger = Logger.getLogger(BaseSocketDataProcessor.class);
 
 	/*
@@ -145,6 +144,8 @@ public abstract class BaseSocketDataProcessor extends Thread {
 	public void generateResponse(String requestPacket) {
 		if (Initializer.getFEPname().equals("HPS")) {
 			responses = new HPSresponseGenerator(requestPacket);
+		}else if(Initializer.getFEPname().equals("X9")) {
+			responses = new X9responseGenerator(requestPacket);
 		}
 		responsePacket = responses.getResponsePacket();
 
@@ -152,7 +153,7 @@ public abstract class BaseSocketDataProcessor extends Thread {
 
 	/*
 	 * -----------------------------------------------------------------------------
-	 *  This method is used to closing all the open resources
+	 *  This method is used for closing all the open resources
 	 * -----------------------------------------------------------------------------
 	 */
 	public void closeServer() throws IOException {
