@@ -184,7 +184,7 @@ public class AppGUI {
 				TitledBorder.ABOVE_TOP, null, new Color(0, 0, 0)));
 
 		lblName = new JLabel("Name : ");
-		cbxFEP = new JComboBox<String>(fepNames);
+		cbxFEP = new JComboBox(fepNames);
 		GroupLayout gl_pnFEP = new GroupLayout(pnFEP);
 		gl_pnFEP.setHorizontalGroup(gl_pnFEP.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnFEP.createSequentialGroup().addContainerGap().addComponent(lblName).addGap(18)
@@ -210,47 +210,33 @@ public class AppGUI {
 		txtPort = new JTextField();
 		txtPort.setText("9000");
 		txtPort.setColumns(10);
-
-		btnStartServer = new JButton("Start Server");
-
-		btnStartServer.setBackground(SystemColor.controlHighlight);
-
-		btnStopServer = new JButton("Stop Server");
-		btnStopServer.setEnabled(false);
-
-		btnStopServer.setBackground(SystemColor.controlHighlight);
 		GroupLayout gl_pnServerConfiguration = new GroupLayout(pnServerConfiguration);
-		gl_pnServerConfiguration
-				.setHorizontalGroup(gl_pnServerConfiguration.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_pnServerConfiguration.createSequentialGroup().addContainerGap()
-								.addGroup(gl_pnServerConfiguration.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblIp).addComponent(lblPort))
-								.addGap(29)
-								.addGroup(gl_pnServerConfiguration.createParallelGroup(Alignment.TRAILING)
-										.addGroup(Alignment.LEADING, gl_pnServerConfiguration.createSequentialGroup()
-												.addComponent(btnStartServer, GroupLayout.PREFERRED_SIZE, 190,
-														GroupLayout.PREFERRED_SIZE)
-												.addPreferredGap(ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-												.addComponent(btnStopServer, GroupLayout.PREFERRED_SIZE, 184,
-														GroupLayout.PREFERRED_SIZE))
-										.addComponent(txtPort, GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
-										.addComponent(txtIP, GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE))
-								.addContainerGap()));
-		gl_pnServerConfiguration
-				.setVerticalGroup(
-						gl_pnServerConfiguration.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_pnServerConfiguration.createSequentialGroup().addContainerGap()
-										.addGroup(gl_pnServerConfiguration.createParallelGroup(Alignment.BASELINE)
-												.addComponent(lblIp).addComponent(txtIP, GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-										.addGap(18)
-										.addGroup(gl_pnServerConfiguration.createParallelGroup(Alignment.BASELINE)
-												.addComponent(lblPort).addComponent(txtPort, GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-										.addGap(18)
-										.addGroup(gl_pnServerConfiguration.createParallelGroup(Alignment.BASELINE)
-												.addComponent(btnStopServer).addComponent(btnStartServer))
-										.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+		gl_pnServerConfiguration.setHorizontalGroup(
+			gl_pnServerConfiguration.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnServerConfiguration.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_pnServerConfiguration.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblIp)
+						.addComponent(lblPort))
+					.addGap(29)
+					.addGroup(gl_pnServerConfiguration.createParallelGroup(Alignment.LEADING)
+						.addComponent(txtPort, GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
+						.addComponent(txtIP, GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE))
+					.addContainerGap())
+		);
+		gl_pnServerConfiguration.setVerticalGroup(
+			gl_pnServerConfiguration.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnServerConfiguration.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_pnServerConfiguration.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblIp)
+						.addComponent(txtIP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_pnServerConfiguration.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblPort)
+						.addComponent(txtPort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(52, Short.MAX_VALUE))
+		);
 		pnServerConfiguration.setLayout(gl_pnServerConfiguration);
 
 		lblStatusValue = new JLabel("Offline");
@@ -259,11 +245,47 @@ public class AppGUI {
 
 		btnSaveServerConfiguration = new JButton("Save Server Configuration");
 		btnSaveServerConfiguration.setBackground(SystemColor.controlHighlight);
+		
+				btnStartServer = new JButton("Start Server");
+				
+						btnStartServer.setBackground(SystemColor.controlHighlight);
+						// -----------------------------------------------------------------------------------------------------------------------------
+						btnStartServer.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								Initializer.setServer(new ServerInitializer());
+								Initializer.getServer().start();
+								btnStopServer.setEnabled(true);
+								btnStartServer.setEnabled(false);
+								lblStatusValue.setText("Online");
+							}
+						});
+		
+				btnStopServer = new JButton("Stop Server");
+				btnStopServer.setEnabled(false);
+				
+						btnStopServer.setBackground(SystemColor.controlHighlight);
+						// -----------------------------------------------------------------------------------------------------------------------------
+						btnStopServer.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								try {
+									Initializer.getServer().getServerSocket().close();
+									logger.info("Server stopped");
+									System.out.println("Server stopped");
+									lblStatusValue.setText("Offline");
+								} catch (IOException e1) {
+									logger.error("Unable to stop the server");
+									System.out.println("Unable to stop the server");
+									JOptionPane.showMessageDialog(null, "Unable to stop the server");
+								}
+								btnStartServer.setEnabled(true);
+								btnStopServer.setEnabled(false);
+							}
+						});
 		GroupLayout gl_pnMain = new GroupLayout(pnMain);
 		gl_pnMain.setHorizontalGroup(
 			gl_pnMain.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnMain.createSequentialGroup()
-					.addGroup(gl_pnMain.createParallelGroup(Alignment.LEADING, false)
+					.addGroup(gl_pnMain.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_pnMain.createSequentialGroup()
 							.addGap(412)
 							.addComponent(lblStatus)
@@ -271,15 +293,19 @@ public class AppGUI {
 							.addComponent(lblStatusValue))
 						.addGroup(gl_pnMain.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(pnFEP, GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)))
-					.addContainerGap(17, Short.MAX_VALUE))
-				.addGroup(gl_pnMain.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(pnServerConfiguration, GroupLayout.PREFERRED_SIZE, 491, GroupLayout.PREFERRED_SIZE)
-					.addGap(17))
-				.addGroup(gl_pnMain.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnSaveServerConfiguration, GroupLayout.PREFERRED_SIZE, 491, GroupLayout.PREFERRED_SIZE)
+							.addComponent(pnFEP, GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE))
+						.addGroup(gl_pnMain.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(pnServerConfiguration, GroupLayout.PREFERRED_SIZE, 491, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_pnMain.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(btnSaveServerConfiguration, GroupLayout.PREFERRED_SIZE, 491, GroupLayout.PREFERRED_SIZE))
+						.addGroup(Alignment.TRAILING, gl_pnMain.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(btnStartServer, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
+							.addGap(44)
+							.addComponent(btnStopServer, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
+							.addGap(0, 0, Short.MAX_VALUE)))
 					.addContainerGap(17, Short.MAX_VALUE))
 		);
 		gl_pnMain.setVerticalGroup(
@@ -292,10 +318,14 @@ public class AppGUI {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(pnFEP, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
 					.addGap(32)
-					.addComponent(pnServerConfiguration, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(39)
+					.addComponent(pnServerConfiguration, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
 					.addComponent(btnSaveServerConfiguration)
-					.addGap(332))
+					.addGap(26)
+					.addGroup(gl_pnMain.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnStartServer)
+						.addComponent(btnStopServer))
+					.addGap(335))
 		);
 		pnMain.setLayout(gl_pnMain);
 
@@ -579,16 +609,6 @@ public class AppGUI {
 		 * server is started successfully, Start server button is disabled & Stop server
 		 * button is enabled
 		 */
-		// -----------------------------------------------------------------------------------------------------------------------------
-		btnStartServer.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Initializer.setServer(new ServerInitializer());
-				Initializer.getServer().start();
-				btnStopServer.setEnabled(true);
-				btnStartServer.setEnabled(false);
-				lblStatusValue.setText("Online");
-			}
-		});
 
 		// -----------------------------------------------------------------------------------------------------------------------------
 		/*
@@ -596,23 +616,6 @@ public class AppGUI {
 		 * server is stopped successfully, Start server button is disabled & Stop server
 		 * button is enabled
 		 */
-		// -----------------------------------------------------------------------------------------------------------------------------
-		btnStopServer.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					Initializer.getServer().getServerSocket().close();
-					logger.info("Server stopped");
-					System.out.println("Server stopped");
-					lblStatusValue.setText("Offline");
-				} catch (IOException e1) {
-					logger.error("Unable to stop the server");
-					System.out.println("Unable to stop the server");
-					JOptionPane.showMessageDialog(null, "Unable to stop the server");
-				}
-				btnStartServer.setEnabled(true);
-				btnStopServer.setEnabled(false);
-			}
-		});
 		// -----------------------------------------------------------------------------------------------------------------------------
 		/*
 		 * When the Approve for half of transaction amount checkbox is checked, approval
