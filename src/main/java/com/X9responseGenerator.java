@@ -120,7 +120,7 @@ public class X9responseGenerator extends BaseResponseGenerator {
 		int requestedAmount, expectedLength, currentLength;
 		requestedAmount = Integer.parseInt(
 				(requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield4).substring(4)));
-		// Subtracting 4 from the expect length since first 4 digits in bitfield4 will
+		// Subtracting 4 from the expected length since first 4 digits in bitfield4 will
 		// be a prefix.
 		expectedLength = Initializer.getBitfieldData().bitfieldLength
 				.get(Initializer.getBaseConstants().nameOfbitfield4) - 4;

@@ -1,0 +1,1047 @@
+2020-07-30 13:56:34 INFO  ServerInitializer:39 - X9 Server started successfully
+2020-07-30 13:56:54 INFO  BaseSocketDataProcessor:45 - Client /127.0.0.1:54331 is connected
+2020-07-30 13:56:54 INFO  BaseSocketDataProcessor:47 - *************************************************************************************************
+2020-07-30 13:56:54 INFO  BaseSocketDataProcessor:49 -                                   Start of Transaction
+2020-07-30 13:56:54 INFO  BaseSocketDataProcessor:50 - *************************************************************************************************
+2020-07-30 13:56:54 INFO  BaseResponseGenerator:52 - Request Packet
+2020-07-30 13:56:54 INFO  BaseDecoder:306 - --------------------------------------------------------------------------------------------------------------
+2020-07-30 13:56:54 INFO  BaseDecoder:309 - Header: 
+2020-07-30 13:56:54 INFO  BaseDecoder:310 - MTI: 2100
+2020-07-30 13:56:54 INFO  BaseDecoder:312 - BITFIELD3: 003000
+2020-07-30 13:56:54 INFO  BaseDecoder:312 - BITFIELD4: 8402000000000300
+2020-07-30 13:56:54 INFO  BaseDecoder:312 - BITFIELD11: 000000000439
+2020-07-30 13:56:54 INFO  BaseDecoder:312 - BITFIELD12: 20200730015338
+2020-07-30 13:56:54 INFO  BaseDecoder:312 - BITFIELD22: 08000000000000000000000000000000
+2020-07-30 13:56:54 INFO  BaseDecoder:312 - BITFIELD24: 100
+2020-07-30 13:56:54 INFO  BaseDecoder:312 - BITFIELD26: 5541
+2020-07-30 13:56:54 INFO  BaseDecoder:312 - BITFIELD27: 580000000000000000000000000000000000000000000000000000
+2020-07-30 13:56:54 INFO  BaseDecoder:312 - BITFIELD35: 374761739001010010=22122011143804489000
+2020-07-30 13:56:54 INFO  BaseDecoder:312 - BITFIELD41: 01              
+2020-07-30 13:56:54 INFO  BaseDecoder:312 - BITFIELD42: 101234567890
+2020-07-30 13:56:54 INFO  BaseDecoder:314 - --------------------------------------------------------------------------------------------------------------
+2020-07-30 13:56:54 ERROR BaseResponseGenerator:88 - Provided MTI is invalid for creating the response packet.
+2020-07-30 13:57:47 DEBUG BaseDataLoader:38 - X9Constants.properties file successfully copied into FEPproperty folder
+2020-07-30 13:57:47 DEBUG BaseDataLoader:38 - FCBConstants.properties file successfully copied into FEPproperty folder
+2020-07-30 13:57:47 DEBUG BaseDataLoader:38 - HPSConstants.properties file successfully copied into FEPproperty folder
+2020-07-30 13:57:47 DEBUG BaseDataLoader:38 - IncommConstants.properties file successfully copied into FEPproperty folder
+2020-07-30 13:57:47 DEBUG BaseDataLoader:38 - CommonVariables.properties file successfully copied into FEPproperty folder
+2020-07-30 13:58:07 INFO  ServerInitializer:39 - X9 Server started successfully
+2020-07-30 13:58:15 INFO  BaseSocketDataProcessor:45 - Client /127.0.0.1:57517 is connected
+2020-07-30 13:58:15 INFO  BaseSocketDataProcessor:47 - *************************************************************************************************
+2020-07-30 13:58:16 INFO  BaseSocketDataProcessor:49 -                                   Start of Transaction
+2020-07-30 13:58:16 INFO  BaseSocketDataProcessor:50 - *************************************************************************************************
+2020-07-30 13:58:16 DEBUG BaseSocketDataProcessor:104 - 323130303030056020c0000030303330303038343032303030303030303030333030303030303030303030343339323032303037333030313533333808000000000000000000000000000000313030353534315800000000000000000000000000000000000000000000000000003337343736313733393030313031303031303d3232313232303131313433383034343839303030303120202020202020202020202020203130313233343536373839300000
+2020-07-30 13:58:16 DEBUG BaseDecoder:50 - Starting the decoding of packet
+2020-07-30 13:58:16 DEBUG X9Decoder:29 - X9 doesnt have header, so the value is set as empty value
+2020-07-30 13:58:16 DEBUG Converter:75 - Trying to convert hex to ASCII: 32313030
+2020-07-30 13:58:16 DEBUG Converter:20 - Trying to add spaces to the string 32313030
+2020-07-30 13:58:16 DEBUG Converter:25 - After adding spaces : 32 31 30 30
+2020-07-30 13:58:16 DEBUG Converter:84 - Converted value: 2100
+2020-07-30 13:58:16 DEBUG X9Decoder:43 - MTI is set as 2100
+2020-07-30 13:58:16 DEBUG Converter:95 - Trying to convert hex to binary: 3030056020c00000
+2020-07-30 13:58:16 DEBUG Converter:20 - Trying to add spaces to the string 3030056020c00000
+2020-07-30 13:58:16 DEBUG Converter:25 - After adding spaces : 30 30 05 60 20 c0 00 00
+2020-07-30 13:58:16 DEBUG Converter:114 - Converted Value: 0011000000110000000001010110000000100000110000000000000000000000
+2020-07-30 13:58:16 DEBUG BaseDecoder:109 - Primary bitmap has been set as 3030056020c00000
+2020-07-30 13:58:16 DEBUG BaseDecoder:152 - Consolidated bitmap is set as 0011000000110000000001010110000000100000110000000000000000000000
+2020-07-30 13:58:16 DEBUG BaseDecoder:165 - Trying to identify the bitfields with values
+2020-07-30 13:58:16 DEBUG X9Decoder:58 - Trying to add BITFIELD3 and its values to the map
+2020-07-30 13:58:16 DEBUG Converter:75 - Trying to convert hex to ASCII: 303033303030
+2020-07-30 13:58:16 DEBUG Converter:20 - Trying to add spaces to the string 303033303030
+2020-07-30 13:58:16 DEBUG Converter:25 - After adding spaces : 30 30 33 30 30 30
+2020-07-30 13:58:16 DEBUG Converter:84 - Converted value: 003000
+2020-07-30 13:58:16 DEBUG X9Decoder:69 - BITFIELD3 with value 003000 successfully added
+2020-07-30 13:58:16 DEBUG X9Decoder:58 - Trying to add BITFIELD4 and its values to the map
+2020-07-30 13:58:16 DEBUG Converter:75 - Trying to convert hex to ASCII: 38343032303030303030303030333030
+2020-07-30 13:58:16 DEBUG Converter:20 - Trying to add spaces to the string 38343032303030303030303030333030
+2020-07-30 13:58:16 DEBUG Converter:25 - After adding spaces : 38 34 30 32 30 30 30 30 30 30 30 30 30 33 30 30
+2020-07-30 13:58:16 DEBUG Converter:84 - Converted value: 8402000000000300
+2020-07-30 13:58:16 DEBUG X9Decoder:69 - BITFIELD4 with value 8402000000000300 successfully added
+2020-07-30 13:58:16 DEBUG X9Decoder:58 - Trying to add BITFIELD11 and its values to the map
+2020-07-30 13:58:16 DEBUG Converter:75 - Trying to convert hex to ASCII: 303030303030303030343339
+2020-07-30 13:58:16 DEBUG Converter:20 - Trying to add spaces to the string 303030303030303030343339
+2020-07-30 13:58:16 DEBUG Converter:25 - After adding spaces : 30 30 30 30 30 30 30 30 30 34 33 39
+2020-07-30 13:58:16 DEBUG Converter:84 - Converted value: 000000000439
+2020-07-30 13:58:16 DEBUG X9Decoder:69 - BITFIELD11 with value 000000000439 successfully added
+2020-07-30 13:58:16 DEBUG X9Decoder:58 - Trying to add BITFIELD12 and its values to the map
+2020-07-30 13:58:16 DEBUG Converter:75 - Trying to convert hex to ASCII: 3230323030373330303135333338
+2020-07-30 13:58:16 DEBUG Converter:20 - Trying to add spaces to the string 3230323030373330303135333338
+2020-07-30 13:58:16 DEBUG Converter:25 - After adding spaces : 32 30 32 30 30 37 33 30 30 31 35 33 33 38
+2020-07-30 13:58:16 DEBUG Converter:84 - Converted value: 20200730015338
+2020-07-30 13:58:16 DEBUG X9Decoder:69 - BITFIELD12 with value 20200730015338 successfully added
+2020-07-30 13:58:16 DEBUG X9Decoder:58 - Trying to add BITFIELD22 and its values to the map
+2020-07-30 13:58:16 DEBUG X9Decoder:69 - BITFIELD22 with value 08000000000000000000000000000000 successfully added
+2020-07-30 13:58:16 DEBUG X9Decoder:58 - Trying to add BITFIELD24 and its values to the map
+2020-07-30 13:58:16 DEBUG Converter:75 - Trying to convert hex to ASCII: 313030
+2020-07-30 13:58:16 DEBUG Converter:20 - Trying to add spaces to the string 313030
+2020-07-30 13:58:16 DEBUG Converter:25 - After adding spaces : 31 30 30
+2020-07-30 13:58:16 DEBUG Converter:84 - Converted value: 100
+2020-07-30 13:58:16 DEBUG X9Decoder:69 - BITFIELD24 with value 100 successfully added
+2020-07-30 13:58:16 DEBUG X9Decoder:58 - Trying to add BITFIELD26 and its values to the map
+2020-07-30 13:58:16 DEBUG Converter:75 - Trying to convert hex to ASCII: 35353431
+2020-07-30 13:58:16 DEBUG Converter:20 - Trying to add spaces to the string 35353431
+2020-07-30 13:58:16 DEBUG Converter:25 - After adding spaces : 35 35 34 31
+2020-07-30 13:58:16 DEBUG Converter:84 - Converted value: 5541
+2020-07-30 13:58:16 DEBUG X9Decoder:69 - BITFIELD26 with value 5541 successfully added
+2020-07-30 13:58:16 DEBUG X9Decoder:58 - Trying to add BITFIELD27 and its values to the map
+2020-07-30 13:58:16 DEBUG X9Decoder:69 - BITFIELD27 with value 580000000000000000000000000000000000000000000000000000 successfully added
+2020-07-30 13:58:16 DEBUG X9Decoder:58 - Trying to add BITFIELD35 and its values to the map
+2020-07-30 13:58:16 DEBUG Converter:75 - Trying to convert hex to ASCII: 3337
+2020-07-30 13:58:16 DEBUG Converter:20 - Trying to add spaces to the string 3337
+2020-07-30 13:58:16 DEBUG Converter:25 - After adding spaces : 33 37
+2020-07-30 13:58:16 DEBUG Converter:84 - Converted value: 37
+2020-07-30 13:58:16 DEBUG Converter:75 - Trying to convert hex to ASCII: 343736313733393030313031303031303d3232313232303131313433383034343839303030
+2020-07-30 13:58:16 DEBUG Converter:20 - Trying to add spaces to the string 343736313733393030313031303031303d3232313232303131313433383034343839303030
+2020-07-30 13:58:16 DEBUG Converter:25 - After adding spaces : 34 37 36 31 37 33 39 30 30 31 30 31 30 30 31 30 3d 32 32 31 32 32 30 31 31 31 34 33 38 30 34 34 38 39 30 30 30
+2020-07-30 13:58:16 DEBUG Converter:84 - Converted value: 4761739001010010=22122011143804489000
+2020-07-30 13:58:16 DEBUG X9Decoder:88 - BITFIELD35 with value 374761739001010010=22122011143804489000 successfully added
+2020-07-30 13:58:16 DEBUG X9Decoder:58 - Trying to add BITFIELD41 and its values to the map
+2020-07-30 13:58:16 DEBUG Converter:75 - Trying to convert hex to ASCII: 30312020202020202020202020202020
+2020-07-30 13:58:16 DEBUG Converter:20 - Trying to add spaces to the string 30312020202020202020202020202020
+2020-07-30 13:58:16 DEBUG Converter:25 - After adding spaces : 30 31 20 20 20 20 20 20 20 20 20 20 20 20 20 20
+2020-07-30 13:58:16 DEBUG Converter:84 - Converted value: 01              
+2020-07-30 13:58:16 DEBUG X9Decoder:69 - BITFIELD41 with value 01               successfully added
+2020-07-30 13:58:16 DEBUG X9Decoder:58 - Trying to add BITFIELD42 and its values to the map
+2020-07-30 13:58:16 DEBUG Converter:75 - Trying to convert hex to ASCII: 3130
+2020-07-30 13:58:16 DEBUG Converter:20 - Trying to add spaces to the string 3130
+2020-07-30 13:58:16 DEBUG Converter:25 - After adding spaces : 31 30
+2020-07-30 13:58:16 DEBUG Converter:84 - Converted value: 10
+2020-07-30 13:58:16 DEBUG Converter:75 - Trying to convert hex to ASCII: 31323334353637383930
+2020-07-30 13:58:16 DEBUG Converter:20 - Trying to add spaces to the string 31323334353637383930
+2020-07-30 13:58:16 DEBUG Converter:25 - After adding spaces : 31 32 33 34 35 36 37 38 39 30
+2020-07-30 13:58:16 DEBUG Converter:84 - Converted value: 1234567890
+2020-07-30 13:58:16 DEBUG X9Decoder:88 - BITFIELD42 with value 101234567890 successfully added
+2020-07-30 13:58:16 INFO  BaseResponseGenerator:52 - Request Packet
+2020-07-30 13:58:16 INFO  BaseDecoder:306 - --------------------------------------------------------------------------------------------------------------
+2020-07-30 13:58:16 INFO  BaseDecoder:309 - Header: 
+2020-07-30 13:58:16 INFO  BaseDecoder:310 - MTI: 2100
+2020-07-30 13:58:16 INFO  BaseDecoder:312 - BITFIELD3: 003000
+2020-07-30 13:58:16 INFO  BaseDecoder:312 - BITFIELD4: 8402000000000300
+2020-07-30 13:58:16 INFO  BaseDecoder:312 - BITFIELD11: 000000000439
+2020-07-30 13:58:16 INFO  BaseDecoder:312 - BITFIELD12: 20200730015338
+2020-07-30 13:58:16 INFO  BaseDecoder:312 - BITFIELD22: 08000000000000000000000000000000
+2020-07-30 13:58:16 INFO  BaseDecoder:312 - BITFIELD24: 100
+2020-07-30 13:58:16 INFO  BaseDecoder:312 - BITFIELD26: 5541
+2020-07-30 13:58:16 INFO  BaseDecoder:312 - BITFIELD27: 580000000000000000000000000000000000000000000000000000
+2020-07-30 13:58:16 INFO  BaseDecoder:312 - BITFIELD35: 374761739001010010=22122011143804489000
+2020-07-30 13:58:16 INFO  BaseDecoder:312 - BITFIELD41: 01              
+2020-07-30 13:58:16 INFO  BaseDecoder:312 - BITFIELD42: 101234567890
+2020-07-30 13:58:16 INFO  BaseDecoder:314 - --------------------------------------------------------------------------------------------------------------
+2020-07-30 13:58:16 ERROR BaseResponseGenerator:88 - Provided MTI is invalid for creating the response packet.
+2020-07-30 13:58:16 DEBUG X9Encoder:25 - Starting the encoding of response packet
+2020-07-30 13:59:12 DEBUG BaseDataLoader:38 - X9Constants.properties file successfully copied into FEPproperty folder
+2020-07-30 13:59:12 DEBUG BaseDataLoader:38 - FCBConstants.properties file successfully copied into FEPproperty folder
+2020-07-30 13:59:12 DEBUG BaseDataLoader:38 - HPSConstants.properties file successfully copied into FEPproperty folder
+2020-07-30 13:59:12 DEBUG BaseDataLoader:38 - IncommConstants.properties file successfully copied into FEPproperty folder
+2020-07-30 13:59:12 DEBUG BaseDataLoader:38 - CommonVariables.properties file successfully copied into FEPproperty folder
+2020-07-30 13:59:16 INFO  ServerInitializer:39 - X9 Server started successfully
+2020-07-30 13:59:20 INFO  BaseSocketDataProcessor:45 - Client /127.0.0.1:57525 is connected
+2020-07-30 13:59:20 INFO  BaseSocketDataProcessor:47 - *************************************************************************************************
+2020-07-30 13:59:20 INFO  BaseSocketDataProcessor:49 -                                   Start of Transaction
+2020-07-30 13:59:20 INFO  BaseSocketDataProcessor:50 - *************************************************************************************************
+2020-07-30 13:59:20 DEBUG BaseSocketDataProcessor:104 - 323130303030056020c0000030303330303038343032303030303030303030333030303030303030303030343339323032303037333030313533333808000000000000000000000000000000313030353534315800000000000000000000000000000000000000000000000000003337343736313733393030313031303031303d3232313232303131313433383034343839303030303120202020202020202020202020203130313233343536373839300000
+2020-07-30 13:59:20 DEBUG BaseDecoder:50 - Starting the decoding of packet
+2020-07-30 13:59:20 DEBUG X9Decoder:29 - X9 doesnt have header, so the value is set as empty value
+2020-07-30 13:59:20 DEBUG Converter:75 - Trying to convert hex to ASCII: 32313030
+2020-07-30 13:59:20 DEBUG Converter:20 - Trying to add spaces to the string 32313030
+2020-07-30 13:59:20 DEBUG Converter:25 - After adding spaces : 32 31 30 30
+2020-07-30 13:59:20 DEBUG Converter:84 - Converted value: 2100
+2020-07-30 13:59:20 DEBUG X9Decoder:43 - MTI is set as 2100
+2020-07-30 13:59:20 DEBUG Converter:95 - Trying to convert hex to binary: 3030056020c00000
+2020-07-30 13:59:20 DEBUG Converter:20 - Trying to add spaces to the string 3030056020c00000
+2020-07-30 13:59:20 DEBUG Converter:25 - After adding spaces : 30 30 05 60 20 c0 00 00
+2020-07-30 13:59:20 DEBUG Converter:114 - Converted Value: 0011000000110000000001010110000000100000110000000000000000000000
+2020-07-30 13:59:21 DEBUG BaseDecoder:109 - Primary bitmap has been set as 3030056020c00000
+2020-07-30 13:59:21 DEBUG BaseDecoder:152 - Consolidated bitmap is set as 0011000000110000000001010110000000100000110000000000000000000000
+2020-07-30 13:59:21 DEBUG BaseDecoder:165 - Trying to identify the bitfields with values
+2020-07-30 13:59:21 DEBUG X9Decoder:58 - Trying to add BITFIELD3 and its values to the map
+2020-07-30 13:59:21 DEBUG Converter:75 - Trying to convert hex to ASCII: 303033303030
+2020-07-30 13:59:21 DEBUG Converter:20 - Trying to add spaces to the string 303033303030
+2020-07-30 13:59:21 DEBUG Converter:25 - After adding spaces : 30 30 33 30 30 30
+2020-07-30 13:59:21 DEBUG Converter:84 - Converted value: 003000
+2020-07-30 13:59:21 DEBUG X9Decoder:69 - BITFIELD3 with value 003000 successfully added
+2020-07-30 13:59:21 DEBUG X9Decoder:58 - Trying to add BITFIELD4 and its values to the map
+2020-07-30 13:59:21 DEBUG Converter:75 - Trying to convert hex to ASCII: 38343032303030303030303030333030
+2020-07-30 13:59:21 DEBUG Converter:20 - Trying to add spaces to the string 38343032303030303030303030333030
+2020-07-30 13:59:21 DEBUG Converter:25 - After adding spaces : 38 34 30 32 30 30 30 30 30 30 30 30 30 33 30 30
+2020-07-30 13:59:21 DEBUG Converter:84 - Converted value: 8402000000000300
+2020-07-30 13:59:21 DEBUG X9Decoder:69 - BITFIELD4 with value 8402000000000300 successfully added
+2020-07-30 13:59:21 DEBUG X9Decoder:58 - Trying to add BITFIELD11 and its values to the map
+2020-07-30 13:59:21 DEBUG Converter:75 - Trying to convert hex to ASCII: 303030303030303030343339
+2020-07-30 13:59:21 DEBUG Converter:20 - Trying to add spaces to the string 303030303030303030343339
+2020-07-30 13:59:21 DEBUG Converter:25 - After adding spaces : 30 30 30 30 30 30 30 30 30 34 33 39
+2020-07-30 13:59:21 DEBUG Converter:84 - Converted value: 000000000439
+2020-07-30 13:59:21 DEBUG X9Decoder:69 - BITFIELD11 with value 000000000439 successfully added
+2020-07-30 13:59:21 DEBUG X9Decoder:58 - Trying to add BITFIELD12 and its values to the map
+2020-07-30 13:59:21 DEBUG Converter:75 - Trying to convert hex to ASCII: 3230323030373330303135333338
+2020-07-30 13:59:21 DEBUG Converter:20 - Trying to add spaces to the string 3230323030373330303135333338
+2020-07-30 13:59:21 DEBUG Converter:25 - After adding spaces : 32 30 32 30 30 37 33 30 30 31 35 33 33 38
+2020-07-30 13:59:21 DEBUG Converter:84 - Converted value: 20200730015338
+2020-07-30 13:59:21 DEBUG X9Decoder:69 - BITFIELD12 with value 20200730015338 successfully added
+2020-07-30 13:59:21 DEBUG X9Decoder:58 - Trying to add BITFIELD22 and its values to the map
+2020-07-30 13:59:21 DEBUG X9Decoder:69 - BITFIELD22 with value 08000000000000000000000000000000 successfully added
+2020-07-30 13:59:21 DEBUG X9Decoder:58 - Trying to add BITFIELD24 and its values to the map
+2020-07-30 13:59:21 DEBUG Converter:75 - Trying to convert hex to ASCII: 313030
+2020-07-30 13:59:21 DEBUG Converter:20 - Trying to add spaces to the string 313030
+2020-07-30 13:59:21 DEBUG Converter:25 - After adding spaces : 31 30 30
+2020-07-30 13:59:21 DEBUG Converter:84 - Converted value: 100
+2020-07-30 13:59:21 DEBUG X9Decoder:69 - BITFIELD24 with value 100 successfully added
+2020-07-30 13:59:21 DEBUG X9Decoder:58 - Trying to add BITFIELD26 and its values to the map
+2020-07-30 13:59:21 DEBUG Converter:75 - Trying to convert hex to ASCII: 35353431
+2020-07-30 13:59:21 DEBUG Converter:20 - Trying to add spaces to the string 35353431
+2020-07-30 13:59:21 DEBUG Converter:25 - After adding spaces : 35 35 34 31
+2020-07-30 13:59:21 DEBUG Converter:84 - Converted value: 5541
+2020-07-30 13:59:21 DEBUG X9Decoder:69 - BITFIELD26 with value 5541 successfully added
+2020-07-30 13:59:21 DEBUG X9Decoder:58 - Trying to add BITFIELD27 and its values to the map
+2020-07-30 13:59:21 DEBUG X9Decoder:69 - BITFIELD27 with value 580000000000000000000000000000000000000000000000000000 successfully added
+2020-07-30 13:59:21 DEBUG X9Decoder:58 - Trying to add BITFIELD35 and its values to the map
+2020-07-30 13:59:21 DEBUG Converter:75 - Trying to convert hex to ASCII: 3337
+2020-07-30 13:59:21 DEBUG Converter:20 - Trying to add spaces to the string 3337
+2020-07-30 13:59:21 DEBUG Converter:25 - After adding spaces : 33 37
+2020-07-30 13:59:21 DEBUG Converter:84 - Converted value: 37
+2020-07-30 13:59:21 DEBUG Converter:75 - Trying to convert hex to ASCII: 343736313733393030313031303031303d3232313232303131313433383034343839303030
+2020-07-30 13:59:21 DEBUG Converter:20 - Trying to add spaces to the string 343736313733393030313031303031303d3232313232303131313433383034343839303030
+2020-07-30 13:59:21 DEBUG Converter:25 - After adding spaces : 34 37 36 31 37 33 39 30 30 31 30 31 30 30 31 30 3d 32 32 31 32 32 30 31 31 31 34 33 38 30 34 34 38 39 30 30 30
+2020-07-30 13:59:21 DEBUG Converter:84 - Converted value: 4761739001010010=22122011143804489000
+2020-07-30 13:59:21 DEBUG X9Decoder:88 - BITFIELD35 with value 374761739001010010=22122011143804489000 successfully added
+2020-07-30 13:59:21 DEBUG X9Decoder:58 - Trying to add BITFIELD41 and its values to the map
+2020-07-30 13:59:21 DEBUG Converter:75 - Trying to convert hex to ASCII: 30312020202020202020202020202020
+2020-07-30 13:59:21 DEBUG Converter:20 - Trying to add spaces to the string 30312020202020202020202020202020
+2020-07-30 13:59:21 DEBUG Converter:25 - After adding spaces : 30 31 20 20 20 20 20 20 20 20 20 20 20 20 20 20
+2020-07-30 13:59:21 DEBUG Converter:84 - Converted value: 01              
+2020-07-30 13:59:21 DEBUG X9Decoder:69 - BITFIELD41 with value 01               successfully added
+2020-07-30 13:59:21 DEBUG X9Decoder:58 - Trying to add BITFIELD42 and its values to the map
+2020-07-30 13:59:21 DEBUG Converter:75 - Trying to convert hex to ASCII: 3130
+2020-07-30 13:59:21 DEBUG Converter:20 - Trying to add spaces to the string 3130
+2020-07-30 13:59:21 DEBUG Converter:25 - After adding spaces : 31 30
+2020-07-30 13:59:21 DEBUG Converter:84 - Converted value: 10
+2020-07-30 13:59:21 DEBUG Converter:75 - Trying to convert hex to ASCII: 31323334353637383930
+2020-07-30 13:59:21 DEBUG Converter:20 - Trying to add spaces to the string 31323334353637383930
+2020-07-30 13:59:21 DEBUG Converter:25 - After adding spaces : 31 32 33 34 35 36 37 38 39 30
+2020-07-30 13:59:21 DEBUG Converter:84 - Converted value: 1234567890
+2020-07-30 13:59:21 DEBUG X9Decoder:88 - BITFIELD42 with value 101234567890 successfully added
+2020-07-30 13:59:21 INFO  BaseResponseGenerator:52 - Request Packet
+2020-07-30 13:59:21 INFO  BaseDecoder:306 - --------------------------------------------------------------------------------------------------------------
+2020-07-30 13:59:21 INFO  BaseDecoder:309 - Header: 
+2020-07-30 13:59:21 INFO  BaseDecoder:310 - MTI: 2100
+2020-07-30 13:59:21 INFO  BaseDecoder:312 - BITFIELD3: 003000
+2020-07-30 13:59:21 INFO  BaseDecoder:312 - BITFIELD4: 8402000000000300
+2020-07-30 13:59:21 INFO  BaseDecoder:312 - BITFIELD11: 000000000439
+2020-07-30 13:59:21 INFO  BaseDecoder:312 - BITFIELD12: 20200730015338
+2020-07-30 13:59:21 INFO  BaseDecoder:312 - BITFIELD22: 08000000000000000000000000000000
+2020-07-30 13:59:21 INFO  BaseDecoder:312 - BITFIELD24: 100
+2020-07-30 13:59:21 INFO  BaseDecoder:312 - BITFIELD26: 5541
+2020-07-30 13:59:21 INFO  BaseDecoder:312 - BITFIELD27: 580000000000000000000000000000000000000000000000000000
+2020-07-30 13:59:21 INFO  BaseDecoder:312 - BITFIELD35: 374761739001010010=22122011143804489000
+2020-07-30 13:59:21 INFO  BaseDecoder:312 - BITFIELD41: 01              
+2020-07-30 13:59:21 INFO  BaseDecoder:312 - BITFIELD42: 101234567890
+2020-07-30 13:59:21 INFO  BaseDecoder:314 - --------------------------------------------------------------------------------------------------------------
+2020-07-30 14:00:41 DEBUG BaseDataLoader:38 - X9Constants.properties file successfully copied into FEPproperty folder
+2020-07-30 14:00:41 DEBUG BaseDataLoader:38 - FCBConstants.properties file successfully copied into FEPproperty folder
+2020-07-30 14:00:41 DEBUG BaseDataLoader:38 - HPSConstants.properties file successfully copied into FEPproperty folder
+2020-07-30 14:00:41 DEBUG BaseDataLoader:38 - IncommConstants.properties file successfully copied into FEPproperty folder
+2020-07-30 14:00:41 DEBUG BaseDataLoader:38 - CommonVariables.properties file successfully copied into FEPproperty folder
+2020-07-30 14:32:40 DEBUG BaseDataLoader:38 - X9Constants.properties file successfully copied into FEPproperty folder
+2020-07-30 14:32:40 DEBUG BaseDataLoader:38 - FCBConstants.properties file successfully copied into FEPproperty folder
+2020-07-30 14:32:40 DEBUG BaseDataLoader:38 - HPSConstants.properties file successfully copied into FEPproperty folder
+2020-07-30 14:32:40 DEBUG BaseDataLoader:38 - IncommConstants.properties file successfully copied into FEPproperty folder
+2020-07-30 14:32:40 DEBUG BaseDataLoader:38 - CommonVariables.properties file successfully copied into FEPproperty folder
+2020-07-30 14:33:06 INFO  ServerInitializer:39 - X9 Server started successfully
+2020-07-30 14:33:07 INFO  BaseSocketDataProcessor:45 - Client /127.0.0.1:53559 is connected
+2020-07-30 14:33:07 INFO  BaseSocketDataProcessor:47 - *************************************************************************************************
+2020-07-30 14:33:07 INFO  BaseSocketDataProcessor:49 -                                   Start of Transaction
+2020-07-30 14:33:07 INFO  BaseSocketDataProcessor:50 - *************************************************************************************************
+2020-07-30 14:33:07 DEBUG BaseSocketDataProcessor:104 - 323130303030056020c0000030303330303038343032303030303030303030333030303030303030303030343339323032303037333030313533333808000000000000000000000000000000313030353534315800000000000000000000000000000000000000000000000000003337343736313733393030313031303031303d3232313232303131313433383034343839303030303120202020202020202020202020203130313233343536373839300000
+2020-07-30 14:33:07 DEBUG BaseDecoder:50 - Starting the decoding of packet
+2020-07-30 14:33:07 DEBUG X9Decoder:29 - X9 doesnt have header, so the value is set as empty value
+2020-07-30 14:33:07 DEBUG Converter:75 - Trying to convert hex to ASCII: 32313030
+2020-07-30 14:33:07 DEBUG Converter:20 - Trying to add spaces to the string 32313030
+2020-07-30 14:33:07 DEBUG Converter:25 - After adding spaces : 32 31 30 30
+2020-07-30 14:33:07 DEBUG Converter:84 - Converted value: 2100
+2020-07-30 14:33:07 DEBUG X9Decoder:43 - MTI is set as 2100
+2020-07-30 14:33:07 DEBUG Converter:95 - Trying to convert hex to binary: 3030056020c00000
+2020-07-30 14:33:07 DEBUG Converter:20 - Trying to add spaces to the string 3030056020c00000
+2020-07-30 14:33:07 DEBUG Converter:25 - After adding spaces : 30 30 05 60 20 c0 00 00
+2020-07-30 14:33:07 DEBUG Converter:114 - Converted Value: 0011000000110000000001010110000000100000110000000000000000000000
+2020-07-30 14:33:07 DEBUG BaseDecoder:109 - Primary bitmap has been set as 3030056020c00000
+2020-07-30 14:33:07 DEBUG BaseDecoder:152 - Consolidated bitmap is set as 0011000000110000000001010110000000100000110000000000000000000000
+2020-07-30 14:33:07 DEBUG BaseDecoder:165 - Trying to identify the bitfields with values
+2020-07-30 14:33:07 DEBUG X9Decoder:58 - Trying to add BITFIELD3 and its values to the map
+2020-07-30 14:33:07 DEBUG Converter:75 - Trying to convert hex to ASCII: 303033303030
+2020-07-30 14:33:07 DEBUG Converter:20 - Trying to add spaces to the string 303033303030
+2020-07-30 14:33:07 DEBUG Converter:25 - After adding spaces : 30 30 33 30 30 30
+2020-07-30 14:33:07 DEBUG Converter:84 - Converted value: 003000
+2020-07-30 14:33:07 DEBUG X9Decoder:69 - BITFIELD3 with value 003000 successfully added
+2020-07-30 14:33:07 DEBUG X9Decoder:58 - Trying to add BITFIELD4 and its values to the map
+2020-07-30 14:33:07 DEBUG Converter:75 - Trying to convert hex to ASCII: 38343032303030303030303030333030
+2020-07-30 14:33:07 DEBUG Converter:20 - Trying to add spaces to the string 38343032303030303030303030333030
+2020-07-30 14:33:07 DEBUG Converter:25 - After adding spaces : 38 34 30 32 30 30 30 30 30 30 30 30 30 33 30 30
+2020-07-30 14:33:07 DEBUG Converter:84 - Converted value: 8402000000000300
+2020-07-30 14:33:07 DEBUG X9Decoder:69 - BITFIELD4 with value 8402000000000300 successfully added
+2020-07-30 14:33:07 DEBUG X9Decoder:58 - Trying to add BITFIELD11 and its values to the map
+2020-07-30 14:33:07 DEBUG Converter:75 - Trying to convert hex to ASCII: 303030303030303030343339
+2020-07-30 14:33:07 DEBUG Converter:20 - Trying to add spaces to the string 303030303030303030343339
+2020-07-30 14:33:07 DEBUG Converter:25 - After adding spaces : 30 30 30 30 30 30 30 30 30 34 33 39
+2020-07-30 14:33:07 DEBUG Converter:84 - Converted value: 000000000439
+2020-07-30 14:33:07 DEBUG X9Decoder:69 - BITFIELD11 with value 000000000439 successfully added
+2020-07-30 14:33:07 DEBUG X9Decoder:58 - Trying to add BITFIELD12 and its values to the map
+2020-07-30 14:33:07 DEBUG Converter:75 - Trying to convert hex to ASCII: 3230323030373330303135333338
+2020-07-30 14:33:07 DEBUG Converter:20 - Trying to add spaces to the string 3230323030373330303135333338
+2020-07-30 14:33:07 DEBUG Converter:25 - After adding spaces : 32 30 32 30 30 37 33 30 30 31 35 33 33 38
+2020-07-30 14:33:07 DEBUG Converter:84 - Converted value: 20200730015338
+2020-07-30 14:33:07 DEBUG X9Decoder:69 - BITFIELD12 with value 20200730015338 successfully added
+2020-07-30 14:33:07 DEBUG X9Decoder:58 - Trying to add BITFIELD22 and its values to the map
+2020-07-30 14:33:07 DEBUG X9Decoder:69 - BITFIELD22 with value 08000000000000000000000000000000 successfully added
+2020-07-30 14:33:07 DEBUG X9Decoder:58 - Trying to add BITFIELD24 and its values to the map
+2020-07-30 14:33:07 DEBUG Converter:75 - Trying to convert hex to ASCII: 313030
+2020-07-30 14:33:07 DEBUG Converter:20 - Trying to add spaces to the string 313030
+2020-07-30 14:33:07 DEBUG Converter:25 - After adding spaces : 31 30 30
+2020-07-30 14:33:07 DEBUG Converter:84 - Converted value: 100
+2020-07-30 14:33:07 DEBUG X9Decoder:69 - BITFIELD24 with value 100 successfully added
+2020-07-30 14:33:07 DEBUG X9Decoder:58 - Trying to add BITFIELD26 and its values to the map
+2020-07-30 14:33:07 DEBUG Converter:75 - Trying to convert hex to ASCII: 35353431
+2020-07-30 14:33:07 DEBUG Converter:20 - Trying to add spaces to the string 35353431
+2020-07-30 14:33:07 DEBUG Converter:25 - After adding spaces : 35 35 34 31
+2020-07-30 14:33:07 DEBUG Converter:84 - Converted value: 5541
+2020-07-30 14:33:07 DEBUG X9Decoder:69 - BITFIELD26 with value 5541 successfully added
+2020-07-30 14:33:07 DEBUG X9Decoder:58 - Trying to add BITFIELD27 and its values to the map
+2020-07-30 14:33:07 DEBUG X9Decoder:69 - BITFIELD27 with value 580000000000000000000000000000000000000000000000000000 successfully added
+2020-07-30 14:33:07 DEBUG X9Decoder:58 - Trying to add BITFIELD35 and its values to the map
+2020-07-30 14:33:07 DEBUG Converter:75 - Trying to convert hex to ASCII: 3337
+2020-07-30 14:33:07 DEBUG Converter:20 - Trying to add spaces to the string 3337
+2020-07-30 14:33:07 DEBUG Converter:25 - After adding spaces : 33 37
+2020-07-30 14:33:07 DEBUG Converter:84 - Converted value: 37
+2020-07-30 14:33:07 DEBUG Converter:75 - Trying to convert hex to ASCII: 343736313733393030313031303031303d3232313232303131313433383034343839303030
+2020-07-30 14:33:07 DEBUG Converter:20 - Trying to add spaces to the string 343736313733393030313031303031303d3232313232303131313433383034343839303030
+2020-07-30 14:33:07 DEBUG Converter:25 - After adding spaces : 34 37 36 31 37 33 39 30 30 31 30 31 30 30 31 30 3d 32 32 31 32 32 30 31 31 31 34 33 38 30 34 34 38 39 30 30 30
+2020-07-30 14:33:07 DEBUG Converter:84 - Converted value: 4761739001010010=22122011143804489000
+2020-07-30 14:33:07 DEBUG X9Decoder:88 - BITFIELD35 with value 374761739001010010=22122011143804489000 successfully added
+2020-07-30 14:33:07 DEBUG X9Decoder:58 - Trying to add BITFIELD41 and its values to the map
+2020-07-30 14:33:07 DEBUG Converter:75 - Trying to convert hex to ASCII: 30312020202020202020202020202020
+2020-07-30 14:33:07 DEBUG Converter:20 - Trying to add spaces to the string 30312020202020202020202020202020
+2020-07-30 14:33:07 DEBUG Converter:25 - After adding spaces : 30 31 20 20 20 20 20 20 20 20 20 20 20 20 20 20
+2020-07-30 14:33:07 DEBUG Converter:84 - Converted value: 01              
+2020-07-30 14:33:07 DEBUG X9Decoder:69 - BITFIELD41 with value 01               successfully added
+2020-07-30 14:33:07 DEBUG X9Decoder:58 - Trying to add BITFIELD42 and its values to the map
+2020-07-30 14:33:07 DEBUG Converter:75 - Trying to convert hex to ASCII: 3130
+2020-07-30 14:33:07 DEBUG Converter:20 - Trying to add spaces to the string 3130
+2020-07-30 14:33:07 DEBUG Converter:25 - After adding spaces : 31 30
+2020-07-30 14:33:07 DEBUG Converter:84 - Converted value: 10
+2020-07-30 14:33:07 DEBUG Converter:75 - Trying to convert hex to ASCII: 31323334353637383930
+2020-07-30 14:33:07 DEBUG Converter:20 - Trying to add spaces to the string 31323334353637383930
+2020-07-30 14:33:07 DEBUG Converter:25 - After adding spaces : 31 32 33 34 35 36 37 38 39 30
+2020-07-30 14:33:07 DEBUG Converter:84 - Converted value: 1234567890
+2020-07-30 14:33:07 DEBUG X9Decoder:88 - BITFIELD42 with value 101234567890 successfully added
+2020-07-30 14:33:07 INFO  BaseResponseGenerator:52 - Request Packet
+2020-07-30 14:33:07 INFO  BaseDecoder:306 - --------------------------------------------------------------------------------------------------------------
+2020-07-30 14:33:07 INFO  BaseDecoder:309 - Header: 
+2020-07-30 14:33:07 INFO  BaseDecoder:310 - MTI: 2100
+2020-07-30 14:33:07 INFO  BaseDecoder:312 - BITFIELD3: 003000
+2020-07-30 14:33:07 INFO  BaseDecoder:312 - BITFIELD4: 8402000000000300
+2020-07-30 14:33:07 INFO  BaseDecoder:312 - BITFIELD11: 000000000439
+2020-07-30 14:33:07 INFO  BaseDecoder:312 - BITFIELD12: 20200730015338
+2020-07-30 14:33:07 INFO  BaseDecoder:312 - BITFIELD22: 08000000000000000000000000000000
+2020-07-30 14:33:07 INFO  BaseDecoder:312 - BITFIELD24: 100
+2020-07-30 14:33:07 INFO  BaseDecoder:312 - BITFIELD26: 5541
+2020-07-30 14:33:07 INFO  BaseDecoder:312 - BITFIELD27: 580000000000000000000000000000000000000000000000000000
+2020-07-30 14:33:07 INFO  BaseDecoder:312 - BITFIELD35: 374761739001010010=22122011143804489000
+2020-07-30 14:33:07 INFO  BaseDecoder:312 - BITFIELD41: 01              
+2020-07-30 14:33:07 INFO  BaseDecoder:312 - BITFIELD42: 101234567890
+2020-07-30 14:33:07 INFO  BaseDecoder:314 - --------------------------------------------------------------------------------------------------------------
+2020-07-30 14:33:16 DEBUG BaseResponseGenerator:167 - BITFIELD3:003000 added to the response bitfield map
+2020-07-30 14:33:16 DEBUG BaseResponseGenerator:167 - BITFIELD4:8402000000000300 added to the response bitfield map
+2020-07-30 14:33:16 DEBUG BaseResponseGenerator:167 - BITFIELD7:null added to the response bitfield map
+2020-07-30 14:33:16 DEBUG BaseResponseGenerator:167 - BITFIELD11:000000000439 added to the response bitfield map
+2020-07-30 14:33:16 DEBUG BaseResponseGenerator:167 - BITFIELD12:20200730015338 added to the response bitfield map
+2020-07-30 14:33:16 DEBUG BaseResponseGenerator:167 - BITFIELD39:null added to the response bitfield map
+2020-07-30 14:33:16 DEBUG BaseResponseGenerator:167 - BITFIELD41:01               added to the response bitfield map
+2020-07-30 14:33:16 DEBUG BaseResponseGenerator:167 - BITFIELD42:101234567890 added to the response bitfield map
+2020-07-30 14:33:18 DEBUG X9Encoder:25 - Starting the encoding of response packet
+2020-07-30 14:33:18 DEBUG BaseEncoder:105 - Trying to generate the bitfield values
+2020-07-30 14:33:18 DEBUG BaseEncoder:108 - Generating the value of BITFIELD3
+2020-07-30 14:33:18 DEBUG BaseEncoder:118 - Value of BITFIELD3, 003000 was added to the response string
+2020-07-30 14:33:18 DEBUG BaseEncoder:108 - Generating the value of BITFIELD4
+2020-07-30 14:33:18 DEBUG BaseEncoder:118 - Value of BITFIELD4, 8402000000000300 was added to the response string
+2020-07-30 14:33:18 DEBUG BaseEncoder:108 - Generating the value of BITFIELD7
+2020-07-30 14:33:18 DEBUG BaseEncoder:118 - Value of BITFIELD7, 0730023316 was added to the response string
+2020-07-30 14:33:18 DEBUG BaseEncoder:108 - Generating the value of BITFIELD11
+2020-07-30 14:33:18 DEBUG BaseEncoder:118 - Value of BITFIELD11, 000000000439 was added to the response string
+2020-07-30 14:33:18 DEBUG BaseEncoder:108 - Generating the value of BITFIELD12
+2020-07-30 14:33:18 DEBUG BaseEncoder:118 - Value of BITFIELD12, 20200730015338 was added to the response string
+2020-07-30 14:33:18 DEBUG BaseEncoder:108 - Generating the value of BITFIELD38
+2020-07-30 14:33:18 DEBUG BaseEncoder:118 - Value of BITFIELD38, 123456 was added to the response string
+2020-07-30 14:33:18 DEBUG BaseEncoder:108 - Generating the value of BITFIELD39
+2020-07-30 14:33:18 DEBUG BaseEncoder:118 - Value of BITFIELD39, 0000 was added to the response string
+2020-07-30 14:33:18 DEBUG BaseEncoder:108 - Generating the value of BITFIELD41
+2020-07-30 14:33:18 DEBUG BaseEncoder:118 - Value of BITFIELD41, 01               was added to the response string
+2020-07-30 14:33:18 DEBUG BaseEncoder:108 - Generating the value of BITFIELD42
+2020-07-30 14:33:18 DEBUG BaseEncoder:124 - Value of BITFIELD42 101234567890 was added to the response string
+2020-07-30 14:33:18 DEBUG Converter:125 - Trying to convert ascii to hex: 2110
+2020-07-30 14:33:18 DEBUG Converter:20 - Trying to add spaces to the string 32313130
+2020-07-30 14:33:18 DEBUG Converter:25 - After adding spaces : 32 31 31 30
+2020-07-30 14:33:18 DEBUG Converter:140 - Ascii Value 2110 was converted to hex value 32 31 31 30
+2020-07-30 14:33:18 DEBUG Converter:125 - Trying to convert ascii to hex: 
+2020-07-30 14:33:18 DEBUG Converter:20 - Trying to add spaces to the string 
+2020-07-30 14:33:18 DEBUG Converter:25 - After adding spaces : 
+2020-07-30 14:33:18 DEBUG Converter:140 - Ascii Value  was converted to hex value 
+2020-07-30 14:33:18 DEBUG Converter:154 - Trying to convert the binary value to hex: 00110010 00110000 00000000 00000000 00000110 11000000 00000000 00000000 
+2020-07-30 14:33:18 DEBUG Converter:173 - Binary value 00110010 00110000 00000000 00000000 00000110 11000000 00000000 00000000  was converted to hex value 32 30 00 00 06 C0 00 00
+2020-07-30 14:33:18 DEBUG Converter:125 - Trying to convert ascii to hex: 0030008402000000000300073002331600000000043920200730015338123456000001              101234567890
+2020-07-30 14:33:18 DEBUG Converter:20 - Trying to add spaces to the string 303033303030383430323030303030303030303330303037333030323333313630303030303030303034333932303230303733303031353333383132333435363030303030312020202020202020202020202020313031323334353637383930
+2020-07-30 14:33:18 DEBUG Converter:25 - After adding spaces : 30 30 33 30 30 30 38 34 30 32 30 30 30 30 30 30 30 30 30 33 30 30 30 37 33 30 30 32 33 33 31 36 30 30 30 30 30 30 30 30 30 34 33 39 32 30 32 30 30 37 33 30 30 31 35 33 33 38 31 32 33 34 35 36 30 30 30 30 30 31 20 20 20 20 20 20 20 20 20 20 20 20 20 20 31 30 31 32 33 34 35 36 37 38 39 30
+2020-07-30 14:33:18 DEBUG Converter:140 - Ascii Value 0030008402000000000300073002331600000000043920200730015338123456000001              101234567890 was converted to hex value 30 30 33 30 30 30 38 34 30 32 30 30 30 30 30 30 30 30 30 33 30 30 30 37 33 30 30 32 33 33 31 36 30 30 30 30 30 30 30 30 30 34 33 39 32 30 32 30 30 37 33 30 30 31 35 33 33 38 31 32 33 34 35 36 30 30 30 30 30 31 20 20 20 20 20 20 20 20 20 20 20 20 20 20 31 30 31 32 33 34 35 36 37 38 39 30
+2020-07-30 14:33:18 DEBUG BaseDecoder:50 - Starting the decoding of packet
+2020-07-30 14:33:18 DEBUG X9Decoder:29 - X9 doesnt have header, so the value is set as empty value
+2020-07-30 14:33:18 DEBUG Converter:75 - Trying to convert hex to ASCII: 32313130
+2020-07-30 14:33:18 DEBUG Converter:20 - Trying to add spaces to the string 32313130
+2020-07-30 14:33:18 DEBUG Converter:25 - After adding spaces : 32 31 31 30
+2020-07-30 14:33:18 DEBUG Converter:84 - Converted value: 2110
+2020-07-30 14:33:18 DEBUG X9Decoder:43 - MTI is set as 2110
+2020-07-30 14:33:18 DEBUG Converter:95 - Trying to convert hex to binary: 3230000006C00000
+2020-07-30 14:33:18 DEBUG Converter:20 - Trying to add spaces to the string 3230000006C00000
+2020-07-30 14:33:18 DEBUG Converter:25 - After adding spaces : 32 30 00 00 06 C0 00 00
+2020-07-30 14:33:18 DEBUG Converter:114 - Converted Value: 0011001000110000000000000000000000000110110000000000000000000000
+2020-07-30 14:33:18 DEBUG BaseDecoder:109 - Primary bitmap has been set as 3230000006C00000
+2020-07-30 14:33:18 DEBUG BaseDecoder:152 - Consolidated bitmap is set as 0011001000110000000000000000000000000110110000000000000000000000
+2020-07-30 14:33:18 DEBUG BaseDecoder:165 - Trying to identify the bitfields with values
+2020-07-30 14:33:18 DEBUG X9Decoder:58 - Trying to add BITFIELD3 and its values to the map
+2020-07-30 14:33:18 DEBUG Converter:75 - Trying to convert hex to ASCII: 303033303030
+2020-07-30 14:33:18 DEBUG Converter:20 - Trying to add spaces to the string 303033303030
+2020-07-30 14:33:18 DEBUG Converter:25 - After adding spaces : 30 30 33 30 30 30
+2020-07-30 14:33:18 DEBUG Converter:84 - Converted value: 003000
+2020-07-30 14:33:18 DEBUG X9Decoder:69 - BITFIELD3 with value 003000 successfully added
+2020-07-30 14:33:18 DEBUG X9Decoder:58 - Trying to add BITFIELD4 and its values to the map
+2020-07-30 14:33:18 DEBUG Converter:75 - Trying to convert hex to ASCII: 38343032303030303030303030333030
+2020-07-30 14:33:18 DEBUG Converter:20 - Trying to add spaces to the string 38343032303030303030303030333030
+2020-07-30 14:33:18 DEBUG Converter:25 - After adding spaces : 38 34 30 32 30 30 30 30 30 30 30 30 30 33 30 30
+2020-07-30 14:33:18 DEBUG Converter:84 - Converted value: 8402000000000300
+2020-07-30 14:33:18 DEBUG X9Decoder:69 - BITFIELD4 with value 8402000000000300 successfully added
+2020-07-30 14:33:18 DEBUG X9Decoder:58 - Trying to add BITFIELD7 and its values to the map
+2020-07-30 14:33:18 DEBUG Converter:75 - Trying to convert hex to ASCII: 30373330303233333136
+2020-07-30 14:33:18 DEBUG Converter:20 - Trying to add spaces to the string 30373330303233333136
+2020-07-30 14:33:18 DEBUG Converter:25 - After adding spaces : 30 37 33 30 30 32 33 33 31 36
+2020-07-30 14:33:18 DEBUG Converter:84 - Converted value: 0730023316
+2020-07-30 14:33:18 DEBUG X9Decoder:69 - BITFIELD7 with value 0730023316 successfully added
+2020-07-30 14:33:18 DEBUG X9Decoder:58 - Trying to add BITFIELD11 and its values to the map
+2020-07-30 14:33:18 DEBUG Converter:75 - Trying to convert hex to ASCII: 303030303030303030343339
+2020-07-30 14:33:18 DEBUG Converter:20 - Trying to add spaces to the string 303030303030303030343339
+2020-07-30 14:33:18 DEBUG Converter:25 - After adding spaces : 30 30 30 30 30 30 30 30 30 34 33 39
+2020-07-30 14:33:18 DEBUG Converter:84 - Converted value: 000000000439
+2020-07-30 14:33:18 DEBUG X9Decoder:69 - BITFIELD11 with value 000000000439 successfully added
+2020-07-30 14:33:18 DEBUG X9Decoder:58 - Trying to add BITFIELD12 and its values to the map
+2020-07-30 14:33:18 DEBUG Converter:75 - Trying to convert hex to ASCII: 3230323030373330303135333338
+2020-07-30 14:33:18 DEBUG Converter:20 - Trying to add spaces to the string 3230323030373330303135333338
+2020-07-30 14:33:18 DEBUG Converter:25 - After adding spaces : 32 30 32 30 30 37 33 30 30 31 35 33 33 38
+2020-07-30 14:33:18 DEBUG Converter:84 - Converted value: 20200730015338
+2020-07-30 14:33:18 DEBUG X9Decoder:69 - BITFIELD12 with value 20200730015338 successfully added
+2020-07-30 14:33:18 DEBUG X9Decoder:58 - Trying to add BITFIELD38 and its values to the map
+2020-07-30 14:33:18 DEBUG Converter:75 - Trying to convert hex to ASCII: 313233343536
+2020-07-30 14:33:18 DEBUG Converter:20 - Trying to add spaces to the string 313233343536
+2020-07-30 14:33:18 DEBUG Converter:25 - After adding spaces : 31 32 33 34 35 36
+2020-07-30 14:33:18 DEBUG Converter:84 - Converted value: 123456
+2020-07-30 14:33:18 DEBUG X9Decoder:69 - BITFIELD38 with value 123456 successfully added
+2020-07-30 14:33:18 DEBUG X9Decoder:58 - Trying to add BITFIELD39 and its values to the map
+2020-07-30 14:33:18 DEBUG Converter:75 - Trying to convert hex to ASCII: 30303030
+2020-07-30 14:33:18 DEBUG Converter:20 - Trying to add spaces to the string 30303030
+2020-07-30 14:33:18 DEBUG Converter:25 - After adding spaces : 30 30 30 30
+2020-07-30 14:33:18 DEBUG Converter:84 - Converted value: 0000
+2020-07-30 14:33:18 DEBUG X9Decoder:69 - BITFIELD39 with value 0000 successfully added
+2020-07-30 14:33:18 DEBUG X9Decoder:58 - Trying to add BITFIELD41 and its values to the map
+2020-07-30 14:33:18 DEBUG Converter:75 - Trying to convert hex to ASCII: 30312020202020202020202020202020
+2020-07-30 14:33:18 DEBUG Converter:20 - Trying to add spaces to the string 30312020202020202020202020202020
+2020-07-30 14:33:18 DEBUG Converter:25 - After adding spaces : 30 31 20 20 20 20 20 20 20 20 20 20 20 20 20 20
+2020-07-30 14:33:18 DEBUG Converter:84 - Converted value: 01              
+2020-07-30 14:33:18 DEBUG X9Decoder:69 - BITFIELD41 with value 01               successfully added
+2020-07-30 14:33:18 DEBUG X9Decoder:58 - Trying to add BITFIELD42 and its values to the map
+2020-07-30 14:33:18 DEBUG Converter:75 - Trying to convert hex to ASCII: 3130
+2020-07-30 14:33:18 DEBUG Converter:20 - Trying to add spaces to the string 3130
+2020-07-30 14:33:18 DEBUG Converter:25 - After adding spaces : 31 30
+2020-07-30 14:33:18 DEBUG Converter:84 - Converted value: 10
+2020-07-30 14:33:18 DEBUG Converter:75 - Trying to convert hex to ASCII: 31323334353637383930
+2020-07-30 14:33:18 DEBUG Converter:20 - Trying to add spaces to the string 31323334353637383930
+2020-07-30 14:33:18 DEBUG Converter:25 - After adding spaces : 31 32 33 34 35 36 37 38 39 30
+2020-07-30 14:33:18 DEBUG Converter:84 - Converted value: 1234567890
+2020-07-30 14:33:18 DEBUG X9Decoder:88 - BITFIELD42 with value 101234567890 successfully added
+2020-07-30 14:33:18 INFO  BaseResponseGenerator:95 - Response Packet
+2020-07-30 14:33:18 INFO  BaseDecoder:306 - --------------------------------------------------------------------------------------------------------------
+2020-07-30 14:33:18 INFO  BaseDecoder:309 - Header: 
+2020-07-30 14:33:18 INFO  BaseDecoder:310 - MTI: 2110
+2020-07-30 14:33:18 INFO  BaseDecoder:312 - BITFIELD3: 003000
+2020-07-30 14:33:18 INFO  BaseDecoder:312 - BITFIELD4: 8402000000000300
+2020-07-30 14:33:18 INFO  BaseDecoder:312 - BITFIELD7: 0730023316
+2020-07-30 14:33:18 INFO  BaseDecoder:312 - BITFIELD11: 000000000439
+2020-07-30 14:33:18 INFO  BaseDecoder:312 - BITFIELD12: 20200730015338
+2020-07-30 14:33:18 INFO  BaseDecoder:312 - BITFIELD38: 123456
+2020-07-30 14:33:18 INFO  BaseDecoder:312 - BITFIELD39: 0000
+2020-07-30 14:33:18 INFO  BaseDecoder:312 - BITFIELD41: 01              
+2020-07-30 14:33:18 INFO  BaseDecoder:312 - BITFIELD42: 101234567890
+2020-07-30 14:33:18 INFO  BaseDecoder:314 - --------------------------------------------------------------------------------------------------------------
+2020-07-30 14:33:18 DEBUG Converter:75 - Trying to convert hex to ASCII: 323131303230000006C00000303033303030383430323030303030303030303330303037333030323333313630303030303030303034333932303230303733303031353333383132333435363030303030312020202020202020202020202020313031323334353637383930
+2020-07-30 14:33:18 DEBUG Converter:20 - Trying to add spaces to the string 323131303230000006C00000303033303030383430323030303030303030303330303037333030323333313630303030303030303034333932303230303733303031353333383132333435363030303030312020202020202020202020202020313031323334353637383930
+2020-07-30 14:33:18 DEBUG Converter:25 - After adding spaces : 32 31 31 30 32 30 00 00 06 C0 00 00 30 30 33 30 30 30 38 34 30 32 30 30 30 30 30 30 30 30 30 33 30 30 30 37 33 30 30 32 33 33 31 36 30 30 30 30 30 30 30 30 30 34 33 39 32 30 32 30 30 37 33 30 30 31 35 33 33 38 31 32 33 34 35 36 30 30 30 30 30 31 20 20 20 20 20 20 20 20 20 20 20 20 20 20 31 30 31 32 33 34 35 36 37 38 39 30
+2020-07-30 14:33:18 DEBUG Converter:84 - Converted value: 211020  À  0030008402000000000300073002331600000000043920200730015338123456000001              101234567890
+2020-07-30 14:33:18 DEBUG BaseSocketDataProcessor:128 - 323131303230000006C00000303033303030383430323030303030303030303330303037333030323333313630303030303030303034333932303230303733303031353333383132333435363030303030312020202020202020202020202020313031323334353637383930
+2020-07-30 14:33:18 INFO  BaseSocketDataProcessor:64 - *************************************************************************************************
+2020-07-30 14:33:18 INFO  BaseSocketDataProcessor:66 -                                    End of Transaction
+2020-07-30 14:33:18 INFO  BaseSocketDataProcessor:67 - *************************************************************************************************
+2020-07-30 17:48:51 INFO  BaseSocketDataProcessor:45 - Client /127.0.0.1:65096 is connected
+2020-07-30 17:48:51 INFO  BaseSocketDataProcessor:47 - *************************************************************************************************
+2020-07-30 17:48:51 INFO  BaseSocketDataProcessor:49 -                                   Start of Transaction
+2020-07-30 17:48:51 INFO  BaseSocketDataProcessor:50 - *************************************************************************************************
+2020-07-30 17:48:51 DEBUG BaseSocketDataProcessor:104 - 323130303030056020c0000030303330303038343032303030303030303030333030303030303030303030343339323032303037333030313533333808000000000000000000000000000000313030353534315800000000000000000000000000000000000000000000000000003337343736313733393030313031303031303d3232313232303131313433383034343839303030303120202020202020202020202020203130313233343536373839300000
+2020-07-30 17:48:51 DEBUG BaseDecoder:50 - Starting the decoding of packet
+2020-07-30 17:48:51 DEBUG X9Decoder:29 - X9 doesnt have header, so the value is set as empty value
+2020-07-30 17:48:51 DEBUG Converter:75 - Trying to convert hex to ASCII: 32313030
+2020-07-30 17:48:51 DEBUG Converter:20 - Trying to add spaces to the string 32313030
+2020-07-30 17:48:51 DEBUG Converter:25 - After adding spaces : 32 31 30 30
+2020-07-30 17:48:51 DEBUG Converter:84 - Converted value: 2100
+2020-07-30 17:48:51 DEBUG X9Decoder:43 - MTI is set as 2100
+2020-07-30 17:48:51 DEBUG Converter:95 - Trying to convert hex to binary: 3030056020c00000
+2020-07-30 17:48:51 DEBUG Converter:20 - Trying to add spaces to the string 3030056020c00000
+2020-07-30 17:48:51 DEBUG Converter:25 - After adding spaces : 30 30 05 60 20 c0 00 00
+2020-07-30 17:48:51 DEBUG Converter:114 - Converted Value: 0011000000110000000001010110000000100000110000000000000000000000
+2020-07-30 17:48:51 DEBUG BaseDecoder:109 - Primary bitmap has been set as 3030056020c00000
+2020-07-30 17:48:51 DEBUG BaseDecoder:152 - Consolidated bitmap is set as 0011000000110000000001010110000000100000110000000000000000000000
+2020-07-30 17:48:51 DEBUG BaseDecoder:165 - Trying to identify the bitfields with values
+2020-07-30 17:48:51 DEBUG X9Decoder:58 - Trying to add BITFIELD3 and its values to the map
+2020-07-30 17:48:51 DEBUG Converter:75 - Trying to convert hex to ASCII: 303033303030
+2020-07-30 17:48:51 DEBUG Converter:20 - Trying to add spaces to the string 303033303030
+2020-07-30 17:48:51 DEBUG Converter:25 - After adding spaces : 30 30 33 30 30 30
+2020-07-30 17:48:51 DEBUG Converter:84 - Converted value: 003000
+2020-07-30 17:48:51 DEBUG X9Decoder:69 - BITFIELD3 with value 003000 successfully added
+2020-07-30 17:48:51 DEBUG X9Decoder:58 - Trying to add BITFIELD4 and its values to the map
+2020-07-30 17:48:51 DEBUG Converter:75 - Trying to convert hex to ASCII: 38343032303030303030303030333030
+2020-07-30 17:48:51 DEBUG Converter:20 - Trying to add spaces to the string 38343032303030303030303030333030
+2020-07-30 17:48:51 DEBUG Converter:25 - After adding spaces : 38 34 30 32 30 30 30 30 30 30 30 30 30 33 30 30
+2020-07-30 17:48:51 DEBUG Converter:84 - Converted value: 8402000000000300
+2020-07-30 17:48:51 DEBUG X9Decoder:69 - BITFIELD4 with value 8402000000000300 successfully added
+2020-07-30 17:48:51 DEBUG X9Decoder:58 - Trying to add BITFIELD11 and its values to the map
+2020-07-30 17:48:51 DEBUG Converter:75 - Trying to convert hex to ASCII: 303030303030303030343339
+2020-07-30 17:48:51 DEBUG Converter:20 - Trying to add spaces to the string 303030303030303030343339
+2020-07-30 17:48:51 DEBUG Converter:25 - After adding spaces : 30 30 30 30 30 30 30 30 30 34 33 39
+2020-07-30 17:48:51 DEBUG Converter:84 - Converted value: 000000000439
+2020-07-30 17:48:51 DEBUG X9Decoder:69 - BITFIELD11 with value 000000000439 successfully added
+2020-07-30 17:48:51 DEBUG X9Decoder:58 - Trying to add BITFIELD12 and its values to the map
+2020-07-30 17:48:51 DEBUG Converter:75 - Trying to convert hex to ASCII: 3230323030373330303135333338
+2020-07-30 17:48:51 DEBUG Converter:20 - Trying to add spaces to the string 3230323030373330303135333338
+2020-07-30 17:48:51 DEBUG Converter:25 - After adding spaces : 32 30 32 30 30 37 33 30 30 31 35 33 33 38
+2020-07-30 17:48:51 DEBUG Converter:84 - Converted value: 20200730015338
+2020-07-30 17:48:51 DEBUG X9Decoder:69 - BITFIELD12 with value 20200730015338 successfully added
+2020-07-30 17:48:51 DEBUG X9Decoder:58 - Trying to add BITFIELD22 and its values to the map
+2020-07-30 17:48:51 DEBUG X9Decoder:69 - BITFIELD22 with value 08000000000000000000000000000000 successfully added
+2020-07-30 17:48:51 DEBUG X9Decoder:58 - Trying to add BITFIELD24 and its values to the map
+2020-07-30 17:48:51 DEBUG Converter:75 - Trying to convert hex to ASCII: 313030
+2020-07-30 17:48:51 DEBUG Converter:20 - Trying to add spaces to the string 313030
+2020-07-30 17:48:51 DEBUG Converter:25 - After adding spaces : 31 30 30
+2020-07-30 17:48:51 DEBUG Converter:84 - Converted value: 100
+2020-07-30 17:48:51 DEBUG X9Decoder:69 - BITFIELD24 with value 100 successfully added
+2020-07-30 17:48:51 DEBUG X9Decoder:58 - Trying to add BITFIELD26 and its values to the map
+2020-07-30 17:48:51 DEBUG Converter:75 - Trying to convert hex to ASCII: 35353431
+2020-07-30 17:48:51 DEBUG Converter:20 - Trying to add spaces to the string 35353431
+2020-07-30 17:48:51 DEBUG Converter:25 - After adding spaces : 35 35 34 31
+2020-07-30 17:48:51 DEBUG Converter:84 - Converted value: 5541
+2020-07-30 17:48:51 DEBUG X9Decoder:69 - BITFIELD26 with value 5541 successfully added
+2020-07-30 17:48:51 DEBUG X9Decoder:58 - Trying to add BITFIELD27 and its values to the map
+2020-07-30 17:48:51 DEBUG X9Decoder:69 - BITFIELD27 with value 580000000000000000000000000000000000000000000000000000 successfully added
+2020-07-30 17:48:51 DEBUG X9Decoder:58 - Trying to add BITFIELD35 and its values to the map
+2020-07-30 17:48:51 DEBUG Converter:75 - Trying to convert hex to ASCII: 3337
+2020-07-30 17:48:51 DEBUG Converter:20 - Trying to add spaces to the string 3337
+2020-07-30 17:48:51 DEBUG Converter:25 - After adding spaces : 33 37
+2020-07-30 17:48:51 DEBUG Converter:84 - Converted value: 37
+2020-07-30 17:48:51 DEBUG Converter:75 - Trying to convert hex to ASCII: 343736313733393030313031303031303d3232313232303131313433383034343839303030
+2020-07-30 17:48:51 DEBUG Converter:20 - Trying to add spaces to the string 343736313733393030313031303031303d3232313232303131313433383034343839303030
+2020-07-30 17:48:51 DEBUG Converter:25 - After adding spaces : 34 37 36 31 37 33 39 30 30 31 30 31 30 30 31 30 3d 32 32 31 32 32 30 31 31 31 34 33 38 30 34 34 38 39 30 30 30
+2020-07-30 17:48:51 DEBUG Converter:84 - Converted value: 4761739001010010=22122011143804489000
+2020-07-30 17:48:51 DEBUG X9Decoder:88 - BITFIELD35 with value 374761739001010010=22122011143804489000 successfully added
+2020-07-30 17:48:51 DEBUG X9Decoder:58 - Trying to add BITFIELD41 and its values to the map
+2020-07-30 17:48:51 DEBUG Converter:75 - Trying to convert hex to ASCII: 30312020202020202020202020202020
+2020-07-30 17:48:51 DEBUG Converter:20 - Trying to add spaces to the string 30312020202020202020202020202020
+2020-07-30 17:48:51 DEBUG Converter:25 - After adding spaces : 30 31 20 20 20 20 20 20 20 20 20 20 20 20 20 20
+2020-07-30 17:48:51 DEBUG Converter:84 - Converted value: 01              
+2020-07-30 17:48:51 DEBUG X9Decoder:69 - BITFIELD41 with value 01               successfully added
+2020-07-30 17:48:51 DEBUG X9Decoder:58 - Trying to add BITFIELD42 and its values to the map
+2020-07-30 17:48:51 DEBUG Converter:75 - Trying to convert hex to ASCII: 3130
+2020-07-30 17:48:51 DEBUG Converter:20 - Trying to add spaces to the string 3130
+2020-07-30 17:48:51 DEBUG Converter:25 - After adding spaces : 31 30
+2020-07-30 17:48:51 DEBUG Converter:84 - Converted value: 10
+2020-07-30 17:48:51 DEBUG Converter:75 - Trying to convert hex to ASCII: 31323334353637383930
+2020-07-30 17:48:51 DEBUG Converter:20 - Trying to add spaces to the string 31323334353637383930
+2020-07-30 17:48:51 DEBUG Converter:25 - After adding spaces : 31 32 33 34 35 36 37 38 39 30
+2020-07-30 17:48:51 DEBUG Converter:84 - Converted value: 1234567890
+2020-07-30 17:48:51 DEBUG X9Decoder:88 - BITFIELD42 with value 101234567890 successfully added
+2020-07-30 17:48:51 INFO  BaseResponseGenerator:52 - Request Packet
+2020-07-30 17:48:51 INFO  BaseDecoder:306 - --------------------------------------------------------------------------------------------------------------
+2020-07-30 17:48:51 INFO  BaseDecoder:309 - Header: 
+2020-07-30 17:48:51 INFO  BaseDecoder:310 - MTI: 2100
+2020-07-30 17:48:51 INFO  BaseDecoder:312 - BITFIELD3: 003000
+2020-07-30 17:48:51 INFO  BaseDecoder:312 - BITFIELD4: 8402000000000300
+2020-07-30 17:48:51 INFO  BaseDecoder:312 - BITFIELD11: 000000000439
+2020-07-30 17:48:51 INFO  BaseDecoder:312 - BITFIELD12: 20200730015338
+2020-07-30 17:48:51 INFO  BaseDecoder:312 - BITFIELD22: 08000000000000000000000000000000
+2020-07-30 17:48:51 INFO  BaseDecoder:312 - BITFIELD24: 100
+2020-07-30 17:48:51 INFO  BaseDecoder:312 - BITFIELD26: 5541
+2020-07-30 17:48:51 INFO  BaseDecoder:312 - BITFIELD27: 580000000000000000000000000000000000000000000000000000
+2020-07-30 17:48:51 INFO  BaseDecoder:312 - BITFIELD35: 374761739001010010=22122011143804489000
+2020-07-30 17:48:51 INFO  BaseDecoder:312 - BITFIELD41: 01              
+2020-07-30 17:48:51 INFO  BaseDecoder:312 - BITFIELD42: 101234567890
+2020-07-30 17:48:51 INFO  BaseDecoder:314 - --------------------------------------------------------------------------------------------------------------
+2020-07-30 17:48:58 DEBUG BaseResponseGenerator:167 - BITFIELD3:003000 added to the response bitfield map
+2020-07-30 17:48:58 DEBUG BaseResponseGenerator:167 - BITFIELD4:8402000000000300 added to the response bitfield map
+2020-07-30 17:48:58 DEBUG BaseResponseGenerator:167 - BITFIELD7:null added to the response bitfield map
+2020-07-30 17:48:58 DEBUG BaseResponseGenerator:167 - BITFIELD11:000000000439 added to the response bitfield map
+2020-07-30 17:48:58 DEBUG BaseResponseGenerator:167 - BITFIELD12:20200730015338 added to the response bitfield map
+2020-07-30 17:48:58 DEBUG BaseResponseGenerator:167 - BITFIELD39:null added to the response bitfield map
+2020-07-30 17:48:58 DEBUG BaseResponseGenerator:167 - BITFIELD41:01               added to the response bitfield map
+2020-07-30 17:48:58 DEBUG BaseResponseGenerator:167 - BITFIELD42:101234567890 added to the response bitfield map
+2020-07-30 17:48:58 DEBUG X9Encoder:25 - Starting the encoding of response packet
+2020-07-30 17:48:58 DEBUG BaseEncoder:105 - Trying to generate the bitfield values
+2020-07-30 17:48:58 DEBUG BaseEncoder:108 - Generating the value of BITFIELD3
+2020-07-30 17:48:58 DEBUG BaseEncoder:118 - Value of BITFIELD3, 003000 was added to the response string
+2020-07-30 17:48:58 DEBUG BaseEncoder:108 - Generating the value of BITFIELD4
+2020-07-30 17:48:58 DEBUG BaseEncoder:118 - Value of BITFIELD4, 8402000000000300 was added to the response string
+2020-07-30 17:48:58 DEBUG BaseEncoder:108 - Generating the value of BITFIELD7
+2020-07-30 17:48:58 DEBUG BaseEncoder:118 - Value of BITFIELD7, 0730054858 was added to the response string
+2020-07-30 17:48:58 DEBUG BaseEncoder:108 - Generating the value of BITFIELD11
+2020-07-30 17:48:58 DEBUG BaseEncoder:118 - Value of BITFIELD11, 000000000439 was added to the response string
+2020-07-30 17:48:58 DEBUG BaseEncoder:108 - Generating the value of BITFIELD12
+2020-07-30 17:48:58 DEBUG BaseEncoder:118 - Value of BITFIELD12, 20200730015338 was added to the response string
+2020-07-30 17:48:58 DEBUG BaseEncoder:108 - Generating the value of BITFIELD39
+2020-07-30 17:48:58 DEBUG BaseEncoder:118 - Value of BITFIELD39, 002 was added to the response string
+2020-07-30 17:48:58 DEBUG BaseEncoder:108 - Generating the value of BITFIELD41
+2020-07-30 17:48:58 DEBUG BaseEncoder:118 - Value of BITFIELD41, 01               was added to the response string
+2020-07-30 17:48:58 DEBUG BaseEncoder:108 - Generating the value of BITFIELD42
+2020-07-30 17:48:58 DEBUG BaseEncoder:124 - Value of BITFIELD42 101234567890 was added to the response string
+2020-07-30 17:48:58 DEBUG BaseEncoder:108 - Generating the value of BITFIELD44
+2020-07-30 17:48:58 DEBUG Converter:125 - Trying to convert ascii to hex: 2110
+2020-07-30 17:48:58 DEBUG Converter:20 - Trying to add spaces to the string 32313130
+2020-07-30 17:48:58 DEBUG Converter:25 - After adding spaces : 32 31 31 30
+2020-07-30 17:48:58 DEBUG Converter:140 - Ascii Value 2110 was converted to hex value 32 31 31 30
+2020-07-30 17:48:58 DEBUG Converter:125 - Trying to convert ascii to hex: 
+2020-07-30 17:48:58 DEBUG Converter:20 - Trying to add spaces to the string 
+2020-07-30 17:48:58 DEBUG Converter:25 - After adding spaces : 
+2020-07-30 17:48:58 DEBUG Converter:140 - Ascii Value  was converted to hex value 
+2020-07-30 17:48:58 DEBUG Converter:154 - Trying to convert the binary value to hex: 00110010 00110000 00000000 00000000 00000010 11010000 00000000 00000000 
+2020-07-30 17:48:58 DEBUG Converter:173 - Binary value 00110010 00110000 00000000 00000000 00000010 11010000 00000000 00000000  was converted to hex value 32 30 00 00 02 D0 00 00
+2020-07-30 17:48:58 DEBUG Converter:125 - Trying to convert ascii to hex: 0030008402000000000300073005485800000000043920200730015338002 01              101234567890
+2020-07-30 17:48:58 DEBUG Converter:20 - Trying to add spaces to the string 303033303030383430323030303030303030303330303037333030353438353830303030303030303034333932303230303733303031353333383030322030312020202020202020202020202020313031323334353637383930
+2020-07-30 17:48:58 DEBUG Converter:25 - After adding spaces : 30 30 33 30 30 30 38 34 30 32 30 30 30 30 30 30 30 30 30 33 30 30 30 37 33 30 30 35 34 38 35 38 30 30 30 30 30 30 30 30 30 34 33 39 32 30 32 30 30 37 33 30 30 31 35 33 33 38 30 30 32 20 30 31 20 20 20 20 20 20 20 20 20 20 20 20 20 20 31 30 31 32 33 34 35 36 37 38 39 30
+2020-07-30 17:48:58 DEBUG Converter:140 - Ascii Value 0030008402000000000300073005485800000000043920200730015338002 01              101234567890 was converted to hex value 30 30 33 30 30 30 38 34 30 32 30 30 30 30 30 30 30 30 30 33 30 30 30 37 33 30 30 35 34 38 35 38 30 30 30 30 30 30 30 30 30 34 33 39 32 30 32 30 30 37 33 30 30 31 35 33 33 38 30 30 32 20 30 31 20 20 20 20 20 20 20 20 20 20 20 20 20 20 31 30 31 32 33 34 35 36 37 38 39 30
+2020-07-30 17:48:58 DEBUG BaseDecoder:50 - Starting the decoding of packet
+2020-07-30 17:48:58 DEBUG X9Decoder:29 - X9 doesnt have header, so the value is set as empty value
+2020-07-30 17:48:58 DEBUG Converter:75 - Trying to convert hex to ASCII: 32313130
+2020-07-30 17:48:58 DEBUG Converter:20 - Trying to add spaces to the string 32313130
+2020-07-30 17:48:58 DEBUG Converter:25 - After adding spaces : 32 31 31 30
+2020-07-30 17:48:58 DEBUG Converter:84 - Converted value: 2110
+2020-07-30 17:48:58 DEBUG X9Decoder:43 - MTI is set as 2110
+2020-07-30 17:48:58 DEBUG Converter:95 - Trying to convert hex to binary: 3230000002D00000
+2020-07-30 17:48:58 DEBUG Converter:20 - Trying to add spaces to the string 3230000002D00000
+2020-07-30 17:48:58 DEBUG Converter:25 - After adding spaces : 32 30 00 00 02 D0 00 00
+2020-07-30 17:48:58 DEBUG Converter:114 - Converted Value: 0011001000110000000000000000000000000010110100000000000000000000
+2020-07-30 17:48:58 DEBUG BaseDecoder:109 - Primary bitmap has been set as 3230000002D00000
+2020-07-30 17:48:58 DEBUG BaseDecoder:152 - Consolidated bitmap is set as 0011001000110000000000000000000000000010110100000000000000000000
+2020-07-30 17:48:58 DEBUG BaseDecoder:165 - Trying to identify the bitfields with values
+2020-07-30 17:48:58 DEBUG X9Decoder:58 - Trying to add BITFIELD3 and its values to the map
+2020-07-30 17:48:58 DEBUG Converter:75 - Trying to convert hex to ASCII: 303033303030
+2020-07-30 17:48:58 DEBUG Converter:20 - Trying to add spaces to the string 303033303030
+2020-07-30 17:48:58 DEBUG Converter:25 - After adding spaces : 30 30 33 30 30 30
+2020-07-30 17:48:58 DEBUG Converter:84 - Converted value: 003000
+2020-07-30 17:48:58 DEBUG X9Decoder:69 - BITFIELD3 with value 003000 successfully added
+2020-07-30 17:48:58 DEBUG X9Decoder:58 - Trying to add BITFIELD4 and its values to the map
+2020-07-30 17:48:58 DEBUG Converter:75 - Trying to convert hex to ASCII: 38343032303030303030303030333030
+2020-07-30 17:48:58 DEBUG Converter:20 - Trying to add spaces to the string 38343032303030303030303030333030
+2020-07-30 17:48:58 DEBUG Converter:25 - After adding spaces : 38 34 30 32 30 30 30 30 30 30 30 30 30 33 30 30
+2020-07-30 17:48:58 DEBUG Converter:84 - Converted value: 8402000000000300
+2020-07-30 17:48:58 DEBUG X9Decoder:69 - BITFIELD4 with value 8402000000000300 successfully added
+2020-07-30 17:48:58 DEBUG X9Decoder:58 - Trying to add BITFIELD7 and its values to the map
+2020-07-30 17:48:58 DEBUG Converter:75 - Trying to convert hex to ASCII: 30373330303534383538
+2020-07-30 17:48:58 DEBUG Converter:20 - Trying to add spaces to the string 30373330303534383538
+2020-07-30 17:48:58 DEBUG Converter:25 - After adding spaces : 30 37 33 30 30 35 34 38 35 38
+2020-07-30 17:48:58 DEBUG Converter:84 - Converted value: 0730054858
+2020-07-30 17:48:58 DEBUG X9Decoder:69 - BITFIELD7 with value 0730054858 successfully added
+2020-07-30 17:48:58 DEBUG X9Decoder:58 - Trying to add BITFIELD11 and its values to the map
+2020-07-30 17:48:58 DEBUG Converter:75 - Trying to convert hex to ASCII: 303030303030303030343339
+2020-07-30 17:48:58 DEBUG Converter:20 - Trying to add spaces to the string 303030303030303030343339
+2020-07-30 17:48:58 DEBUG Converter:25 - After adding spaces : 30 30 30 30 30 30 30 30 30 34 33 39
+2020-07-30 17:48:58 DEBUG Converter:84 - Converted value: 000000000439
+2020-07-30 17:48:58 DEBUG X9Decoder:69 - BITFIELD11 with value 000000000439 successfully added
+2020-07-30 17:48:58 DEBUG X9Decoder:58 - Trying to add BITFIELD12 and its values to the map
+2020-07-30 17:48:58 DEBUG Converter:75 - Trying to convert hex to ASCII: 3230323030373330303135333338
+2020-07-30 17:48:58 DEBUG Converter:20 - Trying to add spaces to the string 3230323030373330303135333338
+2020-07-30 17:48:58 DEBUG Converter:25 - After adding spaces : 32 30 32 30 30 37 33 30 30 31 35 33 33 38
+2020-07-30 17:48:58 DEBUG Converter:84 - Converted value: 20200730015338
+2020-07-30 17:48:58 DEBUG X9Decoder:69 - BITFIELD12 with value 20200730015338 successfully added
+2020-07-30 17:48:58 DEBUG X9Decoder:58 - Trying to add BITFIELD39 and its values to the map
+2020-07-30 17:48:58 DEBUG Converter:75 - Trying to convert hex to ASCII: 30303220
+2020-07-30 17:48:58 DEBUG Converter:20 - Trying to add spaces to the string 30303220
+2020-07-30 17:48:58 DEBUG Converter:25 - After adding spaces : 30 30 32 20
+2020-07-30 17:48:58 DEBUG Converter:84 - Converted value: 002 
+2020-07-30 17:48:58 DEBUG X9Decoder:69 - BITFIELD39 with value 002  successfully added
+2020-07-30 17:48:58 DEBUG X9Decoder:58 - Trying to add BITFIELD41 and its values to the map
+2020-07-30 17:48:58 DEBUG Converter:75 - Trying to convert hex to ASCII: 30312020202020202020202020202020
+2020-07-30 17:48:58 DEBUG Converter:20 - Trying to add spaces to the string 30312020202020202020202020202020
+2020-07-30 17:48:58 DEBUG Converter:25 - After adding spaces : 30 31 20 20 20 20 20 20 20 20 20 20 20 20 20 20
+2020-07-30 17:48:58 DEBUG Converter:84 - Converted value: 01              
+2020-07-30 17:48:58 DEBUG X9Decoder:69 - BITFIELD41 with value 01               successfully added
+2020-07-30 17:48:58 DEBUG X9Decoder:58 - Trying to add BITFIELD42 and its values to the map
+2020-07-30 17:48:58 DEBUG Converter:75 - Trying to convert hex to ASCII: 3130
+2020-07-30 17:48:58 DEBUG Converter:20 - Trying to add spaces to the string 3130
+2020-07-30 17:48:58 DEBUG Converter:25 - After adding spaces : 31 30
+2020-07-30 17:48:58 DEBUG Converter:84 - Converted value: 10
+2020-07-30 17:48:58 DEBUG Converter:75 - Trying to convert hex to ASCII: 31323334353637383930
+2020-07-30 17:48:58 DEBUG Converter:20 - Trying to add spaces to the string 31323334353637383930
+2020-07-30 17:48:58 DEBUG Converter:25 - After adding spaces : 31 32 33 34 35 36 37 38 39 30
+2020-07-30 17:48:58 DEBUG Converter:84 - Converted value: 1234567890
+2020-07-30 17:48:58 DEBUG X9Decoder:88 - BITFIELD42 with value 101234567890 successfully added
+2020-07-30 17:48:58 DEBUG X9Decoder:58 - Trying to add BITFIELD44 and its values to the map
+2020-07-30 17:51:32 DEBUG BaseDataLoader:38 - X9Constants.properties file successfully copied into FEPproperty folder
+2020-07-30 17:51:32 DEBUG BaseDataLoader:38 - FCBConstants.properties file successfully copied into FEPproperty folder
+2020-07-30 17:51:32 DEBUG BaseDataLoader:38 - HPSConstants.properties file successfully copied into FEPproperty folder
+2020-07-30 17:51:32 DEBUG BaseDataLoader:38 - IncommConstants.properties file successfully copied into FEPproperty folder
+2020-07-30 17:51:32 DEBUG BaseDataLoader:38 - CommonVariables.properties file successfully copied into FEPproperty folder
+2020-07-30 17:51:37 INFO  ServerInitializer:39 - X9 Server started successfully
+2020-07-30 17:51:49 INFO  BaseSocketDataProcessor:45 - Client /127.0.0.1:65122 is connected
+2020-07-30 17:51:49 INFO  BaseSocketDataProcessor:47 - *************************************************************************************************
+2020-07-30 17:51:49 INFO  BaseSocketDataProcessor:49 -                                   Start of Transaction
+2020-07-30 17:51:49 INFO  BaseSocketDataProcessor:50 - *************************************************************************************************
+2020-07-30 17:51:49 DEBUG BaseSocketDataProcessor:104 - 323130303030056020c0000030303330303038343032303030303030303030333030303030303030303030343339323032303037333030313533333808000000000000000000000000000000313030353534315800000000000000000000000000000000000000000000000000003337343736313733393030313031303031303d3232313232303131313433383034343839303030303120202020202020202020202020203130313233343536373839300000
+2020-07-30 17:51:49 DEBUG BaseDecoder:50 - Starting the decoding of packet
+2020-07-30 17:51:49 DEBUG X9Decoder:29 - X9 doesnt have header, so the value is set as empty value
+2020-07-30 17:51:49 DEBUG Converter:75 - Trying to convert hex to ASCII: 32313030
+2020-07-30 17:51:49 DEBUG Converter:20 - Trying to add spaces to the string 32313030
+2020-07-30 17:51:49 DEBUG Converter:25 - After adding spaces : 32 31 30 30
+2020-07-30 17:51:49 DEBUG Converter:84 - Converted value: 2100
+2020-07-30 17:51:49 DEBUG X9Decoder:43 - MTI is set as 2100
+2020-07-30 17:51:49 DEBUG Converter:95 - Trying to convert hex to binary: 3030056020c00000
+2020-07-30 17:51:49 DEBUG Converter:20 - Trying to add spaces to the string 3030056020c00000
+2020-07-30 17:51:49 DEBUG Converter:25 - After adding spaces : 30 30 05 60 20 c0 00 00
+2020-07-30 17:51:49 DEBUG Converter:114 - Converted Value: 0011000000110000000001010110000000100000110000000000000000000000
+2020-07-30 17:51:49 DEBUG BaseDecoder:109 - Primary bitmap has been set as 3030056020c00000
+2020-07-30 17:51:49 DEBUG BaseDecoder:152 - Consolidated bitmap is set as 0011000000110000000001010110000000100000110000000000000000000000
+2020-07-30 17:51:49 DEBUG BaseDecoder:165 - Trying to identify the bitfields with values
+2020-07-30 17:51:49 DEBUG X9Decoder:58 - Trying to add BITFIELD3 and its values to the map
+2020-07-30 17:51:49 DEBUG Converter:75 - Trying to convert hex to ASCII: 303033303030
+2020-07-30 17:51:49 DEBUG Converter:20 - Trying to add spaces to the string 303033303030
+2020-07-30 17:51:49 DEBUG Converter:25 - After adding spaces : 30 30 33 30 30 30
+2020-07-30 17:51:49 DEBUG Converter:84 - Converted value: 003000
+2020-07-30 17:51:49 DEBUG X9Decoder:69 - BITFIELD3 with value 003000 successfully added
+2020-07-30 17:51:49 DEBUG X9Decoder:58 - Trying to add BITFIELD4 and its values to the map
+2020-07-30 17:51:49 DEBUG Converter:75 - Trying to convert hex to ASCII: 38343032303030303030303030333030
+2020-07-30 17:51:49 DEBUG Converter:20 - Trying to add spaces to the string 38343032303030303030303030333030
+2020-07-30 17:51:49 DEBUG Converter:25 - After adding spaces : 38 34 30 32 30 30 30 30 30 30 30 30 30 33 30 30
+2020-07-30 17:51:49 DEBUG Converter:84 - Converted value: 8402000000000300
+2020-07-30 17:51:49 DEBUG X9Decoder:69 - BITFIELD4 with value 8402000000000300 successfully added
+2020-07-30 17:51:49 DEBUG X9Decoder:58 - Trying to add BITFIELD11 and its values to the map
+2020-07-30 17:51:49 DEBUG Converter:75 - Trying to convert hex to ASCII: 303030303030303030343339
+2020-07-30 17:51:49 DEBUG Converter:20 - Trying to add spaces to the string 303030303030303030343339
+2020-07-30 17:51:49 DEBUG Converter:25 - After adding spaces : 30 30 30 30 30 30 30 30 30 34 33 39
+2020-07-30 17:51:49 DEBUG Converter:84 - Converted value: 000000000439
+2020-07-30 17:51:49 DEBUG X9Decoder:69 - BITFIELD11 with value 000000000439 successfully added
+2020-07-30 17:51:49 DEBUG X9Decoder:58 - Trying to add BITFIELD12 and its values to the map
+2020-07-30 17:51:49 DEBUG Converter:75 - Trying to convert hex to ASCII: 3230323030373330303135333338
+2020-07-30 17:51:49 DEBUG Converter:20 - Trying to add spaces to the string 3230323030373330303135333338
+2020-07-30 17:51:49 DEBUG Converter:25 - After adding spaces : 32 30 32 30 30 37 33 30 30 31 35 33 33 38
+2020-07-30 17:51:49 DEBUG Converter:84 - Converted value: 20200730015338
+2020-07-30 17:51:49 DEBUG X9Decoder:69 - BITFIELD12 with value 20200730015338 successfully added
+2020-07-30 17:51:49 DEBUG X9Decoder:58 - Trying to add BITFIELD22 and its values to the map
+2020-07-30 17:51:49 DEBUG X9Decoder:69 - BITFIELD22 with value 08000000000000000000000000000000 successfully added
+2020-07-30 17:51:49 DEBUG X9Decoder:58 - Trying to add BITFIELD24 and its values to the map
+2020-07-30 17:51:49 DEBUG Converter:75 - Trying to convert hex to ASCII: 313030
+2020-07-30 17:51:49 DEBUG Converter:20 - Trying to add spaces to the string 313030
+2020-07-30 17:51:49 DEBUG Converter:25 - After adding spaces : 31 30 30
+2020-07-30 17:51:49 DEBUG Converter:84 - Converted value: 100
+2020-07-30 17:51:49 DEBUG X9Decoder:69 - BITFIELD24 with value 100 successfully added
+2020-07-30 17:51:49 DEBUG X9Decoder:58 - Trying to add BITFIELD26 and its values to the map
+2020-07-30 17:51:49 DEBUG Converter:75 - Trying to convert hex to ASCII: 35353431
+2020-07-30 17:51:49 DEBUG Converter:20 - Trying to add spaces to the string 35353431
+2020-07-30 17:51:49 DEBUG Converter:25 - After adding spaces : 35 35 34 31
+2020-07-30 17:51:49 DEBUG Converter:84 - Converted value: 5541
+2020-07-30 17:51:49 DEBUG X9Decoder:69 - BITFIELD26 with value 5541 successfully added
+2020-07-30 17:51:49 DEBUG X9Decoder:58 - Trying to add BITFIELD27 and its values to the map
+2020-07-30 17:51:49 DEBUG X9Decoder:69 - BITFIELD27 with value 580000000000000000000000000000000000000000000000000000 successfully added
+2020-07-30 17:51:49 DEBUG X9Decoder:58 - Trying to add BITFIELD35 and its values to the map
+2020-07-30 17:51:49 DEBUG Converter:75 - Trying to convert hex to ASCII: 3337
+2020-07-30 17:51:49 DEBUG Converter:20 - Trying to add spaces to the string 3337
+2020-07-30 17:51:49 DEBUG Converter:25 - After adding spaces : 33 37
+2020-07-30 17:51:49 DEBUG Converter:84 - Converted value: 37
+2020-07-30 17:51:49 DEBUG Converter:75 - Trying to convert hex to ASCII: 343736313733393030313031303031303d3232313232303131313433383034343839303030
+2020-07-30 17:51:49 DEBUG Converter:20 - Trying to add spaces to the string 343736313733393030313031303031303d3232313232303131313433383034343839303030
+2020-07-30 17:51:49 DEBUG Converter:25 - After adding spaces : 34 37 36 31 37 33 39 30 30 31 30 31 30 30 31 30 3d 32 32 31 32 32 30 31 31 31 34 33 38 30 34 34 38 39 30 30 30
+2020-07-30 17:51:49 DEBUG Converter:84 - Converted value: 4761739001010010=22122011143804489000
+2020-07-30 17:51:49 DEBUG X9Decoder:88 - BITFIELD35 with value 374761739001010010=22122011143804489000 successfully added
+2020-07-30 17:51:49 DEBUG X9Decoder:58 - Trying to add BITFIELD41 and its values to the map
+2020-07-30 17:51:49 DEBUG Converter:75 - Trying to convert hex to ASCII: 30312020202020202020202020202020
+2020-07-30 17:51:49 DEBUG Converter:20 - Trying to add spaces to the string 30312020202020202020202020202020
+2020-07-30 17:51:49 DEBUG Converter:25 - After adding spaces : 30 31 20 20 20 20 20 20 20 20 20 20 20 20 20 20
+2020-07-30 17:51:49 DEBUG Converter:84 - Converted value: 01              
+2020-07-30 17:51:49 DEBUG X9Decoder:69 - BITFIELD41 with value 01               successfully added
+2020-07-30 17:51:49 DEBUG X9Decoder:58 - Trying to add BITFIELD42 and its values to the map
+2020-07-30 17:51:49 DEBUG Converter:75 - Trying to convert hex to ASCII: 3130
+2020-07-30 17:51:49 DEBUG Converter:20 - Trying to add spaces to the string 3130
+2020-07-30 17:51:49 DEBUG Converter:25 - After adding spaces : 31 30
+2020-07-30 17:51:49 DEBUG Converter:84 - Converted value: 10
+2020-07-30 17:51:49 DEBUG Converter:75 - Trying to convert hex to ASCII: 31323334353637383930
+2020-07-30 17:51:49 DEBUG Converter:20 - Trying to add spaces to the string 31323334353637383930
+2020-07-30 17:51:49 DEBUG Converter:25 - After adding spaces : 31 32 33 34 35 36 37 38 39 30
+2020-07-30 17:51:49 DEBUG Converter:84 - Converted value: 1234567890
+2020-07-30 17:51:49 DEBUG X9Decoder:88 - BITFIELD42 with value 101234567890 successfully added
+2020-07-30 17:51:49 INFO  BaseResponseGenerator:52 - Request Packet
+2020-07-30 17:51:49 INFO  BaseDecoder:306 - --------------------------------------------------------------------------------------------------------------
+2020-07-30 17:51:49 INFO  BaseDecoder:309 - Header: 
+2020-07-30 17:51:49 INFO  BaseDecoder:310 - MTI: 2100
+2020-07-30 17:51:49 INFO  BaseDecoder:312 - BITFIELD3: 003000
+2020-07-30 17:51:49 INFO  BaseDecoder:312 - BITFIELD4: 8402000000000300
+2020-07-30 17:51:49 INFO  BaseDecoder:312 - BITFIELD11: 000000000439
+2020-07-30 17:51:49 INFO  BaseDecoder:312 - BITFIELD12: 20200730015338
+2020-07-30 17:51:49 INFO  BaseDecoder:312 - BITFIELD22: 08000000000000000000000000000000
+2020-07-30 17:51:49 INFO  BaseDecoder:312 - BITFIELD24: 100
+2020-07-30 17:51:49 INFO  BaseDecoder:312 - BITFIELD26: 5541
+2020-07-30 17:51:49 INFO  BaseDecoder:312 - BITFIELD27: 580000000000000000000000000000000000000000000000000000
+2020-07-30 17:51:49 INFO  BaseDecoder:312 - BITFIELD35: 374761739001010010=22122011143804489000
+2020-07-30 17:51:49 INFO  BaseDecoder:312 - BITFIELD41: 01              
+2020-07-30 17:51:49 INFO  BaseDecoder:312 - BITFIELD42: 101234567890
+2020-07-30 17:51:49 INFO  BaseDecoder:314 - --------------------------------------------------------------------------------------------------------------
+2020-07-30 17:51:49 DEBUG BaseResponseGenerator:167 - BITFIELD3:003000 added to the response bitfield map
+2020-07-30 17:51:49 DEBUG BaseResponseGenerator:167 - BITFIELD4:8402000000000300 added to the response bitfield map
+2020-07-30 17:51:49 DEBUG BaseResponseGenerator:167 - BITFIELD7:null added to the response bitfield map
+2020-07-30 17:51:49 DEBUG BaseResponseGenerator:167 - BITFIELD11:000000000439 added to the response bitfield map
+2020-07-30 17:51:49 DEBUG BaseResponseGenerator:167 - BITFIELD12:20200730015338 added to the response bitfield map
+2020-07-30 17:51:49 DEBUG BaseResponseGenerator:167 - BITFIELD39:null added to the response bitfield map
+2020-07-30 17:51:49 DEBUG BaseResponseGenerator:167 - BITFIELD41:01               added to the response bitfield map
+2020-07-30 17:51:49 DEBUG BaseResponseGenerator:167 - BITFIELD42:101234567890 added to the response bitfield map
+2020-07-30 17:51:52 DEBUG X9Encoder:25 - Starting the encoding of response packet
+2020-07-30 17:51:52 DEBUG BaseEncoder:105 - Trying to generate the bitfield values
+2020-07-30 17:51:52 DEBUG BaseEncoder:108 - Generating the value of BITFIELD3
+2020-07-30 17:51:52 DEBUG BaseEncoder:118 - Value of BITFIELD3, 003000 was added to the response string
+2020-07-30 17:51:52 DEBUG BaseEncoder:108 - Generating the value of BITFIELD4
+2020-07-30 17:51:52 DEBUG BaseEncoder:118 - Value of BITFIELD4, 8402000000000300 was added to the response string
+2020-07-30 17:51:52 DEBUG BaseEncoder:108 - Generating the value of BITFIELD7
+2020-07-30 17:51:52 DEBUG BaseEncoder:118 - Value of BITFIELD7, 0730055149 was added to the response string
+2020-07-30 17:51:52 DEBUG BaseEncoder:108 - Generating the value of BITFIELD11
+2020-07-30 17:51:52 DEBUG BaseEncoder:118 - Value of BITFIELD11, 000000000439 was added to the response string
+2020-07-30 17:51:52 DEBUG BaseEncoder:108 - Generating the value of BITFIELD12
+2020-07-30 17:51:52 DEBUG BaseEncoder:118 - Value of BITFIELD12, 20200730015338 was added to the response string
+2020-07-30 17:51:52 DEBUG BaseEncoder:108 - Generating the value of BITFIELD38
+2020-07-30 17:51:52 DEBUG BaseEncoder:118 - Value of BITFIELD38, 123456 was added to the response string
+2020-07-30 17:51:52 DEBUG BaseEncoder:108 - Generating the value of BITFIELD39
+2020-07-30 17:51:52 DEBUG BaseEncoder:118 - Value of BITFIELD39, 0000 was added to the response string
+2020-07-30 17:51:52 DEBUG BaseEncoder:108 - Generating the value of BITFIELD41
+2020-07-30 17:51:52 DEBUG BaseEncoder:118 - Value of BITFIELD41, 01               was added to the response string
+2020-07-30 17:51:52 DEBUG BaseEncoder:108 - Generating the value of BITFIELD42
+2020-07-30 17:51:52 DEBUG BaseEncoder:124 - Value of BITFIELD42 101234567890 was added to the response string
+2020-07-30 17:51:52 DEBUG Converter:125 - Trying to convert ascii to hex: 2110
+2020-07-30 17:51:52 DEBUG Converter:20 - Trying to add spaces to the string 32313130
+2020-07-30 17:51:52 DEBUG Converter:25 - After adding spaces : 32 31 31 30
+2020-07-30 17:51:52 DEBUG Converter:140 - Ascii Value 2110 was converted to hex value 32 31 31 30
+2020-07-30 17:51:52 DEBUG Converter:125 - Trying to convert ascii to hex: 
+2020-07-30 17:51:52 DEBUG Converter:20 - Trying to add spaces to the string 
+2020-07-30 17:51:52 DEBUG Converter:25 - After adding spaces : 
+2020-07-30 17:51:52 DEBUG Converter:140 - Ascii Value  was converted to hex value 
+2020-07-30 17:51:52 DEBUG Converter:154 - Trying to convert the binary value to hex: 00110010 00110000 00000000 00000000 00000110 11000000 00000000 00000000 
+2020-07-30 17:51:52 DEBUG Converter:173 - Binary value 00110010 00110000 00000000 00000000 00000110 11000000 00000000 00000000  was converted to hex value 32 30 00 00 06 C0 00 00
+2020-07-30 17:51:52 DEBUG Converter:125 - Trying to convert ascii to hex: 0030008402000000000300073005514900000000043920200730015338123456000001              101234567890
+2020-07-30 17:51:52 DEBUG Converter:20 - Trying to add spaces to the string 303033303030383430323030303030303030303330303037333030353531343930303030303030303034333932303230303733303031353333383132333435363030303030312020202020202020202020202020313031323334353637383930
+2020-07-30 17:51:52 DEBUG Converter:25 - After adding spaces : 30 30 33 30 30 30 38 34 30 32 30 30 30 30 30 30 30 30 30 33 30 30 30 37 33 30 30 35 35 31 34 39 30 30 30 30 30 30 30 30 30 34 33 39 32 30 32 30 30 37 33 30 30 31 35 33 33 38 31 32 33 34 35 36 30 30 30 30 30 31 20 20 20 20 20 20 20 20 20 20 20 20 20 20 31 30 31 32 33 34 35 36 37 38 39 30
+2020-07-30 17:51:52 DEBUG Converter:140 - Ascii Value 0030008402000000000300073005514900000000043920200730015338123456000001              101234567890 was converted to hex value 30 30 33 30 30 30 38 34 30 32 30 30 30 30 30 30 30 30 30 33 30 30 30 37 33 30 30 35 35 31 34 39 30 30 30 30 30 30 30 30 30 34 33 39 32 30 32 30 30 37 33 30 30 31 35 33 33 38 31 32 33 34 35 36 30 30 30 30 30 31 20 20 20 20 20 20 20 20 20 20 20 20 20 20 31 30 31 32 33 34 35 36 37 38 39 30
+2020-07-30 17:51:52 DEBUG BaseDecoder:50 - Starting the decoding of packet
+2020-07-30 17:51:52 DEBUG X9Decoder:29 - X9 doesnt have header, so the value is set as empty value
+2020-07-30 17:51:52 DEBUG Converter:75 - Trying to convert hex to ASCII: 32313130
+2020-07-30 17:51:52 DEBUG Converter:20 - Trying to add spaces to the string 32313130
+2020-07-30 17:51:52 DEBUG Converter:25 - After adding spaces : 32 31 31 30
+2020-07-30 17:51:52 DEBUG Converter:84 - Converted value: 2110
+2020-07-30 17:51:52 DEBUG X9Decoder:43 - MTI is set as 2110
+2020-07-30 17:51:52 DEBUG Converter:95 - Trying to convert hex to binary: 3230000006C00000
+2020-07-30 17:51:52 DEBUG Converter:20 - Trying to add spaces to the string 3230000006C00000
+2020-07-30 17:51:52 DEBUG Converter:25 - After adding spaces : 32 30 00 00 06 C0 00 00
+2020-07-30 17:51:52 DEBUG Converter:114 - Converted Value: 0011001000110000000000000000000000000110110000000000000000000000
+2020-07-30 17:51:52 DEBUG BaseDecoder:109 - Primary bitmap has been set as 3230000006C00000
+2020-07-30 17:51:52 DEBUG BaseDecoder:152 - Consolidated bitmap is set as 0011001000110000000000000000000000000110110000000000000000000000
+2020-07-30 17:51:52 DEBUG BaseDecoder:165 - Trying to identify the bitfields with values
+2020-07-30 17:51:52 DEBUG X9Decoder:58 - Trying to add BITFIELD3 and its values to the map
+2020-07-30 17:51:52 DEBUG Converter:75 - Trying to convert hex to ASCII: 303033303030
+2020-07-30 17:51:52 DEBUG Converter:20 - Trying to add spaces to the string 303033303030
+2020-07-30 17:51:52 DEBUG Converter:25 - After adding spaces : 30 30 33 30 30 30
+2020-07-30 17:51:52 DEBUG Converter:84 - Converted value: 003000
+2020-07-30 17:51:52 DEBUG X9Decoder:69 - BITFIELD3 with value 003000 successfully added
+2020-07-30 17:51:52 DEBUG X9Decoder:58 - Trying to add BITFIELD4 and its values to the map
+2020-07-30 17:51:52 DEBUG Converter:75 - Trying to convert hex to ASCII: 38343032303030303030303030333030
+2020-07-30 17:51:52 DEBUG Converter:20 - Trying to add spaces to the string 38343032303030303030303030333030
+2020-07-30 17:51:52 DEBUG Converter:25 - After adding spaces : 38 34 30 32 30 30 30 30 30 30 30 30 30 33 30 30
+2020-07-30 17:51:52 DEBUG Converter:84 - Converted value: 8402000000000300
+2020-07-30 17:51:52 DEBUG X9Decoder:69 - BITFIELD4 with value 8402000000000300 successfully added
+2020-07-30 17:51:52 DEBUG X9Decoder:58 - Trying to add BITFIELD7 and its values to the map
+2020-07-30 17:51:52 DEBUG Converter:75 - Trying to convert hex to ASCII: 30373330303535313439
+2020-07-30 17:51:52 DEBUG Converter:20 - Trying to add spaces to the string 30373330303535313439
+2020-07-30 17:51:52 DEBUG Converter:25 - After adding spaces : 30 37 33 30 30 35 35 31 34 39
+2020-07-30 17:51:52 DEBUG Converter:84 - Converted value: 0730055149
+2020-07-30 17:51:52 DEBUG X9Decoder:69 - BITFIELD7 with value 0730055149 successfully added
+2020-07-30 17:51:52 DEBUG X9Decoder:58 - Trying to add BITFIELD11 and its values to the map
+2020-07-30 17:51:52 DEBUG Converter:75 - Trying to convert hex to ASCII: 303030303030303030343339
+2020-07-30 17:51:52 DEBUG Converter:20 - Trying to add spaces to the string 303030303030303030343339
+2020-07-30 17:51:52 DEBUG Converter:25 - After adding spaces : 30 30 30 30 30 30 30 30 30 34 33 39
+2020-07-30 17:51:52 DEBUG Converter:84 - Converted value: 000000000439
+2020-07-30 17:51:52 DEBUG X9Decoder:69 - BITFIELD11 with value 000000000439 successfully added
+2020-07-30 17:51:52 DEBUG X9Decoder:58 - Trying to add BITFIELD12 and its values to the map
+2020-07-30 17:51:52 DEBUG Converter:75 - Trying to convert hex to ASCII: 3230323030373330303135333338
+2020-07-30 17:51:52 DEBUG Converter:20 - Trying to add spaces to the string 3230323030373330303135333338
+2020-07-30 17:51:52 DEBUG Converter:25 - After adding spaces : 32 30 32 30 30 37 33 30 30 31 35 33 33 38
+2020-07-30 17:51:52 DEBUG Converter:84 - Converted value: 20200730015338
+2020-07-30 17:51:52 DEBUG X9Decoder:69 - BITFIELD12 with value 20200730015338 successfully added
+2020-07-30 17:51:52 DEBUG X9Decoder:58 - Trying to add BITFIELD38 and its values to the map
+2020-07-30 17:51:52 DEBUG Converter:75 - Trying to convert hex to ASCII: 313233343536
+2020-07-30 17:51:52 DEBUG Converter:20 - Trying to add spaces to the string 313233343536
+2020-07-30 17:51:52 DEBUG Converter:25 - After adding spaces : 31 32 33 34 35 36
+2020-07-30 17:51:52 DEBUG Converter:84 - Converted value: 123456
+2020-07-30 17:51:52 DEBUG X9Decoder:69 - BITFIELD38 with value 123456 successfully added
+2020-07-30 17:51:52 DEBUG X9Decoder:58 - Trying to add BITFIELD39 and its values to the map
+2020-07-30 17:51:52 DEBUG Converter:75 - Trying to convert hex to ASCII: 30303030
+2020-07-30 17:51:52 DEBUG Converter:20 - Trying to add spaces to the string 30303030
+2020-07-30 17:51:52 DEBUG Converter:25 - After adding spaces : 30 30 30 30
+2020-07-30 17:51:52 DEBUG Converter:84 - Converted value: 0000
+2020-07-30 17:51:52 DEBUG X9Decoder:69 - BITFIELD39 with value 0000 successfully added
+2020-07-30 17:51:52 DEBUG X9Decoder:58 - Trying to add BITFIELD41 and its values to the map
+2020-07-30 17:51:52 DEBUG Converter:75 - Trying to convert hex to ASCII: 30312020202020202020202020202020
+2020-07-30 17:51:52 DEBUG Converter:20 - Trying to add spaces to the string 30312020202020202020202020202020
+2020-07-30 17:51:52 DEBUG Converter:25 - After adding spaces : 30 31 20 20 20 20 20 20 20 20 20 20 20 20 20 20
+2020-07-30 17:51:52 DEBUG Converter:84 - Converted value: 01              
+2020-07-30 17:51:52 DEBUG X9Decoder:69 - BITFIELD41 with value 01               successfully added
+2020-07-30 17:51:52 DEBUG X9Decoder:58 - Trying to add BITFIELD42 and its values to the map
+2020-07-30 17:51:52 DEBUG Converter:75 - Trying to convert hex to ASCII: 3130
+2020-07-30 17:51:52 DEBUG Converter:20 - Trying to add spaces to the string 3130
+2020-07-30 17:51:52 DEBUG Converter:25 - After adding spaces : 31 30
+2020-07-30 17:51:52 DEBUG Converter:84 - Converted value: 10
+2020-07-30 17:51:52 DEBUG Converter:75 - Trying to convert hex to ASCII: 31323334353637383930
+2020-07-30 17:51:52 DEBUG Converter:20 - Trying to add spaces to the string 31323334353637383930
+2020-07-30 17:51:52 DEBUG Converter:25 - After adding spaces : 31 32 33 34 35 36 37 38 39 30
+2020-07-30 17:51:52 DEBUG Converter:84 - Converted value: 1234567890
+2020-07-30 17:51:52 DEBUG X9Decoder:88 - BITFIELD42 with value 101234567890 successfully added
+2020-07-30 17:51:52 INFO  BaseResponseGenerator:95 - Response Packet
+2020-07-30 17:51:52 INFO  BaseDecoder:306 - --------------------------------------------------------------------------------------------------------------
+2020-07-30 17:51:52 INFO  BaseDecoder:309 - Header: 
+2020-07-30 17:51:52 INFO  BaseDecoder:310 - MTI: 2110
+2020-07-30 17:51:52 INFO  BaseDecoder:312 - BITFIELD3: 003000
+2020-07-30 17:51:52 INFO  BaseDecoder:312 - BITFIELD4: 8402000000000300
+2020-07-30 17:51:52 INFO  BaseDecoder:312 - BITFIELD7: 0730055149
+2020-07-30 17:51:52 INFO  BaseDecoder:312 - BITFIELD11: 000000000439
+2020-07-30 17:51:52 INFO  BaseDecoder:312 - BITFIELD12: 20200730015338
+2020-07-30 17:51:52 INFO  BaseDecoder:312 - BITFIELD38: 123456
+2020-07-30 17:51:52 INFO  BaseDecoder:312 - BITFIELD39: 0000
+2020-07-30 17:51:52 INFO  BaseDecoder:312 - BITFIELD41: 01              
+2020-07-30 17:51:52 INFO  BaseDecoder:312 - BITFIELD42: 101234567890
+2020-07-30 17:51:52 INFO  BaseDecoder:314 - --------------------------------------------------------------------------------------------------------------
+2020-07-30 17:51:52 DEBUG Converter:75 - Trying to convert hex to ASCII: 323131303230000006C00000303033303030383430323030303030303030303330303037333030353531343930303030303030303034333932303230303733303031353333383132333435363030303030312020202020202020202020202020313031323334353637383930
+2020-07-30 17:51:52 DEBUG Converter:20 - Trying to add spaces to the string 323131303230000006C00000303033303030383430323030303030303030303330303037333030353531343930303030303030303034333932303230303733303031353333383132333435363030303030312020202020202020202020202020313031323334353637383930
+2020-07-30 17:51:52 DEBUG Converter:25 - After adding spaces : 32 31 31 30 32 30 00 00 06 C0 00 00 30 30 33 30 30 30 38 34 30 32 30 30 30 30 30 30 30 30 30 33 30 30 30 37 33 30 30 35 35 31 34 39 30 30 30 30 30 30 30 30 30 34 33 39 32 30 32 30 30 37 33 30 30 31 35 33 33 38 31 32 33 34 35 36 30 30 30 30 30 31 20 20 20 20 20 20 20 20 20 20 20 20 20 20 31 30 31 32 33 34 35 36 37 38 39 30
+2020-07-30 17:51:52 DEBUG Converter:84 - Converted value: 211020  À  0030008402000000000300073005514900000000043920200730015338123456000001              101234567890
+2020-07-30 17:51:52 DEBUG BaseSocketDataProcessor:128 - 323131303230000006C00000303033303030383430323030303030303030303330303037333030353531343930303030303030303034333932303230303733303031353333383132333435363030303030312020202020202020202020202020313031323334353637383930
+2020-07-30 17:51:52 INFO  BaseSocketDataProcessor:64 - *************************************************************************************************
+2020-07-30 17:51:52 INFO  BaseSocketDataProcessor:66 -                                    End of Transaction
+2020-07-30 17:51:52 INFO  BaseSocketDataProcessor:67 - *************************************************************************************************
+2020-07-30 17:52:56 INFO  BaseSocketDataProcessor:45 - Client /127.0.0.1:64102 is connected
+2020-07-30 17:52:56 INFO  BaseSocketDataProcessor:47 - *************************************************************************************************
+2020-07-30 17:52:56 INFO  BaseSocketDataProcessor:49 -                                   Start of Transaction
+2020-07-30 17:52:56 INFO  BaseSocketDataProcessor:50 - *************************************************************************************************
+2020-07-30 17:52:56 DEBUG BaseSocketDataProcessor:104 - 323130303030056020c0000030303330303038343032303030303030303030333030303030303030303030343339323032303037333030313533333808000000000000000000000000000000313030353534315800000000000000000000000000000000000000000000000000003337343736313733393030313031303031303d3232313232303131313433383034343839303030303120202020202020202020202020203130313233343536373839300000
+2020-07-30 17:52:56 DEBUG BaseDecoder:50 - Starting the decoding of packet
+2020-07-30 17:52:56 DEBUG X9Decoder:29 - X9 doesnt have header, so the value is set as empty value
+2020-07-30 17:52:56 DEBUG Converter:75 - Trying to convert hex to ASCII: 32313030
+2020-07-30 17:52:56 DEBUG Converter:20 - Trying to add spaces to the string 32313030
+2020-07-30 17:52:56 DEBUG Converter:25 - After adding spaces : 32 31 30 30
+2020-07-30 17:52:56 DEBUG Converter:84 - Converted value: 2100
+2020-07-30 17:52:56 DEBUG X9Decoder:43 - MTI is set as 2100
+2020-07-30 17:52:56 DEBUG Converter:95 - Trying to convert hex to binary: 3030056020c00000
+2020-07-30 17:52:56 DEBUG Converter:20 - Trying to add spaces to the string 3030056020c00000
+2020-07-30 17:52:56 DEBUG Converter:25 - After adding spaces : 30 30 05 60 20 c0 00 00
+2020-07-30 17:52:56 DEBUG Converter:114 - Converted Value: 0011000000110000000001010110000000100000110000000000000000000000
+2020-07-30 17:52:56 DEBUG BaseDecoder:109 - Primary bitmap has been set as 3030056020c00000
+2020-07-30 17:52:56 DEBUG BaseDecoder:152 - Consolidated bitmap is set as 0011000000110000000001010110000000100000110000000000000000000000
+2020-07-30 17:52:56 DEBUG BaseDecoder:165 - Trying to identify the bitfields with values
+2020-07-30 17:52:56 DEBUG X9Decoder:58 - Trying to add BITFIELD3 and its values to the map
+2020-07-30 17:52:56 DEBUG Converter:75 - Trying to convert hex to ASCII: 303033303030
+2020-07-30 17:52:56 DEBUG Converter:20 - Trying to add spaces to the string 303033303030
+2020-07-30 17:52:56 DEBUG Converter:25 - After adding spaces : 30 30 33 30 30 30
+2020-07-30 17:52:56 DEBUG Converter:84 - Converted value: 003000
+2020-07-30 17:52:56 DEBUG X9Decoder:69 - BITFIELD3 with value 003000 successfully added
+2020-07-30 17:52:56 DEBUG X9Decoder:58 - Trying to add BITFIELD4 and its values to the map
+2020-07-30 17:52:56 DEBUG Converter:75 - Trying to convert hex to ASCII: 38343032303030303030303030333030
+2020-07-30 17:52:56 DEBUG Converter:20 - Trying to add spaces to the string 38343032303030303030303030333030
+2020-07-30 17:52:56 DEBUG Converter:25 - After adding spaces : 38 34 30 32 30 30 30 30 30 30 30 30 30 33 30 30
+2020-07-30 17:52:56 DEBUG Converter:84 - Converted value: 8402000000000300
+2020-07-30 17:52:56 DEBUG X9Decoder:69 - BITFIELD4 with value 8402000000000300 successfully added
+2020-07-30 17:52:56 DEBUG X9Decoder:58 - Trying to add BITFIELD11 and its values to the map
+2020-07-30 17:52:56 DEBUG Converter:75 - Trying to convert hex to ASCII: 303030303030303030343339
+2020-07-30 17:52:56 DEBUG Converter:20 - Trying to add spaces to the string 303030303030303030343339
+2020-07-30 17:52:56 DEBUG Converter:25 - After adding spaces : 30 30 30 30 30 30 30 30 30 34 33 39
+2020-07-30 17:52:56 DEBUG Converter:84 - Converted value: 000000000439
+2020-07-30 17:52:56 DEBUG X9Decoder:69 - BITFIELD11 with value 000000000439 successfully added
+2020-07-30 17:52:56 DEBUG X9Decoder:58 - Trying to add BITFIELD12 and its values to the map
+2020-07-30 17:52:56 DEBUG Converter:75 - Trying to convert hex to ASCII: 3230323030373330303135333338
+2020-07-30 17:52:56 DEBUG Converter:20 - Trying to add spaces to the string 3230323030373330303135333338
+2020-07-30 17:52:56 DEBUG Converter:25 - After adding spaces : 32 30 32 30 30 37 33 30 30 31 35 33 33 38
+2020-07-30 17:52:56 DEBUG Converter:84 - Converted value: 20200730015338
+2020-07-30 17:52:56 DEBUG X9Decoder:69 - BITFIELD12 with value 20200730015338 successfully added
+2020-07-30 17:52:56 DEBUG X9Decoder:58 - Trying to add BITFIELD22 and its values to the map
+2020-07-30 17:52:56 DEBUG X9Decoder:69 - BITFIELD22 with value 08000000000000000000000000000000 successfully added
+2020-07-30 17:52:56 DEBUG X9Decoder:58 - Trying to add BITFIELD24 and its values to the map
+2020-07-30 17:52:56 DEBUG Converter:75 - Trying to convert hex to ASCII: 313030
+2020-07-30 17:52:56 DEBUG Converter:20 - Trying to add spaces to the string 313030
+2020-07-30 17:52:56 DEBUG Converter:25 - After adding spaces : 31 30 30
+2020-07-30 17:52:56 DEBUG Converter:84 - Converted value: 100
+2020-07-30 17:52:56 DEBUG X9Decoder:69 - BITFIELD24 with value 100 successfully added
+2020-07-30 17:52:56 DEBUG X9Decoder:58 - Trying to add BITFIELD26 and its values to the map
+2020-07-30 17:52:56 DEBUG Converter:75 - Trying to convert hex to ASCII: 35353431
+2020-07-30 17:52:56 DEBUG Converter:20 - Trying to add spaces to the string 35353431
+2020-07-30 17:52:56 DEBUG Converter:25 - After adding spaces : 35 35 34 31
+2020-07-30 17:52:56 DEBUG Converter:84 - Converted value: 5541
+2020-07-30 17:52:56 DEBUG X9Decoder:69 - BITFIELD26 with value 5541 successfully added
+2020-07-30 17:52:56 DEBUG X9Decoder:58 - Trying to add BITFIELD27 and its values to the map
+2020-07-30 17:52:56 DEBUG X9Decoder:69 - BITFIELD27 with value 580000000000000000000000000000000000000000000000000000 successfully added
+2020-07-30 17:52:56 DEBUG X9Decoder:58 - Trying to add BITFIELD35 and its values to the map
+2020-07-30 17:52:56 DEBUG Converter:75 - Trying to convert hex to ASCII: 3337
+2020-07-30 17:52:56 DEBUG Converter:20 - Trying to add spaces to the string 3337
+2020-07-30 17:52:56 DEBUG Converter:25 - After adding spaces : 33 37
+2020-07-30 17:52:56 DEBUG Converter:84 - Converted value: 37
+2020-07-30 17:52:56 DEBUG Converter:75 - Trying to convert hex to ASCII: 343736313733393030313031303031303d3232313232303131313433383034343839303030
+2020-07-30 17:52:56 DEBUG Converter:20 - Trying to add spaces to the string 343736313733393030313031303031303d3232313232303131313433383034343839303030
+2020-07-30 17:52:56 DEBUG Converter:25 - After adding spaces : 34 37 36 31 37 33 39 30 30 31 30 31 30 30 31 30 3d 32 32 31 32 32 30 31 31 31 34 33 38 30 34 34 38 39 30 30 30
+2020-07-30 17:52:56 DEBUG Converter:84 - Converted value: 4761739001010010=22122011143804489000
+2020-07-30 17:52:56 DEBUG X9Decoder:88 - BITFIELD35 with value 374761739001010010=22122011143804489000 successfully added
+2020-07-30 17:52:56 DEBUG X9Decoder:58 - Trying to add BITFIELD41 and its values to the map
+2020-07-30 17:52:56 DEBUG Converter:75 - Trying to convert hex to ASCII: 30312020202020202020202020202020
+2020-07-30 17:52:56 DEBUG Converter:20 - Trying to add spaces to the string 30312020202020202020202020202020
+2020-07-30 17:52:56 DEBUG Converter:25 - After adding spaces : 30 31 20 20 20 20 20 20 20 20 20 20 20 20 20 20
+2020-07-30 17:52:56 DEBUG Converter:84 - Converted value: 01              
+2020-07-30 17:52:56 DEBUG X9Decoder:69 - BITFIELD41 with value 01               successfully added
+2020-07-30 17:52:56 DEBUG X9Decoder:58 - Trying to add BITFIELD42 and its values to the map
+2020-07-30 17:52:56 DEBUG Converter:75 - Trying to convert hex to ASCII: 3130
+2020-07-30 17:52:56 DEBUG Converter:20 - Trying to add spaces to the string 3130
+2020-07-30 17:52:56 DEBUG Converter:25 - After adding spaces : 31 30
+2020-07-30 17:52:57 DEBUG Converter:84 - Converted value: 10
+2020-07-30 17:52:57 DEBUG Converter:75 - Trying to convert hex to ASCII: 31323334353637383930
+2020-07-30 17:52:57 DEBUG Converter:20 - Trying to add spaces to the string 31323334353637383930
+2020-07-30 17:52:57 DEBUG Converter:25 - After adding spaces : 31 32 33 34 35 36 37 38 39 30
+2020-07-30 17:52:57 DEBUG Converter:84 - Converted value: 1234567890
+2020-07-30 17:52:57 DEBUG X9Decoder:88 - BITFIELD42 with value 101234567890 successfully added
+2020-07-30 17:52:57 INFO  BaseResponseGenerator:52 - Request Packet
+2020-07-30 17:52:57 INFO  BaseDecoder:306 - --------------------------------------------------------------------------------------------------------------
+2020-07-30 17:52:57 INFO  BaseDecoder:309 - Header: 
+2020-07-30 17:52:57 INFO  BaseDecoder:310 - MTI: 2100
+2020-07-30 17:52:57 INFO  BaseDecoder:312 - BITFIELD3: 003000
+2020-07-30 17:52:57 INFO  BaseDecoder:312 - BITFIELD4: 8402000000000300
+2020-07-30 17:52:57 INFO  BaseDecoder:312 - BITFIELD11: 000000000439
+2020-07-30 17:52:57 INFO  BaseDecoder:312 - BITFIELD12: 20200730015338
+2020-07-30 17:52:57 INFO  BaseDecoder:312 - BITFIELD22: 08000000000000000000000000000000
+2020-07-30 17:52:57 INFO  BaseDecoder:312 - BITFIELD24: 100
+2020-07-30 17:52:57 INFO  BaseDecoder:312 - BITFIELD26: 5541
+2020-07-30 17:52:57 INFO  BaseDecoder:312 - BITFIELD27: 580000000000000000000000000000000000000000000000000000
+2020-07-30 17:52:57 INFO  BaseDecoder:312 - BITFIELD35: 374761739001010010=22122011143804489000
+2020-07-30 17:52:57 INFO  BaseDecoder:312 - BITFIELD41: 01              
+2020-07-30 17:52:57 INFO  BaseDecoder:312 - BITFIELD42: 101234567890
+2020-07-30 17:52:57 INFO  BaseDecoder:314 - --------------------------------------------------------------------------------------------------------------
+2020-07-30 17:52:57 DEBUG BaseResponseGenerator:167 - BITFIELD3:003000 added to the response bitfield map
+2020-07-30 17:52:57 DEBUG BaseResponseGenerator:167 - BITFIELD4:8402000000000300 added to the response bitfield map
+2020-07-30 17:52:57 DEBUG BaseResponseGenerator:167 - BITFIELD7:null added to the response bitfield map
+2020-07-30 17:52:57 DEBUG BaseResponseGenerator:167 - BITFIELD11:000000000439 added to the response bitfield map
+2020-07-30 17:52:57 DEBUG BaseResponseGenerator:167 - BITFIELD12:20200730015338 added to the response bitfield map
+2020-07-30 17:52:57 DEBUG BaseResponseGenerator:167 - BITFIELD39:null added to the response bitfield map
+2020-07-30 17:52:57 DEBUG BaseResponseGenerator:167 - BITFIELD41:01               added to the response bitfield map
+2020-07-30 17:52:57 DEBUG BaseResponseGenerator:167 - BITFIELD42:101234567890 added to the response bitfield map
