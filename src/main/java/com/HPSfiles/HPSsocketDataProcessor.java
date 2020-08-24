@@ -21,6 +21,7 @@ public class HPSsocketDataProcessor extends BaseSocketDataProcessor {
 	public void socketDataReadFormat() {
 		try {
 			socketDataLength = dataInputStream.readShort() - 2;
+			logger.debug("Socket has received data of length: "+socketDataLength);
 		} catch (IOException e) {
 			logger.debug(e.toString());
 		}

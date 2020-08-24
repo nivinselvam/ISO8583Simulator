@@ -179,14 +179,24 @@ public class AppGUI {
 		lblName = new JLabel("Name : ");
 		cbxFEP = new JComboBox(fepNames);
 		GroupLayout gl_pnFEP = new GroupLayout(pnFEP);
-		gl_pnFEP.setHorizontalGroup(gl_pnFEP.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pnFEP.createSequentialGroup().addContainerGap().addComponent(lblName).addGap(18)
-						.addComponent(cbxFEP, 0, 379, Short.MAX_VALUE).addContainerGap()));
-		gl_pnFEP.setVerticalGroup(gl_pnFEP.createParallelGroup(Alignment.LEADING).addGroup(gl_pnFEP
-				.createSequentialGroup().addContainerGap()
-				.addGroup(gl_pnFEP.createParallelGroup(Alignment.BASELINE).addComponent(lblName).addComponent(cbxFEP,
-						GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+		gl_pnFEP.setHorizontalGroup(
+			gl_pnFEP.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnFEP.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblName)
+					.addGap(18)
+					.addComponent(cbxFEP, GroupLayout.PREFERRED_SIZE, 406, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		gl_pnFEP.setVerticalGroup(
+			gl_pnFEP.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnFEP.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_pnFEP.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblName)
+						.addComponent(cbxFEP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(15, Short.MAX_VALUE))
+		);
 		pnFEP.setLayout(gl_pnFEP);
 
 		pnServerConfiguration = new JPanel();
@@ -244,37 +254,52 @@ public class AppGUI {
 		btnStopServer.setBackground(SystemColor.controlHighlight);
 
 		GroupLayout gl_pnMain = new GroupLayout(pnMain);
-		gl_pnMain.setHorizontalGroup(gl_pnMain.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pnMain.createSequentialGroup().addGroup(gl_pnMain.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_pnMain.createSequentialGroup().addGap(412).addComponent(lblStatus)
-								.addPreferredGap(ComponentPlacement.RELATED).addComponent(lblStatusValue))
-						.addGroup(gl_pnMain.createSequentialGroup().addContainerGap().addComponent(pnFEP,
-								GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE))
-						.addGroup(gl_pnMain.createSequentialGroup().addContainerGap().addComponent(
-								pnServerConfiguration, GroupLayout.PREFERRED_SIZE, 491, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_pnMain.createSequentialGroup().addContainerGap().addComponent(
-								btnSaveServerConfiguration, GroupLayout.PREFERRED_SIZE, 491,
-								GroupLayout.PREFERRED_SIZE))
-						.addGroup(Alignment.TRAILING,
-								gl_pnMain.createSequentialGroup().addContainerGap()
-										.addComponent(btnStartServer, GroupLayout.PREFERRED_SIZE, 224,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(44)
-										.addComponent(btnStopServer, GroupLayout.PREFERRED_SIZE, 223,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(0, 0, Short.MAX_VALUE)))
-						.addContainerGap(17, Short.MAX_VALUE)));
-		gl_pnMain.setVerticalGroup(gl_pnMain.createParallelGroup(Alignment.LEADING).addGroup(gl_pnMain
-				.createSequentialGroup().addGap(7)
-				.addGroup(gl_pnMain.createParallelGroup(Alignment.BASELINE).addComponent(lblStatusValue)
+		gl_pnMain.setHorizontalGroup(
+			gl_pnMain.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnMain.createSequentialGroup()
+					.addGroup(gl_pnMain.createParallelGroup(Alignment.TRAILING)
+						.addGroup(Alignment.LEADING, gl_pnMain.createSequentialGroup()
+							.addGap(412)
+							.addComponent(lblStatus)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblStatusValue))
+						.addGroup(gl_pnMain.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(pnFEP, GroupLayout.PREFERRED_SIZE, 491, GroupLayout.PREFERRED_SIZE)
+							.addGap(0, 0, Short.MAX_VALUE))
+						.addGroup(Alignment.LEADING, gl_pnMain.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(pnServerConfiguration, GroupLayout.PREFERRED_SIZE, 491, GroupLayout.PREFERRED_SIZE))
+						.addGroup(Alignment.LEADING, gl_pnMain.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(btnSaveServerConfiguration, GroupLayout.PREFERRED_SIZE, 491, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_pnMain.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(btnStartServer, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
+							.addGap(44)
+							.addComponent(btnStopServer, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
+							.addGap(0, 0, Short.MAX_VALUE)))
+					.addContainerGap(17, Short.MAX_VALUE))
+		);
+		gl_pnMain.setVerticalGroup(
+			gl_pnMain.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnMain.createSequentialGroup()
+					.addGap(7)
+					.addGroup(gl_pnMain.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblStatusValue)
 						.addComponent(lblStatus))
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addComponent(pnFEP, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE).addGap(32)
-				.addComponent(pnServerConfiguration, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-				.addGap(18).addComponent(btnSaveServerConfiguration).addGap(26)
-				.addGroup(gl_pnMain.createParallelGroup(Alignment.BASELINE).addComponent(btnStartServer)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(pnFEP, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
+					.addGap(32)
+					.addComponent(pnServerConfiguration, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnSaveServerConfiguration)
+					.addGap(26)
+					.addGroup(gl_pnMain.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnStartServer)
 						.addComponent(btnStopServer))
-				.addGap(335)));
+					.addGap(335))
+		);
 		pnMain.setLayout(gl_pnMain);
 
 		JPanel pnTransactionConfiguration = new JPanel();

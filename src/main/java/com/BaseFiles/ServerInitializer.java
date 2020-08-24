@@ -52,7 +52,7 @@ public class ServerInitializer extends Thread {
 			}else {
 				logger.fatal("Unable to start the server");
 				serverStarted = false;
-				e.printStackTrace();
+				logger.error(e.toString());
 			}			
 		}
 	}
