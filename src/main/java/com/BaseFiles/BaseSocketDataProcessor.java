@@ -38,20 +38,19 @@ public abstract class BaseSocketDataProcessor extends Thread {
 	 * -----------------------------------------------------------------------------
 	 */
 	public void run() {
+
 		logger.info(
 				"Client " + Initializer.getServer().getSocket().getRemoteSocketAddress().toString() + " is connected");
 		try {
 			dataInputStream = new DataInputStream(Initializer.getServer().getSocket().getInputStream());
-			logger.debug("Data input stream successfully instantiated");
 			dataOutputSteam = new DataOutputStream(Initializer.getServer().getSocket().getOutputStream());
-			logger.debug("Data output stream successfully instantiated");
 
 			while (listenToSocket) {
 				while (dataInputStream.available() == 0) {
 					try {
 						Thread.sleep(1);
 					} catch (InterruptedException e) {
-						logger.error(e.toString());
+						e.printStackTrace();
 					}
 
 				}
@@ -60,12 +59,15 @@ public abstract class BaseSocketDataProcessor extends Thread {
 				logger.info("                                  Start of Transaction");
 				logger.info(
 						"*************************************************************************************************");
+				socketDataReadFormat();
 				requestPacket = readDataFromSocket();
 				if (Initializer.getBaseVariables().sendResponse.equalsIgnoreCase("Yes")) {
 					generateResponse(requestPacket);
 					socketDataWriteFormat(responsePacket);
-					writeDataToSocket(responsePacket);
-				}
+					writeDataToSocket();
+				}else {
+					logger.info("Response is not sent as per the configuration");
+				}				
 				logger.info(
 						"*************************************************************************************************");
 				logger.info("                                   End of Transaction");
@@ -75,8 +77,9 @@ public abstract class BaseSocketDataProcessor extends Thread {
 			dataInputStream.close();
 			dataOutputSteam.close();
 			Initializer.getServer().getSocket().close();
+
 		} catch (IOException e) {
-			logger.fatal(e.toString());
+			System.out.println(e.toString());
 		}
 
 	}
@@ -99,10 +102,10 @@ public abstract class BaseSocketDataProcessor extends Thread {
 	 */
 	public String readDataFromSocket() throws IOException {
 
-		socketDataReadFormat();
 		formattedPacketBytes = new byte[socketDataLength];
 		dataInputStream.read(formattedPacketBytes, 0, socketDataLength);
 
+		requestPacketBuffer = new StringBuffer();
 		for (byte currByte : formattedPacketBytes) {
 			requestPacketBuffer.append(String.format("%02x", currByte));
 		}
@@ -127,9 +130,8 @@ public abstract class BaseSocketDataProcessor extends Thread {
 	 * method, since it decided the format should be read.
 	 * -----------------------------------------------------------------------------
 	 */
-	public void writeDataToSocket(String responseInBytes) {
+	public void writeDataToSocket() {
 		try {
-			logger.debug("Resonse packet sent: " + responseInBytes);
 			if (writeDataLengthToSocket) {
 				dataOutputSteam.writeShort(socketDataLength);
 			}

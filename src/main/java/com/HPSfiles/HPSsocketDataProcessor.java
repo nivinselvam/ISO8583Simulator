@@ -32,6 +32,7 @@ public class HPSsocketDataProcessor extends BaseSocketDataProcessor {
 		responsePacket = Initializer.getConverter().toHexString(responsePacket);
 		try {
 			formattedPacketBytes = responsePacket.getBytes("ISO-8859-1");
+			logger.debug("Response packet successfully converted to byte array");
 		} catch (UnsupportedEncodingException e) {
 			logger.debug(e.toString());
 		}
