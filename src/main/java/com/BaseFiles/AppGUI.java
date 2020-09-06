@@ -608,7 +608,10 @@ public class AppGUI {
 					logger.info("Server stopped");
 					System.out.println("Server stopped");
 					lblStatusValue.setText("Offline");
-				} catch (IOException e1) {
+				}catch(NullPointerException e1) {
+					logger.error("Server Socket is not open. Hence close server operation is invalid");
+					JOptionPane.showMessageDialog(null, "Server Socket is not open. Hence close server operation is invalid");
+				}catch (IOException e1) {
 					logger.error("Unable to stop the server");
 					System.out.println("Unable to stop the server");
 					JOptionPane.showMessageDialog(null, "Unable to stop the server");

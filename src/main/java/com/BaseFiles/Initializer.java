@@ -29,10 +29,10 @@ public class Initializer {
 
 	public static void main(String[] args) {
 		fepName = "HPS";
-		guiEnabled = true;	
+		guiEnabled = true;
 		bitfieldData = new BitFieldData();
 		converter = new Converter();
-		//GUI is instantiated here to get the logs displayed in the runtime logs window
+		// GUI is instantiated here to get the logs displayed in the runtime logs window
 		if (guiEnabled) {
 			appGui = new AppGUI();
 		}
@@ -41,15 +41,15 @@ public class Initializer {
 		PropertyConfigurator.configure(applicationDefaultFilesPath + "\\log4j.properties");
 		fepPropertyFiles = new HashMap<String, String>();
 		server = null;
-		mapFEPtoPropertyFile();		
-		
+		mapFEPtoPropertyFile();
+
 		fileWatcher = new BaseFileWatcher();
 		dataLoader = new BaseDataLoader();
 		if (dataLoader.createAppFolder()) {
 			constants = new BaseConstants();
 			variables = new BaseVariables();
 			fileWatcher.start();
-			if (guiEnabled) {				
+			if (guiEnabled) {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
@@ -63,10 +63,7 @@ public class Initializer {
 				server = new ServerInitializer();
 				server.start();
 			}
-		} else {
-			JOptionPane.showMessageDialog(null, "Unable to create the app folder");
 		}
-
 	}
 
 	// ----------------------------------------------------------------------------------------------------------
@@ -134,7 +131,7 @@ public class Initializer {
 	public static BitFieldData getBitfieldData() {
 		return bitfieldData;
 	}
-	
+
 	public static void setBitfieldData(BitFieldData bitfieldData) {
 		Initializer.bitfieldData = bitfieldData;
 	}
@@ -150,7 +147,7 @@ public class Initializer {
 	public static void setPortNumber(int portNumber) {
 		Initializer.portNumber = portNumber;
 	}
-	
+
 	public static BaseDataLoader getBaseDataLoader() {
 		return dataLoader;
 	}
