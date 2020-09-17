@@ -45,16 +45,19 @@ public abstract class BaseResponseGenerator {
 	// -------------------------------------------------------------------------------------------------------------------
 	public String getResponsePacket() {
 		if (validateifConnectivityCheck()) {
-			logger.info("Connectivity Check request received\nRequest packet:\n" + requestPacket);
+			logger.info("Connectivity Check request received");
+			logger.info("Request packet:");
+			logger.info(requestPacket);
 			responsePacket = connectivityCheckResponse();
-			logger.info("Response packet:\n" + responsePacket);
+			logger.info("Response packet:");
+			logger.info(responsePacket);
 		} else {
 			loadDecoder(requestPacket);
 			decoder.decodeTransactionPacket();
 			header = decoder.getHeader();
 			requestMTI = decoder.getMTI();
 			requestBitfieldsWithValues = decoder.getBitfieldsWithValue();
-			logger.info("Request Packet");
+			logger.info("Request Packet: ");
 			decoder.printDecodedData();
 			responseBitfieldswithValue = new TreeMap<String, String>(new BitfieldComparator());
 

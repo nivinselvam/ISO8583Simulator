@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2020-07-29 14:23:56 INFO  ServerInitializer:39 - X9 Server started successfully
 2020-07-29 14:24:15 INFO  BaseSocketDataProcessor:45 - Client /127.0.0.1:60920 is connected
 2020-07-29 14:24:15 INFO  BaseSocketDataProcessor:47 - *************************************************************************************************
@@ -38,3 +39,6 @@
 2020-07-29 14:25:01 INFO  BaseDecoder:312 - BITFIELD41: 01              
 2020-07-29 14:25:01 INFO  BaseDecoder:312 - BITFIELD42: 101234567890
 2020-07-29 14:25:01 INFO  BaseDecoder:314 - --------------------------------------------------------------------------------------------------------------
+=======
+﻿
+>>>>>>> df8c426de98e9f66c5e3f2d45def77a716effee3

@@ -5,8 +5,12 @@
 
 package com.BaseFiles;
 
+import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
 import org.apache.log4j.Logger;
 
 import com.HPSfiles.HPSsocketDataProcessor;
@@ -46,14 +50,14 @@ public class ServerInitializer extends Thread {
 				socketDataProcessor.start();
 				connections.add(socketDataProcessor);
 			}
-		} catch (Exception e) {	
-			if(serverStarted) {
-				logger.info("Server stopped");
-			}else {
-				logger.fatal("Unable to start the server");
-				serverStarted = false;
-				e.printStackTrace();
-			}			
+		}catch (BindException e) {
+			serverStarted = false;
+			logger.error("Cannot start the server on the configured port number. It is already in use");
+			JOptionPane.showMessageDialog(null, "Cannot start the server on the configured port number. It is already in use");
+		}catch (SocketException e) {
+			logger.info("Server stopped");
+		}catch (IOException e) {
+			logger.error(e.toString());
 		}
 	}
 

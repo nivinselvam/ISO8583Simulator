@@ -7,11 +7,15 @@
 package com.BaseFiles;
 
 import java.io.File;
+import java.nio.file.FileSystemException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Map;
+
+import javax.swing.JOptionPane;
+
 import org.apache.log4j.Logger;
 
 public class BaseDataLoader {
@@ -38,8 +42,13 @@ public class BaseDataLoader {
 				logger.debug(currentEntry.getValue() + " file successfully copied into FEPproperty folder");
 			}
 			return true;
+		} catch(FileSystemException e) {
+			logger.fatal("Unable to access the Application default files folder. Please check if another instance is already running.");
+			JOptionPane.showMessageDialog(null, "Unable to access the Application default files folder."+"\n"+"Please check if another instance is already running.");
+			return false;
 		} catch (Exception e) {
 			logger.fatal("Unable to copy the " + fileName + " file into FEPproperty folder");
+			JOptionPane.showMessageDialog(null, e.toString());
 			return false;
 		}
 

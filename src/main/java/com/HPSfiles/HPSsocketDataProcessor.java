@@ -22,6 +22,7 @@ public class HPSsocketDataProcessor extends BaseSocketDataProcessor {
 	public void socketDataReadFormat() {
 		try {
 			socketDataLength = dataInputStream.readShort() - 2;
+			logger.debug("Socket has received data of length: "+socketDataLength);
 		} catch (IOException e) {
 			logger.debug(e.toString());
 		}
@@ -32,6 +33,7 @@ public class HPSsocketDataProcessor extends BaseSocketDataProcessor {
 		responsePacket = Initializer.getConverter().toHexString(responsePacket);
 		try {
 			formattedPacketBytes = responsePacket.getBytes("ISO-8859-1");
+			logger.debug("Response packet successfully converted to byte array");
 		} catch (UnsupportedEncodingException e) {
 			logger.debug(e.toString());
 		}
