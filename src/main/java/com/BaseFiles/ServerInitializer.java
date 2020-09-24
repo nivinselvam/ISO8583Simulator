@@ -20,7 +20,7 @@ public class ServerInitializer extends Thread {
 	private ServerSocket serverSocket;
 	private Socket socket;
 	private boolean shouldRun = true;
-	private boolean serverStarted = false;
+	public boolean serverStarted = false;
 	private ArrayList<BaseSocketDataProcessor> connections = new ArrayList<BaseSocketDataProcessor>();
 	private BaseSocketDataProcessor socketDataProcessor;
 	private Logger logger = Logger.getLogger(ServerInitializer.class);
@@ -35,8 +35,8 @@ public class ServerInitializer extends Thread {
 
 	/*
 	 * -----------------------------------------------------------------------------
-	 * As part of run method server socket is initialized and
-	 * socket data processor is instantiated.
+	 * As part of run method server socket is initialized and socket data processor
+	 * is instantiated.
 	 * -----------------------------------------------------------------------------
 	 */
 	public void run() {
@@ -50,28 +50,30 @@ public class ServerInitializer extends Thread {
 				socketDataProcessor.start();
 				connections.add(socketDataProcessor);
 			}
-		}catch (BindException e) {
+		} catch (BindException e) {
 			serverStarted = false;
 			logger.error("Cannot start the server on the configured port number. It is already in use");
-			JOptionPane.showMessageDialog(null, "Cannot start the server on the configured port number. It is already in use");
-		}catch (SocketException e) {
+			JOptionPane.showMessageDialog(null,
+					"Cannot start the server on the configured port number. It is already in use");
+		} catch (SocketException e) {
+			serverStarted = false;
 			logger.info("Server stopped");
-		}catch (IOException e) {
+		} catch (IOException e) {
+			serverStarted = false;
 			logger.error(e.toString());
 		}
 	}
 
 	/*
 	 * -----------------------------------------------------------------------------
-	 *  This method instantiates the socket processor based on the
-	 * FEP.
+	 * This method instantiates the socket processor based on the FEP.
 	 * -----------------------------------------------------------------------------
 	 * 
 	 */
 	public void loadSocketDataProcessor() {
 		if (Initializer.getFEPname().equals("HPS")) {
 			socketDataProcessor = new HPSsocketDataProcessor();
-		}else if(Initializer.getFEPname().equals("X9")) {
+		} else if (Initializer.getFEPname().equals("X9")) {
 			socketDataProcessor = new X9socketDataProcessor();
 		}
 	}

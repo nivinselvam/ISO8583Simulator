@@ -588,9 +588,20 @@ public class AppGUI {
 			public void actionPerformed(ActionEvent e) {
 				Initializer.setServer(new ServerInitializer());
 				Initializer.getServer().start();
-				btnStopServer.setEnabled(true);
-				btnStartServer.setEnabled(false);
-				lblStatusValue.setText("Online");
+				try {
+					Thread.sleep(3000);				
+				} catch (InterruptedException e1) {
+					logger.error(e1.toString());
+				}
+				
+				if(Initializer.getServer().serverStarted) {
+					btnStopServer.setEnabled(true);
+					btnStartServer.setEnabled(false);
+					lblStatusValue.setText("Online");
+					cbxFEP.setEnabled(false);
+					txtPort.setEnabled(false);
+					btnSaveServerConfiguration.setEnabled(false);
+				}				
 			}
 		});
 
@@ -602,22 +613,31 @@ public class AppGUI {
 		 */
 		// -----------------------------------------------------------------------------------------------------------------------------
 		btnStopServer.addActionListener(new ActionListener() {
+			boolean serverStopped = false;
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Initializer.getServer().getServerSocket().close();
+					serverStopped = true;
 					logger.info("Server stopped");
 					System.out.println("Server stopped");
 					lblStatusValue.setText("Offline");
 				}catch(NullPointerException e1) {
+					serverStopped = true;
 					logger.error("Server Socket is not open. Hence close server operation is invalid");
 					JOptionPane.showMessageDialog(null, "Server Socket is not open. Hence close server operation is invalid");
 				}catch (IOException e1) {
+					serverStopped = false;
 					logger.error("Unable to stop the server");
 					System.out.println("Unable to stop the server");
 					JOptionPane.showMessageDialog(null, "Unable to stop the server");
 				}
-				btnStartServer.setEnabled(true);
-				btnStopServer.setEnabled(false);
+				if(serverStopped) {
+					btnStartServer.setEnabled(true);
+					btnStopServer.setEnabled(false);
+					cbxFEP.setEnabled(true);
+					txtPort.setEnabled(true);
+					btnSaveServerConfiguration.setEnabled(true);
+				}				
 			}
 		});
 		// -----------------------------------------------------------------------------------------------------------------------------
