@@ -1,7 +1,5 @@
 package com.BaseFiles;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
@@ -102,9 +100,11 @@ public class AppGUI {
 	private ButtonGroup btngrpFinancialForceDraftResult;
 	private ButtonGroup btngrpReversalResult;
 	private ButtonGroup btngrpReconciliationResult;
+	public boolean serverStatusUpdated;
 	private static Logger logger = Logger.getLogger(AppGUI.class);
 	private Map<String, String> transactionConfigurationMap = new HashMap<String, String>();
 	private Properties property = new Properties();
+	
 
 	public JFrame getFrmISO8583Simulator() {
 		return frmISO8583Simulator;
@@ -114,18 +114,18 @@ public class AppGUI {
 		return txtareaLogs;
 	}
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AppGUI window = new AppGUI();
-					window.frmISO8583Simulator.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					AppGUI window = new AppGUI();
+//					window.frmISO8583Simulator.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
@@ -142,7 +142,7 @@ public class AppGUI {
 		frmISO8583Simulator.setTitle("ISO8583 Host Simulator");
 		frmISO8583Simulator.setBounds(100, 100, 558, 803);
 		frmISO8583Simulator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		
 		tbpnTABS = new JTabbedPane(JTabbedPane.TOP);
 		GroupLayout groupLayout = new GroupLayout(frmISO8583Simulator.getContentPane());
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -576,7 +576,7 @@ public class AppGUI {
 
 		mntmAbout = new JMenuItem("About");
 		mnHelp.add(mntmAbout);
-
+		
 		// -----------------------------------------------------------------------------------------------------------------------------
 		/*
 		 * When the start server button is clicked, i) Server is started ii) if the
@@ -584,14 +584,19 @@ public class AppGUI {
 		 * button is enabled
 		 */
 		// -----------------------------------------------------------------------------------------------------------------------------
-		btnStartServer.addActionListener(new ActionListener() {
+		btnStartServer.addActionListener(new ActionListener() {	
 			public void actionPerformed(ActionEvent e) {
+				serverStatusUpdated = false;
+				logger.debug("Server status update was reset to false");
 				Initializer.setServer(new ServerInitializer());
 				Initializer.getServer().start();
-				try {
-					Thread.sleep(3000);				
-				} catch (InterruptedException e1) {
-					logger.error(e1.toString());
+
+				while(!serverStatusUpdated) {
+					try {
+						Thread.sleep(100);				
+					} catch (InterruptedException e1) {
+						logger.error(e1.toString());
+					}
 				}
 				
 				if(Initializer.getServer().serverStarted) {
@@ -619,7 +624,6 @@ public class AppGUI {
 					Initializer.getServer().getServerSocket().close();
 					serverStopped = true;
 					logger.info("Server stopped");
-					System.out.println("Server stopped");
 					lblStatusValue.setText("Offline");
 				}catch(NullPointerException e1) {
 					serverStopped = true;

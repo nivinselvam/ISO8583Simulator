@@ -42,6 +42,8 @@ public class ServerInitializer extends Thread {
 	public void run() {
 		try {
 			serverSocket = new ServerSocket(Initializer.getPortNumber());
+			Initializer.getAppGui().serverStatusUpdated = true;
+			logger.debug("Server status updated successfully");
 			serverStarted = true;
 			logger.info(Initializer.getFEPname() + " Server started successfully");
 			while (shouldRun) {
@@ -51,16 +53,25 @@ public class ServerInitializer extends Thread {
 				connections.add(socketDataProcessor);
 			}
 		} catch (BindException e) {
+			Initializer.getAppGui().serverStatusUpdated = true;
+			logger.debug("Server status updated successfully after bindexception");
 			serverStarted = false;
 			logger.error("Cannot start the server on the configured port number. It is already in use");
 			JOptionPane.showMessageDialog(null,
 					"Cannot start the server on the configured port number. It is already in use");
 		} catch (SocketException e) {
+			Initializer.getAppGui().serverStatusUpdated = true;
+			logger.debug("Server status updated successfully after socket exception");
 			serverStarted = false;
 			logger.info("Server stopped");
 		} catch (IOException e) {
+			Initializer.getAppGui().serverStatusUpdated = true;
+			logger.debug("Server status updated successfully after io exception");
 			serverStarted = false;
 			logger.error(e.toString());
+		}catch (Exception e) {
+			logger.debug("Server status updated successfully after exception");
+			JOptionPane.showMessageDialog(null, e.toString());
 		}
 	}
 
