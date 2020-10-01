@@ -25,6 +25,7 @@ public class BaseVariables {
 	public String valueOfBitfield44;
 	public String valueOfBitfield48;
 	public String valueOfBitfield54;
+	public String valueOfBitfield62;
 	public String valueOfBitfield123;
 	public String bitfield39UpperLimit;
 	private Properties property = new Properties();
@@ -70,6 +71,7 @@ public class BaseVariables {
 			valueOfBitfield44 = property.getProperty("valueOfBitfield44");
 			valueOfBitfield48 = property.getProperty("valueOfBitfield48");
 			valueOfBitfield54 = property.getProperty("valueOfBitfield54");
+			valueOfBitfield62 = property.getProperty("valueOfBitfield62");
 			valueOfBitfield123 = property.getProperty("valueOfBitfield123");
 			setBitfield39UpperLimit();
 		} catch (Exception e) {

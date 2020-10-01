@@ -11,6 +11,7 @@ import com.BaseFiles.BaseResponseGenerator;
 import com.BaseFiles.Initializer;
 
 public class X9responseGenerator extends BaseResponseGenerator {
+	
 
 	public X9responseGenerator(String requestPacket) {
 		super(requestPacket);
@@ -87,6 +88,12 @@ public class X9responseGenerator extends BaseResponseGenerator {
 			responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield38, setBitfieldLengthIfRequired(
 					Initializer.getBaseConstants().nameOfbitfield38, Initializer.getBaseVariables().valueOfBitfield38));
 			elementsInTransaction.add(38);
+			
+			if(requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield63)!=null && requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield63).contains("\\950O01\\")) {
+				responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield62, setBitfieldLengthIfRequired(
+					Initializer.getBaseConstants().nameOfbitfield62, Initializer.getBaseVariables().valueOfBitfield62));
+				elementsInTransaction.add(62);
+			}
 		}
 		if (transactionResult.equals("Decline")) {
 			responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield44, setBitfieldLengthIfRequired(
