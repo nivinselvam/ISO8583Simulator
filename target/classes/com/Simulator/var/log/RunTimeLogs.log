@@ -1,1 +1,184 @@
-﻿
+﻿2020-09-25 15:58:07 DEBUG BaseDataLoader:42 - X9Constants.properties file successfully copied into FEPproperty folder
+2020-09-25 15:58:07 DEBUG BaseDataLoader:42 - FCBConstants.properties file successfully copied into FEPproperty folder
+2020-09-25 15:58:07 DEBUG BaseDataLoader:42 - HPSConstants.properties file successfully copied into FEPproperty folder
+2020-09-25 15:58:07 DEBUG BaseDataLoader:42 - IncommConstants.properties file successfully copied into FEPproperty folder
+2020-09-25 15:58:07 DEBUG BaseDataLoader:42 - CommonVariables.properties file successfully copied into FEPproperty folder
+2020-09-25 15:58:08 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-25 15:58:08 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-25 15:58:08 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-25 15:58:10 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-25 15:58:10 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-25 15:58:10 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-25 15:58:12 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-25 15:58:12 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-25 15:58:12 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-25 15:58:14 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-25 15:58:14 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-25 15:58:14 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:28 DEBUG BaseDataLoader:42 - X9Constants.properties file successfully copied into FEPproperty folder
+2020-09-28 12:36:28 DEBUG BaseDataLoader:42 - FCBConstants.properties file successfully copied into FEPproperty folder
+2020-09-28 12:36:28 DEBUG BaseDataLoader:42 - HPSConstants.properties file successfully copied into FEPproperty folder
+2020-09-28 12:36:28 DEBUG BaseDataLoader:42 - IncommConstants.properties file successfully copied into FEPproperty folder
+2020-09-28 12:36:28 DEBUG BaseDataLoader:42 - CommonVariables.properties file successfully copied into FEPproperty folder
+2020-09-28 12:36:30 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:30 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:30 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:33 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:33 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:33 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:38 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:38 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:38 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:39 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:39 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:39 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:40 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:40 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:40 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:40 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:40 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:40 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:41 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:41 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:41 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:41 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:41 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:41 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:42 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:42 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:42 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:42 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:42 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:42 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:43 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:43 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:43 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:43 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:43 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:43 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:44 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:44 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:44 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:44 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:44 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:44 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:44 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:44 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:44 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:45 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:45 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:45 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:45 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:45 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:45 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:46 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:46 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:46 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:46 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:46 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:46 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:47 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:47 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:47 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:47 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:47 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:47 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:47 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:47 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:47 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:48 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:48 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:48 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:48 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:48 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:48 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:49 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:49 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:49 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:49 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:49 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:49 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:49 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:49 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:49 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:50 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:50 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:50 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:50 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:50 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:50 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:51 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:51 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:51 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:51 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:51 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:51 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:52 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:52 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:52 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:52 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:52 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:52 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:53 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:53 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:53 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:53 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:53 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:53 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:53 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:53 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:53 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:54 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:54 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:54 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:54 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:54 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:54 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:55 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:55 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:55 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:55 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:55 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:55 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:56 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:56 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:56 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:56 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:56 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:56 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:56 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:56 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:56 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:57 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:57 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:57 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:36:57 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:36:57 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:36:57 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:37:02 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:37:02 DEBUG ServerInitializer:46 - Server status updated successfully
+2020-09-28 12:37:02 INFO  ServerInitializer:48 - HPS Server started successfully
+2020-09-28 12:37:07 INFO  AppGUI:626 - Server stopped
+2020-09-28 12:37:07 DEBUG ServerInitializer:64 - Server status updated successfully after socket exception
+2020-09-28 12:37:07 INFO  ServerInitializer:66 - Server stopped
+2020-09-28 12:37:10 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:37:10 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:37:11 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:37:11 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:37:11 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:37:12 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:37:12 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:37:12 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:37:13 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:37:13 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:37:13 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:37:13 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:37:13 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:37:13 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 12:37:13 DEBUG AppGUI:590 - Server status update was reset to false
+2020-09-28 12:37:13 DEBUG ServerInitializer:57 - Server status updated successfully after bindexception
+2020-09-28 12:37:13 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 19:50:44 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-28 19:50:55 INFO  ServerInitializer:48 - HPS Server started successfully
+2020-09-28 19:51:00 INFO  AppGUI:626 - Server stopped
+2020-09-28 19:51:00 INFO  ServerInitializer:66 - Server stopped

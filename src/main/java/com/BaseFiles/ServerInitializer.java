@@ -56,9 +56,9 @@ public class ServerInitializer extends Thread {
 			Initializer.getAppGui().serverStatusUpdated = true;
 			logger.debug("Server status updated successfully after bindexception");
 			serverStarted = false;
-			logger.error("Cannot start the server on the configured port number. It is already in use");
+			logger.error("Cannot start the server on port number "+Initializer.getPortNumber()+". It is already in use");
 			JOptionPane.showMessageDialog(null,
-					"Cannot start the server on the configured port number. It is already in use");
+					"Cannot start the server on port number "+Initializer.getPortNumber()+". It is already in use");
 		} catch (SocketException e) {
 			Initializer.getAppGui().serverStatusUpdated = true;
 			logger.debug("Server status updated successfully after socket exception");
