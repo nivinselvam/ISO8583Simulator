@@ -36,33 +36,31 @@ public class Initializer {
 		if (guiEnabled) {
 			appGui = new AppGUI();
 		}
-		applicationDefaultFilesPath = getApplicationFolder() + "ApplicationDefaultFiles";
+		applicationDefaultFilesPath = "src/main/resources";
 		FEPpropertiesFilesPath = getApplicationFolder() + "FEPproperties";
-		PropertyConfigurator.configure(applicationDefaultFilesPath + "\\log4j.properties");
+		PropertyConfigurator.configure("src/main/var/log/log4j.properties");
 		fepPropertyFiles = new HashMap<String, String>();
 		server = null;
 		mapFEPtoPropertyFile();
 
 		fileWatcher = new BaseFileWatcher();
 		dataLoader = new BaseDataLoader();
-		if (dataLoader.createAppFolder()) {
-			constants = new BaseConstants();
-			variables = new BaseVariables();
-			fileWatcher.start();
-			if (guiEnabled) {
-				EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						try {
-							appGui.getFrmISO8583Simulator().setVisible(true);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
+		constants = new BaseConstants();
+		variables = new BaseVariables();
+		fileWatcher.start();
+		if (guiEnabled) {
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						appGui.getFrmISO8583Simulator().setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
 					}
-				});
-			} else {
-				server = new ServerInitializer();
-				server.start();
-			}
+				}
+			});
+		} else {
+			server = new ServerInitializer();
+			server.start();
 		}
 	}
 

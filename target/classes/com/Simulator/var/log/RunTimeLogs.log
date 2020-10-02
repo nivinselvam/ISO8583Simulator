@@ -182,3 +182,34 @@
 2020-09-28 19:50:55 INFO  ServerInitializer:48 - HPS Server started successfully
 2020-09-28 19:51:00 INFO  AppGUI:626 - Server stopped
 2020-09-28 19:51:00 INFO  ServerInitializer:66 - Server stopped
+2020-09-29 15:39:47 ERROR ServerInitializer:59 - Cannot start the server on the configured port number. It is already in use
+2020-09-29 15:41:39 ERROR ServerInitializer:59 - Cannot start the server on port number 9000. It is already in use
+2020-09-29 15:42:17 ERROR ServerInitializer:59 - Cannot start the server on port number 9000. It is already in use
+2020-09-29 15:42:27 ERROR ServerInitializer:59 - Cannot start the server on port number 9000. It is already in use
+2020-09-29 15:42:31 INFO  ServerInitializer:48 - HPS Server started successfully
+2020-09-29 15:42:32 INFO  AppGUI:626 - Server stopped
+2020-09-29 15:42:32 INFO  ServerInitializer:66 - Server stopped
+2020-09-29 16:50:55 ERROR ServerInitializer:59 - Cannot start the server on port number 9000. It is already in use
+2020-09-29 17:18:31 ERROR ServerInitializer:59 - Cannot start the server on port number 9000. It is already in use
+2020-09-29 21:54:47 ERROR ServerInitializer:59 - Cannot start the server on port number 9000. It is already in use
+2020-09-29 21:54:49 ERROR ServerInitializer:59 - Cannot start the server on port number 9000. It is already in use
+2020-09-29 21:54:51 ERROR ServerInitializer:59 - Cannot start the server on port number 9000. It is already in use
+2020-09-29 21:54:52 ERROR ServerInitializer:59 - Cannot start the server on port number 9000. It is already in use
+2020-09-29 21:55:14 ERROR ServerInitializer:59 - Cannot start the server on port number 9000. It is already in use
+2020-09-29 21:55:17 ERROR ServerInitializer:59 - Cannot start the server on port number 9000. It is already in use
+2020-09-29 21:55:19 ERROR ServerInitializer:59 - Cannot start the server on port number 9000. It is already in use
+2020-09-29 21:55:21 ERROR ServerInitializer:59 - Cannot start the server on port number 9000. It is already in use
+2020-09-29 21:55:23 ERROR ServerInitializer:59 - Cannot start the server on port number 9000. It is already in use
+2020-09-29 21:55:24 ERROR ServerInitializer:59 - Cannot start the server on port number 9000. It is already in use
+2020-09-29 21:55:26 ERROR ServerInitializer:59 - Cannot start the server on port number 9000. It is already in use
+2020-09-29 21:55:27 ERROR ServerInitializer:59 - Cannot start the server on port number 9000. It is already in use
+2020-09-29 21:55:33 ERROR ServerInitializer:59 - Cannot start the server on port number 9000. It is already in use
+2020-09-29 21:55:35 ERROR ServerInitializer:59 - Cannot start the server on port number 9000. It is already in use
+2020-09-29 21:55:44 ERROR ServerInitializer:59 - Cannot start the server on port number 9000. It is already in use
+2020-09-29 21:55:46 ERROR ServerInitializer:59 - Cannot start the server on port number 9000. It is already in use
+2020-10-01 16:41:09 INFO  ServerInitializer:48 - HPS Server started successfully
+2020-10-01 16:41:10 INFO  AppGUI:626 - Server stopped
+2020-10-01 16:41:10 INFO  ServerInitializer:66 - Server stopped
+2020-10-01 16:41:23 FATAL BaseDataLoader:46 - Unable to access the Application default files folder. Please check if another instance is already running.
+2020-10-01 16:41:26 ERROR ServerInitializer:59 - Cannot start the server on port number 9000. It is already in use
+2020-10-01 21:37:37 ERROR ServerInitializer:59 - Cannot start the server on port number 9000. It is already in use

@@ -212,3 +212,4 @@
 2020-10-01 16:41:10 INFO  ServerInitializer:66 - Server stopped
 2020-10-01 16:41:23 FATAL BaseDataLoader:46 - Unable to access the Application default files folder. Please check if another instance is already running.
 2020-10-01 16:41:26 ERROR ServerInitializer:59 - Cannot start the server on port number 9000. It is already in use
+2020-10-01 21:37:37 ERROR ServerInitializer:59 - Cannot start the server on port number 9000. It is already in use

@@ -191,7 +191,7 @@ public class BaseConstants {
 	}
 
 	private boolean loadFepPropertyFile() {		
-		fepFile = Initializer.getFEPpropertiesFilesPath()+"\\"+ Initializer.getFepPropertyFiles().get(Initializer.getFEPname());
+		fepFile = Initializer.getApplicationDefaultFilesPath()+"/"+ Initializer.getFepPropertyFiles().get(Initializer.getFEPname());
 		try {
 			file = new File(fepFile);
 			fis = new FileInputStream(file);

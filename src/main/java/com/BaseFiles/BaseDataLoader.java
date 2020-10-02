@@ -36,8 +36,8 @@ public class BaseDataLoader {
 		try {
 			for (Map.Entry<String, String> currentEntry : Initializer.getFepPropertyFiles().entrySet()) {
 				fileName = currentEntry.getValue();
-				fileToCopy = new File(Initializer.getApplicationDefaultFilesPath() + "\\" + fileName);
-				destinationPath = Paths.get(Initializer.getFEPpropertiesFilesPath() + "\\" + fileName);
+				fileToCopy = new File(Initializer.getApplicationDefaultFilesPath() + "/" + fileName);
+				destinationPath = Paths.get(Initializer.getFEPpropertiesFilesPath() + "/" + fileName);
 				Files.copy(fileToCopy.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
 				logger.debug(currentEntry.getValue() + " file successfully copied into FEPproperty folder");
 			}
