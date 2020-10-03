@@ -14,37 +14,36 @@ public class Initializer {
 	private static String fepName;
 	private static boolean guiEnabled;
 	private static String applicationDefaultFilesPath;
-	private static String FEPpropertiesFilesPath;
 	private static ServerInitializer server;
 	private static Converter converter;
 	private static BitFieldData bitfieldData;
 	private static BaseVariables variables;
 	private static BaseConstants constants;
-	private static BaseDataLoader dataLoader;
+	private static ConfigurationTracker configTracker;
 	public static BaseFileWatcher fileWatcher;
 	private static AppGUI appGui;
 	private static int portNumber;
 	private static Map<String, String> fepPropertyFiles;
 	private static Logger logger = Logger.getLogger(Initializer.class);
+	public static String configFileName ="UpdateConfiguration.properties";
 
 	public static void main(String[] args) {
 		fepName = "HPS";
 		guiEnabled = true;
 		bitfieldData = new BitFieldData();
 		converter = new Converter();
-		// GUI is instantiated here to get the logs displayed in the runtime logs window
+		// GUI is instantiated here to get the logs displayed in the runtime logs text area
 		if (guiEnabled) {
 			appGui = new AppGUI();
 		}
 		applicationDefaultFilesPath = "src/main/resources";
-		FEPpropertiesFilesPath = getApplicationFolder() + "FEPproperties";
 		PropertyConfigurator.configure("src/main/var/log/log4j.properties");
 		fepPropertyFiles = new HashMap<String, String>();
 		server = null;
 		mapFEPtoPropertyFile();
 
 		fileWatcher = new BaseFileWatcher();
-		dataLoader = new BaseDataLoader();
+		configTracker = new ConfigurationTracker();
 		constants = new BaseConstants();
 		variables = new BaseVariables();
 		fileWatcher.start();
@@ -72,18 +71,14 @@ public class Initializer {
 	// ----------------------------------------------------------------------------------------------------------
 	private static void mapFEPtoPropertyFile() {
 		fepPropertyFiles.put("Common", "CommonVariables.properties");
-		fepPropertyFiles.put("HPS", "HPSConstants.properties");
-		fepPropertyFiles.put("FCB", "FCBConstants.properties");
-		fepPropertyFiles.put("INCOMM", "IncommConstants.properties");
-		fepPropertyFiles.put("X9", "X9Constants.properties");
+		fepPropertyFiles.put("HPS", "HPSVariables.properties");
+		fepPropertyFiles.put("FCB", "FCBVariables.properties");
+		fepPropertyFiles.put("INCOMM", "IncommVariables.properties");
+		fepPropertyFiles.put("X9", "X9Variables.properties");
 	}
 
 	public static String getApplicationDefaultFilesPath() {
 		return applicationDefaultFilesPath;
-	}
-
-	public static String getFEPpropertiesFilesPath() {
-		return FEPpropertiesFilesPath;
 	}
 
 	public static Map<String, String> getFepPropertyFiles() {
@@ -146,8 +141,8 @@ public class Initializer {
 		Initializer.portNumber = portNumber;
 	}
 
-	public static BaseDataLoader getBaseDataLoader() {
-		return dataLoader;
+	public static ConfigurationTracker getBaseDataLoader() {
+		return configTracker;
 	}
 
 	// ---------------------------------------------------------------------------------------------------------
@@ -179,11 +174,6 @@ public class Initializer {
 			try {
 				file = new File(Initializer.class.getClassLoader().getResource("").toURI().getPath());
 				applicationFolder = file.getAbsolutePath();
-
-				// the below is for testing purposes...
-				// starts with File.separator?
-				// String l = local.replaceFirst("[" + File.separator +
-				// "/\\\\]", "")
 			} catch (URISyntaxException ex) {
 				logger.fatal("Cannot figure out base path for class with way (2): " + ex);
 			}

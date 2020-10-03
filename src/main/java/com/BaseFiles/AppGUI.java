@@ -706,8 +706,8 @@ public class AppGUI {
 						JOptionPane.showMessageDialog(null,
 								"Entered port number is invalid. Valid port number range is between 1026 and 65535");
 					} else {
-						property.load(new FileInputStream(new File(Initializer.getFEPpropertiesFilesPath() + "\\"
-								+ Initializer.getFepPropertyFiles().get("Common"))));
+//						property.load(new FileInputStream(new File(Initializer.getFEPpropertiesFilesPath() + "\\"
+//								+ Initializer.getFepPropertyFiles().get("Common"))));
 						if (!cbxFEP.getSelectedItem().toString().equals(property.getProperty("fepName"))) {
 							property.setProperty("fepName", cbxFEP.getSelectedItem().toString());
 							update = true;
@@ -717,8 +717,8 @@ public class AppGUI {
 							update = true;
 						}
 						if (update) {
-							property.store(new FileOutputStream(new File(Initializer.getFEPpropertiesFilesPath() + "\\"
-									+ Initializer.getFepPropertyFiles().get("Common"))), null);
+//							property.store(new FileOutputStream(new File(Initializer.getFEPpropertiesFilesPath() + "\\"
+//									+ Initializer.getFepPropertyFiles().get("Common"))), null);
 						}
 					}
 					Initializer.getBaseVariables().setBitfield39UpperLimit();
@@ -808,8 +808,8 @@ public class AppGUI {
 	// -----------------------------------------------------------------------------------------------------------------------------
 	public void writeTransactionConfigurationToPropertyFile() {
 		try {
-			property.load(new FileInputStream(new File(Initializer.getFEPpropertiesFilesPath() + "\\"
-					+ Initializer.getFepPropertyFiles().get(Initializer.getFEPname()))));
+//			property.load(new FileInputStream(new File(Initializer.getFEPpropertiesFilesPath() + "\\"
+//					+ Initializer.getFepPropertyFiles().get(Initializer.getFEPname()))));
 			property.setProperty(Initializer.getBaseConstants().guisendResponsePanelName,
 					transactionConfigurationMap.get(Initializer.getBaseConstants().guisendResponsePanelName));
 			property.setProperty(Initializer.getBaseConstants().guiAuthorizationResultPanelName,

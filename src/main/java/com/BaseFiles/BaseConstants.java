@@ -183,11 +183,11 @@ public class BaseConstants {
 	public String guiDeclineCodefieldName;
 	public String guiApprovalAmountFieldName;
 	public String guiIsHalfApprovalRequired;
+	
 
 	public BaseConstants() {
 		loadFepPropertyFile();
 		loadConstantValues();
-
 	}
 
 	private boolean loadFepPropertyFile() {		

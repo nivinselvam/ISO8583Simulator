@@ -9,6 +9,7 @@ package com.BaseFiles;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.FileSystems;
 import java.nio.file.Paths;
 import java.nio.file.StandardWatchEventKinds;
@@ -39,7 +40,7 @@ public class BaseFileWatcher extends Thread {
 		WatchService watchService;
 		try {
 			watchService = FileSystems.getDefault().newWatchService();
-			Paths.get(Initializer.getFEPpropertiesFilesPath()).register(watchService,
+			Paths.get(Initializer.getApplicationFolder()).register(watchService,
 					StandardWatchEventKinds.ENTRY_MODIFY);
 			do {
 				WatchKey watchKey = watchService.take();
@@ -47,7 +48,9 @@ public class BaseFileWatcher extends Thread {
 				for (WatchEvent event : watchKey.pollEvents()) {
 					WatchEvent.Kind kind = event.kind();
 					if (StandardWatchEventKinds.ENTRY_MODIFY.equals(kind)) {
-						readUpdatedFile(event.context().toString());
+						if(event.context().toString().equals("UpdateConfiguration.properties")) {
+							readUpdatedFile(event.context().toString());
+						}						
 					}
 				}
 				watchKey.reset();
@@ -70,7 +73,7 @@ public class BaseFileWatcher extends Thread {
 	 */
 	// -------------------------------------------------------------------------------------------------------------
 	private void readUpdatedFile(String fileName) throws IOException {
-		property.load(new FileInputStream(new File(Initializer.getFEPpropertiesFilesPath()+"\\"+ fileName)));
+		property.load(new FileInputStream(new File(Initializer.getApplicationFolder()+"\\"+ fileName)));
 		if (fileName.equals(Initializer.getFepPropertyFiles().get("Common"))) {
 			isServerRunning = true;
 			if (!Initializer.getFEPname().equals(property.getProperty("fepName"))
@@ -118,7 +121,7 @@ public class BaseFileWatcher extends Thread {
 
 	private void reloadBaseVariables() {
 		try {
-			property.load(new FileInputStream(new File(Initializer.getFEPpropertiesFilesPath()+"\\"+ Initializer.getFepPropertyFiles().get(Initializer.getFEPname()))));
+			property.load(new FileInputStream(new File(Initializer.getApplicationFolder()+"\\"+ Initializer.getFepPropertyFiles().get(Initializer.getFEPname()))));
 		} catch (IOException e) {
 			logger.warn("Unable to load default values into base variables");
 			System.out.println("Unable to load default values into base variables");
@@ -151,5 +154,61 @@ public class BaseFileWatcher extends Thread {
 		Initializer.getBaseVariables().valueOfBitfield54 = property.getProperty("valueOfBitfield54");
 		Initializer.getBaseVariables().valueOfBitfield123 = property.getProperty("valueOfBitfield123");
 	}
+	
+	// ---------------------------------------------------------------------------------------------------------
+		/*
+		 * This method is used to get the path in which the application file are placed.
+		 */
+		// ---------------------------------------------------------------------------------------------------------
+		public String getApplicationFolder() {
+			File file;
+			String applicationFolder = "";
+			boolean failed = false;
+
+			// Trying to get the path where the file is saved
+			try {
+				file = new File(Initializer.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+
+				if (file.isFile() || file.getPath().endsWith(".jar") || file.getPath().endsWith(".zip")) {
+					applicationFolder = file.getParent();
+				} else {
+					applicationFolder = file.getPath();
+				}
+			} catch (URISyntaxException ex) {
+				failed = true;
+				logger.fatal("Cannot figure out base path for class with way (1): " + ex);
+			}
+
+			// The above failed?
+			if (failed) {
+				try {
+					file = new File(Initializer.class.getClassLoader().getResource("").toURI().getPath());
+					applicationFolder = file.getAbsolutePath();
+
+					// the below is for testing purposes...
+					// starts with File.separator?
+					// String l = local.replaceFirst("[" + File.separator +
+					// "/\\\\]", "")
+				} catch (URISyntaxException ex) {
+					logger.fatal("Cannot figure out base path for class with way (2): " + ex);
+				}
+			}
+
+			// fix to run inside eclipse
+			if (applicationFolder.endsWith(File.separator + "lib") || applicationFolder.endsWith(File.separator + "bin")
+					|| applicationFolder.endsWith("bin" + File.separator)
+					|| applicationFolder.endsWith("lib" + File.separator)) {
+				applicationFolder = applicationFolder.substring(0, applicationFolder.length() - 4);
+			}
+			// fix to run inside netbeans
+			if (applicationFolder.endsWith(File.separator + "build" + File.separator + "classes")) {
+				applicationFolder = applicationFolder.substring(0, applicationFolder.length() - 14);
+			}
+			// end fix
+			if (!applicationFolder.endsWith(File.separator)) {
+				applicationFolder = applicationFolder + File.separator;
+			}
+			return applicationFolder;
+		}
 
 }
