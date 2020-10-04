@@ -7,6 +7,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JPanel;
 import java.awt.Color;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -27,16 +28,15 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JCheckBox;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 import java.util.Properties;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
@@ -114,19 +114,6 @@ public class AppGUI {
 		return txtareaLogs;
 	}
 
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					AppGUI window = new AppGUI();
-//					window.frmISO8583Simulator.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
 	/**
 	 * Create the application.
 	 */
@@ -152,7 +139,13 @@ public class AppGUI {
 				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
 						.addComponent(tbpnTABS, GroupLayout.PREFERRED_SIZE, 721, Short.MAX_VALUE).addContainerGap()));
 
-		String[] fepNames = { "HPS", "X9" };
+		List<String> fepNames= new ArrayList<String>();
+		
+		for(Map.Entry<String, String> currentEntry : Initializer.getFepPropertyFiles().entrySet()){
+			if(currentEntry.getKey()!="Common") {
+				fepNames.add(currentEntry.getKey());
+			}
+		}
 
 		btngrpSendResponseOrNot = new ButtonGroup();
 
@@ -177,7 +170,8 @@ public class AppGUI {
 				TitledBorder.ABOVE_TOP, null, new Color(0, 0, 0)));
 
 		lblName = new JLabel("Name : ");
-		cbxFEP = new JComboBox(fepNames);
+		cbxFEP = new JComboBox(fepNames.toArray());
+		cbxFEP.setSelectedItem(Initializer.getFEPname());
 		GroupLayout gl_pnFEP = new GroupLayout(pnFEP);
 		gl_pnFEP.setHorizontalGroup(
 			gl_pnFEP.createParallelGroup(Alignment.LEADING)
@@ -211,7 +205,7 @@ public class AppGUI {
 		JLabel lblPort = new JLabel("Port : ");
 
 		txtPort = new JTextField();
-		txtPort.setText("9000");
+		txtPort.setText(String.valueOf(Initializer.getPortNumber()));
 		txtPort.setColumns(10);
 		GroupLayout gl_pnServerConfiguration = new GroupLayout(pnServerConfiguration);
 		gl_pnServerConfiguration.setHorizontalGroup(gl_pnServerConfiguration.createParallelGroup(Alignment.LEADING)
@@ -334,6 +328,7 @@ public class AppGUI {
 		rdbtnDontSendResponse = new JRadioButton("No");
 		btngrpSendResponseOrNot.add(rdbtnSendResponse);
 		btngrpSendResponseOrNot.add(rdbtnDontSendResponse);
+
 		GroupLayout gl_pnSendResponse = new GroupLayout(pnSendResponse);
 		gl_pnSendResponse.setHorizontalGroup(gl_pnSendResponse.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnSendResponse.createSequentialGroup().addContainerGap().addComponent(rdbtnSendResponse)
@@ -723,7 +718,7 @@ public class AppGUI {
 					}
 					Initializer.getBaseVariables().setBitfield39UpperLimit();
 					if (!Initializer.getFEPname().equals(cbxFEP.getSelectedItem())) {
-						Initializer.getBaseDataLoader().createAppFolder();
+						//Initializer.getBaseDataLoader().createAppFolder();
 						resetTransactionConfiguration();						
 					}
 
@@ -747,7 +742,6 @@ public class AppGUI {
 			public void actionPerformed(ActionEvent e) {
 				if (validDeclineCodeAndAmount()) {
 					getTransactionConfigurationFromGUI();
-					writeTransactionConfigurationToPropertyFile();
 				}
 			}
 		});
@@ -798,45 +792,6 @@ public class AppGUI {
 		transactionConfigurationMap.put(Initializer.getBaseConstants().guiIsHalfApprovalRequired,
 				String.valueOf(chckbxApproveForHalf.isSelected()));
 		return transactionConfigurationMap;
-	}
-
-	// -----------------------------------------------------------------------------------------------------------------------------
-	/*
-	 * This method is used to write the transaction configuration into the fep
-	 * property file
-	 */
-	// -----------------------------------------------------------------------------------------------------------------------------
-	public void writeTransactionConfigurationToPropertyFile() {
-		try {
-//			property.load(new FileInputStream(new File(Initializer.getFEPpropertiesFilesPath() + "\\"
-//					+ Initializer.getFepPropertyFiles().get(Initializer.getFEPname()))));
-			property.setProperty(Initializer.getBaseConstants().guisendResponsePanelName,
-					transactionConfigurationMap.get(Initializer.getBaseConstants().guisendResponsePanelName));
-			property.setProperty(Initializer.getBaseConstants().guiAuthorizationResultPanelName,
-					transactionConfigurationMap.get(Initializer.getBaseConstants().guiAuthorizationResultPanelName));
-			property.setProperty(Initializer.getBaseConstants().guiFinancialSalesResultPanelName,
-					transactionConfigurationMap.get(Initializer.getBaseConstants().guiFinancialSalesResultPanelName));
-			property.setProperty(Initializer.getBaseConstants().guiFinancialForceDraftResultPanelName,
-					transactionConfigurationMap
-							.get(Initializer.getBaseConstants().guiFinancialForceDraftResultPanelName));
-			property.setProperty(Initializer.getBaseConstants().guiReversalResultPanelName,
-					transactionConfigurationMap.get(Initializer.getBaseConstants().guiReversalResultPanelName));
-			property.setProperty(Initializer.getBaseConstants().guiReconciliationResultPanelName,
-					transactionConfigurationMap.get(Initializer.getBaseConstants().guiReconciliationResultPanelName));
-			property.setProperty(Initializer.getBaseConstants().guiDeclineCodefieldName,
-					transactionConfigurationMap.get(Initializer.getBaseConstants().guiDeclineCodefieldName));
-			property.setProperty(Initializer.getBaseConstants().guiApprovalAmountFieldName,
-					transactionConfigurationMap.get(Initializer.getBaseConstants().guiApprovalAmountFieldName));
-			property.setProperty(Initializer.getBaseConstants().guiIsHalfApprovalRequired,
-					transactionConfigurationMap.get(Initializer.getBaseConstants().guiIsHalfApprovalRequired));
-
-			property.store(new FileOutputStream(new File(Initializer.getApplicationFolder() + "\\FEPproperties\\"
-					+ Initializer.getFepPropertyFiles().get(Initializer.getFEPname()))), null);
-		} catch (IOException e) {
-			logger.error("Unable to update the fep property file");
-			System.out.println("Unable to update the fep property file");
-			JOptionPane.showMessageDialog(null, "Unable to update the fep property file");
-		}
 	}
 
 	// -----------------------------------------------------------------------------------------------------------------------------

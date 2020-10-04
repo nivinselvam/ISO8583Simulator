@@ -18,10 +18,6 @@ import org.apache.log4j.Logger;
 
 public class BaseConstants {
 	private Logger logger = Logger.getLogger(BaseConstants.class);
-	private Properties property = new Properties();
-	private String fepFile;
-	private FileInputStream fis;
-	private File file;
 	public String echoMessageLength;
 	public String authorizationRequestMTI;
 	public String authorizationResponseMTI;
@@ -186,58 +182,35 @@ public class BaseConstants {
 	
 
 	public BaseConstants() {
-		loadFepPropertyFile();
 		loadConstantValues();
 	}
 
-	private boolean loadFepPropertyFile() {		
-		fepFile = Initializer.getApplicationDefaultFilesPath()+"/"+ Initializer.getFepPropertyFiles().get(Initializer.getFEPname());
-		try {
-			file = new File(fepFile);
-			fis = new FileInputStream(file);
-		} catch (FileNotFoundException e) {
-			logger.fatal("Unable to find the fep property file");
-		}
-		try {
-			property.load(fis);
-			return true;
-		} catch (IOException e) {
-			logger.fatal("Unable to load the fep property file");
-			return false;
-		}
-	}
 
 	private void loadConstantValues() {
 		// This helps to decide if the fep supports echo message or not
-		echoMessageLength = property.getProperty("echoMessageLength");
+		echoMessageLength = Initializer.getConfigurationTracker().getFepPropertiesMap().get("echoMessageLength");
 
 		// Transaction MTI:
-		authorizationRequestMTI = property.getProperty("authorizationRequestMTI");
-		authorizationResponseMTI = property.getProperty("authorizationResponseMTI");
-		financialSalesRequestMTI = property.getProperty("financialSalesRequestMTI");
-		financialSalesResponseMTI = property.getProperty("financialSalesResponseMTI");
-		financialForceDraftRequestMTI = property.getProperty("financialForceDraftRequestMTI");
-		financialForceDraftResponseMTI = property.getProperty("financialForceDraftResponseMTI");
-		reversalRequestMTI = property.getProperty("reversalRequestMTI");
-		reversalResponseMTI = property.getProperty("reversalResponseMTI");
-		reconciliationRequestMTI = property.getProperty("reconciliationRequestMTI");
-		reconciliationResponseMTI = property.getProperty("reconciliationResponseMTI");
+		authorizationRequestMTI = Initializer.getConfigurationTracker().getFepPropertiesMap().get("authorizationRequestMTI");
+		authorizationResponseMTI = Initializer.getConfigurationTracker().getFepPropertiesMap().get("authorizationResponseMTI");
+		financialSalesRequestMTI = Initializer.getConfigurationTracker().getFepPropertiesMap().get("financialSalesRequestMTI");
+		financialSalesResponseMTI = Initializer.getConfigurationTracker().getFepPropertiesMap().get("financialSalesResponseMTI");
+		financialForceDraftRequestMTI = Initializer.getConfigurationTracker().getFepPropertiesMap().get("financialForceDraftRequestMTI");
+		financialForceDraftResponseMTI = Initializer.getConfigurationTracker().getFepPropertiesMap().get("financialForceDraftResponseMTI");
+		reversalRequestMTI = Initializer.getConfigurationTracker().getFepPropertiesMap().get("reversalRequestMTI");
+		reversalResponseMTI = Initializer.getConfigurationTracker().getFepPropertiesMap().get("reversalResponseMTI");
+		reconciliationRequestMTI = Initializer.getConfigurationTracker().getFepPropertiesMap().get("reconciliationRequestMTI");
+		reconciliationResponseMTI = Initializer.getConfigurationTracker().getFepPropertiesMap().get("reconciliationResponseMTI");
 		// BitFields involved in Transaction
-		elementsInAuthorisationTransaction = generateIntegerArrayFromString(
-				property.getProperty("elementsInAuthorisationTransaction"));
-		elementsInFinancialSalesTransaction = generateIntegerArrayFromString(
-				property.getProperty("elementsInFinancialSalesTransaction"));
-		elementsInFinancialForceDraftTransaction = generateIntegerArrayFromString(
-				property.getProperty("elementsInFinancialForceDraftTransaction"));
-		elementsInReversalTransaction = generateIntegerArrayFromString(
-				property.getProperty("elementsInReversalTransaction"));
-		elementsInReconciliationTransaction = generateIntegerArrayFromString(
-				property.getProperty("elementsInReconciliationTransaction"));
+		elementsInAuthorisationTransaction = generateIntegerArrayFromString(Initializer.getConfigurationTracker().getFepPropertiesMap().get("elementsInAuthorisationTransaction"));
+		elementsInFinancialSalesTransaction = generateIntegerArrayFromString(Initializer.getConfigurationTracker().getFepPropertiesMap().get("elementsInFinancialSalesTransaction"));
+		elementsInFinancialForceDraftTransaction = generateIntegerArrayFromString(Initializer.getConfigurationTracker().getFepPropertiesMap().get("elementsInFinancialForceDraftTransaction"));
+		elementsInReversalTransaction = generateIntegerArrayFromString(Initializer.getConfigurationTracker().getFepPropertiesMap().get("elementsInReversalTransaction"));
+		elementsInReconciliationTransaction = generateIntegerArrayFromString(Initializer.getConfigurationTracker().getFepPropertiesMap().get("elementsInReconciliationTransaction"));
 
 		// Codes to be validated during transaction
-		balanceInquiryCodes = generateArrayListFromString(property.getProperty("balanceInquiryCodes"));
-		activationRechargeCodes = generateArrayListFromString(
-				property.getProperty("activationRechargeCodes"));
+		balanceInquiryCodes = generateArrayListFromString(Initializer.getConfigurationTracker().getFepPropertiesMap().get("balanceInquiryCodes"));
+		activationRechargeCodes = generateArrayListFromString(Initializer.getConfigurationTracker().getFepPropertiesMap().get("activationRechargeCodes"));
 		// Below constant is FCB fep specific
 		elementsInHexFormatforFCBTransaction = new ArrayList<Integer>(
 				Arrays.asList(37, 38, 39, 41, 42, 60, 63));
@@ -368,16 +341,16 @@ public class BaseConstants {
 		nameOfbitfield124 = "BITFIELD124";
 
 		// Decoding details:
-		HeaderStartPoint = Integer.parseInt(property.getProperty("HeaderStartPoint"));
-		HeaderEndPoint = Integer.parseInt(property.getProperty("HeaderEndPoint"));
-		mtiStartPoint = Integer.parseInt(property.getProperty("mtiStartPoint"));
-		mtiEndPoint = Integer.parseInt(property.getProperty("mtiEndPoint"));
-		primaryBitmapStartPoint = Integer.parseInt(property.getProperty("primaryBitmapStartPoint"));
-		primaryBitmapEndPoint = Integer.parseInt(property.getProperty("primaryBitmapEndPoint"));
-		primaryBitmapPosition = Integer.parseInt(property.getProperty("primaryBitmapPosition"));
-		secondaryBitmapStartPoint = Integer.parseInt(property.getProperty("secondaryBitmapStartPoint"));
-		secondaryBitmapEndPoint = Integer.parseInt(property.getProperty("secondaryBitmapEndPoint"));
-		secondaryBitmapEndPosition = Integer.parseInt(property.getProperty("secondaryBitmapEndPosition"));
+		HeaderStartPoint = Integer.parseInt(Initializer.getConfigurationTracker().getFepPropertiesMap().get("HeaderStartPoint"));
+		HeaderEndPoint = Integer.parseInt(Initializer.getConfigurationTracker().getFepPropertiesMap().get("HeaderEndPoint"));
+		mtiStartPoint = Integer.parseInt(Initializer.getConfigurationTracker().getFepPropertiesMap().get("mtiStartPoint"));
+		mtiEndPoint = Integer.parseInt(Initializer.getConfigurationTracker().getFepPropertiesMap().get("mtiEndPoint"));
+		primaryBitmapStartPoint = Integer.parseInt(Initializer.getConfigurationTracker().getFepPropertiesMap().get("primaryBitmapStartPoint"));
+		primaryBitmapEndPoint = Integer.parseInt(Initializer.getConfigurationTracker().getFepPropertiesMap().get("primaryBitmapEndPoint"));
+		primaryBitmapPosition = Integer.parseInt(Initializer.getConfigurationTracker().getFepPropertiesMap().get("primaryBitmapPosition"));
+		secondaryBitmapStartPoint = Integer.parseInt(Initializer.getConfigurationTracker().getFepPropertiesMap().get("secondaryBitmapStartPoint"));
+		secondaryBitmapEndPoint = Integer.parseInt(Initializer.getConfigurationTracker().getFepPropertiesMap().get("secondaryBitmapEndPoint"));
+		secondaryBitmapEndPosition = Integer.parseInt(Initializer.getConfigurationTracker().getFepPropertiesMap().get("secondaryBitmapEndPosition"));
 		
 		guisendResponsePanelName = "sendResponse";
 		guiAuthorizationResultPanelName = "authorizationTransactionResponse";

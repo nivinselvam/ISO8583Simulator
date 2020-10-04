@@ -5,15 +5,17 @@ import java.io.File;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.JOptionPane;
+
+import javax.swing.JTextArea;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 public class Initializer {
 	private static String fepName;
+	private static int portNumber;
 	private static boolean guiEnabled;
-	private static String applicationDefaultFilesPath;
+	private static String propertiesFilePath;
 	private static ServerInitializer server;
 	private static Converter converter;
 	private static BitFieldData bitfieldData;
@@ -22,28 +24,29 @@ public class Initializer {
 	private static ConfigurationTracker configTracker;
 	public static BaseFileWatcher fileWatcher;
 	private static AppGUI appGui;
-	private static int portNumber;
 	private static Map<String, String> fepPropertyFiles;
 	private static Logger logger = Logger.getLogger(Initializer.class);
-	public static String configFileName ="UpdateConfiguration.properties";
+	public static String configFileName = "UpdateConfiguration.properties";
+	private JTextArea txtareaLogs;
 
 	public static void main(String[] args) {
-		fepName = "HPS";
 		guiEnabled = true;
-		bitfieldData = new BitFieldData();
-		converter = new Converter();
+		PropertyConfigurator.configure("src/main/var/log/log4j.properties");
+		propertiesFilePath = "src/main/resources/";
+		fepPropertyFiles = new HashMap<String, String>();
+		mapFEPtoPropertyFile();
+		configTracker = new ConfigurationTracker();
+		configTracker.createPropertiesMap();
 		// GUI is instantiated here to get the logs displayed in the runtime logs text area
 		if (guiEnabled) {
 			appGui = new AppGUI();
 		}
-		applicationDefaultFilesPath = "src/main/resources";
-		PropertyConfigurator.configure("src/main/var/log/log4j.properties");
-		fepPropertyFiles = new HashMap<String, String>();
+		bitfieldData = new BitFieldData();
+		converter = new Converter();		
+		
 		server = null;
-		mapFEPtoPropertyFile();
 
 		fileWatcher = new BaseFileWatcher();
-		configTracker = new ConfigurationTracker();
 		constants = new BaseConstants();
 		variables = new BaseVariables();
 		fileWatcher.start();
@@ -72,13 +75,11 @@ public class Initializer {
 	private static void mapFEPtoPropertyFile() {
 		fepPropertyFiles.put("Common", "CommonVariables.properties");
 		fepPropertyFiles.put("HPS", "HPSVariables.properties");
-		fepPropertyFiles.put("FCB", "FCBVariables.properties");
-		fepPropertyFiles.put("INCOMM", "IncommVariables.properties");
 		fepPropertyFiles.put("X9", "X9Variables.properties");
 	}
 
-	public static String getApplicationDefaultFilesPath() {
-		return applicationDefaultFilesPath;
+	public static String getPropertiesFilePath() {
+		return propertiesFilePath;
 	}
 
 	public static Map<String, String> getFepPropertyFiles() {
@@ -93,16 +94,24 @@ public class Initializer {
 		return fepName;
 	}
 
+	public static void setFEPname(String fepName) {
+		Initializer.fepName = fepName;
+	}
+
+	public static int getPortNumber() {
+		return portNumber;
+	}
+
+	public static void setPortNumber(int portNumber) {
+		Initializer.portNumber = portNumber;
+	}
+
 	public static BaseConstants getBaseConstants() {
 		return constants;
 	}
 
 	public static void setBaseConstants(BaseConstants constants) {
 		Initializer.constants = constants;
-	}
-
-	public static void setFEPname(String fepName) {
-		Initializer.fepName = fepName;
 	}
 
 	public static boolean isGUIenabled() {
@@ -133,16 +142,18 @@ public class Initializer {
 		return variables;
 	}
 
-	public static int getPortNumber() {
-		return portNumber;
-	}
-
-	public static void setPortNumber(int portNumber) {
-		Initializer.portNumber = portNumber;
-	}
-
-	public static ConfigurationTracker getBaseDataLoader() {
+	public static ConfigurationTracker getConfigurationTracker() {
 		return configTracker;
+	}
+	
+	// ---------------------------------------------------------------------------------------------------------
+	/*
+	 * This method is used to initiate the logging into the text area.
+	 */
+	// ---------------------------------------------------------------------------------------------------------
+	public void initiateTextAreaLogging() {
+		txtareaLogs = new JTextArea();
+		
 	}
 
 	// ---------------------------------------------------------------------------------------------------------
