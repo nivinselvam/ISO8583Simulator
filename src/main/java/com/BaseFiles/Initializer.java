@@ -2,9 +2,13 @@ package com.BaseFiles;
 
 import java.awt.EventQueue;
 import java.io.File;
+import java.io.PrintStream;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.swing.JTextArea;
+
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -24,9 +28,16 @@ public class Initializer {
 	private static Map<String, String> fepPropertyFiles;
 	private static Logger logger = Logger.getLogger(Initializer.class);
 	public static String configFileName = "UpdateConfiguration.properties";
+	public static JTextArea txtareaLogs = new JTextArea();
 
 	public static void main(String[] args) {
 		guiEnabled = true;
+		//This is to redirect all the logger statements to be printed in the log area of the GUI
+		//--------------------------------------------------------------------------------------
+		PrintStream printStream = new PrintStream(new CustomOutputStream(txtareaLogs));
+		System.setOut(printStream);
+		System.setErr(printStream);
+		//--------------------------------------------------------------------------------------
 		PropertyConfigurator.configure("src/main/var/log/log4j.properties");
 		propertiesFilePath = "src/main/resources/";
 		fepPropertyFiles = new HashMap<String, String>();
@@ -43,9 +54,7 @@ public class Initializer {
 		}
 
 		converter = new Converter();
-
 		server = null;
-
 		fileWatcher = new BaseFileWatcher();
 
 		fileWatcher.start();

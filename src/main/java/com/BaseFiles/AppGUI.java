@@ -70,8 +70,7 @@ public class AppGUI {
 	private JLabel lblStatusValue;
 	private JLabel lblStatus;
 	private JTextField txtIP;
-	private JTextField txtPort;
-	private JTextArea txtareaLogs;
+	private JTextField txtPort;	
 	private JFormattedTextField txtDeclineCode;
 	private JFormattedTextField txtApprovalAmount;
 	private JButton btnStartServer;
@@ -109,10 +108,6 @@ public class AppGUI {
 
 	public JFrame getFrmISO8583Simulator() {
 		return frmISO8583Simulator;
-	}
-
-	public JTextArea getTxtareaLogs() {
-		return txtareaLogs;
 	}
 
 	/**
@@ -541,14 +536,11 @@ public class AppGUI {
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(scrlpnLogs, GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE).addGap(12)));
 
-		txtareaLogs = new JTextArea();
-		txtareaLogs.setEditable(false);
-		scrlpnLogs.setViewportView(txtareaLogs);
+		Initializer.txtareaLogs.setEditable(false);
+		scrlpnLogs.setViewportView(Initializer.txtareaLogs);
 		pnLogs.setLayout(gl_pnLogs);
 		frmISO8583Simulator.getContentPane().setLayout(groupLayout);
-		PrintStream printStream = new PrintStream(new CustomOutputStream(txtareaLogs));
-		System.setOut(printStream);
-		System.setErr(printStream);
+		
 
 		menuBar = new JMenuBar();
 		frmISO8583Simulator.setJMenuBar(menuBar);
@@ -647,7 +639,7 @@ public class AppGUI {
 		btnClearLogs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					txtareaLogs.getDocument().remove(0, txtareaLogs.getDocument().getLength());
+					Initializer.txtareaLogs.getDocument().remove(0, Initializer.txtareaLogs.getDocument().getLength());
 				} catch (BadLocationException e1) {
 					System.out.println("Unable to clear the logs");
 					logger.error("Unable to clear the logs");
