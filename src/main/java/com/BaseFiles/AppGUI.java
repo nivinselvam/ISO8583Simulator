@@ -28,13 +28,14 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JCheckBox;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
-import java.io.IOException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
 import java.util.Properties;
@@ -102,9 +103,9 @@ public class AppGUI {
 	private ButtonGroup btngrpReconciliationResult;
 	public boolean serverStatusUpdated;
 	private static Logger logger = Logger.getLogger(AppGUI.class);
-	private Map<String, String> transactionConfigurationMap = new HashMap<String, String>();
+	// private Map<String, String> transactionConfigurationMap = new HashMap<String,
+	// String>();
 	private Properties property = new Properties();
-	
 
 	public JFrame getFrmISO8583Simulator() {
 		return frmISO8583Simulator;
@@ -129,7 +130,7 @@ public class AppGUI {
 		frmISO8583Simulator.setTitle("ISO8583 Host Simulator");
 		frmISO8583Simulator.setBounds(100, 100, 558, 803);
 		frmISO8583Simulator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		tbpnTABS = new JTabbedPane(JTabbedPane.TOP);
 		GroupLayout groupLayout = new GroupLayout(frmISO8583Simulator.getContentPane());
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -139,10 +140,10 @@ public class AppGUI {
 				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
 						.addComponent(tbpnTABS, GroupLayout.PREFERRED_SIZE, 721, Short.MAX_VALUE).addContainerGap()));
 
-		List<String> fepNames= new ArrayList<String>();
-		
-		for(Map.Entry<String, String> currentEntry : Initializer.getFepPropertyFiles().entrySet()){
-			if(currentEntry.getKey()!="Common") {
+		List<String> fepNames = new ArrayList<String>();
+
+		for (Map.Entry<String, String> currentEntry : Initializer.getFepPropertyFiles().entrySet()) {
+			if (currentEntry.getKey() != "Common") {
 				fepNames.add(currentEntry.getKey());
 			}
 		}
@@ -173,24 +174,15 @@ public class AppGUI {
 		cbxFEP = new JComboBox(fepNames.toArray());
 		cbxFEP.setSelectedItem(Initializer.getFEPname());
 		GroupLayout gl_pnFEP = new GroupLayout(pnFEP);
-		gl_pnFEP.setHorizontalGroup(
-			gl_pnFEP.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pnFEP.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblName)
-					.addGap(18)
-					.addComponent(cbxFEP, GroupLayout.PREFERRED_SIZE, 406, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-		gl_pnFEP.setVerticalGroup(
-			gl_pnFEP.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pnFEP.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_pnFEP.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblName)
-						.addComponent(cbxFEP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(15, Short.MAX_VALUE))
-		);
+		gl_pnFEP.setHorizontalGroup(gl_pnFEP.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnFEP.createSequentialGroup().addContainerGap().addComponent(lblName).addGap(18)
+						.addComponent(cbxFEP, GroupLayout.PREFERRED_SIZE, 406, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+		gl_pnFEP.setVerticalGroup(gl_pnFEP.createParallelGroup(Alignment.LEADING).addGroup(gl_pnFEP
+				.createSequentialGroup().addContainerGap()
+				.addGroup(gl_pnFEP.createParallelGroup(Alignment.BASELINE).addComponent(lblName).addComponent(cbxFEP,
+						GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+				.addContainerGap(15, Short.MAX_VALUE)));
 		pnFEP.setLayout(gl_pnFEP);
 
 		pnServerConfiguration = new JPanel();
@@ -248,52 +240,42 @@ public class AppGUI {
 		btnStopServer.setBackground(SystemColor.controlHighlight);
 
 		GroupLayout gl_pnMain = new GroupLayout(pnMain);
-		gl_pnMain.setHorizontalGroup(
-			gl_pnMain.createParallelGroup(Alignment.LEADING)
+		gl_pnMain.setHorizontalGroup(gl_pnMain.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnMain.createSequentialGroup()
-					.addGroup(gl_pnMain.createParallelGroup(Alignment.TRAILING)
-						.addGroup(Alignment.LEADING, gl_pnMain.createSequentialGroup()
-							.addGap(412)
-							.addComponent(lblStatus)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblStatusValue))
-						.addGroup(gl_pnMain.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(pnFEP, GroupLayout.PREFERRED_SIZE, 491, GroupLayout.PREFERRED_SIZE)
-							.addGap(0, 0, Short.MAX_VALUE))
-						.addGroup(Alignment.LEADING, gl_pnMain.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(pnServerConfiguration, GroupLayout.PREFERRED_SIZE, 491, GroupLayout.PREFERRED_SIZE))
-						.addGroup(Alignment.LEADING, gl_pnMain.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(btnSaveServerConfiguration, GroupLayout.PREFERRED_SIZE, 491, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_pnMain.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(btnStartServer, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
-							.addGap(44)
-							.addComponent(btnStopServer, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
-							.addGap(0, 0, Short.MAX_VALUE)))
-					.addContainerGap(17, Short.MAX_VALUE))
-		);
-		gl_pnMain.setVerticalGroup(
-			gl_pnMain.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pnMain.createSequentialGroup()
-					.addGap(7)
-					.addGroup(gl_pnMain.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblStatusValue)
+						.addGroup(gl_pnMain.createParallelGroup(Alignment.TRAILING).addGroup(Alignment.LEADING,
+								gl_pnMain.createSequentialGroup().addGap(412).addComponent(lblStatus)
+										.addPreferredGap(ComponentPlacement.RELATED).addComponent(lblStatusValue))
+								.addGroup(gl_pnMain.createSequentialGroup().addContainerGap()
+										.addComponent(pnFEP, GroupLayout.PREFERRED_SIZE, 491,
+												GroupLayout.PREFERRED_SIZE)
+										.addGap(0, 0, Short.MAX_VALUE))
+								.addGroup(Alignment.LEADING,
+										gl_pnMain.createSequentialGroup().addContainerGap().addComponent(
+												pnServerConfiguration, GroupLayout.PREFERRED_SIZE, 491,
+												GroupLayout.PREFERRED_SIZE))
+								.addGroup(Alignment.LEADING,
+										gl_pnMain.createSequentialGroup().addContainerGap().addComponent(
+												btnSaveServerConfiguration, GroupLayout.PREFERRED_SIZE, 491,
+												GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_pnMain.createSequentialGroup().addContainerGap()
+										.addComponent(btnStartServer, GroupLayout.PREFERRED_SIZE, 224,
+												GroupLayout.PREFERRED_SIZE)
+										.addGap(44)
+										.addComponent(btnStopServer, GroupLayout.PREFERRED_SIZE, 223,
+												GroupLayout.PREFERRED_SIZE)
+										.addGap(0, 0, Short.MAX_VALUE)))
+						.addContainerGap(17, Short.MAX_VALUE)));
+		gl_pnMain.setVerticalGroup(gl_pnMain.createParallelGroup(Alignment.LEADING).addGroup(gl_pnMain
+				.createSequentialGroup().addGap(7)
+				.addGroup(gl_pnMain.createParallelGroup(Alignment.BASELINE).addComponent(lblStatusValue)
 						.addComponent(lblStatus))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(pnFEP, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-					.addGap(32)
-					.addComponent(pnServerConfiguration, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(btnSaveServerConfiguration)
-					.addGap(26)
-					.addGroup(gl_pnMain.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnStartServer)
+				.addPreferredGap(ComponentPlacement.RELATED)
+				.addComponent(pnFEP, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE).addGap(32)
+				.addComponent(pnServerConfiguration, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
+				.addGap(18).addComponent(btnSaveServerConfiguration).addGap(26)
+				.addGroup(gl_pnMain.createParallelGroup(Alignment.BASELINE).addComponent(btnStartServer)
 						.addComponent(btnStopServer))
-					.addGap(335))
-		);
+				.addGap(335)));
 		pnMain.setLayout(gl_pnMain);
 
 		JPanel pnTransactionConfiguration = new JPanel();
@@ -324,11 +306,14 @@ public class AppGUI {
 				TitledBorder.LEFT, TitledBorder.ABOVE_TOP, null, new Color(0, 0, 0)));
 
 		rdbtnSendResponse = new JRadioButton("Yes");
-		rdbtnSendResponse.setSelected(true);
 		rdbtnDontSendResponse = new JRadioButton("No");
 		btngrpSendResponseOrNot.add(rdbtnSendResponse);
 		btngrpSendResponseOrNot.add(rdbtnDontSendResponse);
-
+		if (Initializer.getConfigurationTracker().getFepPropertiesMap().get("sendResponse").equalsIgnoreCase("No")) {
+			rdbtnDontSendResponse.setSelected(true);
+		} else {
+			rdbtnSendResponse.setSelected(true);
+		}
 		GroupLayout gl_pnSendResponse = new GroupLayout(pnSendResponse);
 		gl_pnSendResponse.setHorizontalGroup(gl_pnSendResponse.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnSendResponse.createSequentialGroup().addContainerGap().addComponent(rdbtnSendResponse)
@@ -347,17 +332,25 @@ public class AppGUI {
 		lblDeclineCode = new JLabel("Decline Code : ");
 
 		txtDeclineCode = new JFormattedTextField();
-		txtDeclineCode.setText("0");
+		txtDeclineCode
+				.setText(Initializer.getConfigurationTracker().getFepPropertiesMap().get("ValueOfBitfield39Decline"));
 
 		lblApprovalAmount = new JLabel("Approval Amount : ");
 
 		txtApprovalAmount = new JFormattedTextField();
-		txtApprovalAmount.setText("0");
+		txtApprovalAmount.setText(Initializer.getConfigurationTracker().getFepPropertiesMap().get("valueOfBitfield4"));
 		txtApprovalAmount.setEnabled(false);
 
 		chckbxApproveForHalf = new JCheckBox("Approve for half of transaction amount");
+		if (Initializer.getConfigurationTracker().getFepPropertiesMap().get("isHalfApprovalRequired")
+				.equalsIgnoreCase("true")) {
+			chckbxApproveForHalf.setSelected(true);
+			txtApprovalAmount.setEnabled(true);
+		} else {
+			chckbxApproveForHalf.setSelected(false);
+			txtApprovalAmount.setEnabled(false);
+		}
 
-		chckbxApproveForHalf.setSelected(true);
 		GroupLayout gl_pnConfiguration = new GroupLayout(pnConfiguration);
 		gl_pnConfiguration.setHorizontalGroup(gl_pnConfiguration.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnConfiguration.createSequentialGroup().addContainerGap()
@@ -423,11 +416,11 @@ public class AppGUI {
 						.addContainerGap(30, Short.MAX_VALUE)));
 
 		rdbtnReconciliationApprove = new JRadioButton("Approve");
-		rdbtnReconciliationApprove.setSelected(true);
 		rdbtnReconciliationDecline = new JRadioButton("Decline");
 		btngrpReconciliationResult = new ButtonGroup();
 		btngrpReconciliationResult.add(rdbtnReconciliationApprove);
 		btngrpReconciliationResult.add(rdbtnReconciliationDecline);
+
 		GroupLayout gl_pnReconciliation = new GroupLayout(pnReconciliation);
 		gl_pnReconciliation.setHorizontalGroup(gl_pnReconciliation.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnReconciliation.createSequentialGroup().addContainerGap()
@@ -571,7 +564,9 @@ public class AppGUI {
 
 		mntmAbout = new JMenuItem("About");
 		mnHelp.add(mntmAbout);
-		
+
+		refreshGUIConfiguration();
+
 		// -----------------------------------------------------------------------------------------------------------------------------
 		/*
 		 * When the start server button is clicked, i) Server is started ii) if the
@@ -579,29 +574,24 @@ public class AppGUI {
 		 * button is enabled
 		 */
 		// -----------------------------------------------------------------------------------------------------------------------------
-		btnStartServer.addActionListener(new ActionListener() {	
+		btnStartServer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				serverStatusUpdated = false;
 				logger.debug("Server status update was reset to false");
 				Initializer.setServer(new ServerInitializer());
 				Initializer.getServer().start();
 
-				while(!serverStatusUpdated) {
+				while (!serverStatusUpdated) {
 					try {
-						Thread.sleep(100);				
+						Thread.sleep(100);
 					} catch (InterruptedException e1) {
 						logger.error(e1.toString());
 					}
 				}
-				
-				if(Initializer.getServer().serverStarted) {
-					btnStopServer.setEnabled(true);
-					btnStartServer.setEnabled(false);
-					lblStatusValue.setText("Online");
-					cbxFEP.setEnabled(false);
-					txtPort.setEnabled(false);
-					btnSaveServerConfiguration.setEnabled(false);
-				}				
+
+				if (Initializer.getServer().serverStarted) {
+					startServerGUIChanges();
+				}
 			}
 		});
 
@@ -613,30 +603,13 @@ public class AppGUI {
 		 */
 		// -----------------------------------------------------------------------------------------------------------------------------
 		btnStopServer.addActionListener(new ActionListener() {
-			boolean serverStopped = false;
+
 			public void actionPerformed(ActionEvent e) {
-				try {
-					Initializer.getServer().getServerSocket().close();
-					serverStopped = true;
-					logger.info("Server stopped");
-					lblStatusValue.setText("Offline");
-				}catch(NullPointerException e1) {
-					serverStopped = true;
-					logger.error("Server Socket is not open. Hence close server operation is invalid");
-					JOptionPane.showMessageDialog(null, "Server Socket is not open. Hence close server operation is invalid");
-				}catch (IOException e1) {
-					serverStopped = false;
-					logger.error("Unable to stop the server");
-					System.out.println("Unable to stop the server");
+				if (Initializer.getServer().stopServer()) {
+					stopServerGUIChanges();
+				} else {
 					JOptionPane.showMessageDialog(null, "Unable to stop the server");
 				}
-				if(serverStopped) {
-					btnStartServer.setEnabled(true);
-					btnStopServer.setEnabled(false);
-					cbxFEP.setEnabled(true);
-					txtPort.setEnabled(true);
-					btnSaveServerConfiguration.setEnabled(true);
-				}				
 			}
 		});
 		// -----------------------------------------------------------------------------------------------------------------------------
@@ -701,26 +674,37 @@ public class AppGUI {
 						JOptionPane.showMessageDialog(null,
 								"Entered port number is invalid. Valid port number range is between 1026 and 65535");
 					} else {
-//						property.load(new FileInputStream(new File(Initializer.getFEPpropertiesFilesPath() + "\\"
-//								+ Initializer.getFepPropertyFiles().get("Common"))));
-						if (!cbxFEP.getSelectedItem().toString().equals(property.getProperty("fepName"))) {
-							property.setProperty("fepName", cbxFEP.getSelectedItem().toString());
+						if (!cbxFEP.getSelectedItem().toString().equals(Initializer.getFEPname())) {
+							Initializer.setFEPname(cbxFEP.getSelectedItem().toString());
+							Initializer.getConfigurationTracker().getFepPropertiesMap().put("fepName",
+									cbxFEP.getSelectedItem().toString());
+							Initializer.getConfigurationTracker().updatePropertiesMapFromFepPropertyFile(
+									Initializer.getFEPname(), String.valueOf(Initializer.getPortNumber()));
+							Initializer.getBaseConstants().loadConstantValues();
+							Initializer.getBaseVariables().loadDefaultValues();
 							update = true;
 						}
-						if (!txtPort.getText().equals(property.getProperty("portNumber"))) {
-							property.setProperty("portNumber", txtPort.getText());
+						if (!txtPort.getText().equals(Initializer.getPortNumber())) {
+							Initializer.setPortNumber(Integer.parseInt(txtPort.getText()));
+							Initializer.getConfigurationTracker().getFepPropertiesMap().put("portNumber",
+									txtPort.getText());
 							update = true;
 						}
 						if (update) {
-//							property.store(new FileOutputStream(new File(Initializer.getFEPpropertiesFilesPath() + "\\"
-//									+ Initializer.getFepPropertyFiles().get("Common"))), null);
+							property.load(new FileInputStream(new File(Initializer.getPropertiesFilePath()
+									+ Initializer.getFepPropertyFiles().get("Common"))));
+							property.setProperty("fepName",
+									Initializer.getConfigurationTracker().getFepPropertiesMap().get("fepName"));
+							property.setProperty("portNumber",
+									Initializer.getConfigurationTracker().getFepPropertiesMap().get("portNumber"));
+							property.store(new FileOutputStream(new File(Initializer.getPropertiesFilePath()
+									+ Initializer.getFepPropertyFiles().get("Common"))), "");
+							logger.debug("Configuration changed successfully. FEP : " + Initializer.getFEPname()
+									+ " Port number: " + Initializer.getPortNumber());
 						}
 					}
 					Initializer.getBaseVariables().setBitfield39UpperLimit();
-					if (!Initializer.getFEPname().equals(cbxFEP.getSelectedItem())) {
-						//Initializer.getBaseDataLoader().createAppFolder();
-						resetTransactionConfiguration();						
-					}
+					refreshGUIConfiguration();
 
 				} catch (Exception e1) {
 					System.out.println(
@@ -741,7 +725,9 @@ public class AppGUI {
 		btnSaveTransactionConfiguration.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (validDeclineCodeAndAmount()) {
-					getTransactionConfigurationFromGUI();
+					Initializer.getConfigurationTracker().updatePropertiesMapFromGUI();
+					Initializer.getConfigurationTracker().updatePropertiesFileFromMap();
+					Initializer.getBaseVariables().loadDefaultValues();
 				}
 			}
 		});
@@ -770,28 +756,34 @@ public class AppGUI {
 	 * This method is used to get the transaction configuration from the GUI.
 	 */
 	// -----------------------------------------------------------------------------------------------------------------------------
-	public Map<String, String> getTransactionConfigurationFromGUI() {
-		transactionConfigurationMap.put(Initializer.getBaseConstants().guisendResponsePanelName,
+	public void updateFepPropertiesMapFromGUI() {
+		Initializer.getConfigurationTracker().getFepPropertiesMap().put(
+				Initializer.getBaseConstants().sendResponseVariableName,
 				getSelectedButtonText(btngrpSendResponseOrNot));
-		transactionConfigurationMap.put(Initializer.getBaseConstants().guiAuthorizationResultPanelName,
+		Initializer.getConfigurationTracker().getFepPropertiesMap().put(
+				Initializer.getBaseConstants().authorizationResultVariableName,
 				getSelectedButtonText(btngrpauthorizationResult));
-		transactionConfigurationMap.put(Initializer.getBaseConstants().guiFinancialSalesResultPanelName,
+		Initializer.getConfigurationTracker().getFepPropertiesMap().put(
+				Initializer.getBaseConstants().financialSalesResultVariableName,
 				getSelectedButtonText(btngrpFinancialSalesResult));
-		transactionConfigurationMap.put(Initializer.getBaseConstants().guiFinancialForceDraftResultPanelName,
+		Initializer.getConfigurationTracker().getFepPropertiesMap().put(
+				Initializer.getBaseConstants().financialForceDraftResultVariableName,
 				getSelectedButtonText(btngrpFinancialForceDraftResult));
-		transactionConfigurationMap.put(Initializer.getBaseConstants().guiReversalResultPanelName,
-				getSelectedButtonText(btngrpReversalResult));
-		transactionConfigurationMap.put(Initializer.getBaseConstants().guiReconciliationResultPanelName,
+		Initializer.getConfigurationTracker().getFepPropertiesMap().put(
+				Initializer.getBaseConstants().reversalResultVariableName, getSelectedButtonText(btngrpReversalResult));
+		Initializer.getConfigurationTracker().getFepPropertiesMap().put(
+				Initializer.getBaseConstants().reconciliationResultVariableName,
 				getSelectedButtonText(btngrpReconciliationResult));
-		transactionConfigurationMap.put(Initializer.getBaseConstants().guiDeclineCodefieldName,
+		Initializer.getConfigurationTracker().getFepPropertiesMap().put(
+				Initializer.getBaseConstants().declineCodeVariablename,
 				Initializer.getConverter().zeroPadding(txtDeclineCode.getText().replace(",", ""),
 						Initializer.getBitfieldData().bitfieldLength
 								.get(Initializer.getBaseConstants().nameOfbitfield39)));
-		transactionConfigurationMap.put(Initializer.getBaseConstants().guiApprovalAmountFieldName,
-				txtApprovalAmount.getText());
-		transactionConfigurationMap.put(Initializer.getBaseConstants().guiIsHalfApprovalRequired,
+		Initializer.getConfigurationTracker().getFepPropertiesMap()
+				.put(Initializer.getBaseConstants().approvalAmountFieldName, txtApprovalAmount.getText());
+		Initializer.getConfigurationTracker().getFepPropertiesMap().put(
+				Initializer.getBaseConstants().isHalfApprovalRequiredVariableName,
 				String.valueOf(chckbxApproveForHalf.isSelected()));
-		return transactionConfigurationMap;
 	}
 
 	// -----------------------------------------------------------------------------------------------------------------------------
@@ -827,21 +819,121 @@ public class AppGUI {
 			return false;
 		}
 	}
+
+	// -----------------------------------------------------------------------------------------------------------------------------
+	/*
+	 * This method is used to make the necessary changes to GUI when the server is started
+	 */
+	// -----------------------------------------------------------------------------------------------------------------------------
+	public void startServerGUIChanges() {
+		btnStopServer.setEnabled(true);
+		btnStartServer.setEnabled(false);
+		lblStatusValue.setText("Online");
+		cbxFEP.setEnabled(false);
+		txtPort.setEnabled(false);
+		btnSaveServerConfiguration.setEnabled(false);
+	}
 	
 	// -----------------------------------------------------------------------------------------------------------------------------
 	/*
-	 * This method is used to reset the transaction configuration when the fep is changed
+	 * This method is used to make the necessary changes to GUI when the server is started
 	 */
 	// -----------------------------------------------------------------------------------------------------------------------------
-	public void resetTransactionConfiguration() {
-		rdbtnSendResponse.setSelected(true);
-		rdbtnAuthorizationApprove.setSelected(true);
-		rdbtnFinancialSalesApprove.setSelected(true);
-		rdbtnFinancialForceDraftApprove.setSelected(true);
-		rdbtnReconciliationApprove.setSelected(true);
-		rdbtnReversalApprove.setSelected(true);
-		txtDeclineCode.setText("0");
-		txtApprovalAmount.setText("0");
-		chckbxApproveForHalf.setSelected(true);
+	public void stopServerGUIChanges() {
+		btnStopServer.setEnabled(false);
+		btnStartServer.setEnabled(true);
+		lblStatusValue.setText("Offline");
+		cbxFEP.setEnabled(true);
+		txtPort.setEnabled(true);
+		btnSaveServerConfiguration.setEnabled(true);
+	}
+
+	// -----------------------------------------------------------------------------------------------------------------------------
+	/*
+	 * This method is used to reset the transaction configuration when the fep is
+	 * changed
+	 */
+	// -----------------------------------------------------------------------------------------------------------------------------
+	public void refreshGUIConfiguration() {
+		cbxFEP.setSelectedItem(Initializer.getFEPname());
+		txtPort.setText(String.valueOf(Initializer.getPortNumber()));
+		
+		if (Initializer.getConfigurationTracker().getFepPropertiesMap()
+				.get(Initializer.getBaseConstants().sendResponseVariableName).equalsIgnoreCase("No")) {
+			rdbtnDontSendResponse.setSelected(true);
+		} else {
+			rdbtnSendResponse.setSelected(true);
+		}
+
+		if (Initializer.getConfigurationTracker().getFepPropertiesMap()
+				.get(Initializer.getBaseConstants().authorizationResultVariableName)
+				.equalsIgnoreCase(Initializer.getBaseConstants().approvalValue)) {
+			rdbtnAuthorizationApprove.setSelected(true);
+		} else if (Initializer.getConfigurationTracker().getFepPropertiesMap()
+				.get(Initializer.getBaseConstants().authorizationResultVariableName)
+				.equalsIgnoreCase(Initializer.getBaseConstants().declineValue)) {
+			rdbtnAuthorizationDecline.setSelected(true);
+		} else if (Initializer.getConfigurationTracker().getFepPropertiesMap()
+				.get(Initializer.getBaseConstants().authorizationResultVariableName)
+				.equalsIgnoreCase(Initializer.getBaseConstants().partialApprovalValue)) {
+			rdbtnAuthorizationPartiallyapprove.setSelected(true);
+		}
+
+		if (Initializer.getConfigurationTracker().getFepPropertiesMap()
+				.get(Initializer.getBaseConstants().financialSalesResultVariableName)
+				.equalsIgnoreCase(Initializer.getBaseConstants().approvalValue)) {
+			rdbtnFinancialSalesApprove.setSelected(true);
+		} else if (Initializer.getConfigurationTracker().getFepPropertiesMap()
+				.get(Initializer.getBaseConstants().financialSalesResultVariableName)
+				.equalsIgnoreCase(Initializer.getBaseConstants().declineValue)) {
+			rdbtnFinancialSalesDecline.setSelected(true);
+		} else if (Initializer.getConfigurationTracker().getFepPropertiesMap()
+				.get(Initializer.getBaseConstants().financialSalesResultVariableName)
+				.equalsIgnoreCase(Initializer.getBaseConstants().partialApprovalValue)) {
+			rdbtnFinancialSalesPartiallyapprove.setSelected(true);
+		}
+
+		if (Initializer.getConfigurationTracker().getFepPropertiesMap()
+				.get(Initializer.getBaseConstants().financialForceDraftResultVariableName)
+				.equalsIgnoreCase(Initializer.getBaseConstants().approvalValue)) {
+			rdbtnFinancialForceDraftApprove.setSelected(true);
+		} else if (Initializer.getConfigurationTracker().getFepPropertiesMap()
+				.get(Initializer.getBaseConstants().financialForceDraftResultVariableName)
+				.equalsIgnoreCase(Initializer.getBaseConstants().declineValue)) {
+			rdbtnFinancialForceDraftDecline.setSelected(true);
+		}
+
+		if (Initializer.getConfigurationTracker().getFepPropertiesMap()
+				.get(Initializer.getBaseConstants().reconciliationResultVariableName)
+				.equalsIgnoreCase(Initializer.getBaseConstants().approvalValue)) {
+			rdbtnReconciliationApprove.setSelected(true);
+		} else if (Initializer.getConfigurationTracker().getFepPropertiesMap()
+				.get(Initializer.getBaseConstants().reconciliationResultVariableName)
+				.equalsIgnoreCase(Initializer.getBaseConstants().declineValue)) {
+			rdbtnReconciliationDecline.setSelected(true);
+		}
+
+		if (Initializer.getConfigurationTracker().getFepPropertiesMap()
+				.get(Initializer.getBaseConstants().reversalResultVariableName)
+				.equalsIgnoreCase(Initializer.getBaseConstants().approvalValue)) {
+			rdbtnReversalApprove.setSelected(true);
+		} else if (Initializer.getConfigurationTracker().getFepPropertiesMap()
+				.get(Initializer.getBaseConstants().reversalResultVariableName)
+				.equalsIgnoreCase(Initializer.getBaseConstants().declineValue)) {
+			rdbtnReversalDecline.setSelected(true);
+		}
+
+		txtDeclineCode
+				.setText(Initializer.getConfigurationTracker().getFepPropertiesMap().get("ValueOfBitfield39Decline"));
+
+		txtApprovalAmount.setText(Initializer.getConfigurationTracker().getFepPropertiesMap().get("valueOfBitfield4"));
+		if (Initializer.getConfigurationTracker().getFepPropertiesMap().get("isHalfApprovalRequired")
+				.equalsIgnoreCase("true")) {
+			chckbxApproveForHalf.setSelected(true);
+			txtApprovalAmount.setEnabled(true);
+		} else {
+			chckbxApproveForHalf.setSelected(false);
+			txtApprovalAmount.setEnabled(false);
+		}
 	}
 }

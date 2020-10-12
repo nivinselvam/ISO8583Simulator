@@ -1,7 +1,5 @@
 package com.BaseFiles;
 
-import java.util.Properties;
-
 import org.apache.log4j.Logger;
 
 public class BaseVariables {
@@ -141,7 +139,6 @@ public class BaseVariables {
 	public String valueOfBitfield123;
 	public String valueOfBitfield124;
 	public String bitfield39UpperLimit;
-	private Properties property = new Properties();
 	private Logger logger = Logger.getLogger(BaseVariables.class);
 
 	public BaseVariables() {

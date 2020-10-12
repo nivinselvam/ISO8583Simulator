@@ -9,7 +9,6 @@ package com.BaseFiles;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.file.FileSystems;
 import java.nio.file.Paths;
 import java.nio.file.StandardWatchEventKinds;
@@ -49,17 +48,17 @@ public class BaseFileWatcher extends Thread {
 					WatchEvent.Kind kind = event.kind();
 					if (StandardWatchEventKinds.ENTRY_MODIFY.equals(kind)) {
 						if(event.context().toString().equals("UpdateConfiguration.properties")) {
-							readUpdatedFile(event.context().toString());
+							//readUpdatedFile(event.context().toString());
+							Initializer.getConfigurationTracker().updatePropertiesMapFromConfigurationFile();
+							Initializer.getAppGui().refreshGUIConfiguration();
 						}						
 					}
 				}
 				watchKey.reset();
 			} while (true);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -102,7 +101,7 @@ public class BaseFileWatcher extends Thread {
 					Initializer.setFEPname(property.getProperty("fepName"));
 					Initializer.setBitfieldData(new BitFieldData());
 					Initializer.setBaseConstants(new BaseConstants());
-					reloadBaseVariables();
+					Initializer.getConfigurationTracker().updatePropertiesMapFromConfigurationFile();
 				}
 				if (!String.valueOf(Initializer.getPortNumber()).equals(property.getProperty("portNumber"))) {
 					Initializer.setPortNumber(Integer.parseInt(property.getProperty("portNumber")));

@@ -6,18 +6,11 @@
 
 package com.BaseFiles;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Properties;
-import org.apache.log4j.Logger;
 
 public class BaseConstants {
-	private Logger logger = Logger.getLogger(BaseConstants.class);
 	public String echoMessageLength;
 	public String authorizationRequestMTI;
 	public String authorizationResponseMTI;
@@ -170,15 +163,18 @@ public class BaseConstants {
 	public Integer secondaryBitmapStartPoint;
 	public Integer secondaryBitmapEndPoint;
 	public Integer secondaryBitmapEndPosition;
-	public String guisendResponsePanelName;
-	public String guiAuthorizationResultPanelName;
-	public String guiFinancialSalesResultPanelName;
-	public String guiFinancialForceDraftResultPanelName;
-	public String guiReversalResultPanelName;
-	public String guiReconciliationResultPanelName;
-	public String guiDeclineCodefieldName;
-	public String guiApprovalAmountFieldName;
-	public String guiIsHalfApprovalRequired;
+	public String sendResponseVariableName;
+	public String authorizationResultVariableName;
+	public String financialSalesResultVariableName;
+	public String financialForceDraftResultVariableName;
+	public String reversalResultVariableName;
+	public String reconciliationResultVariableName;
+	public String declineCodeVariablename;
+	public String approvalAmountFieldName;
+	public String isHalfApprovalRequiredVariableName;
+	public String approvalValue;
+	public String declineValue;
+	public String partialApprovalValue;
 	
 
 	public BaseConstants() {
@@ -186,7 +182,7 @@ public class BaseConstants {
 	}
 
 
-	private void loadConstantValues() {
+	public void loadConstantValues() {
 		// This helps to decide if the fep supports echo message or not
 		echoMessageLength = Initializer.getConfigurationTracker().getFepPropertiesMap().get("echoMessageLength");
 
@@ -352,15 +348,18 @@ public class BaseConstants {
 		secondaryBitmapEndPoint = Integer.parseInt(Initializer.getConfigurationTracker().getFepPropertiesMap().get("secondaryBitmapEndPoint"));
 		secondaryBitmapEndPosition = Integer.parseInt(Initializer.getConfigurationTracker().getFepPropertiesMap().get("secondaryBitmapEndPosition"));
 		
-		guisendResponsePanelName = "sendResponse";
-		guiAuthorizationResultPanelName = "authorizationTransactionResponse";
-		guiFinancialSalesResultPanelName = "financialSalesTransactionResponse";
-		guiFinancialForceDraftResultPanelName = "financialForceDraftTransactionResponse";
-		guiReversalResultPanelName = "reversalTransactionResponse";
-		guiReconciliationResultPanelName = "reconciliationTransactionResponse";
-		guiDeclineCodefieldName = "ValueOfBitfield39Decline";
-		guiApprovalAmountFieldName = "valueOfBitfield4";
-		guiIsHalfApprovalRequired = "isHalfApprovalRequired";
+		sendResponseVariableName = "sendResponse";
+		authorizationResultVariableName = "authorizationTransactionResponse";
+		financialSalesResultVariableName = "financialSalesTransactionResponse";
+		financialForceDraftResultVariableName = "financialForceDraftTransactionResponse";
+		reversalResultVariableName = "reversalTransactionResponse";
+		reconciliationResultVariableName = "reconciliationTransactionResponse";
+		declineCodeVariablename = "ValueOfBitfield39Decline";
+		approvalAmountFieldName = "valueOfBitfield4";
+		isHalfApprovalRequiredVariableName = "isHalfApprovalRequired";
+		approvalValue = "Approve";
+		declineValue = "Decline";
+		partialApprovalValue = "PartiallyApprove";
 
 	}
 

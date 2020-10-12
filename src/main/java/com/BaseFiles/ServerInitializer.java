@@ -74,6 +74,32 @@ public class ServerInitializer extends Thread {
 			JOptionPane.showMessageDialog(null, e.toString());
 		}
 	}
+	
+	public void startServer() {
+		this.start();
+	}
+	
+	
+	/*
+	 * -----------------------------------------------------------------------------
+	 * This method is used to close the server socket thereby stopping the server
+	 * -----------------------------------------------------------------------------
+	 * 
+	 */
+	public boolean stopServer() {
+		try {
+			Initializer.getServer().getServerSocket().close();
+			logger.info("Server stopped");
+			return true;			
+		} catch (NullPointerException e1) {
+			logger.error("Server Socket is not open. Hence close server operation is invalid");
+			return true;
+		} catch (IOException e1) {
+			logger.error("Unable to stop the server");
+			return false;			
+		}
+		
+	}
 
 	/*
 	 * -----------------------------------------------------------------------------

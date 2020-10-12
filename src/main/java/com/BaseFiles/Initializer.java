@@ -5,9 +5,6 @@ import java.io.File;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.swing.JTextArea;
-
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -27,7 +24,6 @@ public class Initializer {
 	private static Map<String, String> fepPropertyFiles;
 	private static Logger logger = Logger.getLogger(Initializer.class);
 	public static String configFileName = "UpdateConfiguration.properties";
-	private JTextArea txtareaLogs;
 
 	public static void main(String[] args) {
 		guiEnabled = true;
@@ -37,18 +33,21 @@ public class Initializer {
 		mapFEPtoPropertyFile();
 		configTracker = new ConfigurationTracker();
 		configTracker.createPropertiesMap();
-		// GUI is instantiated here to get the logs displayed in the runtime logs text area
+		bitfieldData = new BitFieldData();
+		constants = new BaseConstants();
+		variables = new BaseVariables();
+		// GUI is instantiated here to get the logs displayed in the runtime logs text
+		// area
 		if (guiEnabled) {
 			appGui = new AppGUI();
 		}
-		bitfieldData = new BitFieldData();
-		converter = new Converter();		
-		
+
+		converter = new Converter();
+
 		server = null;
 
 		fileWatcher = new BaseFileWatcher();
-		constants = new BaseConstants();
-		variables = new BaseVariables();
+
 		fileWatcher.start();
 		if (guiEnabled) {
 			EventQueue.invokeLater(new Runnable() {
@@ -144,16 +143,6 @@ public class Initializer {
 
 	public static ConfigurationTracker getConfigurationTracker() {
 		return configTracker;
-	}
-	
-	// ---------------------------------------------------------------------------------------------------------
-	/*
-	 * This method is used to initiate the logging into the text area.
-	 */
-	// ---------------------------------------------------------------------------------------------------------
-	public void initiateTextAreaLogging() {
-		txtareaLogs = new JTextArea();
-		
 	}
 
 	// ---------------------------------------------------------------------------------------------------------
