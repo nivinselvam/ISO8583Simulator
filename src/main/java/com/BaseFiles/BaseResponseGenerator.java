@@ -65,7 +65,7 @@ public abstract class BaseResponseGenerator {
 				transactionResult = Initializer.getBaseVariables().authorizationTransactionResponse;
 				responseMTI = Initializer.getBaseConstants().authorizationResponseMTI;
 				elementsInTransaction = new TreeSet<>(
-						Arrays.asList(Initializer.getBaseConstants().elementsInAuthorisationTransaction));
+						Arrays.asList(Initializer.getBaseConstants().elementsInAuthorizationTransaction));
 				generateResponseBitfieldswithValue(elementsInTransaction);
 				authorizationPendingBitfieldsUpdate();
 			} else if (requestMTI.equals(Initializer.getBaseConstants().financialSalesRequestMTI)) {

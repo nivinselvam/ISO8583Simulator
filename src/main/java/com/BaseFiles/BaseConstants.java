@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
+import com.X9Files.X9Decoder;
+
 public class BaseConstants {
 	public String echoMessageLength;
 	public String authorizationRequestMTI;
@@ -22,7 +26,7 @@ public class BaseConstants {
 	public String reversalResponseMTI;
 	public String reconciliationRequestMTI;
 	public String reconciliationResponseMTI;
-	public Integer[] elementsInAuthorisationTransaction;
+	public Integer[] elementsInAuthorizationTransaction;
 	public Integer[] elementsInFinancialSalesTransaction;
 	public Integer[] elementsInFinancialForceDraftTransaction;
 	public Integer[] elementsInReversalTransaction;
@@ -198,7 +202,7 @@ public class BaseConstants {
 		reconciliationRequestMTI = Initializer.getConfigurationTracker().getFepPropertiesMap().get("reconciliationRequestMTI");
 		reconciliationResponseMTI = Initializer.getConfigurationTracker().getFepPropertiesMap().get("reconciliationResponseMTI");
 		// BitFields involved in Transaction
-		elementsInAuthorisationTransaction = generateIntegerArrayFromString(Initializer.getConfigurationTracker().getFepPropertiesMap().get("elementsInAuthorisationTransaction"));
+		elementsInAuthorizationTransaction = generateIntegerArrayFromString(Initializer.getConfigurationTracker().getFepPropertiesMap().get("elementsInAuthorizationTransaction"));
 		elementsInFinancialSalesTransaction = generateIntegerArrayFromString(Initializer.getConfigurationTracker().getFepPropertiesMap().get("elementsInFinancialSalesTransaction"));
 		elementsInFinancialForceDraftTransaction = generateIntegerArrayFromString(Initializer.getConfigurationTracker().getFepPropertiesMap().get("elementsInFinancialForceDraftTransaction"));
 		elementsInReversalTransaction = generateIntegerArrayFromString(Initializer.getConfigurationTracker().getFepPropertiesMap().get("elementsInReversalTransaction"));
