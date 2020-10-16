@@ -199,7 +199,7 @@ public class BitFieldData {
 			bitfieldLength.put("BITFIELD49", -4);
 			bitfieldLength.put("BITFIELD50", -3);
 			bitfieldLength.put("BITFIELD51", -3);
-			bitfieldLength.put("BITFIELD52", 16);
+			bitfieldLength.put("BITFIELD52", 8);
 			bitfieldLength.put("BITFIELD53", -2);
 			bitfieldLength.put("BITFIELD54", -3);
 			bitfieldLength.put("BITFIELD55", -4);

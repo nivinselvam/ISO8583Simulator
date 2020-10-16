@@ -676,7 +676,7 @@ public class AppGUI {
 							Initializer.getBaseVariables().loadDefaultValues();
 							update = true;
 						}
-						if (!txtPort.getText().equals(Initializer.getPortNumber())) {
+						if (!txtPort.getText().equals(String.valueOf(Initializer.getPortNumber()))) {
 							Initializer.setPortNumber(Integer.parseInt(txtPort.getText()));
 							Initializer.getConfigurationTracker().getFepPropertiesMap().put("portNumber",
 									txtPort.getText());
