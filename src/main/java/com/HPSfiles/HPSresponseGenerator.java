@@ -227,8 +227,7 @@ public class HPSresponseGenerator extends BaseResponseGenerator {
 					setBitfieldLengthIfRequired(Initializer.getBaseConstants().nameOfbitfield39,
 							Initializer.getBaseVariables().ValueOfBitfield39Decline));
 		}
-		responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield48, setBitfieldLengthIfRequired(
-				Initializer.getBaseConstants().nameOfbitfield48, Initializer.getBaseVariables().valueOfBitfield48));
+		
 	}
 
 	private void addDE54IfNecessary() {
