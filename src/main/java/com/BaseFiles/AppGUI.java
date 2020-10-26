@@ -570,8 +570,7 @@ public class AppGUI {
 			public void actionPerformed(ActionEvent e) {
 				serverStatusUpdated = false;
 				logger.debug("Server status update was reset to false");
-				Initializer.setServer(new ServerInitializer());
-				Initializer.getServer().start();
+				Initializer.startServer();
 
 				while (!serverStatusUpdated) {
 					try {

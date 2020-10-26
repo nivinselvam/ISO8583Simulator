@@ -108,8 +108,7 @@ public class BaseFileWatcher extends Thread {
 				}
 
 				if (!isServerRunning) {
-					Initializer.setServer(new ServerInitializer());
-					Initializer.getServer().start();
+					Initializer.startServer();
 				}
 			}
 

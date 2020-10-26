@@ -162,12 +162,13 @@ public class ConfigurationTracker {
 					}
 					reloadConfiguration();
 				} catch (Exception e) {
-					logger.debug("Server socket is not in closable state.");
+					logger.debug("Server is offline. Hence fepname & portnumber can be changed.");
+					serverStopped = false;
 					reloadConfiguration();
 				}
 				if (serverStopped) {
 					try {
-						Initializer.setServer(new ServerInitializer());
+						Initializer.startServer();
 						if (Initializer.isGUIenabled()) {
 							Initializer.getAppGui().startServerGUIChanges();
 						}
@@ -188,6 +189,7 @@ public class ConfigurationTracker {
 		Initializer.setFEPname(Initializer.getConfigurationTracker().getFepPropertiesMap().get("fepName"));
 		Initializer.setPortNumber(
 				Integer.parseInt(Initializer.getConfigurationTracker().getFepPropertiesMap().get("portNumber")));
+		Initializer.setBitfieldData(new BitFieldData());
 		Initializer.getBaseConstants().loadConstantValues();
 		Initializer.getBaseVariables().loadDefaultValues();
 		updateCommonVariablesFile(Initializer.getFEPname(), String.valueOf(Initializer.getPortNumber()));

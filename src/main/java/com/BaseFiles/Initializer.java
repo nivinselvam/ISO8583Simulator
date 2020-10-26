@@ -6,9 +6,7 @@ import java.io.PrintStream;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.JTextArea;
-
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -130,8 +128,17 @@ public class Initializer {
 		return server;
 	}
 
-	public static void setServer(ServerInitializer server) {
-		Initializer.server = server;
+	public static boolean startServer() {
+		try {
+			Initializer.server = new ServerInitializer();
+			Initializer.server.start();
+			Thread.sleep(100);
+			return true;
+		}catch(Exception e) {
+			logger.error("Unable to start the server."+e.toString());
+			return false;
+		}
+		
 	}
 
 	public static Converter getConverter() {
