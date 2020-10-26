@@ -155,6 +155,7 @@ public class ConfigurationTracker {
 		} else {
 			if (serverStopRequired) {
 				try {
+					
 					Initializer.getServer().getServerSocket().close();
 					serverStopped = true;
 					if (Initializer.isGUIenabled()) {

@@ -2,6 +2,7 @@ package com.BaseFiles;
 
 import java.awt.EventQueue;
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.net.URISyntaxException;
 import java.util.HashMap;
@@ -27,6 +28,7 @@ public class Initializer {
 	private static Logger logger = Logger.getLogger(Initializer.class);
 	public static String configFileName = "UpdateConfiguration.properties";
 	public static JTextArea txtareaLogs = new JTextArea();
+	public static boolean serverStatusChanged;
 
 	public static void main(String[] args) {
 		guiEnabled = true;
@@ -70,18 +72,6 @@ public class Initializer {
 			server = new ServerInitializer();
 			server.start();
 		}
-	}
-
-	// ----------------------------------------------------------------------------------------------------------
-	/*
-	 * This method should be updated on inclusion of any new fep and its associated
-	 * property file.
-	 */
-	// ----------------------------------------------------------------------------------------------------------
-	private static void mapFEPtoPropertyFile() {
-		fepPropertyFiles.put("Common", "CommonVariables.properties");
-		fepPropertyFiles.put("HPS", "HPSVariables.properties");
-		fepPropertyFiles.put("X9", "X9Variables.properties");
 	}
 
 	public static String getPropertiesFilePath() {
@@ -128,19 +118,6 @@ public class Initializer {
 		return server;
 	}
 
-	public static boolean startServer() {
-		try {
-			Initializer.server = new ServerInitializer();
-			Initializer.server.start();
-			Thread.sleep(100);
-			return true;
-		}catch(Exception e) {
-			logger.error("Unable to start the server."+e.toString());
-			return false;
-		}
-		
-	}
-
 	public static Converter getConverter() {
 		return converter;
 	}
@@ -159,6 +136,66 @@ public class Initializer {
 
 	public static ConfigurationTracker getConfigurationTracker() {
 		return configTracker;
+	}
+	
+	// ----------------------------------------------------------------------------------------------------------
+	/*
+	 * This method should be updated on inclusion of any new fep and its associated
+	 * property file.
+	 */
+	// ----------------------------------------------------------------------------------------------------------
+	private static void mapFEPtoPropertyFile() {
+		fepPropertyFiles.put("Common", "CommonVariables.properties");
+		fepPropertyFiles.put("HPS", "HPSVariables.properties");
+		fepPropertyFiles.put("X9", "X9Variables.properties");
+	}
+	
+	
+	/*
+	 * -----------------------------------------------------------------------------
+	 * This method is used to start the server by creating a new server instance.
+	 * -----------------------------------------------------------------------------
+	 * 
+	 */
+	public static boolean startServer() {
+		try {
+			serverStatusChanged = false;
+			Initializer.server = new ServerInitializer();
+			Initializer.server.start();			
+			while (!serverStatusChanged) {
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e1) {
+					logger.error(e1.toString());
+				}
+			}			
+			return true;
+		}catch(Exception e) {
+			logger.error("Unable to start the server."+e.toString());
+			return false;
+		}
+		
+	}
+	
+	/*
+	 * -----------------------------------------------------------------------------
+	 * This method is used to close the server socket thereby stopping the server
+	 * -----------------------------------------------------------------------------
+	 * 
+	 */
+	public static boolean stopServer() {
+		try {
+			server.getServerSocket().close();
+			logger.info("Server stopped");
+			return true;			
+		} catch (NullPointerException e1) {
+			logger.error("Server Socket is not open. Hence close server operation is invalid");
+			return true;
+		} catch (IOException e1) {
+			logger.error("Unable to stop the server");
+			return false;			
+		}
+		
 	}
 
 	// ---------------------------------------------------------------------------------------------------------

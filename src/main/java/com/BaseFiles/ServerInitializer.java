@@ -42,7 +42,7 @@ public class ServerInitializer extends Thread {
 	public void run() {
 		try {
 			serverSocket = new ServerSocket(Initializer.getPortNumber());
-			Initializer.getAppGui().serverStatusUpdated = true;
+			Initializer.serverStatusChanged = true;
 			logger.debug("Server status updated successfully");
 			serverStarted = true;
 			logger.info(Initializer.getFEPname() + " Server started successfully");
@@ -53,54 +53,30 @@ public class ServerInitializer extends Thread {
 				connections.add(socketDataProcessor);
 			}
 		} catch (BindException e) {
-			Initializer.getAppGui().serverStatusUpdated = true;
+			Initializer.serverStatusChanged = true;
 			logger.debug("Server status updated successfully after bindexception");
 			serverStarted = false;
 			logger.error("Cannot start the server on port number "+Initializer.getPortNumber()+". It is already in use");
 			JOptionPane.showMessageDialog(null,
 					"Cannot start the server on port number "+Initializer.getPortNumber()+". It is already in use");
 		} catch (SocketException e) {
-			Initializer.getAppGui().serverStatusUpdated = true;
+			Initializer.serverStatusChanged = true;
 			logger.debug("Server status updated successfully after socket exception");
 			serverStarted = false;
 			logger.info("Server stopped");
 		} catch (IOException e) {
-			Initializer.getAppGui().serverStatusUpdated = true;
+			Initializer.serverStatusChanged = true;
 			logger.debug("Server status updated successfully after io exception");
 			serverStarted = false;
 			logger.error(e.toString());
 		}catch (Exception e) {
+			Initializer.serverStatusChanged = true;
 			logger.debug("Server status updated successfully after exception");
 			JOptionPane.showMessageDialog(null, e.toString());
 		}
 	}
 	
-	public void startServer() {
-		this.start();
-	}
 	
-	
-	/*
-	 * -----------------------------------------------------------------------------
-	 * This method is used to close the server socket thereby stopping the server
-	 * -----------------------------------------------------------------------------
-	 * 
-	 */
-	public boolean stopServer() {
-		try {
-			Initializer.getServer().getServerSocket().close();
-			logger.info("Server stopped");
-			return true;			
-		} catch (NullPointerException e1) {
-			logger.error("Server Socket is not open. Hence close server operation is invalid");
-			return true;
-		} catch (IOException e1) {
-			logger.error("Unable to stop the server");
-			return false;			
-		}
-		
-	}
-
 	/*
 	 * -----------------------------------------------------------------------------
 	 * This method instantiates the socket processor based on the FEP.

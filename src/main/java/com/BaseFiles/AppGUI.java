@@ -100,7 +100,6 @@ public class AppGUI {
 	private ButtonGroup btngrpFinancialForceDraftResult;
 	private ButtonGroup btngrpReversalResult;
 	private ButtonGroup btngrpReconciliationResult;
-	public boolean serverStatusUpdated;
 	private static Logger logger = Logger.getLogger(AppGUI.class);
 	// private Map<String, String> transactionConfigurationMap = new HashMap<String,
 	// String>();
@@ -568,19 +567,8 @@ public class AppGUI {
 		// -----------------------------------------------------------------------------------------------------------------------------
 		btnStartServer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				serverStatusUpdated = false;
 				logger.debug("Server status update was reset to false");
-				Initializer.startServer();
-
-				while (!serverStatusUpdated) {
-					try {
-						Thread.sleep(100);
-					} catch (InterruptedException e1) {
-						logger.error(e1.toString());
-					}
-				}
-
-				if (Initializer.getServer().serverStarted) {
+				if (Initializer.startServer()) {
 					startServerGUIChanges();
 				}
 			}
@@ -596,7 +584,7 @@ public class AppGUI {
 		btnStopServer.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				if (Initializer.getServer().stopServer()) {
+				if (Initializer.stopServer()) {
 					stopServerGUIChanges();
 				} else {
 					JOptionPane.showMessageDialog(null, "Unable to stop the server");
