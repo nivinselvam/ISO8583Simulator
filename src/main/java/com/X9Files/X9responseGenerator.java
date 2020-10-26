@@ -11,7 +11,8 @@ import com.BaseFiles.BaseResponseGenerator;
 import com.BaseFiles.Initializer;
 
 public class X9responseGenerator extends BaseResponseGenerator {
-	
+	private String valueOfBitfield63;
+	private String validValueOfBitfield63 = "\\950O01\\";
 
 	public X9responseGenerator(String requestPacket) {
 		super(requestPacket);
@@ -48,6 +49,14 @@ public class X9responseGenerator extends BaseResponseGenerator {
 			responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield38, setBitfieldLengthIfRequired(
 					Initializer.getBaseConstants().nameOfbitfield38, Initializer.getBaseVariables().valueOfBitfield38));
 			elementsInTransaction.add(38);
+
+			valueOfBitfield63 = responseBitfieldswithValue.get(Initializer.getBaseConstants().nameOfbitfield63);
+			if (valueOfBitfield63 != null && valueOfBitfield63.contains(validValueOfBitfield63)) {
+				responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield62,
+						setBitfieldLengthIfRequired(Initializer.getBaseConstants().nameOfbitfield62,
+								Initializer.getBaseVariables().valueOfBitfield62));
+				elementsInTransaction.add(62);
+			}
 		}
 		if (transactionResult.equals("Decline")) {
 			responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield44, setBitfieldLengthIfRequired(
@@ -88,10 +97,13 @@ public class X9responseGenerator extends BaseResponseGenerator {
 			responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield38, setBitfieldLengthIfRequired(
 					Initializer.getBaseConstants().nameOfbitfield38, Initializer.getBaseVariables().valueOfBitfield38));
 			elementsInTransaction.add(38);
-			
-			if(requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield63)!=null && requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield63).contains("\\950O01\\")) {
-				responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield62, setBitfieldLengthIfRequired(
-					Initializer.getBaseConstants().nameOfbitfield62, Initializer.getBaseVariables().valueOfBitfield62));
+
+			if (requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield63) != null
+					&& requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield63)
+							.contains("\\950O01\\")) {
+				responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield62,
+						setBitfieldLengthIfRequired(Initializer.getBaseConstants().nameOfbitfield62,
+								Initializer.getBaseVariables().valueOfBitfield62));
 				elementsInTransaction.add(62);
 			}
 		}
@@ -144,12 +156,38 @@ public class X9responseGenerator extends BaseResponseGenerator {
 
 	@Override
 	public void reversalPendingBitfieldsUpdate() {
-
+		if (transactionResult.equalsIgnoreCase(Initializer.getBaseConstants().approvalValue)) {
+			responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield38, setBitfieldLengthIfRequired(
+					Initializer.getBaseConstants().nameOfbitfield38, Initializer.getBaseVariables().valueOfBitfield38));
+			elementsInTransaction.add(38);
+			responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield39,
+					setBitfieldLengthIfRequired(Initializer.getBaseConstants().nameOfbitfield39,
+							Initializer.getBaseVariables().ValueOfBitfield39Reversal));
+		} else if (transactionResult.equalsIgnoreCase(Initializer.getBaseConstants().declineValue)) {
+			responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield39,
+					setBitfieldLengthIfRequired(Initializer.getBaseConstants().nameOfbitfield39,
+							Initializer.getBaseVariables().ValueOfBitfield39Decline));
+			responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield44, setBitfieldLengthIfRequired(
+					Initializer.getBaseConstants().nameOfbitfield44, Initializer.getBaseVariables().valueOfBitfield44));
+			elementsInTransaction.add(44);
+		}
 	}
 
 	@Override
 	public void reconciliationPendingBitfieldsUpdate() {
 
+		responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield7,
+				setBitfieldLengthIfRequired(Initializer.getBaseConstants().nameOfbitfield7, generateBitField7Value()));
+
+		if (transactionResult.equalsIgnoreCase(Initializer.getBaseConstants().approvalValue)) {
+			responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield39,
+					setBitfieldLengthIfRequired(Initializer.getBaseConstants().nameOfbitfield39,
+							Initializer.getBaseVariables().ValueOfBitfield39Reconciliation));
+		} else if (transactionResult.equalsIgnoreCase(Initializer.getBaseConstants().declineValue)) {
+			responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield39,
+					setBitfieldLengthIfRequired(Initializer.getBaseConstants().nameOfbitfield39,
+							Initializer.getBaseVariables().ValueOfBitfield39Decline));
+		}
 	}
 
 	// ------------------------------------------------------------------------------------------------------------------

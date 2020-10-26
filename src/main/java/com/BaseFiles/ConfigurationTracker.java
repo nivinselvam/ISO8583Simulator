@@ -11,12 +11,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
+
+import javax.swing.JOptionPane;
 
 import org.apache.log4j.Logger;
 
@@ -24,7 +23,7 @@ public class ConfigurationTracker {
 
 	private Logger logger = Logger.getLogger(ConfigurationTracker.class);
 	private Map<String, String> fepPropertiesMap = new LinkedHashMap<String, String>();
-	private List<Object> fepPropertiesFromConfigFile;
+	private Map<String, String> ValueChangesFromConfigFile = new LinkedHashMap<String, String>();
 	private Properties property = new Properties();
 
 	public Map<String, String> getFepPropertiesMap() {
@@ -39,6 +38,7 @@ public class ConfigurationTracker {
 
 	public void createPropertiesMap() {
 		try {
+
 			property.load(new FileInputStream(
 					new File(Initializer.getPropertiesFilePath() + Initializer.getFepPropertyFiles().get("Common"))));
 
@@ -61,8 +61,10 @@ public class ConfigurationTracker {
 			property.clear();
 		} catch (FileNotFoundException e) {
 			logger.error(e.toString());
+			JOptionPane.showMessageDialog(null, e);
 		} catch (IOException e) {
 			logger.error(e.toString());
+			JOptionPane.showMessageDialog(null, e);
 		}
 	}
 
@@ -108,34 +110,43 @@ public class ConfigurationTracker {
 			logger.error(e.toString());
 		}
 
-		fepPropertiesFromConfigFile = Arrays.asList(property.keySet().toArray());
+		ValueChangesFromConfigFile.putAll((Map) property);
 
 		// If the Config File contains the FEP to be changed, then that has to be
 		// prioritized as the first change to make sure the config is written in the
 		// correct FEP property file
-		if (fepPropertiesFromConfigFile.contains("fepName")) {
-			if (Initializer.getFepPropertyFiles().containsKey(property.getProperty("fepName"))) {
-				updatePropertiesMapFromFepPropertyFile(property.getProperty("fepName"),
+		if (ValueChangesFromConfigFile.containsKey("fepName")) {
+			if (Initializer.getFepPropertyFiles().containsKey(ValueChangesFromConfigFile.get("fepName"))) {
+				updatePropertiesMapFromFepPropertyFile(ValueChangesFromConfigFile.get("fepName"),
 						String.valueOf(Initializer.getPortNumber()));
+				serverStopRequired = true;
+				configChanged = true;
+			}else {
+				logger.error("FEP name "+ValueChangesFromConfigFile.get("fepName")+" configured in the configuration file in invalid");
 			}
 		}
+		int portNumber = 0;
+		for (Map.Entry<String, String> currentEntry : ValueChangesFromConfigFile.entrySet()) {
+			if (currentEntry.getKey().equals("portNumber")) {
+				try {
+					portNumber = Integer.parseInt(currentEntry.getValue());
+					if (portNumber > 1024 && portNumber < 65536) {
+						fepPropertiesMap.put(currentEntry.getKey(), String.valueOf(portNumber));
+						serverStopRequired = true;
+						configChanged = true;
 
-		for (Object prop : fepPropertiesFromConfigFile) {
-			if (prop.toString().equals("fepName")) {
-				serverStopRequired = true;
-				configChanged = true;
-			} else if (prop.toString().equals("portNumber")) {
-				int portNumber = Integer.parseInt(property.getProperty("portNumber"));
-				if (portNumber > 1024 && portNumber < 65536) {
-					fepPropertiesMap.put("portNumber", String.valueOf(portNumber));
+					} else {
+						logger.error("Entered port number: " + currentEntry.getValue() + " is invalid");
+					}
+				} catch (NumberFormatException e) {
+					logger.error("Entered port number: " + currentEntry.getValue() + " is invalid");
 				}
-				serverStopRequired = true;
+
+			} else if (!currentEntry.getKey().equals("fepName") && fepPropertiesMap.containsKey(currentEntry.getKey())) {
 				configChanged = true;
-				fepPropertiesMap.put(prop.toString(), property.getProperty(prop.toString()));
-			} else if (fepPropertiesMap.containsKey(prop.toString())) {
-				configChanged = true;
-				fepPropertiesMap.put(prop.toString(), property.getProperty(prop.toString()));
-			} 
+				fepPropertiesMap.put(currentEntry.getKey(), currentEntry.getValue());
+
+			}
 		}
 
 		if (!configChanged) {
@@ -151,7 +162,7 @@ public class ConfigurationTracker {
 					}
 					reloadConfiguration();
 				} catch (Exception e) {
-					logger.info("Server socket is not in closable state.");
+					logger.debug("Server socket is not in closable state.");
 					reloadConfiguration();
 				}
 				if (serverStopped) {
@@ -175,8 +186,8 @@ public class ConfigurationTracker {
 
 	private void reloadConfiguration() {
 		Initializer.setFEPname(Initializer.getConfigurationTracker().getFepPropertiesMap().get("fepName"));
-		Initializer.setPortNumber(Integer
-				.parseInt(Initializer.getConfigurationTracker().getFepPropertiesMap().get("portNumber")));
+		Initializer.setPortNumber(
+				Integer.parseInt(Initializer.getConfigurationTracker().getFepPropertiesMap().get("portNumber")));
 		Initializer.getBaseConstants().loadConstantValues();
 		Initializer.getBaseVariables().loadDefaultValues();
 		updateCommonVariablesFile(Initializer.getFEPname(), String.valueOf(Initializer.getPortNumber()));

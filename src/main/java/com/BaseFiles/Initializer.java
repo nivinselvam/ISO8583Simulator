@@ -38,8 +38,8 @@ public class Initializer {
 		System.setOut(printStream);
 		System.setErr(printStream);
 		//--------------------------------------------------------------------------------------
-		PropertyConfigurator.configure("src/main/var/log/log4j.properties");
-		propertiesFilePath = "src/main/resources/";
+		PropertyConfigurator.configure(getApplicationFolder()+"PropertyFiles\\log4j.properties");
+		propertiesFilePath = getApplicationFolder()+"PropertyFiles\\";
 		fepPropertyFiles = new HashMap<String, String>();
 		mapFEPtoPropertyFile();
 		configTracker = new ConfigurationTracker();
