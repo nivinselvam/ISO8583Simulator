@@ -659,6 +659,7 @@ public class AppGUI {
 									cbxFEP.getSelectedItem().toString());
 							Initializer.getConfigurationTracker().updatePropertiesMapFromFepPropertyFile(
 									Initializer.getFEPname(), String.valueOf(Initializer.getPortNumber()));
+							Initializer.setBitfieldData(new BitFieldData());
 							Initializer.getBaseConstants().loadConstantValues();
 							Initializer.getBaseVariables().loadDefaultValues();
 							update = true;
