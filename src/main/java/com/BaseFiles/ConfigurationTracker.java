@@ -121,8 +121,9 @@ public class ConfigurationTracker {
 						String.valueOf(Initializer.getPortNumber()));
 				serverStopRequired = true;
 				configChanged = true;
-			}else {
-				logger.error("FEP name "+ValueChangesFromConfigFile.get("fepName")+" configured in the configuration file in invalid");
+			} else {
+				logger.error("FEP name " + ValueChangesFromConfigFile.get("fepName")
+						+ " configured in the configuration file in invalid");
 			}
 		}
 		int portNumber = 0;
@@ -142,7 +143,8 @@ public class ConfigurationTracker {
 					logger.error("Entered port number: " + currentEntry.getValue() + " is invalid");
 				}
 
-			} else if (!currentEntry.getKey().equals("fepName") && fepPropertiesMap.containsKey(currentEntry.getKey())) {
+			} else if (!currentEntry.getKey().equals("fepName")
+					&& fepPropertiesMap.containsKey(currentEntry.getKey())) {
 				configChanged = true;
 				fepPropertiesMap.put(currentEntry.getKey(), currentEntry.getValue());
 
@@ -155,12 +157,22 @@ public class ConfigurationTracker {
 		} else {
 			if (serverStopRequired) {
 				try {
-					
-					Initializer.getServer().getServerSocket().close();
-					serverStopped = true;
-					if (Initializer.isGUIenabled()) {
-						Initializer.getAppGui().stopServerGUIChanges();
+					if (Initializer.getServer().getServerSocket().isClosed()) {
+						logger.debug("Server is offline. Hence fepname & portnumber can be changed.");
+						serverStopped = false;
+						reloadConfiguration();
+					} else {
+						Initializer.getServer().getServerSocket().close();
+						serverStopped = true;
+						if (Initializer.isGUIenabled()) {
+							Initializer.getAppGui().stopServerGUIChanges();
+						}
+						reloadConfiguration();
 					}
+
+				} catch (NullPointerException e) {
+					logger.debug("Server is offline. Hence fepname & portnumber can be changed.");
+					serverStopped = false;
 					reloadConfiguration();
 				} catch (Exception e) {
 					logger.debug("Server is offline. Hence fepname & portnumber can be changed.");
