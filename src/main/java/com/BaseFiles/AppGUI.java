@@ -14,6 +14,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JMenu;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.BadLocationException;
+
+import org.apache.log4j.Level;
+import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import javax.swing.JLabel;
@@ -31,7 +34,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -41,7 +43,6 @@ import java.util.List;
 import java.util.Properties;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 
 public class AppGUI {
 
@@ -70,7 +71,7 @@ public class AppGUI {
 	private JLabel lblStatusValue;
 	private JLabel lblStatus;
 	private JTextField txtIP;
-	private JTextField txtPort;	
+	private JTextField txtPort;
 	private JFormattedTextField txtDeclineCode;
 	private JFormattedTextField txtApprovalAmount;
 	private JButton btnStartServer;
@@ -100,6 +101,7 @@ public class AppGUI {
 	private ButtonGroup btngrpFinancialForceDraftResult;
 	private ButtonGroup btngrpReversalResult;
 	private ButtonGroup btngrpReconciliationResult;
+	private JComboBox cbxLogLevel;
 	private static Logger logger = Logger.getLogger(AppGUI.class);
 	// private Map<String, String> transactionConfigurationMap = new HashMap<String,
 	// String>();
@@ -519,27 +521,50 @@ public class AppGUI {
 
 		btnSaveLogs = new JButton("Save Logs");
 
+		String[] logLevel = { "INFO", "DEBUG", "WARN", "ERROR", "FATAL" };
+		cbxLogLevel = new JComboBox(logLevel);
+
+		JLabel lblLevel = new JLabel("Level:");
+
 		GroupLayout gl_pnLogs = new GroupLayout(pnLogs);
-		gl_pnLogs.setHorizontalGroup(gl_pnLogs.createParallelGroup(Alignment.LEADING).addGroup(gl_pnLogs
-				.createSequentialGroup().addGap(14)
-				.addGroup(gl_pnLogs.createParallelGroup(Alignment.LEADING)
+		gl_pnLogs.setHorizontalGroup(
+			gl_pnLogs.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnLogs.createSequentialGroup()
+					.addGap(14)
+					.addGroup(gl_pnLogs.createParallelGroup(Alignment.LEADING)
 						.addComponent(scrlpnLogs, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
-						.addGroup(gl_pnLogs.createSequentialGroup().addComponent(lblRuntimeLogs)
-								.addPreferredGap(ComponentPlacement.RELATED, 264, Short.MAX_VALUE)
-								.addComponent(btnSaveLogs).addGap(18).addComponent(btnClearLogs)))
-				.addContainerGap()));
-		gl_pnLogs.setVerticalGroup(gl_pnLogs.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pnLogs.createSequentialGroup().addGap(13)
-						.addGroup(gl_pnLogs.createParallelGroup(Alignment.BASELINE).addComponent(btnClearLogs)
-								.addComponent(btnSaveLogs).addComponent(lblRuntimeLogs))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(scrlpnLogs, GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE).addGap(12)));
+						.addGroup(gl_pnLogs.createSequentialGroup()
+							.addComponent(lblRuntimeLogs)
+							.addPreferredGap(ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+							.addComponent(lblLevel)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(cbxLogLevel, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
+							.addGap(28)
+							.addComponent(btnSaveLogs)
+							.addGap(18)
+							.addComponent(btnClearLogs)
+							.addGap(23)))
+					.addContainerGap())
+		);
+		gl_pnLogs.setVerticalGroup(
+			gl_pnLogs.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnLogs.createSequentialGroup()
+					.addGap(13)
+					.addGroup(gl_pnLogs.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnClearLogs)
+						.addComponent(btnSaveLogs)
+						.addComponent(cbxLogLevel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblLevel)
+						.addComponent(lblRuntimeLogs))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(scrlpnLogs, GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE)
+					.addGap(12))
+		);
 
 		Initializer.txtareaLogs.setEditable(false);
 		scrlpnLogs.setViewportView(Initializer.txtareaLogs);
 		pnLogs.setLayout(gl_pnLogs);
 		frmISO8583Simulator.getContentPane().setLayout(groupLayout);
-		
 
 		menuBar = new JMenuBar();
 		frmISO8583Simulator.setJMenuBar(menuBar);
@@ -711,6 +736,35 @@ public class AppGUI {
 				}
 			}
 		});
+
+		// -----------------------------------------------------------------------------------------------------------------------------
+		/*
+		 * Logger level combo box will define the level of logging to be done when the
+		 * application is running.
+		 */
+		// -----------------------------------------------------------------------------------------------------------------------------
+
+		cbxLogLevel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				switch (cbxLogLevel.getSelectedItem().toString()) {
+				case "INFO":
+					LogManager.getRootLogger().setLevel(Level.INFO);
+					break;
+				case "DEBUG":
+					LogManager.getRootLogger().setLevel(Level.DEBUG);
+					break;
+				case "WARN":
+					LogManager.getRootLogger().setLevel(Level.WARN);
+					break;
+				case "ERROR":
+					LogManager.getRootLogger().setLevel(Level.ERROR);
+					break;
+				case "FATAL":
+					LogManager.getRootLogger().setLevel(Level.FATAL);
+					break;
+				}
+			}
+		});
 	}
 
 	// -----------------------------------------------------------------------------------------------------------------------------
@@ -802,7 +856,8 @@ public class AppGUI {
 
 	// -----------------------------------------------------------------------------------------------------------------------------
 	/*
-	 * This method is used to make the necessary changes to GUI when the server is started
+	 * This method is used to make the necessary changes to GUI when the server is
+	 * started
 	 */
 	// -----------------------------------------------------------------------------------------------------------------------------
 	public void startServerGUIChanges() {
@@ -813,10 +868,11 @@ public class AppGUI {
 		txtPort.setEnabled(false);
 		btnSaveServerConfiguration.setEnabled(false);
 	}
-	
+
 	// -----------------------------------------------------------------------------------------------------------------------------
 	/*
-	 * This method is used to make the necessary changes to GUI when the server is started
+	 * This method is used to make the necessary changes to GUI when the server is
+	 * started
 	 */
 	// -----------------------------------------------------------------------------------------------------------------------------
 	public void stopServerGUIChanges() {
@@ -837,7 +893,7 @@ public class AppGUI {
 	public void refreshGUIConfiguration() {
 		cbxFEP.setSelectedItem(Initializer.getFEPname());
 		txtPort.setText(String.valueOf(Initializer.getPortNumber()));
-		
+
 		if (Initializer.getConfigurationTracker().getFepPropertiesMap()
 				.get(Initializer.getBaseConstants().sendResponseVariableName).equalsIgnoreCase("No")) {
 			rdbtnDontSendResponse.setSelected(true);
