@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.apache.log4j.Logger;
 
 import com.HPSfiles.HPSresponseGenerator;
+import com.INCOMMfiles.INCOMMresponseGenerator;
 import com.X9Files.X9responseGenerator;
 
 public abstract class BaseSocketDataProcessor extends Thread {
@@ -59,15 +60,16 @@ public abstract class BaseSocketDataProcessor extends Thread {
 				logger.info("                                  Start of Transaction");
 				logger.info(
 						"*************************************************************************************************");
+				
 				socketDataReadFormat();
 				requestPacket = readDataFromSocket();
 				if (Initializer.getBaseVariables().sendResponse.equalsIgnoreCase("Yes")) {
 					generateResponse(requestPacket);
 					socketDataWriteFormat(responsePacket);
 					writeDataToSocket();
-				}else {
+				} else {
 					logger.info("Response is not sent as per the configuration");
-				}				
+				}
 				logger.info(
 						"*************************************************************************************************");
 				logger.info("                                   End of Transaction");
@@ -152,6 +154,8 @@ public abstract class BaseSocketDataProcessor extends Thread {
 			responses = new HPSresponseGenerator(requestPacket);
 		} else if (Initializer.getFEPname().equals("X9")) {
 			responses = new X9responseGenerator(requestPacket);
+		} else if(Initializer.getFEPname().equals("INCOMM")) {
+			responses = new INCOMMresponseGenerator(requestPacket);
 		}
 		responsePacket = responses.getResponsePacket();
 

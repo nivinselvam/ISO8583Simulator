@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import org.apache.log4j.Logger;
 
 import com.HPSfiles.HPSsocketDataProcessor;
+import com.INCOMMfiles.INCOMMsocketDataProcessor;
 import com.X9Files.X9socketDataProcessor;
 
 public class ServerInitializer extends Thread {
@@ -88,6 +89,8 @@ public class ServerInitializer extends Thread {
 			socketDataProcessor = new HPSsocketDataProcessor();
 		} else if (Initializer.getFEPname().equals("X9")) {
 			socketDataProcessor = new X9socketDataProcessor();
+		} else if(Initializer.getFEPname().equals("INCOMM")) {
+			socketDataProcessor = new INCOMMsocketDataProcessor();
 		}
 	}
 

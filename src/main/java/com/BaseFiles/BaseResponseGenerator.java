@@ -15,18 +15,20 @@ import org.apache.log4j.Logger;
 
 import com.HPSfiles.HPSDecoder;
 import com.HPSfiles.HPSEncoder;
+import com.INCOMMfiles.INCOMMDecoder;
+import com.INCOMMfiles.INCOMMEncoder;
 import com.X9Files.X9Decoder;
 import com.X9Files.X9Encoder;
 
 public abstract class BaseResponseGenerator {
 	private static Logger logger = Logger.getLogger(BaseResponseGenerator.class);
 	protected String requestPacket, responsePacket, transactionResult;
-	private String header, requestMTI, responseMTI;
+	protected String header, requestMTI, responseMTI;
 	protected Map<String, String> requestBitfieldsWithValues, responseBitfieldswithValue;
 	protected TreeSet<Integer> elementsInTransaction;
 	protected boolean isBalanceInquiry;
-	private BaseDecoder decoder;
-	private BaseEncoder encoder;
+	protected BaseDecoder decoder;
+	protected BaseEncoder encoder;
 	protected String bitfield4;
 
 	public BaseResponseGenerator(String requestPacket) {
@@ -60,6 +62,8 @@ public abstract class BaseResponseGenerator {
 			logger.info("Request Packet: ");
 			decoder.printDecodedData();
 			responseBitfieldswithValue = new TreeMap<String, String>(new BitfieldComparator());
+			
+			//This method is used to confirm if the transaction is an outdoor transactions
 
 			if (requestMTI.equals(Initializer.getBaseConstants().authorizationRequestMTI)) {
 				transactionResult = Initializer.getBaseVariables().authorizationTransactionResponse;
@@ -227,6 +231,8 @@ public abstract class BaseResponseGenerator {
 	public abstract void reversalPendingBitfieldsUpdate();
 
 	public abstract void reconciliationPendingBitfieldsUpdate();
+	
+	//public abstract void isOutdoorTransaction();
 	// ------------------------------------------------------------------------------------------------------------------
 	/*
 	 * This method is used to identify the bitfield and add length of bitfield if
@@ -312,6 +318,8 @@ public abstract class BaseResponseGenerator {
 			decoder = new HPSDecoder(dataToDecode);
 		} else if (Initializer.getFEPname().equals("X9")) {
 			decoder = new X9Decoder(dataToDecode);
+		} else if (Initializer.getFEPname().equals("INCOMM")) {
+			decoder = new INCOMMDecoder(dataToDecode);
 		}
 	}
 
@@ -325,6 +333,8 @@ public abstract class BaseResponseGenerator {
 			encoder = new HPSEncoder(header, responseMTI, elementsInTransaction, responseBitfieldswithValue);
 		} else if (Initializer.getFEPname().equals("X9")) {
 			encoder = new X9Encoder(header, responseMTI, elementsInTransaction, responseBitfieldswithValue);
+		} else if (Initializer.getFEPname().equals("INCOMM")) {
+			encoder = new INCOMMEncoder(header, responseMTI, elementsInTransaction, responseBitfieldswithValue);
 		}
 	}
 
