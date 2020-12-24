@@ -63,9 +63,8 @@ public abstract class BaseResponseGenerator {
 			decoder.printDecodedData();
 			responseBitfieldswithValue = new TreeMap<String, String>(new BitfieldComparator());
 			
-			//This method is used to confirm if the transaction is an outdoor transactions
-
 			if (requestMTI.equals(Initializer.getBaseConstants().authorizationRequestMTI)) {
+				logger.debug("Transaction request is an authorization request.");
 				transactionResult = Initializer.getBaseVariables().authorizationTransactionResponse;
 				responseMTI = Initializer.getBaseConstants().authorizationResponseMTI;
 				elementsInTransaction = new TreeSet<>(
@@ -73,6 +72,7 @@ public abstract class BaseResponseGenerator {
 				generateResponseBitfieldswithValue(elementsInTransaction);
 				authorizationPendingBitfieldsUpdate();
 			} else if (requestMTI.equals(Initializer.getBaseConstants().financialSalesRequestMTI)) {
+				logger.debug("Transaction request is an financial sales request.");
 				transactionResult = Initializer.getBaseVariables().financialSalesTransactionResponse;
 				responseMTI = Initializer.getBaseConstants().financialSalesResponseMTI;
 				elementsInTransaction = new TreeSet<>(
@@ -80,6 +80,7 @@ public abstract class BaseResponseGenerator {
 				generateResponseBitfieldswithValue(elementsInTransaction);
 				financialSalesPendingBitfieldsUpdate();
 			} else if (requestMTI.equals(Initializer.getBaseConstants().financialForceDraftRequestMTI)) {
+				logger.debug("Transaction request is an financial force draft request.");
 				transactionResult = Initializer.getBaseVariables().financialForceDraftTransactionResponse;
 				responseMTI = Initializer.getBaseConstants().financialForceDraftResponseMTI;
 				elementsInTransaction = new TreeSet<>(
@@ -87,6 +88,7 @@ public abstract class BaseResponseGenerator {
 				generateResponseBitfieldswithValue(elementsInTransaction);
 				financialForceDraftPendingBitfieldsUpdate();
 			} else if (requestMTI.equals(Initializer.getBaseConstants().reversalRequestMTI)) {
+				logger.debug("Transaction request is an reversal request.");
 				transactionResult = Initializer.getBaseVariables().reversalTransactionResponse;
 				responseMTI = Initializer.getBaseConstants().reversalResponseMTI;
 				elementsInTransaction = new TreeSet<>(
@@ -94,6 +96,7 @@ public abstract class BaseResponseGenerator {
 				generateResponseBitfieldswithValue(elementsInTransaction);
 				reversalPendingBitfieldsUpdate();
 			} else if (requestMTI.equals(Initializer.getBaseConstants().reconciliationRequestMTI)) {
+				logger.debug("Transaction request is an reconciliation request.");
 				transactionResult = Initializer.getBaseVariables().reconciliationTransactionResponse;
 				responseMTI = Initializer.getBaseConstants().reconciliationResponseMTI;
 				elementsInTransaction = new TreeSet<>(
@@ -222,17 +225,17 @@ public abstract class BaseResponseGenerator {
 	 * bitfield values.
 	 */
 	// ------------------------------------------------------------------------------------------------------------------
-	public abstract void authorizationPendingBitfieldsUpdate();
+	protected abstract void authorizationPendingBitfieldsUpdate();
 
-	public abstract void financialSalesPendingBitfieldsUpdate();
+	protected abstract void financialSalesPendingBitfieldsUpdate();
 
-	public abstract void financialForceDraftPendingBitfieldsUpdate();
+	protected abstract void financialForceDraftPendingBitfieldsUpdate();
 
-	public abstract void reversalPendingBitfieldsUpdate();
+	protected abstract void reversalPendingBitfieldsUpdate();
 
-	public abstract void reconciliationPendingBitfieldsUpdate();
+	protected abstract void reconciliationPendingBitfieldsUpdate();
 	
-	//public abstract void isOutdoorTransaction();
+	protected abstract boolean isOutdoorTransaction();
 	// ------------------------------------------------------------------------------------------------------------------
 	/*
 	 * This method is used to identify the bitfield and add length of bitfield if

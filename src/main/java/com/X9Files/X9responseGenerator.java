@@ -239,4 +239,10 @@ public class X9responseGenerator extends BaseResponseGenerator {
 
 	}
 
+	@Override
+	public boolean isOutdoorTransaction() {
+		return false;
+		
+	}
+
 }

@@ -163,5 +163,11 @@ public class INCOMMresponseGenerator extends BaseResponseGenerator {
 		// TODO Auto-generated method stub
 
 	}
+
+	@Override
+	public boolean isOutdoorTransaction() {
+		return false;
+		
+	}
 	
 }

@@ -338,6 +338,7 @@ public class AppGUI {
 		txtApprovalAmount.setEnabled(false);
 
 		chckbxApproveForHalf = new JCheckBox("Approve for half of transaction amount");
+		chckbxApproveForHalf.setSelected(true);
 		if (Initializer.getConfigurationTracker().getFepPropertiesMap().get("isHalfApprovalRequired")
 				.equalsIgnoreCase("true")) {
 			chckbxApproveForHalf.setSelected(true);
@@ -966,10 +967,10 @@ public class AppGUI {
 		if (Initializer.getConfigurationTracker().getFepPropertiesMap().get("isHalfApprovalRequired")
 				.equalsIgnoreCase("true")) {
 			chckbxApproveForHalf.setSelected(true);
-			txtApprovalAmount.setEnabled(true);
+			txtApprovalAmount.setEnabled(false);
 		} else {
 			chckbxApproveForHalf.setSelected(false);
-			txtApprovalAmount.setEnabled(false);
+			txtApprovalAmount.setEnabled(true);
 		}
 	}
 }
