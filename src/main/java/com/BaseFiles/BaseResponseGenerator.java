@@ -15,19 +15,22 @@ import org.apache.log4j.Logger;
 
 import com.HPSfiles.HPSDecoder;
 import com.HPSfiles.HPSEncoder;
+import com.INCOMMfiles.INCOMMDecoder;
+import com.INCOMMfiles.INCOMMEncoder;
 import com.X9Files.X9Decoder;
 import com.X9Files.X9Encoder;
 
 public abstract class BaseResponseGenerator {
 	private static Logger logger = Logger.getLogger(BaseResponseGenerator.class);
 	protected String requestPacket, responsePacket, transactionResult;
-	private String header, requestMTI, responseMTI;
+	protected String header, requestMTI, responseMTI;
 	protected Map<String, String> requestBitfieldsWithValues, responseBitfieldswithValue;
 	protected TreeSet<Integer> elementsInTransaction;
 	protected boolean isBalanceInquiry;
-	private BaseDecoder decoder;
-	private BaseEncoder encoder;
+	protected BaseDecoder decoder;
+	protected BaseEncoder encoder;
 	protected String bitfield4;
+	protected boolean outdoorTransaction;
 
 	public BaseResponseGenerator(String requestPacket) {
 		this.requestPacket = requestPacket;
@@ -60,8 +63,9 @@ public abstract class BaseResponseGenerator {
 			logger.info("Request Packet: ");
 			decoder.printDecodedData();
 			responseBitfieldswithValue = new TreeMap<String, String>(new BitfieldComparator());
-
+			
 			if (requestMTI.equals(Initializer.getBaseConstants().authorizationRequestMTI)) {
+				logger.debug("Transaction request is an authorization request.");
 				transactionResult = Initializer.getBaseVariables().authorizationTransactionResponse;
 				responseMTI = Initializer.getBaseConstants().authorizationResponseMTI;
 				elementsInTransaction = new TreeSet<>(
@@ -69,6 +73,7 @@ public abstract class BaseResponseGenerator {
 				generateResponseBitfieldswithValue(elementsInTransaction);
 				authorizationPendingBitfieldsUpdate();
 			} else if (requestMTI.equals(Initializer.getBaseConstants().financialSalesRequestMTI)) {
+				logger.debug("Transaction request is an financial sales request.");
 				transactionResult = Initializer.getBaseVariables().financialSalesTransactionResponse;
 				responseMTI = Initializer.getBaseConstants().financialSalesResponseMTI;
 				elementsInTransaction = new TreeSet<>(
@@ -76,6 +81,7 @@ public abstract class BaseResponseGenerator {
 				generateResponseBitfieldswithValue(elementsInTransaction);
 				financialSalesPendingBitfieldsUpdate();
 			} else if (requestMTI.equals(Initializer.getBaseConstants().financialForceDraftRequestMTI)) {
+				logger.debug("Transaction request is an financial force draft request.");
 				transactionResult = Initializer.getBaseVariables().financialForceDraftTransactionResponse;
 				responseMTI = Initializer.getBaseConstants().financialForceDraftResponseMTI;
 				elementsInTransaction = new TreeSet<>(
@@ -83,6 +89,7 @@ public abstract class BaseResponseGenerator {
 				generateResponseBitfieldswithValue(elementsInTransaction);
 				financialForceDraftPendingBitfieldsUpdate();
 			} else if (requestMTI.equals(Initializer.getBaseConstants().reversalRequestMTI)) {
+				logger.debug("Transaction request is an reversal request.");
 				transactionResult = Initializer.getBaseVariables().reversalTransactionResponse;
 				responseMTI = Initializer.getBaseConstants().reversalResponseMTI;
 				elementsInTransaction = new TreeSet<>(
@@ -90,6 +97,7 @@ public abstract class BaseResponseGenerator {
 				generateResponseBitfieldswithValue(elementsInTransaction);
 				reversalPendingBitfieldsUpdate();
 			} else if (requestMTI.equals(Initializer.getBaseConstants().reconciliationRequestMTI)) {
+				logger.debug("Transaction request is an reconciliation request.");
 				transactionResult = Initializer.getBaseVariables().reconciliationTransactionResponse;
 				responseMTI = Initializer.getBaseConstants().reconciliationResponseMTI;
 				elementsInTransaction = new TreeSet<>(
@@ -218,15 +226,17 @@ public abstract class BaseResponseGenerator {
 	 * bitfield values.
 	 */
 	// ------------------------------------------------------------------------------------------------------------------
-	public abstract void authorizationPendingBitfieldsUpdate();
+	protected abstract void authorizationPendingBitfieldsUpdate();
 
-	public abstract void financialSalesPendingBitfieldsUpdate();
+	protected abstract void financialSalesPendingBitfieldsUpdate();
 
-	public abstract void financialForceDraftPendingBitfieldsUpdate();
+	protected abstract void financialForceDraftPendingBitfieldsUpdate();
 
-	public abstract void reversalPendingBitfieldsUpdate();
+	protected abstract void reversalPendingBitfieldsUpdate();
 
-	public abstract void reconciliationPendingBitfieldsUpdate();
+	protected abstract void reconciliationPendingBitfieldsUpdate();
+	
+	protected abstract boolean isOutdoorTransaction();
 	// ------------------------------------------------------------------------------------------------------------------
 	/*
 	 * This method is used to identify the bitfield and add length of bitfield if
@@ -312,6 +322,8 @@ public abstract class BaseResponseGenerator {
 			decoder = new HPSDecoder(dataToDecode);
 		} else if (Initializer.getFEPname().equals("X9")) {
 			decoder = new X9Decoder(dataToDecode);
+		} else if (Initializer.getFEPname().equals("INCOMM")) {
+			decoder = new INCOMMDecoder(dataToDecode);
 		}
 	}
 
@@ -325,6 +337,8 @@ public abstract class BaseResponseGenerator {
 			encoder = new HPSEncoder(header, responseMTI, elementsInTransaction, responseBitfieldswithValue);
 		} else if (Initializer.getFEPname().equals("X9")) {
 			encoder = new X9Encoder(header, responseMTI, elementsInTransaction, responseBitfieldswithValue);
+		} else if (Initializer.getFEPname().equals("INCOMM")) {
+			encoder = new INCOMMEncoder(header, responseMTI, elementsInTransaction, responseBitfieldswithValue);
 		}
 	}
 

@@ -18,7 +18,7 @@ public class HPSEncoder extends BaseEncoder {
 
 	/*
 	 * In HPS all the fields should be sent in Hex format. Hence all the values will
-	 * be converted to hex format and response packet is created by concatinating them.
+	 * be converted to hex format and response packet is created by concatenating them.
 	 */
 	@Override
 	public String generateEncodedData() {
