@@ -30,6 +30,7 @@ public abstract class BaseResponseGenerator {
 	protected BaseDecoder decoder;
 	protected BaseEncoder encoder;
 	protected String bitfield4;
+	protected boolean outdoorTransaction;
 
 	public BaseResponseGenerator(String requestPacket) {
 		this.requestPacket = requestPacket;

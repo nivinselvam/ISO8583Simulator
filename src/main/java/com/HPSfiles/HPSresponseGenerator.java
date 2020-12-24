@@ -42,6 +42,7 @@ public class HPSresponseGenerator extends BaseResponseGenerator {
 
 	@Override
 	public void authorizationPendingBitfieldsUpdate() {
+		outdoorTransaction = isOutdoorTransaction();
 		responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield2,
 				generateBitfield2(requestBitfieldsWithValues));
 		// Partial approval is not applicable for balance inquiry.
@@ -58,20 +59,21 @@ public class HPSresponseGenerator extends BaseResponseGenerator {
 				transactionResult = "Approve";
 			}
 		}
-		
+
 		/*
-		 * Outdoor transactions will have a static amount sent as transaction amount in the request packet.
-		 * This could be $0 too. In such case, any non-Zero approval amount should be sent as response.
+		 * Outdoor transactions will have a static amount sent as transaction amount in
+		 * the request packet. This could be $0 too. In such case, any non-Zero approval
+		 * amount should be sent as response.
 		 */
-		if(isOutdoorTransaction()) {
-			if(requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield4).equals("000000000000")) {
+		if (outdoorTransaction) {
+			if (requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield4).equals("000000000000")) {
 				bitfield4 = Initializer.getBaseVariables().valueOfBitfield4;
 				responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield4,
 						setBitfieldLengthIfRequired(Initializer.getBaseConstants().nameOfbitfield4, bitfield4));
-				logger.debug("Since this is an outdoor transaction and request amount is $0, value of bitfield4 is set as: "+bitfield4);
-			}else {
-				logger.debug("Though the transaction is outdoor, the transaction amount is not $0.");
-			}
+				logger.debug(
+						"Since this is an outdoor transaction and request amount is $0, value of bitfield4 is set as: "
+								+ bitfield4);
+			} 
 		}
 		switch (transactionResult) {
 		case "Approve":
@@ -85,7 +87,11 @@ public class HPSresponseGenerator extends BaseResponseGenerator {
 							Initializer.getBaseVariables().ValueOfBitfield39Decline));
 			break;
 		case "PartiallyApprove":
-			bitfield4 = generateBitfield4();
+			if(outdoorTransaction && requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield4).equals("000000000000")) {
+				bitfield4 = Initializer.getBaseVariables().valueOfBitfield4;
+			}else {
+				bitfield4 = generateBitfield4();
+			}			
 			responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield39,
 					setBitfieldLengthIfRequired(Initializer.getBaseConstants().nameOfbitfield39,
 							Initializer.getBaseVariables().ValueOfBitfield39Partial));
@@ -267,7 +273,8 @@ public class HPSresponseGenerator extends BaseResponseGenerator {
 		if (requestBitfieldsWithValues.containsKey(Initializer.getBaseConstants().nameOfbitfield22)) {
 			valueOfBitfield22 = requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield22);
 			if (valueOfBitfield22.charAt(0) == 'D' || valueOfBitfield22.charAt(0) == 'K') {
-				logger.debug("value of bitfield22.1 is "+valueOfBitfield22.charAt(0)+". Hence this is an outdoor transaction");
+				logger.debug("value of bitfield22.1 is " + valueOfBitfield22.charAt(0)
+						+ ". Hence this is an outdoor transaction");
 				return true;
 			} else {
 				logger.debug("This is not an outdoor transaction.");
