@@ -187,6 +187,7 @@ public class AppGUI {
 
 		lblIp = new JLabel("IP : ");
 		txtIP = new JTextField(inet.getHostAddress());
+		txtIP.setToolTipText("This field is non-editable. It takes the IP of the system at run-time. This is only to provide the information of the System ip so that this simulator can be connected from any other system as well.");
 		txtIP.setEnabled(false);
 		txtIP.setColumns(10);
 
@@ -334,6 +335,7 @@ public class AppGUI {
 		lblApprovalAmount = new JLabel("Approval Amount : ");
 
 		txtApprovalAmount = new JFormattedTextField();
+		txtApprovalAmount.setToolTipText("This field should contain 12 digits of numbers. Last two digits denotes the decimal points. For example, to set the amount as $12.49, amount should be configured as 000000001249.");
 		txtApprovalAmount.setText(Initializer.getConfigurationTracker().getFepPropertiesMap().get("valueOfBitfield4"));
 		txtApprovalAmount.setEnabled(false);
 
@@ -962,7 +964,6 @@ public class AppGUI {
 
 		txtDeclineCode
 				.setText(Initializer.getConfigurationTracker().getFepPropertiesMap().get("ValueOfBitfield39Decline"));
-
 		txtApprovalAmount.setText(Initializer.getConfigurationTracker().getFepPropertiesMap().get("valueOfBitfield4"));
 		if (Initializer.getConfigurationTracker().getFepPropertiesMap().get("isHalfApprovalRequired")
 				.equalsIgnoreCase("true")) {

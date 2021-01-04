@@ -15,7 +15,7 @@ public class INCOMMsocketDataProcessor extends BaseSocketDataProcessor {
 	@Override
 	public void socketDataReadFormat() {
 		try {
-			socketDataLength = dataInputStream.readShort();
+			socketDataLength = dataInputStream.readShort()-2;
 		} catch (IOException e) {
 			logger.debug(e.toString());
 		}
