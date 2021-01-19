@@ -26,10 +26,10 @@ public class INCOMMresponseGenerator extends BaseResponseGenerator {
 		decoder.decodeTransactionPacket();
 		requestMTI = decoder.getMTI();
 		requestBitfieldsWithValues = decoder.getBitfieldsWithValue();
-		logger.info("Request Packet: ");
-		decoder.printDecodedData();
 		//In the below line of code, reconciliation represents the network health check MTI.
 		if (requestMTI.equals(Initializer.getBaseConstants().reconciliationRequestMTI)) {
+			logger.info("Request Packet: ");
+			decoder.printDecodedData();
 			return true;
 		} else {
 			return false;

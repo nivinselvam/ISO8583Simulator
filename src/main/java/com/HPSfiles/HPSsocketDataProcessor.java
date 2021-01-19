@@ -30,6 +30,7 @@ public class HPSsocketDataProcessor extends BaseSocketDataProcessor {
 
 	public void socketDataWriteFormat(String responsePacket) {
 		responsePacket = Initializer.getConverter().toHexString(responsePacket);
+		logger.debug("Converted value of response packet in hex format "+responsePacket);
 		try {
 			formattedPacketBytes = responsePacket.getBytes("ISO-8859-1");
 			logger.debug("Response packet successfully converted to byte array");

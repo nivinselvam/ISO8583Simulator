@@ -180,7 +180,7 @@ public class Converter {
 	public String toHexString(String hex) {
 		logger.debug("Trying to convert string to hexString: "+hex);
 		if (hex == null || hex.trim().length() == 0) {
-			System.out.println("Cannot convert null HexString to ByteString! ");
+			logger.warn("Cannot convert null HexString to ByteString! ");
 			return ("");
 		}
 		int l = hex.length();
