@@ -146,7 +146,7 @@ public class Initializer {
 	// ----------------------------------------------------------------------------------------------------------
 	private static void mapFEPtoPropertyFile() {
 		fepPropertyFiles.put("Common", "CommonVariables.properties");
-		fepPropertyFiles.put("HPS", "HPSVariables.properties");
+		//fepPropertyFiles.put("HPS", "HPSVariables.properties");
 		fepPropertyFiles.put("X9", "X9Variables.properties");
 		fepPropertyFiles.put("INCOMM", "IncommVariables.properties");
 	}

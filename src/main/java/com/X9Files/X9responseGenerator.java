@@ -5,14 +5,17 @@
 package com.X9Files;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 
 import com.BaseFiles.BaseResponseGenerator;
 import com.BaseFiles.Initializer;
 
 public class X9responseGenerator extends BaseResponseGenerator {
-	private String valueOfBitfield63;
-	private String validValueOfBitfield63 = "\\950O01\\";
+	private String valueOfBitfield63FromRequestPacket;
+	private List<String> validValuesOfBitfield63 = new ArrayList<String>(Arrays.asList("\\951O01\\", "\\952O01\\", "\\953O01\\", "\\954O01\\", "\\966O01\\", "\\967O01\\", "\\968O01\\"));
 
 	public X9responseGenerator(String requestPacket) {
 		super(requestPacket);
@@ -50,8 +53,8 @@ public class X9responseGenerator extends BaseResponseGenerator {
 					Initializer.getBaseConstants().nameOfbitfield38, Initializer.getBaseVariables().valueOfBitfield38));
 			elementsInTransaction.add(38);
 
-			valueOfBitfield63 = responseBitfieldswithValue.get(Initializer.getBaseConstants().nameOfbitfield63);
-			if (valueOfBitfield63 != null && valueOfBitfield63.contains(validValueOfBitfield63)) {
+			valueOfBitfield63FromRequestPacket = responseBitfieldswithValue.get(Initializer.getBaseConstants().nameOfbitfield63);
+			if (valueOfBitfield63FromRequestPacket != null && validValuesOfBitfield63.contains(valueOfBitfield63FromRequestPacket)) {
 				responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield62,
 						setBitfieldLengthIfRequired(Initializer.getBaseConstants().nameOfbitfield62,
 								Initializer.getBaseVariables().valueOfBitfield62));
@@ -97,10 +100,10 @@ public class X9responseGenerator extends BaseResponseGenerator {
 			responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield38, setBitfieldLengthIfRequired(
 					Initializer.getBaseConstants().nameOfbitfield38, Initializer.getBaseVariables().valueOfBitfield38));
 			elementsInTransaction.add(38);
-
+			
+			valueOfBitfield63FromRequestPacket = responseBitfieldswithValue.get(Initializer.getBaseConstants().nameOfbitfield63);
 			if (requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield63) != null
-					&& requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield63)
-							.contains("\\950O01\\")) {
+					&& validValuesOfBitfield63.contains(valueOfBitfield63FromRequestPacket)) {
 				responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield62,
 						setBitfieldLengthIfRequired(Initializer.getBaseConstants().nameOfbitfield62,
 								Initializer.getBaseVariables().valueOfBitfield62));
