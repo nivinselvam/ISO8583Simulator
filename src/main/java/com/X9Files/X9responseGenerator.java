@@ -15,7 +15,8 @@ import com.BaseFiles.Initializer;
 
 public class X9responseGenerator extends BaseResponseGenerator {
 	private String valueOfBitfield63FromRequestPacket;
-	private List<String> validValuesOfBitfield63 = new ArrayList<String>(Arrays.asList("\\951O01\\", "\\952O01\\", "\\953O01\\", "\\954O01\\", "\\966O01\\", "\\967O01\\", "\\968O01\\"));
+	private List<String> validValuesOfBitfield63 = new ArrayList<String>(Arrays.asList("\\950O01\\","\\951O01\\", "\\952O01\\", "\\953O01\\", "\\954O01\\", "\\966O01\\", "\\967O01\\", "\\968O01\\"));
+	private boolean processBitfield62 = false;
 
 	public X9responseGenerator(String requestPacket) {
 		super(requestPacket);
@@ -53,7 +54,19 @@ public class X9responseGenerator extends BaseResponseGenerator {
 					Initializer.getBaseConstants().nameOfbitfield38, Initializer.getBaseVariables().valueOfBitfield38));
 			elementsInTransaction.add(38);
 
-			valueOfBitfield63FromRequestPacket = responseBitfieldswithValue.get(Initializer.getBaseConstants().nameOfbitfield63);
+			valueOfBitfield63FromRequestPacket = requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield63);
+			
+			if(valueOfBitfield63FromRequestPacket!=null) {
+				for(String value : validValuesOfBitfield63) {
+					if(valueOfBitfield63FromRequestPacket.contains(value)) {
+						processBitfield62 = true;
+						break;
+					}else {
+						processBitfield62 = false;
+					}
+				}
+			}
+			
 			if (valueOfBitfield63FromRequestPacket != null && validValuesOfBitfield63.contains(valueOfBitfield63FromRequestPacket)) {
 				responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield62,
 						setBitfieldLengthIfRequired(Initializer.getBaseConstants().nameOfbitfield62,
@@ -71,7 +84,6 @@ public class X9responseGenerator extends BaseResponseGenerator {
 
 	@Override
 	public void financialSalesPendingBitfieldsUpdate() {
-
 		responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield7,
 				setBitfieldLengthIfRequired(Initializer.getBaseConstants().nameOfbitfield7, generateBitField7Value()));
 
@@ -101,9 +113,21 @@ public class X9responseGenerator extends BaseResponseGenerator {
 					Initializer.getBaseConstants().nameOfbitfield38, Initializer.getBaseVariables().valueOfBitfield38));
 			elementsInTransaction.add(38);
 			
-			valueOfBitfield63FromRequestPacket = responseBitfieldswithValue.get(Initializer.getBaseConstants().nameOfbitfield63);
+			valueOfBitfield63FromRequestPacket = requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield63);
+			if(valueOfBitfield63FromRequestPacket!=null) {
+				for(String value : validValuesOfBitfield63) {
+					if(valueOfBitfield63FromRequestPacket.contains(value)) {
+						processBitfield62 = true;
+						break;
+					}else {
+						processBitfield62 = false;
+					}
+				}
+			}
+			
+			
 			if (requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield63) != null
-					&& validValuesOfBitfield63.contains(valueOfBitfield63FromRequestPacket)) {
+					&& processBitfield62) {
 				responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield62,
 						setBitfieldLengthIfRequired(Initializer.getBaseConstants().nameOfbitfield62,
 								Initializer.getBaseVariables().valueOfBitfield62));
