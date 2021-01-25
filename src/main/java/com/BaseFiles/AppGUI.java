@@ -716,10 +716,10 @@ public class AppGUI {
 
 				} catch (Exception e1) {
 					System.out.println(
-							"Entered port number is invalid. Valid port number range is between 1026 and 65535");
-					logger.info("Entered port number is invalid. Valid port number range is between 1026 and 65535");
+							"Unable to save the server configuration due to exception in loading values.");
+					logger.info("Unable to save the server configuration due to exception in loading values");
 					JOptionPane.showMessageDialog(null,
-							"Entered port number is invalid. Valid port number range is between 1026 and 65535");
+							"Unable to save the server configuration due to exception in loading values");
 				}
 			}
 		});
@@ -896,7 +896,13 @@ public class AppGUI {
 	public void refreshGUIConfiguration() {
 		cbxFEP.setSelectedItem(Initializer.getFEPname());
 		txtPort.setText(String.valueOf(Initializer.getPortNumber()));
-
+		
+		for(Map.Entry<String, String> value : Initializer.getConfigurationTracker().getFepPropertiesMap().entrySet()) {
+			if(value.getKey().equals("valueOfBitfield76")) {
+				System.out.println(value.getValue());
+			}
+		}
+		
 		if (Initializer.getConfigurationTracker().getFepPropertiesMap()
 				.get(Initializer.getBaseConstants().sendResponseVariableName).equalsIgnoreCase("No")) {
 			rdbtnDontSendResponse.setSelected(true);
@@ -973,5 +979,7 @@ public class AppGUI {
 			chckbxApproveForHalf.setSelected(false);
 			txtApprovalAmount.setEnabled(true);
 		}
+		
+		logger.debug("GUI configuration updated based on the FEP properties configured");
 	}
 }

@@ -85,12 +85,14 @@ public class ServerInitializer extends Thread {
 	 * 
 	 */
 	public void loadSocketDataProcessor() {
-		if (Initializer.getFEPname().equals("HPS")) {
+		if (Initializer.getFEPname().equalsIgnoreCase("HPS")) {
 			socketDataProcessor = new HPSsocketDataProcessor();
-		} else if (Initializer.getFEPname().equals("X9")) {
+		} else if (Initializer.getFEPname().equalsIgnoreCase("X9")) {
 			socketDataProcessor = new X9socketDataProcessor();
-		} else if(Initializer.getFEPname().equals("INCOMM")) {
+		} else if(Initializer.getFEPname().equalsIgnoreCase("INCOMM")) {
 			socketDataProcessor = new INCOMMsocketDataProcessor();
+		} else if(Initializer.getFEPname().equalsIgnoreCase("FCB")) {
+			
 		}
 	}
 

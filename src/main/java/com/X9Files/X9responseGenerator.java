@@ -67,7 +67,8 @@ public class X9responseGenerator extends BaseResponseGenerator {
 				}
 			}
 			
-			if (valueOfBitfield63FromRequestPacket != null && validValuesOfBitfield63.contains(valueOfBitfield63FromRequestPacket)) {
+			if (requestBitfieldsWithValues.get(Initializer.getBaseConstants().nameOfbitfield63) != null
+					&& processBitfield62) {
 				responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield62,
 						setBitfieldLengthIfRequired(Initializer.getBaseConstants().nameOfbitfield62,
 								Initializer.getBaseVariables().valueOfBitfield62));
