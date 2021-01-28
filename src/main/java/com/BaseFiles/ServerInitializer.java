@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 
 import org.apache.log4j.Logger;
 
+import com.FCB.FCBsocketDataProcessor;
 import com.HPSfiles.HPSsocketDataProcessor;
 import com.INCOMMfiles.INCOMMsocketDataProcessor;
 import com.X9Files.X9socketDataProcessor;
@@ -92,7 +93,7 @@ public class ServerInitializer extends Thread {
 		} else if(Initializer.getFEPname().equalsIgnoreCase("INCOMM")) {
 			socketDataProcessor = new INCOMMsocketDataProcessor();
 		} else if(Initializer.getFEPname().equalsIgnoreCase("FCB")) {
-			
+			socketDataProcessor = new FCBsocketDataProcessor();
 		}
 	}
 

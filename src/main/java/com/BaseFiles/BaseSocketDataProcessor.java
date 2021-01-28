@@ -103,7 +103,8 @@ public abstract class BaseSocketDataProcessor extends Thread {
 	 * -----------------------------------------------------------------------------
 	 */
 	public String readDataFromSocket() throws IOException {
-
+		
+		
 		formattedPacketBytes = new byte[socketDataLength];
 		dataInputStream.read(formattedPacketBytes, 0, socketDataLength);
 
@@ -113,7 +114,21 @@ public abstract class BaseSocketDataProcessor extends Thread {
 		}
 		logger.debug("Request packet received: " + requestPacketBuffer.toString());
 		return requestPacketBuffer.toString();
-
+		
+		
+//		requestPacketBuffer = new StringBuffer();
+//		formattedPacketBytes = new byte[socketDataLength];		
+//		
+//		try {
+//			while(dataInputStream.available()>0) {
+//				requestPacketBuffer.append((char)dataInputStream.read());
+//				
+//			}
+//		}catch(IOException e) {
+//			logger.error("Exception while reading input stream: "+e);
+//		}
+//		
+//		return requestPacketBuffer.toString();
 	}
 
 	/*
