@@ -22,8 +22,14 @@ public class INCOMMresponseGenerator extends BaseResponseGenerator {
 	// ------------------------------------------------------------------------------------------------------------------
 	@Override
 	public boolean validateifConnectivityCheck() {
+		loadDecoder(requestPacket);
+		decoder.decodeTransactionPacket();
+		requestMTI = decoder.getMTI();
+		requestBitfieldsWithValues = decoder.getBitfieldsWithValue();
 		//In the below line of code, reconciliation represents the network health check MTI.
 		if (requestMTI.equals(Initializer.getBaseConstants().reconciliationRequestMTI)) {
+			logger.info("Request Packet: ");
+			decoder.printDecodedData();
 			return true;
 		} else {
 			return false;
@@ -31,14 +37,7 @@ public class INCOMMresponseGenerator extends BaseResponseGenerator {
 	}
 	
 	@Override
-	public String connectivityCheckResponse() {
-		loadDecoder(requestPacket);
-		decoder.decodeTransactionPacket();
-		header = decoder.getHeader();
-		requestMTI = decoder.getMTI();
-		requestBitfieldsWithValues = decoder.getBitfieldsWithValue();
-		logger.info("Request Packet: ");
-		decoder.printDecodedData();
+	public String connectivityCheckResponse() {				
 		responseBitfieldswithValue = new TreeMap<String, String>(new BitfieldComparator());
 		responseBitfieldswithValue = requestBitfieldsWithValues;
 		loadEncoder();

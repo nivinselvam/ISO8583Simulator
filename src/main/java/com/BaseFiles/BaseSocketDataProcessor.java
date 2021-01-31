@@ -45,7 +45,8 @@ public abstract class BaseSocketDataProcessor extends Thread {
 		try {
 			dataInputStream = new DataInputStream(Initializer.getServer().getSocket().getInputStream());
 			dataOutputSteam = new DataOutputStream(Initializer.getServer().getSocket().getOutputStream());
-
+			
+			//Continuously monitor the socket and read data whenever available
 			while (listenToSocket) {
 				while (dataInputStream.available() == 0) {
 					try {
@@ -133,10 +134,14 @@ public abstract class BaseSocketDataProcessor extends Thread {
 	 * -----------------------------------------------------------------------------
 	 */
 	public void writeDataToSocket() {
+		logger.debug("Starting the data writing into the socket:");
 		try {
 			if (writeDataLengthToSocket) {
+				logger.debug("Writing the data length into the socket...");
+				logger.debug("Length of "+socketDataLength+" is written into socket.");
 				dataOutputSteam.writeShort(socketDataLength);
 			}
+			logger.debug("Writing the data into the socket...");
 			dataOutputSteam.write(formattedPacketBytes);
 			dataOutputSteam.flush();
 		} catch (IOException e) {
