@@ -1,3 +1,10 @@
+/*
+ * This class is used to customize the socket programming for the Incomm fep.
+ * socketDataReadFormat method is implemented in such a way that the first two bytes in the byte stream is read to 
+ * find out the overall length of the request packet.
+ * Similarly, the way data is written into the socket is also customized to fit the requirement of the HPS. 
+ */
+
 package com.INCOMMfiles;
 
 import java.io.IOException;
@@ -33,7 +40,7 @@ public class INCOMMsocketDataProcessor extends BaseSocketDataProcessor {
 		} catch (UnsupportedEncodingException e) {
 			logger.debug(e.toString());
 		}
-		socketDataLength = formattedPacketBytes.length + 2;
+		socketDataLength = formattedPacketBytes.length;
 	}
 
 }
