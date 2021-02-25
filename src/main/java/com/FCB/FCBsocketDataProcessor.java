@@ -17,10 +17,11 @@ import com.BaseFiles.Initializer;
 
 public class FCBsocketDataProcessor extends BaseSocketDataProcessor {
 	private Logger logger = Logger.getLogger(FCBsocketDataProcessor.class);
-
+	
+	
 	public void socketDataReadFormat() {
 		try {
-			socketDataLength = dataInputStream.readShort()-2;
+			socketDataLength = dataInputStream.readShort();
 			logger.debug("Socket has received data of length: "+socketDataLength);
 		} catch (IOException e) {
 			logger.debug(e.toString());
@@ -36,7 +37,7 @@ public class FCBsocketDataProcessor extends BaseSocketDataProcessor {
 		} catch (UnsupportedEncodingException e) {
 			logger.debug(e.toString());
 		}
-		socketDataLength = formattedPacketBytes.length + 2;
+		socketDataLength = formattedPacketBytes.length;
 	}
 
 }

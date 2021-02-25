@@ -419,9 +419,9 @@ public class BitFieldData {
 			bitfieldLength.put("BITFIELD8", 8);
 			bitfieldLength.put("BITFIELD9", 8);
 			bitfieldLength.put("BITFIELD10", 8);
-			bitfieldLength.put("BITFIELD11", 12);
-			bitfieldLength.put("BITFIELD12", 11);
-			bitfieldLength.put("BITFIELD13", 8);
+			bitfieldLength.put("BITFIELD11", 6);
+			bitfieldLength.put("BITFIELD12", 6);
+			bitfieldLength.put("BITFIELD13", 4);
 			bitfieldLength.put("BITFIELD14", 4);
 			bitfieldLength.put("BITFIELD15", 4);
 			bitfieldLength.put("BITFIELD16", 4);
@@ -430,9 +430,9 @@ public class BitFieldData {
 			bitfieldLength.put("BITFIELD19", 3);
 			bitfieldLength.put("BITFIELD20", 3);
 			bitfieldLength.put("BITFIELD21", -2);
-			bitfieldLength.put("BITFIELD22", 3);
+			bitfieldLength.put("BITFIELD22", 4);
 			bitfieldLength.put("BITFIELD23", 3);
-			bitfieldLength.put("BITFIELD24", 3);
+			bitfieldLength.put("BITFIELD24", 4);
 			bitfieldLength.put("BITFIELD25", 2);
 			bitfieldLength.put("BITFIELD26", 4);
 			bitfieldLength.put("BITFIELD27", 48);
@@ -446,7 +446,7 @@ public class BitFieldData {
 			bitfieldLength.put("BITFIELD35", -2);
 			bitfieldLength.put("BITFIELD36", -3);
 			bitfieldLength.put("BITFIELD37", 12);
-			bitfieldLength.put("BITFIELD38", 20);
+			bitfieldLength.put("BITFIELD38", 6);
 			bitfieldLength.put("BITFIELD39", 2);
 			bitfieldLength.put("BITFIELD40", 3);
 			bitfieldLength.put("BITFIELD41", 8);
@@ -457,11 +457,11 @@ public class BitFieldData {
 			bitfieldLength.put("BITFIELD46", -4);
 			bitfieldLength.put("BITFIELD47", -3);
 			bitfieldLength.put("BITFIELD48", -4);
-			bitfieldLength.put("BITFIELD49", 3);
+			bitfieldLength.put("BITFIELD49", 4);
 			bitfieldLength.put("BITFIELD50", 3);
 			bitfieldLength.put("BITFIELD51", 3);
-			bitfieldLength.put("BITFIELD52", 8);
-			bitfieldLength.put("BITFIELD53", 16);
+			bitfieldLength.put("BITFIELD52", 16);
+			bitfieldLength.put("BITFIELD53", 20);
 			bitfieldLength.put("BITFIELD54", -3);
 			bitfieldLength.put("BITFIELD55", -3);
 			bitfieldLength.put("BITFIELD56", -3);

@@ -40,7 +40,7 @@ public class BaseDecoder {
 			logger.fatal("Request packet Format error. Please make sure the Hex data is correct");
 		}
 	}
-	
+
 	// -----------------------------------------------------------------------------------------------------------
 	/*
 	 * Takes the hex array as input, splits the data and convets into ascii values
@@ -48,12 +48,12 @@ public class BaseDecoder {
 	// -----------------------------------------------------------------------------------------------------------
 	public void decodeTransactionPacket() {
 		logger.debug("Starting the decoding of packet");
-			generateHeader();
-			generateMTI();
-			generatePrimaryBitmap();
-			generateSecondaryBitmap();
-			generateConsolidatedBitmap();
-			generateBitFieldwithValues();
+		generateHeader();
+		generateMTI();
+		generatePrimaryBitmap();
+		generateSecondaryBitmap();
+		generateConsolidatedBitmap();
+		generateBitFieldwithValues();
 	}
 
 	/*
@@ -63,7 +63,8 @@ public class BaseDecoder {
 	 */
 	public void generateHeader() {
 		try {
-			header = requestPacket.substring(Initializer.getBaseConstants().HeaderStartPoint, Initializer.getBaseConstants().HeaderEndPoint);
+			header = requestPacket.substring(Initializer.getBaseConstants().HeaderStartPoint,
+					Initializer.getBaseConstants().HeaderEndPoint);
 			logger.debug("Header is set as " + header);
 		} catch (NumberFormatException e) {
 			header = "";
@@ -74,7 +75,7 @@ public class BaseDecoder {
 	public String getHeader() {
 		return header;
 	}
-	
+
 	public void setHeader(String header) {
 		this.header = header;
 	}
@@ -85,14 +86,15 @@ public class BaseDecoder {
 	 * -----------------------------------------------------------------------------
 	 */
 	public void generateMTI() {
-		MTI = requestPacket.substring(Initializer.getBaseConstants().mtiStartPoint, Initializer.getBaseConstants().mtiEndPoint);
+		MTI = requestPacket.substring(Initializer.getBaseConstants().mtiStartPoint,
+				Initializer.getBaseConstants().mtiEndPoint);
 		logger.debug("MTI is set as " + MTI);
 	}
 
 	public String getMTI() {
 		return MTI;
 	}
-	
+
 	public void setMTI(String MTI) {
 		this.MTI = MTI;
 	}
@@ -169,8 +171,6 @@ public class BaseDecoder {
 	public Map<String, String> getBitfieldsWithValue() {
 		return bitFieldswithValue;
 	}
-
-
 
 	// --------------------------------------------------------------------------------------------------
 	/*
