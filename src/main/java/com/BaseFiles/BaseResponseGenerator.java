@@ -13,6 +13,8 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import org.apache.log4j.Logger;
 
+import com.FCB.FCBDecoder;
+import com.FCB.FCBEncoder;
 import com.HPSfiles.HPSDecoder;
 import com.HPSfiles.HPSEncoder;
 import com.INCOMMfiles.INCOMMDecoder;
@@ -324,6 +326,8 @@ public abstract class BaseResponseGenerator {
 			decoder = new X9Decoder(dataToDecode);
 		} else if (Initializer.getFEPname().equals("INCOMM")) {
 			decoder = new INCOMMDecoder(dataToDecode);
+		} else if ( Initializer.getFEPname().equalsIgnoreCase("FCB")) {
+			decoder = new FCBDecoder(dataToDecode);
 		}
 	}
 
@@ -339,6 +343,8 @@ public abstract class BaseResponseGenerator {
 			encoder = new X9Encoder(header, responseMTI, elementsInTransaction, responseBitfieldswithValue);
 		} else if (Initializer.getFEPname().equals("INCOMM")) {
 			encoder = new INCOMMEncoder(header, responseMTI, elementsInTransaction, responseBitfieldswithValue);
+		} else if(Initializer.getFEPname().equalsIgnoreCase("FCB")) {
+			encoder = new FCBEncoder(header, responseMTI, elementsInTransaction, responseBitfieldswithValue);
 		}
 	}
 

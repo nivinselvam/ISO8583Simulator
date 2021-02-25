@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import org.apache.log4j.Logger;
 
+import com.FCB.FCBresponseGenerator;
 import com.HPSfiles.HPSresponseGenerator;
 import com.INCOMMfiles.INCOMMresponseGenerator;
 import com.X9Files.X9responseGenerator;
@@ -17,7 +18,7 @@ public abstract class BaseSocketDataProcessor extends Thread {
 	protected boolean writeDataLengthToSocket = true;
 	protected int socketDataLength;
 	protected byte[] formattedPacketBytes;
-	private StringBuffer requestPacketBuffer = new StringBuffer();
+	protected StringBuffer requestPacketBuffer = new StringBuffer();
 	private String requestPacket, responsePacket;
 	private BaseResponseGenerator responses;
 	private Logger logger = Logger.getLogger(BaseSocketDataProcessor.class);
@@ -104,7 +105,8 @@ public abstract class BaseSocketDataProcessor extends Thread {
 	 * -----------------------------------------------------------------------------
 	 */
 	public String readDataFromSocket() throws IOException {
-
+		
+		
 		formattedPacketBytes = new byte[socketDataLength];
 		dataInputStream.read(formattedPacketBytes, 0, socketDataLength);
 
@@ -114,7 +116,21 @@ public abstract class BaseSocketDataProcessor extends Thread {
 		}
 		logger.debug("Request packet received: " + requestPacketBuffer.toString());
 		return requestPacketBuffer.toString();
-
+		
+		
+//		requestPacketBuffer = new StringBuffer();
+//		formattedPacketBytes = new byte[socketDataLength];		
+//		
+//		try {
+//			while(dataInputStream.available()>0) {
+//				requestPacketBuffer.append((char)dataInputStream.read());
+//				
+//			}
+//		}catch(IOException e) {
+//			logger.error("Exception while reading input stream: "+e);
+//		}
+//		
+//		return requestPacketBuffer.toString();
 	}
 
 	/*
@@ -161,6 +177,8 @@ public abstract class BaseSocketDataProcessor extends Thread {
 			responses = new X9responseGenerator(requestPacket);
 		} else if(Initializer.getFEPname().equals("INCOMM")) {
 			responses = new INCOMMresponseGenerator(requestPacket);
+		} else if(Initializer.getFEPname().equalsIgnoreCase("FCB")) {
+			responses = new FCBresponseGenerator(requestPacket);
 		}
 		responsePacket = responses.getResponsePacket();
 

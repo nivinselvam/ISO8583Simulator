@@ -11,6 +11,8 @@ import javax.swing.JTextArea;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
+import com.FCB.FCBvariables;
+
 public class Initializer {
 	private static String fepName;
 	private static int portNumber;
@@ -46,7 +48,12 @@ public class Initializer {
 		configTracker.createPropertiesMap();
 		bitfieldData = new BitFieldData();
 		constants = new BaseConstants();
-		variables = new BaseVariables();
+		if(fepName.equalsIgnoreCase("FCB")) {
+			variables = new FCBvariables();
+		}else {
+			variables = new BaseVariables();
+		}
+		
 		// GUI is instantiated here to get the logs displayed in the runtime logs text
 		// area
 		if (guiEnabled) {
