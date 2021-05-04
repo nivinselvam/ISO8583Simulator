@@ -1,0 +1,6 @@
+﻿2021-01-20 16:37:52 ERROR ConfigurationTracker:63 - java.io.FileNotFoundException: C:\Simulator\X9Sim\PropertyFiles\null (The system cannot find the file specified)
+2021-02-23 15:21:24 ERROR ConfigurationTracker:63 - java.io.FileNotFoundException: C:\Users\nivins1\eclipse-workspace\ISO8583Simulator\target\classes\PropertyFiles\CommonVariables.properties (The system cannot find the path specified)
+2021-02-23 15:24:16 ERROR ConfigurationTracker:63 - java.io.FileNotFoundException: C:\Users\nivins1\eclipse-workspace\ISO8583Simulator\target\classes\PropertyFiles\CommonVariables.properties (The system cannot find the path specified)
+2021-02-23 15:24:48 ERROR ConfigurationTracker:63 - java.io.FileNotFoundException: C:\Users\nivins1\eclipse-workspace\ISO8583Simulator\target\classes\PropertyFiles\CommonVariables.properties (The system cannot find the path specified)
+2021-02-23 15:25:52 ERROR ConfigurationTracker:63 - java.io.FileNotFoundException: C:\Users\nivins1\eclipse-workspace\ISO8583Simulator\target\classes\PropertyFiles\CommonVariables.properties (The system cannot find the path specified)
+2021-02-25 23:19:39 ERROR ConfigurationTracker:63 - java.io.FileNotFoundException: C:\Users\nivins1\eclipse-workspace\ISO8583Simulator\target\classes\PropertyFiles\CommonVariables.properties (The system cannot find the path specified)
