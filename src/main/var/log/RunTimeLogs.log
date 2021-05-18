@@ -8,3 +8,4 @@
 2021-02-05 12:44:10 ERROR ConfigurationTracker:63 - java.io.FileNotFoundException: C:\Users\nivins1\eclipse-workspace\ISO8583Simulator\target\classes\PropertyFiles\CommonVariables.properties (The system cannot find the path specified)
 2021-02-05 12:44:26 ERROR ConfigurationTracker:63 - java.io.FileNotFoundException: C:\Users\nivins1\eclipse-workspace\ISO8583Simulator\target\classes\PropertyFiles\CommonVariables.properties (The system cannot find the path specified)
 2021-02-05 12:44:43 ERROR ConfigurationTracker:63 - java.io.FileNotFoundException: C:\Users\nivins1\eclipse-workspace\ISO8583Simulator\target\classes\PropertyFiles\HPSVariables.properties (The system cannot find the file specified)
+2021-05-12 21:36:57 ERROR ConfigurationTracker:63 - java.io.FileNotFoundException: C:\Users\nivins1\eclipse-workspace\ISO8583Simulator\target\classes\PropertyFiles\CommonVariables.properties (The system cannot find the path specified)

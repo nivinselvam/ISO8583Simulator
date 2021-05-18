@@ -156,7 +156,7 @@ public class Initializer {
 		fepPropertyFiles.put("HPS", "HPSVariables.properties");
 		fepPropertyFiles.put("X9", "X9Variables.properties");
 		fepPropertyFiles.put("INCOMM", "IncommVariables.properties");
-		fepPropertyFiles.put("FCB", "FCBVariables.properties");
+		//fepPropertyFiles.put("FCB", "FCBVariables.properties");
 	}
 	
 	
