@@ -14,7 +14,7 @@ public class INCOMMresponseGenerator extends BaseResponseGenerator {
 	public INCOMMresponseGenerator(String requestPacket) {
 		super(requestPacket);
 	}
-	
+
 	// ------------------------------------------------------------------------------------------------------------------
 	/*
 	 * Validate if the transaction request is an echo request.
@@ -26,7 +26,8 @@ public class INCOMMresponseGenerator extends BaseResponseGenerator {
 		decoder.decodeTransactionPacket();
 		requestMTI = decoder.getMTI();
 		requestBitfieldsWithValues = decoder.getBitfieldsWithValue();
-		//In the below line of code, reconciliation represents the network health check MTI.
+		// In the below line of code, reconciliation represents the network health check
+		// MTI.
 		if (requestMTI.equals(Initializer.getBaseConstants().reconciliationRequestMTI)) {
 			logger.info("Request Packet: ");
 			decoder.printDecodedData();
@@ -35,9 +36,9 @@ public class INCOMMresponseGenerator extends BaseResponseGenerator {
 			return false;
 		}
 	}
-	
+
 	@Override
-	public String connectivityCheckResponse() {				
+	public String connectivityCheckResponse() {
 		responseBitfieldswithValue = new TreeMap<String, String>(new BitfieldComparator());
 		responseBitfieldswithValue = requestBitfieldsWithValues;
 		loadEncoder();
@@ -52,21 +53,12 @@ public class INCOMMresponseGenerator extends BaseResponseGenerator {
 	@Override
 	public void authorizationPendingBitfieldsUpdate() {
 
-		if (transactionResult.equals("Approve")) {
-			responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield38, setBitfieldLengthIfRequired(
-					Initializer.getBaseConstants().nameOfbitfield38, Initializer.getBaseVariables().valueOfBitfield38));
-			elementsInTransaction.add(38);
-			responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield39,
-					setBitfieldLengthIfRequired(Initializer.getBaseConstants().nameOfbitfield39,
-							Initializer.getBaseVariables().ValueOfBitfield39Approval));
-		} else if (transactionResult.equals("Decline")) {
-			responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield39,
-					setBitfieldLengthIfRequired(Initializer.getBaseConstants().nameOfbitfield39,
-							Initializer.getBaseVariables().ValueOfBitfield39Decline));
-			responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield44, setBitfieldLengthIfRequired(
-					Initializer.getBaseConstants().nameOfbitfield44, Initializer.getBaseVariables().valueOfBitfield44));
-			elementsInTransaction.add(44);
-		}
+		responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield38, setBitfieldLengthIfRequired(
+				Initializer.getBaseConstants().nameOfbitfield38, Initializer.getBaseVariables().valueOfBitfield38));
+		elementsInTransaction.add(38);
+		responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield39,
+				setBitfieldLengthIfRequired(Initializer.getBaseConstants().nameOfbitfield39,
+						Initializer.getBaseVariables().ValueOfBitfield39Approval));
 
 	}
 
@@ -113,20 +105,13 @@ public class INCOMMresponseGenerator extends BaseResponseGenerator {
 					setBitfieldLengthIfRequired(Initializer.getBaseConstants().nameOfbitfield4, bitfield4));
 		}
 
-		if (transactionResult.equals("Approve") || transactionResult.equals("PartiallyApprove")) {
-			responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield38, setBitfieldLengthIfRequired(
-					Initializer.getBaseConstants().nameOfbitfield38, Initializer.getBaseVariables().valueOfBitfield38));
-			elementsInTransaction.add(38);
-		}
-		if (transactionResult.equals("Decline")) {
-			responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield44, setBitfieldLengthIfRequired(
-					Initializer.getBaseConstants().nameOfbitfield44, Initializer.getBaseVariables().valueOfBitfield44));
-			elementsInTransaction.add(44);
-		}
+		responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield38, setBitfieldLengthIfRequired(
+				Initializer.getBaseConstants().nameOfbitfield38, Initializer.getBaseVariables().valueOfBitfield38));
+		elementsInTransaction.add(38);
 
 	}
 
-	//Incomm does not support financial force draft
+	// Incomm does not support financial force draft
 	@Override
 	public void financialForceDraftPendingBitfieldsUpdate() {
 		// TODO Auto-generated method stub
@@ -138,25 +123,16 @@ public class INCOMMresponseGenerator extends BaseResponseGenerator {
 		responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield5, setBitfieldLengthIfRequired(
 				Initializer.getBaseConstants().nameOfbitfield5, Initializer.getBaseVariables().valueOfBitfield5));
 
-		if (transactionResult.equals("Approve")) {
-			responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield38, setBitfieldLengthIfRequired(
-					Initializer.getBaseConstants().nameOfbitfield38, Initializer.getBaseVariables().valueOfBitfield38));
-			elementsInTransaction.add(38);
-			responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield39,
-					setBitfieldLengthIfRequired(Initializer.getBaseConstants().nameOfbitfield39,
-							Initializer.getBaseVariables().ValueOfBitfield39Reversal));
-		} else if (transactionResult.equals("Decline")) {
-			responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield39,
-					setBitfieldLengthIfRequired(Initializer.getBaseConstants().nameOfbitfield39,
-							Initializer.getBaseVariables().ValueOfBitfield39Decline));
-			responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield44, setBitfieldLengthIfRequired(
-					Initializer.getBaseConstants().nameOfbitfield44, Initializer.getBaseVariables().valueOfBitfield44));
-			elementsInTransaction.add(44);
-		}
+		responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield38, setBitfieldLengthIfRequired(
+				Initializer.getBaseConstants().nameOfbitfield38, Initializer.getBaseVariables().valueOfBitfield38));
+		elementsInTransaction.add(38);
+		responseBitfieldswithValue.put(Initializer.getBaseConstants().nameOfbitfield39,
+				setBitfieldLengthIfRequired(Initializer.getBaseConstants().nameOfbitfield39,
+						Initializer.getBaseVariables().ValueOfBitfield39Reversal));
 
 	}
-	
-	//Incomm does not support reconciliation
+
+	// Incomm does not support reconciliation
 	@Override
 	public void reconciliationPendingBitfieldsUpdate() {
 		// TODO Auto-generated method stub
@@ -166,7 +142,7 @@ public class INCOMMresponseGenerator extends BaseResponseGenerator {
 	@Override
 	public boolean isOutdoorTransaction() {
 		return false;
-		
+
 	}
-	
+
 }
