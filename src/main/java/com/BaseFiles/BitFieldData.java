@@ -468,10 +468,12 @@ public class BitFieldData {
 			bitfieldLength.put("BITFIELD57", -3);
 			bitfieldLength.put("BITFIELD58", -3);
 			bitfieldLength.put("BITFIELD59", -3);
-			bitfieldLength.put("BITFIELD60", 4);
+			//Actual variable length is 3 but in FCB for 3 digit values a '0' will be added in front
+			bitfieldLength.put("BITFIELD60", -4);
 			bitfieldLength.put("BITFIELD61", -3);
 			bitfieldLength.put("BITFIELD62", -4);
-			bitfieldLength.put("BITFIELD63", -3);
+			//Actual variable length is 3 but in FCB for 3 digit values a '0' will be added in front
+			bitfieldLength.put("BITFIELD63", -4);
 			bitfieldLength.put("BITFIELD64", 8);
 			bitfieldLength.put("BITFIELD65", 1);
 			bitfieldLength.put("BITFIELD66", 1);

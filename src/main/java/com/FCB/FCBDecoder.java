@@ -12,13 +12,12 @@ import com.BaseFiles.Initializer;
 
 public class FCBDecoder extends BaseDecoder {
 	private static Logger logger = Logger.getLogger(FCBDecoder.class);
-	private List<String> BitfieldsInHexFormat = new ArrayList<String>(
-			Arrays.asList("BITFIELD37", "BITFIELD38", "BITFIELD39", "BITFIELD41", "BITFIELD42"));
-	
+	private List<String> BitfieldsInHexFormat = new ArrayList<String>(Arrays.asList("BITFIELD37", "BITFIELD38",
+			"BITFIELD39", "BITFIELD41", "BITFIELD42", "BITFIELD60", "BITFIELD63"));
+
 	public FCBDecoder(String requestPacket) {
 		super(requestPacket);
 	}
-	
 
 	// -----------------------------------------------------------------------------------------------------
 	/*
@@ -95,19 +94,29 @@ public class FCBDecoder extends BaseDecoder {
 					}
 				}
 				currentBitFieldValue = tempString + getFormattedBitfieldValue(currentBitField, currentBitFieldValue);
-				;
 				bitFieldswithValue.put(currentBitField, currentBitFieldValue);
 				logger.debug(currentBitField + " with value " + currentBitFieldValue + " successfully added");
 				currentPosition = currentPosition + currentBitfieldLength;
 			} else if (currentBitfieldLength == (-4 * readDataFormat)) {
+				// This is to make sure that the bitfields in hex format are converted to string
 				if (BitfieldsInHexFormat.contains(currentBitField)) {
-					currentBitfieldLength = Integer.parseInt(Initializer.getConverter().hexToASCII(
-							requestPacket.substring(currentPosition, currentPosition + 4 * readDataFormat)));
+					// This is to make sure length of bitfields 60 and 63 are read as plain strings
+					if (currentBitField.equals(Initializer.getBaseConstants().nameOfbitfield60)
+							|| currentBitField.equals(Initializer.getBaseConstants().nameOfbitfield63)) {
+						currentBitfieldLength = Integer.parseInt(
+								requestPacket.substring(currentPosition, currentPosition + 4 * (readDataFormat / 2)));
+						currentPosition = currentPosition + (4 * (readDataFormat / 2));
+					} else {
+						currentBitfieldLength = Integer.parseInt(Initializer.getConverter().hexToASCII(
+								requestPacket.substring(currentPosition, currentPosition + 4 * readDataFormat)));
+						currentPosition = currentPosition + (4 * readDataFormat);
+					}
+
 				} else {
 					currentBitfieldLength = Integer
 							.parseInt(requestPacket.substring(currentPosition, currentPosition + 4 * readDataFormat));
+					currentPosition = currentPosition + (4 * readDataFormat);
 				}
-				currentPosition = currentPosition + (4 * readDataFormat);
 				currentBitfieldLength = (currentBitfieldLength) * readDataFormat;
 				currentBitFieldValue = requestPacket.substring(currentPosition,
 						currentPosition + currentBitfieldLength);
